@@ -163,12 +163,18 @@ def git(*a, check=True, capture=False):
 
 def git_env():
     """Токен инжектим как HTTP-заголовок через GIT_CONFIG_* — так он не
-    попадает ни в .git/config, ни в аргументы процесса, ни в историю."""
+    попадает ни в .git/config, ни в аргументы процесса, ни в историю.
+
+    Важно: git-эндпоинты GitHub НЕ принимают `Authorization: Bearer <PAT>`
+    (это формат для API и для GitHub Apps). Для push классическим PAT нужен
+    HTTP Basic, где логин — `x-access-token`, а пароль — сам токен.
+    """
+    basic = base64.b64encode(("x-access-token:" + TOKEN).encode()).decode()
     e = os.environ.copy()
     e["GIT_TERMINAL_PROMPT"] = "0"
     e["GIT_CONFIG_COUNT"] = "2"
     e["GIT_CONFIG_KEY_0"] = "http.https://github.com/.extraHeader"
-    e["GIT_CONFIG_VALUE_0"] = "Authorization: Bearer " + TOKEN
+    e["GIT_CONFIG_VALUE_0"] = "Authorization: Basic " + basic
     e["GIT_CONFIG_KEY_1"] = "credential.helper"
     e["GIT_CONFIG_VALUE_1"] = ""
     return e
