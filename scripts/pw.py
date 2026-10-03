@@ -184,34 +184,50 @@ class Ignore:
 
     @staticmethod
     def _match(pattern: str, path: str) -> bool:
+        """Сопоставление по правилам gitignore.
+
+        Важно: `*` НЕ пересекает `/` (в отличие от fnmatch, где `*` -> `.*`).
+        Иначе паттерн `/*.zip` (только корень) ловил бы и
+        `resourcepacks/MyPack.zip`, а ресурспаки перестали бы попадать в пак.
+        """
         if "**" in pattern:
-            regex = pattern.replace("**/", "\x01").replace("/**", "\x02").replace("**", "\x03")
-            regex = re.escape(regex)
-            regex = (regex.replace(re.escape("\x01"), "(?:.*/)?")
-                          .replace(re.escape("\x02"), "(?:/.*)?")
-                          .replace(re.escape("\x03"), ".*"))
-            regex = regex.replace(re.escape("*"), "[^/]*").replace(re.escape("?"), "[^/]")
-            return re.fullmatch(regex, path) is not None
-        if "/" in pattern:
-            return fnmatch.fnmatch(path, pattern)
-        # без слэша — совпадает с любым компонентом пути
-        return any(fnmatch.fnmatch(part, pattern) for part in path.split("/"))
+            tmp = (pattern.replace("**/", "\x01")
+                          .replace("/**", "\x02")
+                          .replace("**", "\x03"))
+            rx = re.escape(tmp)
+            rx = (rx.replace(re.escape("\x01"), "(?:.*/)?")
+                    .replace(re.escape("\x02"), "(?:/.*)?")
+                    .replace(re.escape("\x03"), ".*"))
+            rx = rx.replace(re.escape("*"), "[^/]*").replace(re.escape("?"), "[^/]")
+            return re.fullmatch(rx, path) is not None
+        rx = re.escape(pattern).replace(re.escape("*"), "[^/]*") \
+                              .replace(re.escape("?"), "[^/]")
+        return re.fullmatch(rx, path) is not None
+
+    @staticmethod
+    def _is_rooted(pat: str) -> bool:
+        """Паттерн привязан к корню, если слэш встречается в начале или в
+        СЕРЕДИНЕ (gitignore-семантика). `quests/**` -> только /quests/**,
+        но НЕ config/ftbquests/quests/**. `README.md` и `*.zip` (слэша нет)
+        -> совпадают на любом уровне.
+
+        Раньше здесь перебирались все суффиксы пути, из-за чего `quests/**`
+        молча вырезал config/ftbquests/quests/ — квесты не попадали в пак.
+        """
+        return "/" in pat.rstrip("/")
 
     def ignored(self, relpath: str, is_dir: bool = False) -> bool:
         result = False
         for negate, anchored, dir_only, pat in self.rules:
             if dir_only and not is_dir and not relpath.startswith(pat + "/"):
                 continue
-            target = relpath
-            if anchored:
-                matched = self._match(pat, target)
+            if anchored or self._is_rooted(pat):
+                matched = self._match(pat, relpath)
             else:
-                matched = self._match(pat, target)
-                if not matched:
-                    matched = any(
-                        self._match(pat, "/".join(target.split("/")[k:]))
-                        for k in range(1, target.count("/") + 1)
-                    )
+                # без слэша — совпадает с именем на любом уровне
+                matched = self._match(pat, relpath) or any(
+                    self._match(pat, part) for part in relpath.split("/")
+                )
             if matched:
                 result = not negate
         return result
@@ -354,6 +370,7 @@ def cmd_refresh(_args) -> None:
 
 def cmd_check(_args) -> None:
     problems = []
+    warnings = []
     index = _read_index_arrays() if os.path.isfile(INDEX_TOML) else {}
     disk = {rel: abspath for rel, abspath in pack_files()}
     for rel in sorted(set(index) - set(disk)):
@@ -367,8 +384,13 @@ def cmd_check(_args) -> None:
     for slug, m in mods.items():
         if not m.get("download", {}).get("url"):
             problems.append("нет [download] url: mods/%s.pw.toml" % slug)
-        if not m.get("update"):
-            problems.append("нет [update] (мод не сможет обновляться): mods/%s.pw.toml" % slug)
+        if not any(isinstance(v, dict) and v for v in (m.get("update") or {}).values()):
+            # Для модов с Maven или по прямой ссылке [update] пуст — это нормально:
+            # packwiz умеет обновлять только modrinth/curseforge, а кастомный
+            # [update.maven] уронил бы packwiz с "Update plugin maven not found!".
+            warnings.append("нет [update] — обновлять вручную: mods/%s.pw.toml" % slug)
+    for w in warnings:
+        print("  \033[33m!\033[0m " + w)
     if problems:
         print("\n".join("  - " + p for p in problems))
         fail("найдено проблем: %d (запустите `pw.py refresh`)" % len(problems))
@@ -441,6 +463,156 @@ def write_mod(slug: str, name: str, filename: str, side: str, url: str,
     with open(path, "w", encoding="utf-8", newline="\n") as fh:
         fh.write("\n".join(lines))
     return path
+
+
+# --------------------------------------------------------------------------- #
+#  Maven (нужно для FTB-модов: их нет на Modrinth, только на CurseForge и
+#  на публичном maven.ftb.dev)
+# --------------------------------------------------------------------------- #
+
+MAVEN_DEFAULTS = {
+    "ftb": "https://maven.ftb.dev/releases",
+}
+
+
+def _maven_fetch(url: str):
+    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    with urllib.request.urlopen(req, timeout=90) as r:
+        return r.read()
+
+
+def maven_latest(base: str, group: str, artifact: str, prefix: str = "") -> str:
+    """Список версий из листинга каталога maven (maven-metadata.xml не у всех есть)."""
+    path = "%s/%s/%s/" % (base.rstrip("/"), group.replace(".", "/"), artifact)
+    html = _maven_fetch(path).decode("utf-8", "replace")
+    vers = re.findall(r'href="\./([^/"]+)/"', html)
+    vers = [v for v in vers if re.match(r"^\d", v)]
+    if prefix:
+        vers = [v for v in vers if v.startswith(prefix)]
+    if not vers:
+        fail("в %s нет версий%s" % (path, " с префиксом " + prefix if prefix else ""))
+
+    def key(v):
+        return [int(x) if x.isdigit() else 0 for x in re.split(r"[.\-+]", v)]
+    return sorted(vers, key=key)[-1]
+
+
+def maven_pom_deps(base: str, group: str, artifact: str, version: str):
+    """Зависимости из POM. Возвращает [(group, artifact, version, scope)]."""
+    url = "%s/%s/%s/%s/%s-%s.pom" % (base.rstrip("/"), group.replace(".", "/"),
+                                     artifact, version, artifact, version)
+    try:
+        xml = _maven_fetch(url).decode("utf-8", "replace")
+    except Exception as e:                              # noqa: BLE001
+        warn_pom = "POM недоступен (%s) — зависимости не разрешаются" % e
+        info(warn_pom)
+        return []
+    out = []
+    for m in re.finditer(r"<dependency>(.*?)</dependency>", xml, re.S):
+        blk = m.group(1)
+        if "<exclusion>" in blk:
+            # исключение применяется к транзитивным зависимостям самого блока,
+            # но сам блок нам всё равно нужен
+            pass
+        g = re.search(r"<groupId>([^<]+)</groupId>", blk)
+        a = re.search(r"<artifactId>([^<]+)</artifactId>", blk)
+        v = re.search(r"<version>([^<]+)</version>", blk)
+        sc = re.search(r"<scope>([^<]+)</scope>", blk)
+        if g and a and v:
+            out.append((g.group(1).strip(), a.group(1).strip(),
+                        v.group(1).strip(), (sc.group(1).strip() if sc else "compile")))
+    return out
+
+
+def maven_sha1(base: str, group: str, artifact: str, version: str) -> str:
+    url = "%s/%s/%s/%s/%s-%s.jar.sha1" % (base.rstrip("/"), group.replace(".", "/"),
+                                          artifact, version, artifact, version)
+    try:
+        return _maven_fetch(url).decode().strip().split()[0]
+    except Exception:                                   # noqa: BLE001
+        return ""
+
+
+def maven_jar_url(base: str, group: str, artifact: str, version: str) -> str:
+    return "%s/%s/%s/%s/%s-%s.jar" % (base.rstrip("/"), group.replace(".", "/"),
+                                      artifact, version, artifact, version)
+
+
+def _maven_ver_key(v: str):
+    return [int(x) if x.isdigit() else 0 for x in re.split(r"[.\-+]", v)]
+
+
+def _maven_display_name(artifact: str) -> str:
+    """ftb-library-neoforge -> 'FTB Library'; kubejs-neoforge -> 'Kubejs'."""
+    clean = re.sub(r"-(neoforge|forge|fabric|quilt)$", "", artifact)
+    parts = clean.split("-")
+    if parts and parts[0].lower() in ("ftb", "jei", "emi", "rei"):
+        parts[0] = parts[0].upper()
+    return " ".join(w.capitalize() if w.islower() else w for w in parts)
+
+
+def cmd_add_maven(args) -> None:
+    """Добавляет артефакт с Maven и разрешает транзитивные зависимости из POM.
+
+    Конфликты версий (когда разные POM просят разное) разрешаются выбором
+    МАКСИМАЛЬНОЙ версии — иначе более старая перезапишет более новую, потому
+    что имя файла mods/<slug>.pw.toml от версии не зависит.
+    """
+    base = MAVEN_DEFAULTS.get(args.repo, args.repo)
+
+    # --- фаза 1: обход графа зависимостей ---
+    candidates = {}       # (group, artifact) -> {version: [источники]}
+    external = {}         # (group, artifact) -> {version: источник}
+    queue = [(args.group, args.artifact, args.version, "запрошен явно")]
+    seen = set()
+    while queue:
+        g, a, v, why = queue.pop(0)
+        if (g, a, v) in seen:
+            continue
+        seen.add((g, a, v))
+        if g != args.group:
+            external.setdefault((g, a), {}).setdefault(v, why)
+            continue
+        candidates.setdefault((g, a), {}).setdefault(v, []).append(why)
+        if args.no_deps:
+            continue
+        for dg, da, dv, scope in maven_pom_deps(base, g, a, v):
+            if scope not in ("compile", "runtime"):
+                continue
+            queue.append((dg, da, dv, "зависимость %s:%s" % (g, a)))
+
+    # --- фаза 2: разрешение конфликтов ---
+    resolved = []
+    for (g, a), versions in sorted(candidates.items()):
+        best = sorted(versions, key=_maven_ver_key)[-1]
+        if len(versions) > 1:
+            info("%s: запрошены версии %s — беру максимальную %s"
+                 % (a, ", ".join(sorted(versions, key=_maven_ver_key)), best))
+        resolved.append((g, a, best, versions[best]))
+
+    # --- фаза 3: запись ---
+    for g, a, v, whys in resolved:
+        url = maven_jar_url(base, g, a, v)
+        digest = maven_sha1(base, g, a, v)
+        if not digest and not args.force:
+            fail("не удалось получить sha1 для %s" % url)
+        title = args.name if args.name and a == args.artifact else _maven_display_name(a)
+        slug = slugify(title) or re.sub(r"[^a-z\d]+", "-", a.lower()).strip("-")
+        write_mod(slug, title, "%s-%s.jar" % (a, v), args.side, url,
+                  "sha1", digest, "[update]\n", optional=args.optional)
+        ok("%-22s %-16s sha1=%s  (%s)" % (title, v, (digest[:16] + "…") if digest else "—",
+                                           "; ".join(sorted(set(whys)))))
+
+    if external:
+        info("внешние зависимости (другая группа) — добавьте их отдельно:")
+        for (g, a), versions in sorted(external.items()):
+            need = sorted(versions, key=_maven_ver_key)[-1]
+            hint = {"architectury-neoforge": "architectury-api",
+                    "architectury-fabric": "architectury-api",
+                    "architectury-forge": "architectury-api"}.get(a, a)
+            print("      %s:%s  >= %s   ->   pw.py add %s" % (g, a, need, hint))
+
+    cmd_refresh(args)
 
 
 # --------------------------------------------------------------------------- #
@@ -1198,6 +1370,19 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--hash", action="store_true", help="скачать файл и посчитать sha1")
     s.set_defaults(func=cmd_add_url)
 
+    s = sub.add_parser("add-maven", help="добавить мод с Maven (нужно для FTB)")
+    s.add_argument("artifact", help="artifactId, например ftb-quests-neoforge")
+    s.add_argument("--group", default="dev.ftb.mods")
+    s.add_argument("--version", help="версия; без неё берётся последняя (--mc-prefix)")
+    s.add_argument("--repo", default="ftb", help="имя из MAVEN_DEFAULTS или полный URL")
+    s.add_argument("--mc-prefix", default="", help="фильтр версий, например 2101 для MC 1.21.1")
+    s.add_argument("--name", help="человеческое имя мода")
+    s.add_argument("--side", default="both", choices=["both", "client", "server"])
+    s.add_argument("--optional", action="store_true")
+    s.add_argument("--no-deps", action="store_true")
+    s.add_argument("--force", action="store_true", help="добавить даже без sha1")
+    s.set_defaults(func=cmd_add_maven_entry)
+
     s = sub.add_parser("remove", help="удалить мод(ы)")
     s.add_argument("mods", nargs="+")
     s.set_defaults(func=cmd_remove)
@@ -1249,6 +1434,16 @@ def build_parser() -> argparse.ArgumentParser:
     s.set_defaults(func=cmd_serve)
 
     return p
+
+
+def cmd_add_maven_entry(args) -> None:
+    base = MAVEN_DEFAULTS.get(args.repo, args.repo)
+    version = args.version
+    if not version:
+        version = maven_latest(base, args.group, args.artifact, args.mc_prefix)
+        info("последняя версия%s: %s" % (" с префиксом " + args.mc_prefix if args.mc_prefix else "", version))
+    args.version = version
+    cmd_add_maven(args)
 
 
 def _mrpack_entry(args) -> None:

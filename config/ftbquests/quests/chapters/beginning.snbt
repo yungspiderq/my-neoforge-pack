@@ -1,0 +1,227 @@
+{
+	default_hide_dependency_lines: 0b,
+	default_quest_shape: "circle",
+	filename: "beginning",
+	group: "",
+	id: "000000000000C001",
+	images: [ ],
+	order_index: 0,
+	quest_links: [ ],
+	quests: [
+		{
+			id: "0000000000001110",
+			rewards: [
+				{
+					id: "0000000000003110",
+					item: {
+						count: 1,
+						id: "minecraft:crafting_table"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 8L,
+					id: "0000000000002110",
+					item: {
+						count: 1,
+						id: "minecraft:oak_log"
+					},
+					type: "item"
+				}
+			],
+			x: -4.5d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000001110"],
+			id: "0000000000001120",
+			rewards: [
+				{
+					count: 8,
+					id: "0000000000003120",
+					item: {
+						count: 1,
+						id: "minecraft:stick"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000002120",
+					item: {
+						count: 1,
+						id: "minecraft:crafting_table"
+					},
+					type: "item"
+				}
+			],
+			x: -3.0d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000001120"],
+			id: "0000000000001130",
+			rewards: [
+				{
+					count: 6,
+					id: "0000000000003130",
+					item: {
+						count: 1,
+						id: "minecraft:bread"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000002130",
+					item: {
+						count: 1,
+						id: "minecraft:wooden_pickaxe"
+					},
+					type: "item"
+				}
+			],
+			x: -1.5d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000001130"],
+			id: "0000000000001140",
+			rewards: [
+				{
+					count: 16,
+					id: "0000000000003140",
+					item: {
+						count: 1,
+						id: "minecraft:torch"
+					},
+					type: "item"
+				},
+				{
+					count: 8,
+					id: "0000000000003141",
+					item: {
+						count: 1,
+						id: "minecraft:coal"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 32L,
+					id: "0000000000002140",
+					item: {
+						count: 1,
+						id: "minecraft:cobblestone"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000002141",
+					item: {
+						count: 1,
+						id: "minecraft:stone_pickaxe"
+					},
+					type: "item"
+				}
+			],
+			x: 0.0d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000001140"],
+			id: "0000000000001150",
+			rewards: [
+				{
+					id: "0000000000003150",
+					item: {
+						count: 1,
+						id: "minecraft:iron_pickaxe"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000003151",
+					item: {
+						count: 1,
+						id: "minecraft:bucket"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 8L,
+					id: "0000000000002150",
+					item: {
+						count: 1,
+						id: "minecraft:iron_ingot"
+					},
+					type: "item"
+				}
+			],
+			x: 1.5d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000001150"],
+			id: "0000000000001160",
+			rewards: [
+				{
+					id: "0000000000003160",
+					type: "xp_levels",
+					xp_levels: 5
+				},
+				{
+					id: "0000000000003161",
+					item: {
+						count: 1,
+						id: "minecraft:golden_apple"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000002160",
+					item: {
+						count: 1,
+						id: "minecraft:iron_sword"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000002161",
+					item: {
+						count: 1,
+						id: "minecraft:iron_axe"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000002162",
+					item: {
+						count: 1,
+						id: "minecraft:iron_shovel"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000002163",
+					item: {
+						count: 1,
+						id: "minecraft:shield"
+					},
+					type: "item"
+				}
+			],
+			x: 3.0d,
+			y: 0.0d
+		}
+	]
+}

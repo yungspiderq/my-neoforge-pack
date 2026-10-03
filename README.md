@@ -238,7 +238,10 @@ python scripts/pw.py add-url "Мой приватный мод" \
 ├── index.toml                    ← генерируется: список файлов и sha256
 ├── .packwizignore                ← что НЕ входит в пак
 ├── mods/*.pw.toml                ← метаданные модов (ссылки, не jar-ы!)
-├── config/ resourcepacks/ shaderpacks/   ← синхронизируемые файлы
+├── config/                       ← общие конфиги (в т.ч. ftbquests/quests/*.snbt)
+├── kubejs/                       ← кастомные предметы и рецепты
+├── quests/questline.py           ← квесты НА PYTHON (генератор -> .snbt)
+├── resourcepacks/ shaderpacks/   ← синхронизируемые файлы
 ├── packsync/                     ← механизм автосинхронизации (см. packsync/README.md)
 │   ├── packwiz-installer.jar
 │   ├── packwiz-installer-bootstrap.jar
@@ -334,6 +337,64 @@ https://<user>.github.io/<repo>/latest/ModpackManager.exe
 
 **Для автора и CI** — `scripts/verify.py --game-dir <папка>`: та же проверка
 из командной строки, с ненулевым кодом возврата при любом провале.
+
+---
+
+## Квесты (FTB Quests) и кастомный контент (KubeJS)
+
+В паке **19 квестов в 4 главах** — ванильная прогрессия плюс глава, завязанная
+на предметы, которые регистрирует KubeJS:
+
+| Глава | Квестов | Содержание |
+|---|---|---|
+| Начало | 6 | дерево → верстак → кирка → камень → железо → полный комплект |
+| Еда и ферма | 4 | пшеница, животноводство, огород, рыбалка |
+| Исследование | 6 | алмазы → обсидиан → Нижний мир → ифриты → Крепость → Дракон Края |
+| Кастомный контент | 3 | `kubejs:quest_token` → `quest_token_premium` → `quest_medal` |
+
+Квесты пишутся **на Python** (`quests/questline.py`), а SNBT генерирует
+`scripts/gen_quests.py`. Так сделано намеренно: в формате FTB Quests легко
+ошибиться так, что ничего не упадёт — квесты просто молча не появятся.
+Например, lang-ключ жёстко привязан к ID (`quest.0000000000001110.title`),
+а `readID()` молча перегенерирует ID, равный 0 или 1.
+
+Формат выверен **по исходникам мода** (ветка `1.21.1/main`, соответствует
+FTB Quests 2101.1.36), а не по чужим примерам. Оттуда же взяты неочевидные
+детали — например, что `ItemTask.count` это **long** (`8L`), а
+`ItemReward.count` — **int** (`8`), и что поле награды называется `xp_levels`,
+а не `levels`. Полная таблица источников — в [`quests/README.md`](quests/README.md).
+
+`scripts/check_quests.py` валидирует результат **без Minecraft**: парсит SNBT
+обратно, проверяет ID, зависимости, типы полей, lang-ключи, соответствие
+`kubejs:*`-предметов скриптам регистрации и (с `--registry`) существование всех
+`minecraft:*` в 1.21.1. Обе проверки встроены в CI.
+
+```bash
+python scripts/gen_quests.py              # questline.py -> .snbt
+python scripts/check_quests.py --registry # валидация
+```
+
+### Моды пака
+
+| Мод | Версия | Откуда |
+|---|---|---|
+| FTB Quests | 2101.1.36 | `maven.ftb.dev` |
+| FTB Library | 2101.1.36 | `maven.ftb.dev` (зависимость) |
+| FTB Teams | 2101.1.9 | `maven.ftb.dev` (зависимость) |
+| Architectury API | 13.0.11+neoforge | Modrinth (требуется ≥13.0.8) |
+| KubeJS | 2101.7.2-build.377 | Modrinth |
+| Rhino | 2101.2.7-build.85 | Modrinth (зависимость KubeJS) |
+| Better Advanced Tooltips | 2101.1.0-build.5 | Modrinth (зависимость KubeJS) |
+| JEI / Jade / JourneyMap | см. `pw.py list` | Modrinth |
+
+FTB-модов **нет на Modrinth** — только на CurseForge, чей API требует ключ.
+Поэтому добавлена команда `pw.py add-maven`: она читает POM, рекурсивно
+разрешает зависимости, при конфликте версий берёт максимальную и достаёт
+готовый sha1 из соседнего файла `.sha1` (jar при этом не скачивается).
+
+```bash
+python scripts/pw.py add-maven ftb-quests-neoforge --mc-prefix 2101
+```
 
 ---
 

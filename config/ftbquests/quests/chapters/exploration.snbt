@@ -1,0 +1,211 @@
+{
+	default_hide_dependency_lines: 0b,
+	default_quest_shape: "diamond",
+	filename: "exploration",
+	group: "",
+	id: "000000000000C003",
+	images: [ ],
+	order_index: 2,
+	quest_links: [ ],
+	quests: [
+		{
+			id: "0000000000001310",
+			rewards: [
+				{
+					id: "0000000000003310",
+					item: {
+						count: 1,
+						id: "minecraft:diamond_pickaxe"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 3L,
+					id: "0000000000002310",
+					item: {
+						count: 1,
+						id: "minecraft:diamond"
+					},
+					type: "item"
+				}
+			],
+			x: -4.5d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000001310"],
+			id: "0000000000001320",
+			rewards: [
+				{
+					id: "0000000000003320",
+					item: {
+						count: 1,
+						id: "minecraft:flint_and_steel"
+					},
+					type: "item"
+				},
+				{
+					count: 2,
+					id: "0000000000003321",
+					item: {
+						count: 1,
+						id: "minecraft:golden_apple"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 10L,
+					id: "0000000000002320",
+					item: {
+						count: 1,
+						id: "minecraft:obsidian"
+					},
+					type: "item"
+				}
+			],
+			x: -3.0d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000001320"],
+			id: "0000000000001330",
+			rewards: [
+				{
+					count: 16,
+					id: "0000000000003330",
+					item: {
+						count: 1,
+						id: "minecraft:quartz"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000003331",
+					type: "xp_levels",
+					xp_levels: 3
+				}
+			],
+			tasks: [
+				{
+					dimension: "minecraft:the_nether",
+					id: "0000000000002330",
+					type: "dimension"
+				}
+			],
+			x: -1.5d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000001330"],
+			id: "0000000000001340",
+			rewards: [
+				{
+					count: 14,
+					id: "0000000000003340",
+					item: {
+						count: 1,
+						id: "minecraft:ender_pearl"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 7L,
+					id: "0000000000002340",
+					item: {
+						count: 1,
+						id: "minecraft:blaze_rod"
+					},
+					type: "item"
+				},
+				{
+					entity: "minecraft:blaze",
+					id: "0000000000002341",
+					type: "kill",
+					value: 7L
+				}
+			],
+			x: 0.0d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000001340"],
+			id: "0000000000001350",
+			rewards: [
+				{
+					id: "0000000000003350",
+					type: "xp_levels",
+					xp_levels: 8
+				},
+				{
+					id: "0000000000003351",
+					item: {
+						count: 1,
+						id: "minecraft:ender_chest"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 12L,
+					id: "0000000000002350",
+					item: {
+						count: 1,
+						id: "minecraft:ender_eye"
+					},
+					type: "item"
+				}
+			],
+			x: 1.5d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000001350"],
+			id: "0000000000001360",
+			rewards: [
+				{
+					id: "0000000000003360",
+					type: "xp_levels",
+					xp_levels: 20
+				},
+				{
+					id: "0000000000003361",
+					item: {
+						count: 1,
+						id: "minecraft:shulker_box"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000003362",
+					item: {
+						count: 1,
+						id: "minecraft:elytra"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					dimension: "minecraft:the_end",
+					id: "0000000000002360",
+					type: "dimension"
+				},
+				{
+					entity: "minecraft:ender_dragon",
+					id: "0000000000002361",
+					type: "kill",
+					value: 1L
+				}
+			],
+			x: 3.0d,
+			y: 0.0d
+		}
+	]
+}

@@ -1,0 +1,195 @@
+{
+	default_hide_dependency_lines: 0b,
+	default_quest_shape: "square",
+	filename: "food_and_farm",
+	group: "",
+	id: "000000000000C002",
+	images: [ ],
+	order_index: 1,
+	quest_links: [ ],
+	quests: [
+		{
+			id: "0000000000001210",
+			rewards: [
+				{
+					count: 16,
+					id: "0000000000003210",
+					item: {
+						count: 1,
+						id: "minecraft:bone_meal"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 9L,
+					id: "0000000000002210",
+					item: {
+						count: 1,
+						id: "minecraft:wheat"
+					},
+					type: "item"
+				},
+				{
+					count: 6L,
+					id: "0000000000002211",
+					item: {
+						count: 1,
+						id: "minecraft:bread"
+					},
+					type: "item"
+				}
+			],
+			x: -3.0d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000001210"],
+			id: "0000000000001220",
+			rewards: [
+				{
+					count: 4,
+					id: "0000000000003220",
+					item: {
+						count: 1,
+						id: "minecraft:lead"
+					},
+					type: "item"
+				},
+				{
+					count: 4,
+					id: "0000000000003221",
+					item: {
+						count: 1,
+						id: "minecraft:hay_block"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 4L,
+					id: "0000000000002220",
+					item: {
+						count: 1,
+						id: "minecraft:leather"
+					},
+					type: "item"
+				},
+				{
+					count: 8L,
+					id: "0000000000002221",
+					item: {
+						count: 1,
+						id: "minecraft:cooked_beef"
+					},
+					type: "item"
+				},
+				{
+					count: 8L,
+					id: "0000000000002222",
+					item: {
+						count: 1,
+						id: "minecraft:egg"
+					},
+					type: "item"
+				}
+			],
+			x: -1.5d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000001220"],
+			id: "0000000000001230",
+			rewards: [
+				{
+					id: "0000000000003230",
+					type: "xp_levels",
+					xp_levels: 3
+				}
+			],
+			tasks: [
+				{
+					count: 16L,
+					id: "0000000000002230",
+					item: {
+						count: 1,
+						id: "minecraft:carrot"
+					},
+					type: "item"
+				},
+				{
+					count: 16L,
+					id: "0000000000002231",
+					item: {
+						count: 1,
+						id: "minecraft:potato"
+					},
+					type: "item"
+				},
+				{
+					count: 4L,
+					id: "0000000000002232",
+					item: {
+						count: 1,
+						id: "minecraft:golden_carrot"
+					},
+					type: "item"
+				}
+			],
+			x: 0.0d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000001210"],
+			id: "0000000000001240",
+			rewards: [
+				{
+					count: 8,
+					id: "0000000000003240",
+					item: {
+						count: 1,
+						id: "minecraft:cooked_cod"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000003241",
+					type: "xp_levels",
+					xp_levels: 2
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000002240",
+					item: {
+						count: 1,
+						id: "minecraft:fishing_rod"
+					},
+					type: "item"
+				},
+				{
+					count: 8L,
+					id: "0000000000002241",
+					item: {
+						count: 1,
+						id: "minecraft:cod"
+					},
+					type: "item"
+				},
+				{
+					count: 4L,
+					id: "0000000000002242",
+					item: {
+						count: 1,
+						id: "minecraft:salmon"
+					},
+					type: "item"
+				}
+			],
+			x: 1.5d,
+			y: 0.0d
+		}
+	]
+}

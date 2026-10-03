@@ -14,6 +14,8 @@
 *.yaml      text eol=lf
 *.py        text eol=lf
 *.sh        text eol=lf
+*.snbt      text eol=lf
+*.js        text eol=lf
 
 # bat/cmd для Windows — всегда CRLF (иначе возможны глюки парсера cmd.exe)
 *.cmd       text eol=crlf

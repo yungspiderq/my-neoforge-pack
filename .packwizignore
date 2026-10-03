@@ -14,6 +14,7 @@
 .github/**
 docs/**
 scripts/**
+quests/**
 installer/**
 app/**
 build/**

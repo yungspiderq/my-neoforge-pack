@@ -53,6 +53,20 @@ jobs:
           python3 scripts/pw.py list
           python3 scripts/pw.py versions
 
+      - name: Quest files must be up to date
+        run: |
+          python3 scripts/gen_quests.py --out /tmp/quests-regen
+          if ! diff -r --brief config/ftbquests/quests /tmp/quests-regen; then
+            echo "::error::Квесты в config/ftbquests/quests не соответствуют quests/questline.py."
+            echo "Запустите локально: python3 scripts/gen_quests.py — и закоммитьте результат."
+            exit 1
+          fi
+          echo "SNBT совпадает с questline.py"
+
+      - name: Validate quests
+        run: |
+          python3 scripts/check_quests.py --registry
+
       - name: Dry-run export
         run: |
           python3 scripts/pw.py site --out /tmp/site

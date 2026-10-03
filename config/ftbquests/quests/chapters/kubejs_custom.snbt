@@ -1,0 +1,116 @@
+{
+	default_hide_dependency_lines: 0b,
+	default_quest_shape: "gear",
+	filename: "kubejs_custom",
+	group: "",
+	id: "000000000000C004",
+	images: [ ],
+	order_index: 3,
+	quest_links: [ ],
+	quests: [
+		{
+			id: "0000000000001410",
+			rewards: [
+				{
+					id: "0000000000003410",
+					type: "xp_levels",
+					xp_levels: 3
+				},
+				{
+					count: 4,
+					id: "0000000000003411",
+					item: {
+						count: 1,
+						id: "minecraft:gold_ingot"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000002410",
+					item: {
+						count: 1,
+						id: "kubejs:quest_token"
+					},
+					type: "item"
+				}
+			],
+			x: -2.0d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000001410"],
+			id: "0000000000001420",
+			rewards: [
+				{
+					count: 4,
+					id: "0000000000003420",
+					item: {
+						count: 1,
+						id: "minecraft:diamond"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000003421",
+					type: "xp_levels",
+					xp_levels: 6
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000002420",
+					item: {
+						count: 1,
+						id: "kubejs:quest_token_premium"
+					},
+					type: "item"
+				}
+			],
+			x: 0.0d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000001420"],
+			id: "0000000000001430",
+			rewards: [
+				{
+					id: "0000000000003430",
+					type: "xp_levels",
+					xp_levels: 30
+				},
+				{
+					count: 2,
+					id: "0000000000003431",
+					item: {
+						count: 1,
+						id: "minecraft:netherite_ingot"
+					},
+					type: "item"
+				},
+				{
+					count: 2,
+					id: "0000000000003432",
+					item: {
+						count: 1,
+						id: "minecraft:enchanted_golden_apple"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000002430",
+					item: {
+						count: 1,
+						id: "kubejs:quest_medal"
+					},
+					type: "item"
+				}
+			],
+			x: 2.0d,
+			y: 0.0d
+		}
+	]
+}
