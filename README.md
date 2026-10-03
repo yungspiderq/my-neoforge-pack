@@ -249,6 +249,7 @@ python scripts/pw.py add-url "Мой приватный мод" \
 ├── instance-template/            ← шаблон инстанса для Prism/Freesm
 ├── scripts/
 │   ├── pw.py                     ← ведение пака (моды, индекс, артефакты)
+│   ├── verify.py                 ← проверка, что автосинк реально работает
 │   └── setup-github.py           ← публикация на GitHub одной командой
 ├── docs/                         ← подробные инструкции
 └── .github/workflows/
@@ -256,6 +257,35 @@ python scripts/pw.py add-url "Мой приватный мод" \
     ├── pages.yml                 ← публикация на GitHub Pages (каждый push в main)
     └── release.yml               ← .mrpack + instance.zip (по тегу v*)
 ```
+
+---
+
+## Проверка, что автосинк действительно работает
+
+`scripts/verify.py` прогоняет **ровно ту же цепочку**, что и `packwiz-installer`
+при запуске игры, но без Minecraft и без лаунчера — за пару секунд:
+
+```bash
+python scripts/verify.py                    # полная проверка, реально качает jar-ы
+python scripts/verify.py --fast             # только HTTP-заголовки, без закачки
+python scripts/verify.py --dest /tmp/mc     # разложить скачанное как при установке
+python scripts/verify.py --side server      # проверить серверную сторону
+```
+
+Что проверяется:
+
+| # | Проверка |
+|---|---|
+| 1 | `pack.toml` доступен по HTTP, версии MC/загрузчика читаются |
+| 2 | `index.toml` скачан и его **sha256 совпадает** с заявленным в `pack.toml` |
+| 3 | каждый `mods/*.pw.toml` доступен и его sha256 совпадает с индексом |
+| 4 | каждый `.jar` реально скачивается и его **sha1 совпадает** с заявленным |
+| 5 | `latest/instance.zip` и `latest/pack.mrpack` доступны, внутри них `packsync/pack-url.txt` указывает на этот же пак |
+| 6 | в `instance.cfg` есть корректная `PreLaunchCommand` и `OverrideCommands=true`; в `modrinth.index.json` — правильное число модов и зависимостей |
+
+Любое расхождение — это ровно та причина, по которой у игрока «моды не скачиваются»,
+поэтому скрипт падает с ненулевым кодом и печатает список провалов.
+Удобно гонять в CI и после каждого пуша.
 
 ---
 

@@ -102,7 +102,8 @@ def head_only(url: str):
 # --------------------------------------------------------------------------- #
 
 def parse_toml(text: str) -> dict:
-    root, cur = {}, {}
+    root = {}
+    cur = root          # ВАЖНО: именно root, иначе ключи верхнего уровня теряются
     tables = {}
     cur_name = None
     for raw in text.splitlines():
@@ -277,10 +278,14 @@ def check_downloads(mods, side_filter, fast, dest):
         ok("%s %.2f МБ  %s=%s…  %.1f МБ/с"
            % (label, len(data) / 1048576, hf, actual[:10], speed))
         if dest:
-            sub = "mods" if m["filename"].endswith(".jar") else ""
+            fname = m["filename"] or posixpath.basename(m["url"].split("?")[0])
+            if not fname:
+                bad("%s не удалось определить имя файла" % label)
+                continue
+            sub = "mods" if fname.endswith(".jar") else ""
             d = os.path.join(dest, sub) if sub else dest
             os.makedirs(d, exist_ok=True)
-            with open(os.path.join(d, m["filename"]), "wb") as fh:
+            with open(os.path.join(d, fname), "wb") as fh:
                 fh.write(data)
     print()
     ok("итого к скачиванию: %.2f МБ (%d файлов)" % (total / 1048576, len(wanted)))
