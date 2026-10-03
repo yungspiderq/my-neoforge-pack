@@ -356,6 +356,116 @@ def check_artifacts(base: str):
                     warn("   в .mrpack нет модов — они придут только через hook (packwiz-installer)")
 
 
+def check_game_dir(game_dir: str, mods, index: dict, side_filter: str):
+    """Сравнивает РЕАЛЬНОЕ содержимое папки игры с тем, что требует пак.
+
+    Это и есть ответ на вопрос «моды скачались или нет» — без запуска игры.
+    """
+    head("7. Локальная папка игры: %s" % game_dir)
+    if not os.path.isdir(game_dir):
+        bad("папка не существует")
+        return
+    mods_dir = os.path.join(game_dir, "mods")
+    if not os.path.isdir(mods_dir):
+        bad("нет папки mods/ — синхронизация ни разу не отработала")
+        note("проверьте, что hook прописан, и посмотрите packsync/sync.log")
+        return
+
+    installed = {}
+    for fn in os.listdir(mods_dir):
+        fp = os.path.join(mods_dir, fn)
+        if os.path.isfile(fp):
+            installed[fn] = fp
+
+    wanted = [m for m in mods if m["side"] in ("both", side_filter)]
+    print()
+    ok_n = miss_n = bad_n = 0
+    for m in wanted:
+        fn = m["filename"]
+        if fn not in installed:
+            # packwiz-installer может отключать моды суффиксом .disabled
+            if (fn + ".disabled") in installed:
+                warn("%-34s ОТКЛЮЧЁН (.disabled)" % m["name"][:34])
+            else:
+                bad("%-34s ОТСУТСТВУЕТ" % m["name"][:34])
+                miss_n += 1
+            continue
+        fp = installed[fn]
+        with open(fp, "rb") as fh:
+            data = fh.read()
+        hf = m["hash_format"]
+        actual = hashlib.new(hf, data).hexdigest() if hf in hashlib.algorithms_available else ""
+        if m["hash"] and actual != m["hash"]:
+            bad("%-34s ПОВРЕЖДЁН (%s не совпал, %d байт)"
+                % (m["name"][:34], hf, len(data)))
+            bad_n += 1
+        else:
+            ok("%-34s на месте, %.2f МБ, %s верен"
+               % (m["name"][:34], len(data) / 1048576, hf))
+            ok_n += 1
+
+    expected_names = {m["filename"] for m in wanted}
+    extras = sorted(f for f in installed
+                    if f not in expected_names and not f.endswith(".disabled"))
+    if extras:
+        print()
+        for e in extras:
+            warn("лишний файл в mods/ (не из пака): %s" % e)
+        note("лишние файлы packwiz-installer не удаляет — они не в его ведомстве")
+
+    # прочие файлы пака (конфиги, ресурспаки и т.д.)
+    others = [rel for rel in index if not rel.endswith(".pw.toml")]
+    if others:
+        print()
+        note("прочих файлов пака в индексе: %d" % len(others))
+        for rel in sorted(others):
+            fp = os.path.join(game_dir, rel.replace("/", os.sep))
+            if os.path.isfile(fp):
+                ok("   %s" % rel)
+            else:
+                preserve = index[rel].get("preserve")
+                if preserve:
+                    note("   %s отсутствует (preserve=true — это нормально, если игрок его менял)" % rel)
+                else:
+                    bad("   %s ОТСУТСТВУЕТ" % rel)
+
+    # служебные признаки того, что синк вообще шёл
+    print()
+    pwj = os.path.join(game_dir, "packwiz.json")
+    if os.path.isfile(pwj):
+        ok("packwiz.json есть — синхронизация отрабатывала")
+        try:
+            age = time.time() - os.path.getmtime(pwj)
+            note("   обновлён %s назад" % _human_age(age))
+        except OSError:
+            pass
+    else:
+        bad("packwiz.json НЕТ — packwiz-installer ни разу не отработал до конца")
+
+    log = os.path.join(game_dir, "packsync", "sync.log")
+    if os.path.isfile(log):
+        try:
+            tail = open(log, encoding="utf-8", errors="replace").read().strip().splitlines()[-6:]
+            note("последние строки packsync/sync.log:")
+            for line in tail:
+                note("   " + line)
+        except OSError:
+            pass
+    else:
+        warn("packsync/sync.log не найден — hook, скорее всего, не запускался")
+
+    print()
+    print("   %sИТОГ: %d в порядке, %d отсутствует, %d повреждено%s"
+          % (GREEN if not (miss_n or bad_n) else RED, ok_n, miss_n, bad_n, RST))
+
+
+def _human_age(sec: float) -> str:
+    if sec < 60:      return "%.0f сек" % sec
+    if sec < 3600:    return "%.0f мин" % (sec / 60)
+    if sec < 86400:   return "%.1f ч" % (sec / 3600)
+    return "%.1f дн" % (sec / 86400)
+
+
 def write_report(base: str, mods, dest):
     head("6. Итог")
     if FAILURES:
@@ -387,8 +497,13 @@ def main():
             default = u.rsplit("/pack.toml", 1)[0]
     ap.add_argument("--url", default=default, help="базовый адрес пака (без /pack.toml)")
     ap.add_argument("--fast", action="store_true", help="не скачивать jar-ы, только HEAD")
+    ap.add_argument("--force-download", action="store_true",
+                    help="вместе с --game-dir всё равно скачать jar-ы и сверить их")
     ap.add_argument("--dest", help="куда разложить скачанное (симуляция установки)")
     ap.add_argument("--side", default="client", choices=["client", "server", "both"])
+    ap.add_argument("--game-dir", dest="game_dir",
+                    help="папка игры (.minecraft или профиль лаунчера) — сравнить "
+                         "установленные моды с паком и показать, чего не хватает")
     args = ap.parse_args()
 
     if not args.url:
@@ -409,7 +524,17 @@ def main():
         return write_report(base, [], args.dest)
     index = check_index(base, pack)
     mods = check_metafiles(base, index)
-    check_downloads(mods, args.side, args.fast, args.dest)
+    if args.game_dir:
+        # локальная проверка важнее закачки: не тратим трафик, если не просят
+        check_game_dir(args.game_dir, mods, index, args.side)
+        if not args.force_download:
+            head("4. Скачивание jar-ов — пропущено")
+            note("проверена локальная папка игры; добавьте --force-download, "
+                 "чтобы ещё и скачать все jar-ы")
+        else:
+            check_downloads(mods, args.side, args.fast, args.dest)
+    else:
+        check_downloads(mods, args.side, args.fast, args.dest)
     check_artifacts(base)
     return write_report(base, mods, args.dest)
 

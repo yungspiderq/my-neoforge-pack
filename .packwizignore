@@ -15,6 +15,7 @@
 docs/**
 scripts/**
 installer/**
+checker/**
 instance-template/**
 packsync/**
 

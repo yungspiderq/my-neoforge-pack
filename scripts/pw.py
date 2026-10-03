@@ -854,17 +854,23 @@ def cmd_site(args) -> None:
         copied += 1
     for extra in ("pack.toml", "index.toml"):
         shutil.copy2(os.path.join(ROOT, extra), os.path.join(out, extra))
-    # Установщик для игроков — статика, кладём рядом с pack.toml
-    inst_src = os.path.join(ROOT, "installer")
+    # Статика для игроков: установщик и «проверялка» модов.
+    # Кладём в корень сайта, чтобы адреса были короткими:
+    #   <base>/install.ps1   <base>/CheckMods.bat   <base>/CheckMods.ps1
+    static_dirs = (("installer", (".ps1", ".sh", ".bat")),
+                   ("checker", (".ps1", ".bat")))
     inst_n = 0
-    if os.path.isdir(inst_src):
-        for fn in sorted(os.listdir(inst_src)):
-            if fn.startswith(".") or not fn.endswith((".ps1", ".sh", ".bat")):
+    for dname, exts in static_dirs:
+        src = os.path.join(ROOT, dname)
+        if not os.path.isdir(src):
+            continue
+        for fn in sorted(os.listdir(src)):
+            if fn.startswith(".") or fn.lower() == "readme.md" or not fn.endswith(exts):
                 continue
-            shutil.copy2(os.path.join(inst_src, fn), os.path.join(out, fn))
+            shutil.copy2(os.path.join(src, fn), os.path.join(out, fn))
             inst_n += 1
     if inst_n:
-        ok("установщик: %d файлов (install.ps1 / install.sh / install.bat)" % inst_n)
+        ok("скрипты для игроков: %d файлов (install.* + CheckMods.*)" % inst_n)
 
     # GitHub Pages: отключаем Jekyll, иначе файлы с '_' в имени не публикуются
     open(os.path.join(out, ".nojekyll"), "w").close()

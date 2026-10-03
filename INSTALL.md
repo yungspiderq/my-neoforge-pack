@@ -127,6 +127,34 @@ prismlauncher --import https://yungspiderq.github.io/my-neoforge-pack/latest/ins
 
 ---
 
+## «А моды скачались?» — окно проверки
+
+Скачайте и запустите двойным кликом:
+
+**[CheckMods.bat](https://yungspiderq.github.io/my-neoforge-pack/CheckMods.bat)**
+
+Окно само найдёт папку игры, сверит каждый мод с сервером (включая sha1) и
+покажет статус: `НА МЕСТЕ` / `ОТСУТСТВУЕТ` / `ПОВРЕЖДЁН` / `ЛИШНИЙ` /
+`СИНК НЕ ШЁЛ`. Ничего устанавливать не нужно — это обычный PowerShell.
+
+Полезные кнопки:
+
+| Кнопка | Что делает |
+|---|---|
+| **Проверить** | заново сверить диск с сервером |
+| **Синхронизировать** | запустить закачку прямо сейчас и показать вывод |
+| **Показывать прогресс** | включает видимое окно `packwiz-installer` вместо тихого режима — сразу видно, что качается |
+| **Открыть sync.log** | лог синхронизации: найденная Java, адрес пака, код возврата |
+
+Если Windows ругается на запуск `.bat`, откройте PowerShell и выполните:
+
+```powershell
+irm https://yungspiderq.github.io/my-neoforge-pack/CheckMods.ps1 -OutFile $env:TEMP\CheckMods.ps1
+powershell -ExecutionPolicy Bypass -STA -File $env:TEMP\CheckMods.ps1
+```
+
+---
+
 ## Проверка, что всё работает
 
 В папке игры должно появиться:
