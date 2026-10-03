@@ -1,6 +1,10 @@
 hash-format = "sha256"
 
 [[files]]
+file = "config/modpack-info.txt"
+hash = "555858a51c7638b6e67444c22fe908a91e81c6e95dad037db4999807c9021c79"
+
+[[files]]
 file = "mods/jade.pw.toml"
 hash = "b41e7109af31de676177eba9b868d1773f4dc7e1af03fd250c85e798286fce59"
 metafile = true

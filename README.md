@@ -246,8 +246,8 @@ python scripts/pw.py add-url "Мой приватный мод" \
 │   └── pack-url.txt
 ├── installer/                    ← однокнопочная установка у игроков
 │   ├── install.ps1  install.bat  install.sh
-├── checker/                      ← окно «а моды-то скачались?» (PowerShell, без зависимостей)
-│   ├── CheckMods.ps1  CheckMods.bat
+├── checker/                      ← Modpack Manager: проверка и починка сборки
+│   ├── ModpackManager.ps1  ModpackManager.bat
 ├── instance-template/            ← шаблон инстанса для Prism/Freesm
 ├── scripts/
 │   ├── pw.py                     ← ведение пака (моды, индекс, артефакты)
@@ -291,28 +291,48 @@ python scripts/verify.py --side server      # проверить серверн�
 
 ---
 
-## «А моды-то скачались?» — окно проверки для игроков
+## Modpack Manager — приложение для проверки и починки
 
-`packwiz-installer` работает тихо (флаг `-g`), поэтому игрок не видит, что
-происходит. Для этого есть два инструмента.
+`packwiz-installer` при запуске игры работает тихо (флаг `-g`), поэтому игрок
+не видит, что происходит. Когда что-то не так, он видит просто «модов нет»,
+а причин может быть шесть: hook не прописан, Java не нашлась, сервер недоступен,
+файл побился, мод отключён вручную или он серверный.
 
-**Для игроков — `checker/CheckMods.bat`** (двойной клик, ноль зависимостей,
-чистый PowerShell + WinForms). Окно само находит папки игры всех известных
-лаунчеров, читает адрес пака из `packsync/pack-url.txt`, скачивает
-`pack.toml → index.toml → mods/*.pw.toml` и сверяет каждый ожидаемый файл
-с тем, что лежит на диске, **включая sha1**. Показывает `НА МЕСТЕ` /
-`ОТСУТСТВУЕТ` / `ПОВРЕЖДЁН` / `ОТКЛЮЧЁН` / `ЛИШНИЙ` / `СИНК НЕ ШЁЛ`.
+`checker/ModpackManager.ps1` (+ `.bat` для двойного клика) отвечает на этот
+вопрос и **чинит** то, что можно починить. Чистый PowerShell 5.1 + WinForms,
+зависимостей нет.
 
-Там же кнопка **«Показывать прогресс»** — создаёт `packsync/SHOW_GUI`, после
-чего синхронизация идёт с видимым окном `packwiz-installer` вместо тихой.
-Это самый быстрый способ увидеть, что вообще качается.
+- **Выбор папки сборки** — вручную или автопоиском у AstralRinth, Modrinth App,
+  Freesm, Prism, MultiMC и в обычном `.minecraft`. Учитывает, что у
+  Theseus-лаунчеров профиль = папка игры, а у Prism-семейства игра в `.minecraft`.
+- **Вкладки**: Моды · Конфиги и файлы · Лишние · Журнал. Проверяется всё
+  содержимое пака, а не только `mods/`: `config/`, `resourcepacks/`,
+  `shaderpacks/`, `defaultconfigs/`, `kubejs/`.
+- **Сверка по хэшу**, поэтому ловит и «файл есть, но битый», и «есть, но старый».
+- **«Починить всё»** — собственный загрузчик на `Invoke-WebRequest`, **без Java**.
+  Качает во временный файл, сверяет хэш и только потом подменяет; старое уходит
+  в `.modpack-backup`.
+- **Меню**: Файл (недавние, отчёт txt/csv) · Проверка · Синхронизация ·
+  Инструменты (открыть `mods/`, `config/`, `sync.log`, `SHOW_GUI`) · Справка.
+- Статусы: `НА МЕСТЕ` · `ОТСУТСТВУЕТ` · `НЕ СОВПАДАЕТ` · `ОТКЛЮЧЁН` ·
+  `НЕТ (preserve)` · `ДРУГАЯ СТОРОНА` · `ЛИШНИЙ`.
 
-**Для автора — `scripts/verify.py --game-dir <папка>`**: та же проверка
-кроссплатформенно, с nonzero-кодом возврата при любом провале (удобно в CI).
+Запуск одной командой, без скачивания файлов:
 
-Плюс теперь `packsync/sync.cmd` и `sync.sh` пишут **`packsync/sync.log`**:
-найденная Java, адрес пака, папка игры, вывод установщика и код возврата.
-Если у игрока «не работает» — первым делом просите этот лог.
+```powershell
+$b='https://<user>.github.io/<repo>'
+irm $b/ModpackManager.ps1 -OutFile $env:TEMP\ModpackManager.ps1
+powershell -ExecutionPolicy Bypass -STA -File $env:TEMP\ModpackManager.ps1
+```
+
+Подробности — в [`checker/README.md`](checker/README.md).
+
+**Дополнительно:** `packsync/sync.cmd` и `sync.sh` пишут `packsync/sync.log`
+(найденная Java, адрес пака, вывод установщика, код возврата), а файл-флаг
+`packsync/SHOW_GUI` включает видимое окно прогресса при запуске игры.
+
+**Для автора и CI** — `scripts/verify.py --game-dir <папка>`: та же проверка
+кроссплатформенно, с ненулевым кодом возврата при любом провале.
 
 ---
 
@@ -342,7 +362,7 @@ python scripts/pw.py instance                     # instance.zip в dist/
 |---|---|
 | [`INSTALL.md`](INSTALL.md) | **Инструкция для игроков** — можно просто отдать ссылку |
 | [`installer/README.md`](installer/README.md) | Как работает однокнопочный установщик |
-| [`checker/README.md`](checker/README.md) | Окно проверки модов: статусы, кнопки, автопоиск папки игры |
+| [`checker/README.md`](checker/README.md) | Modpack Manager: меню, вкладки, статусы, починка без Java |
 | [`docs/SETUP.md`](docs/SETUP.md) | Первичная настройка GitHub, Pages, релизов + `setup-github.py` |
 | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Как всё устроено под капотом |
 | [`docs/SERVER.md`](docs/SERVER.md) | Выделенный сервер с тем же паком |

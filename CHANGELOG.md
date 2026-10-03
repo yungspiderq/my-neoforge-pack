@@ -8,6 +8,28 @@
 ## [Unreleased]
 
 ### Added
+- `checker/ModpackManager.ps1` + `ModpackManager.bat` — оконное приложение
+  для проверки и починки сборки (PowerShell 5.1 + WinForms, ноль зависимостей).
+  Меню Файл/Проверка/Синхронизация/Инструменты/Справка, вкладки
+  «Моды» / «Конфиги и файлы» / «Лишние» / «Журнал», автопоиск папки сборки
+  у шести лаунчеров, запоминание последней папки и адреса в
+  `%LOCALAPPDATA%\ModpackManager\settings.json`, экспорт отчёта в txt/csv.
+- **Собственный загрузчик без Java**: `Invoke-Sync` качает через
+  `Invoke-WebRequest` во временный файл, сверяет хэш и только затем подменяет;
+  заменяемое копируется в `.modpack-backup`. Предыдущий вариант дёргал
+  `sync.cmd`, то есть требовал установленную Java.
+- Проверка не только `mods/`, но и `config/`, `defaultconfigs/`, `kubejs/`,
+  `resourcepacks/`, `shaderpacks/` и прочих файлов пака, с группировкой по
+  вкладкам и статусом `НЕТ (preserve)` для файлов с `preserve = true`.
+- Фильтр по стороне (`client` / `server` / `both`) и статус `ДРУГАЯ СТОРОНА`.
+- `config/modpack-info.txt` — первый реально синхронизируемый файл пака,
+  заодно пример того, как в пак попадают конфиги.
+
+### Removed
+- `checker/CheckMods.ps1` / `CheckMods.bat` — заменены на ModpackManager.
+
+
+### Added
 - `checker/CheckMods.ps1` + `CheckMods.bat` — диагностическое окно на чистом
   PowerShell + WinForms (ноль зависимостей). Автопоиск папок игры AstralRinth,
   Modrinth App, Freesm, Prism, MultiMC и `.minecraft`; сверка каждого ожидаемого
