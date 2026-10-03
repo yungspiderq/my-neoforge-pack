@@ -7,6 +7,10 @@
 
 ## [Unreleased]
 
+_(пусто)_
+
+## [1.0.3] — 2026-10-04
+
 ### Added
 - `app/` — **Modpack Manager на Python + Tkinter** вместо PowerShell-версии.
   `packlib.py` (ядро без GUI, тестируется headless) + `modpack_app.py`
@@ -142,4 +146,4 @@
   перекачивает файлы заново при каждом запуске.
 - `.packwizignore`, исключающий из пака всю инфраструктуру репозитория.
 
-[Unreleased]: https://github.com/REPLACE_ME/REPLACE_ME/commits/main
+[1.0.3]: https://github.com/yungspiderq/my-neoforge-pack/releases/tag/v1.0.3
