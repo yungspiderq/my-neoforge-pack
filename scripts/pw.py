@@ -477,12 +477,23 @@ def mr_project(ident: str) -> dict:
     return mr("project/" + urllib.parse.quote(ident))
 
 
+def _as_list(v):
+    """Строка -> [строка]. Критично: list('neoforge') дало бы список букв."""
+    if not v:
+        return []
+    if isinstance(v, str):
+        return [v]
+    return list(v)
+
+
 def mr_versions(project_id: str, loaders, game_versions):
     params = {}
-    if loaders:
-        params["loaders"] = json.dumps(list(loaders))
-    if game_versions:
-        params["game_versions"] = json.dumps(list(game_versions))
+    ld = _as_list(loaders)
+    gv = _as_list(game_versions)
+    if ld:
+        params["loaders"] = json.dumps(ld)
+    if gv:
+        params["game_versions"] = json.dumps(gv)
     return mr("project/%s/version" % project_id, params)
 
 
@@ -501,13 +512,21 @@ def loaders_from_pack(pack: dict):
 
 
 def game_versions_from_pack(pack: dict):
+    """Список версий MC для фильтра Modrinth.
+
+    ВАЖНО: основная версия из [versions].minecraft идёт ПЕРВОЙ.
+    pick_version() берёт gvs[:1] как «точное совпадение», поэтому порядок
+    здесь определяет, под какую версию MC будут подбираться моды.
+    (У packwiz список устроен наоборот — mc последним, — но он и «точную»
+    версию определяет иначе. Здесь порядок внутренний.)
+    """
     v = pack.get("versions", {})
     mc = v.get("minecraft")
     if not mc:
         fail("в pack.toml не указана версия Minecraft")
     acc = pack.get("options", {}).get("acceptable-game-versions", [])
     seen, out = set(), []
-    for x in list(acc) + [mc]:
+    for x in [mc] + list(acc):
         if x not in seen:
             seen.add(x)
             out.append(x)
@@ -550,36 +569,58 @@ def primary_loader(pack: dict) -> str:
     return ""
 
 
-def pick_version(project_id, loaders, game_versions, primary=""):
+def pick_version(project_id, loaders, game_versions, primary="", allow_pre=False):
     """Подбираем лучшую версию мода.
 
     Порядок попыток — от самого точного совпадения к самому свободному:
-    сначала только основной загрузчик (neoforge) и точная версия MC,
-    и лишь затем запасные варианты (forge, другие версии MC).
-    Это важно: запрос сразу по [neoforge, forge] может вернуть файл,
-    собранный для Forge, который на NeoForge не запустится.
+    сначала только основной загрузчик (neoforge) и точная версия MC, затем
+    запасные варианты. Это важно: запрос сразу по [neoforge, forge] может
+    вернуть файл, собранный для Forge, который на NeoForge не запустится.
+
+    Внутри каждой попытки предпочтение отдаётся release, затем beta, затем
+    alpha — иначе свежайшая бета затрёт стабильную версию.
+    Флаг allow_pre снимает это предпочтение (берёт просто самую новую).
     """
-    prim = [primary] if primary else []
-    gvs_exact = game_versions[:1]
+    prim = _as_list(primary)
+    ld_all = _as_list(loaders)
+    gvs = _as_list(game_versions)
+    gvs_exact = gvs[:1]
+
     attempts = []
     if prim:
-        attempts += [(prim, gvs_exact), (prim, game_versions)]
-    if loaders and loaders != prim:
-        attempts += [(loaders, gvs_exact), (loaders, game_versions)]
-    attempts += [(None, gvs_exact), (None, game_versions), (None, None)]
+        attempts += [(prim, gvs_exact), (prim, gvs)]
+    if ld_all and ld_all != prim:
+        attempts += [(ld_all, gvs_exact), (ld_all, gvs)]
+    attempts += [(None, gvs_exact), (None, gvs), (None, None)]
 
+    preference = ("release", "beta", "alpha")
     seen = set()
     for ld, gv in attempts:
-        key = (tuple(ld or []), tuple(gv or []))
+        key = (tuple(ld or ()), tuple(gv or ()))
         if key in seen:
             continue
         seen.add(key)
         vs = mr_versions(project_id, ld, gv)
-        vs = [v for v in vs if v.get("version_type") != "alpha"] or vs
-        if vs:
-            used_prim = bool(ld) and (not prim or set(ld) == set(prim))
-            used_exact_mc = bool(gv) and gv == gvs_exact
-            return vs[0], (used_prim, used_exact_mc)
+        if not vs:
+            continue
+        used_prim = bool(ld) and (not prim or set(ld) == set(prim))
+        used_exact_mc = bool(gv) and list(gv) == gvs_exact
+        picked = None
+        newer_pre = None
+        if not allow_pre:
+            for want in preference:
+                cand = [v for v in vs if (v.get("version_type") or "") == want]
+                if cand:
+                    picked = cand[0]
+                    break
+        picked = picked or vs[0]
+        # vs отсортирован по дате публикации (новые первыми): если самая свежая
+        # сборка — не релиз, а мы взяли релиз, честно об этом сообщаем
+        if not allow_pre and (picked.get("version_type") or "") == "release":
+            top = vs[0]
+            if (top.get("version_type") or "") != "release" and top.get("id") != picked.get("id"):
+                newer_pre = top
+        return picked, {"prim": used_prim, "mc": used_exact_mc, "newer_pre": newer_pre}
     fail("не нашлось ни одной версии для %s" % project_id)
 
 
@@ -632,8 +673,8 @@ def cmd_add(args) -> None:
         done.add(pid)
 
         slug = slugify(proj["title"]) or proj["slug"]
-        ver, exact = pick_version(pid, loaders, gvs, prim)
-        if not exact[0]:
+        ver, meta = pick_version(pid, loaders, gvs, prim, args.pre_release)
+        if not meta["prim"]:
             info("%s: нет сборки под %s — беру ближайшую (loaders=%s, MC=%s)"
                  % (proj["title"], prim or "загрузчик из pack.toml",
                     ver.get("loaders"), ver.get("game_versions")))
@@ -646,6 +687,13 @@ def cmd_add(args) -> None:
                          optional=args.optional)
         ok("%-38s %s  [%s] -> mods/%s.pw.toml"
            % (proj["title"], ver["version_number"], side, slug))
+        if meta.get("newer_pre"):
+            np = meta["newer_pre"]
+            warn_pre = ("есть более свежая %s: %s (от %s). "
+                        "Поставить её:  pw.py add %s --pre-release"
+                        % (np.get("version_type"), np.get("version_number"),
+                           (np.get("date_published") or "")[:10], ident))
+            print("    " + "\033[33m!?\033[0m " + warn_pre)
 
         if not args.no_deps:
             for dep in ver.get("dependencies", []):
@@ -706,7 +754,7 @@ def cmd_update(args) -> None:
         if m.get("pin"):
             info("%s: закреплён (pin = true), пропускаю" % slug)
             continue
-        ver, _ = pick_version(mrid, loaders, gvs, prim)
+        ver, _ = pick_version(mrid, loaders, gvs, prim, args.pre_release)
         if ver["id"] == (m.get("update", {}).get("modrinth", {}) or {}).get("version"):
             info("%s: уже последняя (%s)" % (slug, ver["version_number"]))
             continue
@@ -1087,6 +1135,8 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--mc")
     s.add_argument("--optional", action="store_true")
     s.add_argument("--no-deps", action="store_true")
+    s.add_argument("--pre-release", action="store_true",
+                   help="разрешить beta/alpha (по умолчанию prefers release)")
     s.set_defaults(func=cmd_add)
 
     s = sub.add_parser("add-url", help="добавить файл по прямой ссылке")
@@ -1105,6 +1155,8 @@ def build_parser() -> argparse.ArgumentParser:
     s = sub.add_parser("update", help="обновить моды")
     s.add_argument("mods", nargs="*")
     s.add_argument("--all", action="store_true")
+    s.add_argument("--pre-release", action="store_true",
+                   help="разрешить beta/alpha")
     s.set_defaults(func=cmd_update)
 
     s = sub.add_parser("list", help="список модов")

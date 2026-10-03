@@ -7,6 +7,29 @@
 
 ## [Unreleased]
 
+### Fixed
+- `pw.py add`/`update` подбирали версию под **неверную версию Minecraft**:
+  `acceptable-game-versions` шёл первым, и «точным совпадением» считалась `1.21`
+  вместо `1.21.1`. Теперь `[versions].minecraft` всегда первый в списке.
+- `primary_loader()` возвращал строку, а `pick_version()` делал из неё `list()`,
+  из-за чего в Modrinth API уезжал фильтр `loaders=["n","e","o","f",...]`.
+  Добавлен `_as_list()`.
+
+### Changed
+- Выбор версии мода теперь предпочитает `release` > `beta` > `alpha`.
+  Если существует более свежая pre-release-сборка, `add` печатает явную подсказку
+  с готовой командой `--pre-release` вместо молчаливого решения за автора.
+- Стартовый набор модов: JEI 19.51.0.418 (release), Jade 15.10.6,
+  JourneyMap 1.21.1-6.0.9 — все под NeoForge 1.21.1.
+
+### Added
+- `scripts/verify.py` — автономная проверка автосинхронизации: повторяет цепочку
+  packwiz-installer (pack.toml -> sha256(index.toml) -> mods/*.pw.toml -> sha1 jar-ов),
+  проверяет артефакты на Pages и содержимое `instance.cfg` / `modrinth.index.json`.
+  Флаги `--fast`, `--dest`, `--side`, `--url`.
+- `pw.py add/update --pre-release`.
+
+
 ### Added
 - Каркас репозитория: `packwiz`-пак на NeoForge 21.1.252 / Minecraft 1.21.1.
 - Пак намеренно **пустой** (`mods/` без модов) — чистый старт, наполняется

@@ -1,1 +1,16 @@
 hash-format = "sha256"
+
+[[files]]
+file = "mods/jade.pw.toml"
+hash = "b41e7109af31de676177eba9b868d1773f4dc7e1af03fd250c85e798286fce59"
+metafile = true
+
+[[files]]
+file = "mods/journeymap.pw.toml"
+hash = "e79fe5feff4efb553f14b0a74cba6e7ea6fcfee0f9d72f2dafa3d412b593d911"
+metafile = true
+
+[[files]]
+file = "mods/just-enough-items.pw.toml"
+hash = "a0173d81cb7230abe164228c0c43558284a3790925dbb8bd9c2324361744a067"
+metafile = true
