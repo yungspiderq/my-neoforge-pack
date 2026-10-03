@@ -8,6 +8,32 @@
 ## [Unreleased]
 
 ### Added
+- `app/` — **Modpack Manager на Python + Tkinter** вместо PowerShell-версии.
+  `packlib.py` (ядро без GUI, тестируется headless) + `modpack_app.py`
+  (интерфейс). Сторонних зависимостей нет, поэтому PyInstaller собирает
+  один `ModpackManager.exe`.
+- Job `build-app` (windows-latest) в `pages.yml` и `release.yml`: smoke-test
+  ядра, `py_compile`, сборка `--onefile --windowed`, публикация по стабильному
+  адресу `latest/ModpackManager.exe` и вложение в релиз.
+- **«Установить пак с нуля»** — создание инстанса Prism/Freesm прямо на диске
+  (`instance.cfg` + `mmc-pack.json` + `.minecraft/packsync/`). Zip-файл и
+  диалог импорта больше не нужны: Prism сканирует `instances/` сам.
+- Публикация `packsync/` на GitHub Pages — приложение берёт jar-ы оттуда.
+- Включение/отключение модов через `.disabled` прямо из меню, мультивыделение
+  в таблицах, отчёт в txt/csv, запоминание недавних папок.
+
+### Changed
+- Синхронизация в приложении — собственная, на `urllib`. PowerShell-версия
+  дёргала `sync.cmd`, то есть требовала установленную Java.
+- Скачивание идёт в `<файл>.download`, хэш проверяется ДО `os.replace`,
+  заменяемый файл копируется в `.modpack-backup`.
+
+### Removed
+- `checker/` (`CheckMods.ps1`, `ModpackManager.ps1`, `ModpackManager.bat`) —
+  PowerShell-версия полностью заменена приложением на Python.
+
+
+### Added
 - `checker/ModpackManager.ps1` + `ModpackManager.bat` — оконное приложение
   для проверки и починки сборки (PowerShell 5.1 + WinForms, ноль зависимостей).
   Меню Файл/Проверка/Синхронизация/Инструменты/Справка, вкладки

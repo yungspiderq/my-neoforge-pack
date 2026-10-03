@@ -857,8 +857,7 @@ def cmd_site(args) -> None:
     # Статика для игроков: установщик и «проверялка» модов.
     # Кладём в корень сайта, чтобы адреса были короткими:
     #   <base>/install.ps1   <base>/CheckMods.bat   <base>/CheckMods.ps1
-    static_dirs = (("installer", (".ps1", ".sh", ".bat")),
-                   ("checker", (".ps1", ".bat")))
+    static_dirs = (("installer", (".ps1", ".sh", ".bat")),)
     inst_n = 0
     for dname, exts in static_dirs:
         src = os.path.join(ROOT, dname)
@@ -871,6 +870,23 @@ def cmd_site(args) -> None:
             inst_n += 1
     if inst_n:
         ok("скрипты для игроков: %d файлов (install.* + CheckMods.*)" % inst_n)
+
+    # packsync/ нужен приложению, чтобы создавать инстанс Prism/Freesm прямо на
+    # диске (оно качает jar-ы и обёртки с сервера). В индекс пака эти файлы
+    # намеренно не входят — иначе packwiz-installer перезаписывал бы jar,
+    # который сам же исполняет, и на Windows это упало бы на блокировке файла.
+    ps_src = os.path.join(ROOT, "packsync")
+    ps_n = 0
+    if os.path.isdir(ps_src):
+        ps_dst = os.path.join(out, "packsync")
+        os.makedirs(ps_dst, exist_ok=True)
+        for fn in sorted(os.listdir(ps_src)):
+            if _skip_packsync(fn) or not os.path.isfile(os.path.join(ps_src, fn)):
+                continue
+            shutil.copy2(os.path.join(ps_src, fn), os.path.join(ps_dst, fn))
+            ps_n += 1
+    if ps_n:
+        ok("packsync/: %d файлов (для установки инстанса приложением)" % ps_n)
 
     # GitHub Pages: отключаем Jekyll, иначе файлы с '_' в имени не публикуются
     open(os.path.join(out, ".nojekyll"), "w").close()
@@ -1007,7 +1023,7 @@ def cmd_instance(args) -> None:
     else:
         fail("в pack.toml не указан загрузчик")
 
-    java_major = _java_major_for(mc)
+    java_major, java_uid = _java_runtime_for(mc)
 
     prelaunch = (
         '"$INST_JAVA" -jar "$INST_DIR/minecraft/packsync/packwiz-installer-bootstrap.jar" '
@@ -1029,8 +1045,9 @@ def cmd_instance(args) -> None:
         "components": [
             {
                 "cachedName": "Minecraft",
-                "cachedRequires": [{"equals": str(java_major), "suggests": "%d.0.1" % java_major,
-                                    "uid": _java_runtime_uid(java_major)}],
+                "cachedRequires": [{"equals": str(java_major),
+                                    "suggests": "%d.0.1" % java_major,
+                                    "uid": java_uid}],
                 "cachedVersion": mc,
                 "important": True,
                 "uid": "net.minecraft",
@@ -1067,24 +1084,51 @@ def cmd_instance(args) -> None:
 
 
 def _java_major_for(mc: str) -> int:
-    m = re.match(r"^(\d+)\.(\d+)", mc)
+    return _java_runtime_for(mc)[0]
+
+
+def _java_runtime_for(mc: str):
+    """(major, component) по данным piston-meta.mojang.com.
+
+    component НЕ функция от версии Java: Mojang переименовал
+    java-runtime-beta -> gamma на границе 1.18.2/1.19, поэтому ключ — версия MC.
+    (Та же функция есть в app/packlib.py — держите их синхронно.)
+
+        1.12.2-1.16.5  -> Java 8   jre-legacy
+        1.17-1.17.1    -> Java 16  java-runtime-alpha
+        1.18-1.18.1    -> Java 17  java-runtime-beta
+        1.19-1.20.4    -> Java 17  java-runtime-gamma
+        1.20.5-1.21.x  -> Java 21  java-runtime-delta
+        26.x           -> Java 25  java-runtime-epsilon
+    """
+    m = re.match(r"^(\d+)\.(\d+)(?:\.(\d+))?", mc or "")
     if not m:
-        return 21
-    major, minor = int(m.group(1)), int(m.group(2))
-    if major >= 26:            # новая схема версий (26.x)
-        return 25
-    if (major, minor) >= (1, 20) and minor >= 5 and major == 1:
-        return 21
-    if major == 1 and minor >= 17:
-        return 17
-    if major == 1 and minor >= 12:
-        return 8
-    return 21
+        return 21, "java-runtime-delta"
+    a, b = int(m.group(1)), int(m.group(2))
+    c = int(m.group(3) or 0)
+    if a >= 26:
+        return 25, "java-runtime-epsilon"
+    if a == 1:
+        if b >= 21:
+            return 21, "java-runtime-delta"
+        if b == 20:
+            return (21, "java-runtime-delta") if c >= 5 else (17, "java-runtime-gamma")
+        if b == 19:
+            return 17, "java-runtime-gamma"
+        if b == 18:
+            return 17, "java-runtime-beta"
+        if b == 17:
+            return 16, "java-runtime-alpha"
+        return 8, "jre-legacy"
+    return 21, "java-runtime-delta"
 
 
 def _java_runtime_uid(java_major: int) -> str:
-    return {8: "java-runtime-alpha", 17: "java-runtime-gamma",
-            21: "java-runtime-delta", 25: "java-runtime-epsilon"}.get(java_major, "java-runtime-delta")
+    """Устарело: uid зависит от версии MC, а не от мажора Java. Оставлен
+    для совместимости, но возвращает лишь наиболее вероятный компонент."""
+    return {8: "jre-legacy", 16: "java-runtime-alpha", 17: "java-runtime-gamma",
+            21: "java-runtime-delta", 25: "java-runtime-epsilon"}.get(
+        java_major, "java-runtime-delta")
 
 
 # --------------------------------------------------------------------------- #

@@ -15,7 +15,9 @@
 docs/**
 scripts/**
 installer/**
-checker/**
+app/**
+build/**
+*.spec
 instance-template/**
 packsync/**
 

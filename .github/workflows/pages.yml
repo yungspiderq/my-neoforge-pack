@@ -2,13 +2,16 @@ name: "1. Publish pack (GitHub Pages)"
 
 # =============================================================================
 #  На каждый push в main:
-#    • пак пересобирается и публикуется на GitHub Pages (pack.toml + index.toml)
-#    • туда же кладутся АРТЕФАКТЫ ПО СТАБИЛЬНЫМ АДРЕСАМ:
-#         latest/instance.zip   <- для --import в Prism/Freesm
-#         latest/pack.mrpack    <- для AstralRinth / Modrinth App
-#      поэтому установщик всегда тянет самую свежую версию, и новый релиз
-#      для обновления устанавливать НЕ нужно
-#    • публикуются скрипты установщика (install.ps1 / install.sh / install.bat)
+#    job build-app (windows) : собирает ModpackManager.exe через PyInstaller
+#    job publish   (ubuntu)  : packwiz refresh -> site/ -> GitHub Pages
+#
+#  Публикуются СТАБИЛЬНЫЕ адреса, поэтому новый релиз для обновления не нужен:
+#     pack.toml, index.toml, mods/*.pw.toml, config/...
+#     latest/pack.mrpack        — для импорта в AstralRinth
+#     latest/instance.zip       — для импорта в Prism/Freesm
+#     latest/ModpackManager.exe — приложение проверки и починки
+#     packsync/*                — jar-ы и обёртки (для создания инстанса на диске)
+#     install.ps1 / install.sh / install.bat
 # =============================================================================
 
 on:
@@ -27,10 +30,58 @@ concurrency:
 
 env:
   PACKWIZ_JAVA: "21"
+  PYTHON_VERSION: "3.12"
 
 jobs:
+  # --------------------------------------------------------------------- #
+  #  Модpack Manager -> один .exe без необходимости ставить Python
+  # --------------------------------------------------------------------- #
+  build-app:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install PyInstaller
+        run: python -m pip install --upgrade pip pyinstaller
+
+      - name: Smoke-test (ядро без GUI)
+        run: |
+          python -c "import sys; sys.path.insert(0,'app'); import packlib; print('packlib OK', len(packlib.CATEGORIES), 'категорий')"
+          python -m py_compile app/packlib.py app/modpack_app.py
+          echo "syntax OK"
+
+      - name: Build single-file exe
+        run: >
+          pyinstaller --onefile --windowed --clean --noconfirm
+          --name ModpackManager
+          --add-data "app/packlib.py;."
+          app/modpack_app.py
+
+      - name: Show result
+        run: |
+          Get-ChildItem dist | Format-Table Name, Length
+          if (-not (Test-Path dist/ModpackManager.exe)) { throw "ModpackManager.exe не собрался" }
+
+      - name: Upload exe
+        uses: actions/upload-artifact@v4
+        with:
+          name: modpack-manager-exe
+          path: dist/ModpackManager.exe
+          if-no-files-found: error
+          retention-days: 7
+
+  # --------------------------------------------------------------------- #
+  #  Публикация пака и всех артефактов на GitHub Pages
+  # --------------------------------------------------------------------- #
   publish:
     runs-on: ubuntu-latest
+    needs: build-app
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -51,6 +102,11 @@ jobs:
           distribution: temurin
           java-version: ${{ env.PACKWIZ_JAVA }}
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
       - name: Install packwiz
         run: |
           go install github.com/packwiz/packwiz@latest
@@ -63,7 +119,6 @@ jobs:
           BASE="https://${OWNER}.github.io/${REPO}"
           echo "$BASE/pack.toml" > packsync/pack-url.txt
           echo "PACK_BASE=$BASE" >> "$GITHUB_ENV"
-          echo "PACK_URL=$BASE/pack.toml" >> "$GITHUB_ENV"
           echo "::notice::Pack base = $BASE"
 
       - name: Refresh packwiz index
@@ -77,22 +132,32 @@ jobs:
       - name: Stage Pages payload
         run: python3 scripts/pw.py site --out site
 
-      - name: Build artifacts into site/latest
+      - name: Build pack artifacts into site/latest
         run: |
           mkdir -p site/latest
           packwiz modrinth export -o site/latest/pack.mrpack -y
           python3 scripts/pw.py inject-packsync site/latest/pack.mrpack
           python3 scripts/pw.py instance --out site/latest/instance.zip
-          ls -la site/latest/
+
+      - name: Attach ModpackManager.exe
+        uses: actions/download-artifact@v4
+        with:
+          name: modpack-manager-exe
+          path: site/latest
 
       - name: Stamp installer base URL
         run: |
           for f in site/install.ps1 site/install.sh site/install.bat; do
             [ -f "$f" ] || continue
             sed -i "s|@@BASE_URL@@|${PACK_BASE}|g" "$f"
-            echo "stamped $f -> ${PACK_BASE}"
           done
-          grep -n "$PACK_BASE" site/install.ps1 | head -3 || true
+          echo "stamped -> ${PACK_BASE}"
+
+      - name: Show payload
+        run: |
+          echo "=== site/ ==="
+          find site -type f | sort | sed 's|^site/||'
+          du -sh site
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
@@ -116,9 +181,10 @@ jobs:
             echo "| Что | Адрес |"
             echo "|---|---|"
             echo "| pack.toml | \`${PACK_BASE}/pack.toml\` |"
-            echo "| Установщик (Windows) | \`irm ${PACK_BASE}/install.ps1 ^| iex\` |"
-            echo "| instance.zip (стабильный URL) | \`${PACK_BASE}/latest/instance.zip\` |"
-            echo "| pack.mrpack (стабильный URL) | \`${PACK_BASE}/latest/pack.mrpack\` |"
+            echo "| **ModpackManager.exe** | \`${PACK_BASE}/latest/ModpackManager.exe\` |"
+            echo "| pack.mrpack | \`${PACK_BASE}/latest/pack.mrpack\` |"
+            echo "| instance.zip | \`${PACK_BASE}/latest/instance.zip\` |"
+            echo "| установщик | \`irm ${PACK_BASE}/install.ps1 ^| iex\` |"
             echo ""
             echo "Уже установленные инстансы обновятся сами при следующем запуске игры."
           } >> "$GITHUB_STEP_SUMMARY"

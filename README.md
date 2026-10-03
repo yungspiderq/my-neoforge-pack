@@ -246,8 +246,9 @@ python scripts/pw.py add-url "Мой приватный мод" \
 │   └── pack-url.txt
 ├── installer/                    ← однокнопочная установка у игроков
 │   ├── install.ps1  install.bat  install.sh
-├── checker/                      ← Modpack Manager: проверка и починка сборки
-│   ├── ModpackManager.ps1  ModpackManager.bat
+├── app/                          ← Modpack Manager (Python + Tkinter -> .exe)
+│   ├── packlib.py                ← ядро: пак, сверка, синхронизация (без GUI)
+│   └── modpack_app.py            ← интерфейс: меню, вкладки, прогресс
 ├── instance-template/            ← шаблон инстанса для Prism/Freesm
 ├── scripts/
 │   ├── pw.py                     ← ведение пака (моды, индекс, артефакты)
@@ -291,48 +292,48 @@ python scripts/verify.py --side server      # проверить серверн�
 
 ---
 
-## Modpack Manager — приложение для проверки и починки
+## Modpack Manager — приложение на Python
 
-`packwiz-installer` при запуске игры работает тихо (флаг `-g`), поэтому игрок
-не видит, что происходит. Когда что-то не так, он видит просто «модов нет»,
-а причин может быть шесть: hook не прописан, Java не нашлась, сервер недоступен,
-файл побился, мод отключён вручную или он серверный.
+`app/modpack_app.py` — оконное приложение: **меню, вкладки, таблица статусов,
+прогресс-бар**. Python 3.8+ и Tkinter, оба в стандартной поставке, сторонних
+зависимостей нет. В CI собирается в один `ModpackManager.exe` через PyInstaller,
+так что игрокам Python не нужен.
 
-`checker/ModpackManager.ps1` (+ `.bat` для двойного клика) отвечает на этот
-вопрос и **чинит** то, что можно починить. Чистый PowerShell 5.1 + WinForms,
-зависимостей нет.
+Готовое приложение (Windows):
 
-- **Выбор папки сборки** — вручную или автопоиском у AstralRinth, Modrinth App,
-  Freesm, Prism, MultiMC и в обычном `.minecraft`. Учитывает, что у
-  Theseus-лаунчеров профиль = папка игры, а у Prism-семейства игра в `.minecraft`.
-- **Вкладки**: Моды · Конфиги и файлы · Лишние · Журнал. Проверяется всё
-  содержимое пака, а не только `mods/`: `config/`, `resourcepacks/`,
-  `shaderpacks/`, `defaultconfigs/`, `kubejs/`.
-- **Сверка по хэшу**, поэтому ловит и «файл есть, но битый», и «есть, но старый».
-- **«Починить всё»** — собственный загрузчик на `Invoke-WebRequest`, **без Java**.
-  Качает во временный файл, сверяет хэш и только потом подменяет; старое уходит
-  в `.modpack-backup`.
-- **Меню**: Файл (недавние, отчёт txt/csv) · Проверка · Синхронизация ·
-  Инструменты (открыть `mods/`, `config/`, `sync.log`, `SHOW_GUI`) · Справка.
-- Статусы: `НА МЕСТЕ` · `ОТСУТСТВУЕТ` · `НЕ СОВПАДАЕТ` · `ОТКЛЮЧЁН` ·
-  `НЕТ (preserve)` · `ДРУГАЯ СТОРОНА` · `ЛИШНИЙ`.
-
-Запуск одной командой, без скачивания файлов:
-
-```powershell
-$b='https://<user>.github.io/<repo>'
-irm $b/ModpackManager.ps1 -OutFile $env:TEMP\ModpackManager.ps1
-powershell -ExecutionPolicy Bypass -STA -File $env:TEMP\ModpackManager.ps1
+```
+https://<user>.github.io/<repo>/latest/ModpackManager.exe
 ```
 
-Подробности — в [`checker/README.md`](checker/README.md).
+Что умеет:
 
-**Дополнительно:** `packsync/sync.cmd` и `sync.sh` пишут `packsync/sync.log`
-(найденная Java, адрес пака, вывод установщика, код возврата), а файл-флаг
-`packsync/SHOW_GUI` включает видимое окно прогресса при запуске игры.
+- **Выбрать папку сборки** — вручную или автопоиском у AstralRinth, Modrinth App,
+  Freesm, Prism, MultiMC и в `.minecraft`. Последняя папка запоминается.
+- **Проверить** mods, config, defaultconfigs, kubejs, resourcepacks, shaderpacks
+  и всё прочее содержимое пака — каждый файл **по хэшу**, поэтому ловится и
+  «файл есть, но битый», и «есть, но старый».
+- **Починить** — собственный загрузчик на `urllib`, **Java не нужна**. Качает во
+  временный файл, сверяет хэш и только потом подменяет; старое уходит в
+  `.modpack-backup`.
+- **Установить пак с нуля** — создаёт инстанс Prism/Freesm **прямо на диске**:
+  `instance.cfg` с Pre-Launch Command, `mmc-pack.json` с Minecraft и NeoForge,
+  `.minecraft/packsync/`. Ни zip-файла, ни диалога импорта — лаунчер подхватывает
+  инстанс сам.
+- Включать/выключать моды через `.disabled`, убирать лишние файлы, сохранять
+  отчёт в txt/csv, смотреть `sync.log`, включать видимый прогресс (`SHOW_GUI`).
+
+Статусы: `НА МЕСТЕ` · `ОТСУТСТВУЕТ` · `НЕ СОВПАДАЕТ` · `ОТКЛЮЧЁН` ·
+`НЕТ (preserve)` · `ДРУГАЯ СТОРОНА` · `ЛИШНИЙ`. Подробности —
+в [`app/README.md`](app/README.md).
+
+Ядро (`app/packlib.py`) намеренно отделено от GUI: оно тестируется headless,
+и именно его CI прогоняет перед сборкой `.exe`.
+
+Дополнительно `packsync/sync.cmd` и `sync.sh` пишут `packsync/sync.log`, а
+файл-флаг `packsync/SHOW_GUI` включает видимое окно прогресса при запуске игры.
 
 **Для автора и CI** — `scripts/verify.py --game-dir <папка>`: та же проверка
-кроссплатформенно, с ненулевым кодом возврата при любом провале.
+из командной строки, с ненулевым кодом возврата при любом провале.
 
 ---
 
@@ -362,7 +363,7 @@ python scripts/pw.py instance                     # instance.zip в dist/
 |---|---|
 | [`INSTALL.md`](INSTALL.md) | **Инструкция для игроков** — можно просто отдать ссылку |
 | [`installer/README.md`](installer/README.md) | Как работает однокнопочный установщик |
-| [`checker/README.md`](checker/README.md) | Modpack Manager: меню, вкладки, статусы, починка без Java |
+| [`app/README.md`](app/README.md) | Modpack Manager: меню, вкладки, статусы, починка и установка инстанса без Java |
 | [`docs/SETUP.md`](docs/SETUP.md) | Первичная настройка GitHub, Pages, релизов + `setup-github.py` |
 | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Как всё устроено под капотом |
 | [`docs/SERVER.md`](docs/SERVER.md) | Выделенный сервер с тем же паком |
