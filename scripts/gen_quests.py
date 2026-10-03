@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-gen_quests.py — генератор квестов FTB Quests из quests/questline.py.
+gen_quests.py — генератор квестов FTB Quests из scripts/quests/questline.py.
 
-Зачем генератор, а не手写 .snbt:
+Зачем генератор, а не рукописные .snbt:
   • ID (16-символьный hex) должны быть уникальны и не равны 0/1 — readID()
     молча перегенерирует их иначе;
   • lang-ключи строятся как "<objectType>.<ID>.<title|quest_desc|...>", то есть
@@ -28,7 +28,7 @@ import os
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, os.path.join(ROOT, "quests"))
+sys.path.insert(0, os.path.join(ROOT, "scripts", "quests"))
 
 OUT_DIR = os.path.join(ROOT, "config", "ftbquests", "quests")
 

@@ -240,7 +240,7 @@ python scripts/pw.py add-url "Мой приватный мод" \
 ├── mods/*.pw.toml                ← метаданные модов (ссылки, не jar-ы!)
 ├── config/                       ← общие конфиги (в т.ч. ftbquests/quests/*.snbt)
 ├── kubejs/                       ← кастомные предметы и рецепты
-├── quests/questline.py           ← квесты НА PYTHON (генератор -> .snbt)
+├── scripts/quests/questline.py   ← квесты НА PYTHON (генератор -> .snbt)
 ├── resourcepacks/ shaderpacks/   ← синхронизируемые файлы
 ├── packsync/                     ← механизм автосинхронизации (см. packsync/README.md)
 │   ├── packwiz-installer.jar
@@ -352,7 +352,7 @@ https://<user>.github.io/<repo>/latest/ModpackManager.exe
 | Исследование | 6 | алмазы → обсидиан → Нижний мир → ифриты → Крепость → Дракон Края |
 | Кастомный контент | 3 | `kubejs:quest_token` → `quest_token_premium` → `quest_medal` |
 
-Квесты пишутся **на Python** (`quests/questline.py`), а SNBT генерирует
+Квесты пишутся **на Python** (`scripts/quests/questline.py`), а SNBT генерирует
 `scripts/gen_quests.py`. Так сделано намеренно: в формате FTB Quests легко
 ошибиться так, что ничего не упадёт — квесты просто молча не появятся.
 Например, lang-ключ жёстко привязан к ID (`quest.0000000000001110.title`),
@@ -362,7 +362,7 @@ https://<user>.github.io/<repo>/latest/ModpackManager.exe
 FTB Quests 2101.1.36), а не по чужим примерам. Оттуда же взяты неочевидные
 детали — например, что `ItemTask.count` это **long** (`8L`), а
 `ItemReward.count` — **int** (`8`), и что поле награды называется `xp_levels`,
-а не `levels`. Полная таблица источников — в [`quests/README.md`](quests/README.md).
+а не `levels`. Полная таблица источников — в [`scripts/quests/README.md`](scripts/quests/README.md).
 
 `scripts/check_quests.py` валидирует результат **без Minecraft**: парсит SNBT
 обратно, проверяет ID, зависимости, типы полей, lang-ключи, соответствие

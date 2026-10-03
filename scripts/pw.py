@@ -230,29 +230,41 @@ class Ignore:
         return re.fullmatch(rx, path) is not None
 
     @staticmethod
-    def _is_rooted(pat: str) -> bool:
-        """Паттерн привязан к корню, если слэш встречается в начале или в
-        СЕРЕДИНЕ (gitignore-семантика). `quests/**` -> только /quests/**,
-        но НЕ config/ftbquests/quests/**. `README.md` и `*.zip` (слэша нет)
-        -> совпадают на любом уровне.
+    def _is_rooted(pat: str, anchored: bool) -> bool:
+        """Привязан ли паттерн к корню.
 
-        Раньше здесь перебирались все суффиксы пути, из-за чего `quests/**`
-        молча вырезал config/ftbquests/quests/ — квесты не попадали в пак.
+        ВАЖНО: здесь мы намеренно НЕ следуем спецификации gitignore, а
+        повторяем поведение go-gitignore, который использует packwiz.
+        По спеке паттерн со слэшем в середине (`quests/**`) привязан к корню,
+        но go-gitignore матчит его на ЛЮБОМ уровне — именно так
+        `quests/**` в .packwizignore съел `config/ftbquests/quests/`
+        и квесты не попали в пак (CI это поймал).
+
+        Единственный надёжный способ привязать паттерн к корню — явный
+        ведущий слэш. Поэтому все паттерны в нашем .packwizignore начинаются
+        с `/`, а этот метод возвращает True только для них.
         """
-        return "/" in pat.rstrip("/")
+        return anchored
 
     def ignored(self, relpath: str, is_dir: bool = False) -> bool:
         result = False
         for negate, anchored, dir_only, pat in self.rules:
             if dir_only and not is_dir and not relpath.startswith(pat + "/"):
                 continue
-            if anchored or self._is_rooted(pat):
+            if self._is_rooted(pat, anchored):
                 matched = self._match(pat, relpath)
             else:
-                # без слэша — совпадает с именем на любом уровне
-                matched = self._match(pat, relpath) or any(
-                    self._match(pat, part) for part in relpath.split("/")
-                )
+                # без ведущего слэша go-gitignore матчит на любом уровне:
+                # пробуем и весь путь, и каждый его суффикс, и отдельные сегменты
+                matched = self._match(pat, relpath)
+                if not matched:
+                    parts = relpath.split("/")
+                    matched = any(self._match(pat, part) for part in parts)
+                    if not matched:
+                        matched = any(
+                            self._match(pat, "/".join(parts[k:]))
+                            for k in range(1, len(parts))
+                        )
             if matched:
                 result = not negate
         return result
