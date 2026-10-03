@@ -26,6 +26,15 @@
 - `packsync/` — механизм автосинхронизации: `packwiz-installer` v0.5.14
   и `packwiz-installer-bootstrap` v0.0.3 (оба MIT), обёртки `sync.cmd` / `sync.sh`
   с самостоятельным поиском Java и гарантированным кодом возврата 0.
+- `installer/` — однокнопочная установка у игроков: `install.ps1` (Windows,
+  PowerShell 5.1+), `install.bat` (двойной клик), `install.sh` (Linux/macOS).
+  Скрипты ищут лаунчер четырьмя способами (PATH, типичные каталоги, реестр
+  `Uninstall`, ярлыки меню Пуск + flatpak), для Prism-семейства вызывают
+  `--import <url>` (полностью автоматически), для Theseus-семейства —
+  автоимпорт `.mrpack` аргументом командной строки + строка hook'а в буфере
+  обмена. Есть `-WithLauncher`: сам скачает и поставит Freesm Launcher.
+- Публикация артефактов по стабильным адресам `latest/instance.zip` и
+  `latest/pack.mrpack` на GitHub Pages — переустановка пака больше не нужна.
 - GitHub Actions:
   - `validate.yml` — проверка на PR и push в побочные ветки, падает при устаревшем `index.toml`;
   - `pages.yml` — публикация пака на GitHub Pages на каждый push в `main`;

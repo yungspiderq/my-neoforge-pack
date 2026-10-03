@@ -806,9 +806,22 @@ def cmd_site(args) -> None:
         copied += 1
     for extra in ("pack.toml", "index.toml"):
         shutil.copy2(os.path.join(ROOT, extra), os.path.join(out, extra))
+    # Установщик для игроков — статика, кладём рядом с pack.toml
+    inst_src = os.path.join(ROOT, "installer")
+    inst_n = 0
+    if os.path.isdir(inst_src):
+        for fn in sorted(os.listdir(inst_src)):
+            if fn.startswith(".") or not fn.endswith((".ps1", ".sh", ".bat")):
+                continue
+            shutil.copy2(os.path.join(inst_src, fn), os.path.join(out, fn))
+            inst_n += 1
+    if inst_n:
+        ok("установщик: %d файлов (install.ps1 / install.sh / install.bat)" % inst_n)
+
     # GitHub Pages: отключаем Jekyll, иначе файлы с '_' в имени не публикуются
     open(os.path.join(out, ".nojekyll"), "w").close()
-    ok("site/ готово: %d файлов + pack.toml + index.toml" % copied)
+    ok("site/ готово: %d файлов пака + %d установщика + pack.toml + index.toml"
+       % (copied, inst_n))
     try:
         print("\nАдрес пака будет:  %s" % read_pack_url())
     except SystemExit:

@@ -35,6 +35,34 @@ config/, resourcepacks/, shaderpacks/   ← ваши общие файлы (эт
 
 ---
 
+## Установка у игроков — одной командой
+
+Игроку не нужно ничего скачивать и настраивать. В PowerShell:
+
+```powershell
+irm https://<user>.github.io/<repo>/install.ps1 | iex
+```
+
+или двойной клик по `install.bat`, или на Linux/macOS:
+
+```bash
+curl -fsSL https://<user>.github.io/<repo>/install.sh | bash
+```
+
+Установщик сам найдёт лаунчер (Freesm, Prism, MultiMC, AstralRinth, Modrinth App),
+а если его нет — предложит поставить Freesm (`-WithLauncher`). Для Freesm/Prism
+установка полностью автоматическая: лаунчеру передаётся
+`--import <url>/latest/instance.zip`, и он сам качает инстанс, Minecraft,
+NeoForge, Java и моды. Для AstralRinth импорт тоже автоматический, а hook
+вписывается за 4 клика (строка уже лежит в буфере обмена) — подробности и
+обоснование в [`installer/README.md`](installer/README.md).
+
+Артефакты публикуются по **стабильным адресам** `latest/instance.zip` и
+`latest/pack.mrpack`, поэтому переустанавливать пак при добавлении модов не
+нужно никогда — уже установленный инстанс обновляется сам.
+
+---
+
 ## Как это выглядит в жизни
 
 ```
@@ -216,6 +244,8 @@ python scripts/pw.py add-url "Мой приватный мод" \
 │   ├── packwiz-installer-bootstrap.jar
 │   ├── sync.cmd  sync.sh
 │   └── pack-url.txt
+├── installer/                    ← однокнопочная установка у игроков
+│   ├── install.ps1  install.bat  install.sh
 ├── instance-template/            ← шаблон инстанса для Prism/Freesm
 ├── scripts/
 │   ├── pw.py                     ← ведение пака (моды, индекс, артефакты)
@@ -254,6 +284,7 @@ python scripts/pw.py instance                     # instance.zip в dist/
 | Файл | О чём |
 |---|---|
 | [`INSTALL.md`](INSTALL.md) | **Инструкция для игроков** — можно просто отдать ссылку |
+| [`installer/README.md`](installer/README.md) | Как работает однокнопочный установщик |
 | [`docs/SETUP.md`](docs/SETUP.md) | Первичная настройка GitHub, Pages, релизов + `setup-github.py` |
 | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Как всё устроено под капотом |
 | [`docs/SERVER.md`](docs/SERVER.md) | Выделенный сервер с тем же паком |

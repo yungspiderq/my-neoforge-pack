@@ -1,9 +1,14 @@
 name: "1. Publish pack (GitHub Pages)"
 
 # =============================================================================
-#  Главная магия: на каждый push в main пак пересобирается и публикуется
-#  на GitHub Pages. У игроков лаунчер при запуске читает pack.toml по этой
-#  ссылке, сверяет sha256-хэши и докачивает ТОЛЬКО изменившееся.
+#  На каждый push в main:
+#    • пак пересобирается и публикуется на GitHub Pages (pack.toml + index.toml)
+#    • туда же кладутся АРТЕФАКТЫ ПО СТАБИЛЬНЫМ АДРЕСАМ:
+#         latest/instance.zip   <- для --import в Prism/Freesm
+#         latest/pack.mrpack    <- для AstralRinth / Modrinth App
+#      поэтому установщик всегда тянет самую свежую версию, и новый релиз
+#      для обновления устанавливать НЕ нужно
+#    • публикуются скрипты установщика (install.ps1 / install.sh / install.bat)
 # =============================================================================
 
 on:
@@ -55,10 +60,11 @@ jobs:
         run: |
           OWNER="${GITHUB_REPOSITORY_OWNER,,}"
           REPO="${GITHUB_REPOSITORY#*/}"
-          URL="https://${OWNER}.github.io/${REPO}/pack.toml"
-          echo "$URL" > packsync/pack-url.txt
-          echo "PACK_URL=$URL" >> "$GITHUB_ENV"
-          echo "::notice::Pack URL = $URL"
+          BASE="https://${OWNER}.github.io/${REPO}"
+          echo "$BASE/pack.toml" > packsync/pack-url.txt
+          echo "PACK_BASE=$BASE" >> "$GITHUB_ENV"
+          echo "PACK_URL=$BASE/pack.toml" >> "$GITHUB_ENV"
+          echo "::notice::Pack base = $BASE"
 
       - name: Refresh packwiz index
         run: packwiz refresh
@@ -70,6 +76,23 @@ jobs:
 
       - name: Stage Pages payload
         run: python3 scripts/pw.py site --out site
+
+      - name: Build artifacts into site/latest
+        run: |
+          mkdir -p site/latest
+          packwiz modrinth export -o site/latest/pack.mrpack -y
+          python3 scripts/pw.py inject-packsync site/latest/pack.mrpack
+          python3 scripts/pw.py instance --out site/latest/instance.zip
+          ls -la site/latest/
+
+      - name: Stamp installer base URL
+        run: |
+          for f in site/install.ps1 site/install.sh site/install.bat; do
+            [ -f "$f" ] || continue
+            sed -i "s|@@BASE_URL@@|${PACK_BASE}|g" "$f"
+            echo "stamped $f -> ${PACK_BASE}"
+          done
+          grep -n "$PACK_BASE" site/install.ps1 | head -3 || true
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
@@ -90,8 +113,12 @@ jobs:
           {
             echo "### Модпак опубликован"
             echo ""
-            echo "- **pack.toml:** \`${PACK_URL}\`"
-            echo "- **Сайт:** ${{ steps.deployment.outputs.page_url }}"
+            echo "| Что | Адрес |"
+            echo "|---|---|"
+            echo "| pack.toml | \`${PACK_BASE}/pack.toml\` |"
+            echo "| Установщик (Windows) | \`irm ${PACK_BASE}/install.ps1 ^| iex\` |"
+            echo "| instance.zip (стабильный URL) | \`${PACK_BASE}/latest/instance.zip\` |"
+            echo "| pack.mrpack (стабильный URL) | \`${PACK_BASE}/latest/pack.mrpack\` |"
             echo ""
-            echo "Игроки получат обновление автоматически при следующем запуске игры."
+            echo "Уже установленные инстансы обновятся сами при следующем запуске игры."
           } >> "$GITHUB_STEP_SUMMARY"
