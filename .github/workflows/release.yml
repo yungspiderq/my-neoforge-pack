@@ -1,0 +1,123 @@
+name: "2. Build release (.mrpack + instance.zip)"
+
+# =============================================================================
+#  Собирает файлы для ОДНОРАЗОВОЙ установки:
+#    * <pack>-<version>.mrpack        -> для AstralRinth / Modrinth App / Prism
+#    * <pack>-<version>-instance.zip  -> для Freesm / Prism / MultiMC (полный авто-синк)
+#
+#  Запускается при пуше тега вида v1.2.3 (или вручную).
+# =============================================================================
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Тег релиза (например v1.0.0). Пусто — собрать без публикации."
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+  pages: read
+
+env:
+  PACKWIZ_JAVA: "21"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: stable
+          cache: true
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ env.PACKWIZ_JAVA }}
+
+      - name: Install packwiz
+        run: |
+          go install github.com/packwiz/packwiz@latest
+          echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
+
+      - name: Resolve pack URL and metadata
+        run: |
+          OWNER="${GITHUB_REPOSITORY_OWNER,,}"
+          REPO="${GITHUB_REPOSITORY#*/}"
+          URL="https://${OWNER}.github.io/${REPO}/pack.toml"
+          echo "$URL" > packsync/pack-url.txt
+
+          NAME=$(python3 - <<'PY'
+          import re
+          t = open('pack.toml', encoding='utf-8').read()
+          g = lambda k: (re.search(r'^%s\s*=\s*"(.*)"\s*$' % k, t, re.M) or [None, 'modpack'])[1]
+          import unicodedata
+          n = g('name').lower()
+          n = re.sub(r'\(.*\)', '', n)
+          n = re.sub(r'[^a-z0-9]+', '-', n).strip('-')
+          print(n or 'modpack')
+          PY
+          )
+          VER=$(python3 -c "import re;print((re.search(r'^version\s*=\s*\"(.*)\"', open('pack.toml',encoding='utf-8').read(), re.M) or [None,'0.0.0'])[1])")
+          echo "PACK_SLUG=$NAME" >> "$GITHUB_ENV"
+          echo "PACK_VERSION=$VER" >> "$GITHUB_ENV"
+          echo "PACK_URL=$URL" >> "$GITHUB_ENV"
+          echo "::notice::Pack $NAME $VER -> $URL"
+
+      - name: Refresh packwiz index
+        run: packwiz refresh
+
+      - name: Export .mrpack (official packwiz)
+        run: |
+          mkdir -p dist
+          packwiz modrinth export -o "dist/${PACK_SLUG}-${PACK_VERSION}.mrpack" -y
+
+      - name: Inject packsync into .mrpack
+        run: python3 scripts/pw.py inject-packsync "dist/${PACK_SLUG}-${PACK_VERSION}.mrpack"
+
+      - name: Build Prism/Freesm instance zip
+        run: python3 scripts/pw.py instance --out "dist/${PACK_SLUG}-${PACK_VERSION}-instance.zip"
+
+      - name: Fallback .mrpack (если packwiz export упал)
+        if: failure()
+        run: |
+          mkdir -p dist
+          python3 scripts/pw.py mrpack --out "dist/${PACK_SLUG}-${PACK_VERSION}.mrpack" || true
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: modpack-dist
+          path: dist/
+          if-no-files-found: error
+
+      - name: Publish GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "${{ env.PACK_SLUG }} ${{ env.PACK_VERSION }}"
+          generate_release_notes: true
+          files: |
+            dist/*.mrpack
+            dist/*-instance.zip
+          body: |
+            ## Установка
+
+            **Freesm / Prism / MultiMC (полный авто-синк)**
+            Скачайте `*-instance.zip` → *Add instance* → *Import from zip*. Готово.
+
+            **AstralRinth / Modrinth App**
+            Скачайте `*.mrpack` → *Create profile* → *Import from file*,
+            затем включите hook (см. `INSTALL.md` в репозитории).
+
+            Адрес пака: `${{ env.PACK_URL }}`

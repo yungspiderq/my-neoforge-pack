@@ -1,0 +1,62 @@
+name: "0. Validate pack"
+
+# Быстрая проверка на каждый push/PR: пак собирается, index.toml актуален,
+# все mods/*.pw.toml валидны, .mrpack экспортируется.
+
+on:
+  push:
+    branches-ignore: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  PACKWIZ_JAVA: "21"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
+          cache: true
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ env.PACKWIZ_JAVA }}
+
+      - name: Install packwiz
+        run: |
+          go install github.com/packwiz/packwiz@latest
+          echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
+
+      - name: Refresh index
+        run: packwiz refresh
+
+      - name: Fail if index.toml is stale
+        run: |
+          if ! git diff --quiet -- index.toml pack.toml; then
+            echo "::error::index.toml устарел. Запустите локально: packwiz refresh (или python3 scripts/pw.py refresh) и закоммитьте результат."
+            git --no-pager diff -- index.toml pack.toml
+            exit 1
+          fi
+
+      - name: Sanity checks
+        run: |
+          python3 scripts/pw.py check
+          python3 scripts/pw.py list
+          python3 scripts/pw.py versions
+
+      - name: Dry-run export
+        run: |
+          python3 scripts/pw.py site --out /tmp/site
+          test -f /tmp/site/pack.toml
+          test -f /tmp/site/index.toml
+          test -f /tmp/site/.nojekyll
+          echo "site payload OK: $(find /tmp/site -type f | wc -l) files"

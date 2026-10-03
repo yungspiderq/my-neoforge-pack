@@ -1,0 +1,97 @@
+name: "1. Publish pack (GitHub Pages)"
+
+# =============================================================================
+#  Главная магия: на каждый push в main пак пересобирается и публикуется
+#  на GitHub Pages. У игроков лаунчер при запуске читает pack.toml по этой
+#  ссылке, сверяет sha256-хэши и докачивает ТОЛЬКО изменившееся.
+# =============================================================================
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+env:
+  PACKWIZ_JAVA: "21"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: stable
+          cache: true
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ env.PACKWIZ_JAVA }}
+
+      - name: Install packwiz
+        run: |
+          go install github.com/packwiz/packwiz@latest
+          echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
+
+      - name: Resolve pack URL
+        run: |
+          OWNER="${GITHUB_REPOSITORY_OWNER,,}"
+          REPO="${GITHUB_REPOSITORY#*/}"
+          URL="https://${OWNER}.github.io/${REPO}/pack.toml"
+          echo "$URL" > packsync/pack-url.txt
+          echo "PACK_URL=$URL" >> "$GITHUB_ENV"
+          echo "::notice::Pack URL = $URL"
+
+      - name: Refresh packwiz index
+        run: packwiz refresh
+
+      - name: Validate
+        run: |
+          python3 scripts/pw.py check
+          python3 scripts/pw.py list
+
+      - name: Stage Pages payload
+        run: python3 scripts/pw.py site --out site
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Summary
+        run: |
+          {
+            echo "### Модпак опубликован"
+            echo ""
+            echo "- **pack.toml:** \`${PACK_URL}\`"
+            echo "- **Сайт:** ${{ steps.deployment.outputs.page_url }}"
+            echo ""
+            echo "Игроки получат обновление автоматически при следующем запуске игры."
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -1,0 +1,35 @@
+# =============================================================================
+#  Критично для packwiz: файлы .toml/.json/.sh должны иметь ОДИНАКОВЫЕ
+#  окончания строк на машине автора и в CI, иначе sha256-хэши в index.toml
+#  разойдутся и packwiz-installer будет каждый раз перекачивать файлы.
+# =============================================================================
+
+* text=auto eol=lf
+
+*.toml      text eol=lf
+*.json      text eol=lf
+*.md        text eol=lf
+*.txt       text eol=lf
+*.yml       text eol=lf
+*.yaml      text eol=lf
+*.py        text eol=lf
+*.sh        text eol=lf
+
+# bat/cmd для Windows — всегда CRLF (иначе возможны глюки парсера cmd.exe)
+*.cmd       text eol=crlf
+*.bat       text eol=crlf
+
+# Бинарники — никогда не трогать
+*.jar       binary
+*.zip       binary
+*.mrpack    binary
+*.png       binary
+*.jpg       binary
+*.ico       binary
+*.ttf       binary
+*.otf       binary
+*.ogg       binary
+*.wav       binary
+*.mp3       binary
+*.dat       binary
+*.nbt       binary
