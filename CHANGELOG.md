@@ -33,6 +33,15 @@
   --registry` и `gen_quests.py --check` в pages.yml.
 
 ### Fixed
+- **`write_mod()` писал дубль секции `[update]` для модов без апдейтера**
+  (maven / прямая ссылка). packwiz на этом падал:
+  `toml: line 11: Key 'update' has already been defined`, из-за чего
+  `packwiz modrinth export` в релизе v1.1.0 завершился ошибкой.
+  Локально не ловилось, потому что мини-парсер в `pw.py` молча перезаписывал
+  дубликаты, а packwiz использует строгий BurntSushi TOML.
+- **`read_toml` теперь строгий**: дубликат ключа, дубликат секции и секция,
+  конфликтующая со скаляром, — это `TomlError`. Добавлено 6 регресс-тестов.
+  Смысл ровно в том, чтобы падать там же, где падает packwiz, а не позже в CI.
 - **`.packwizignore`-матчер в `pw.py` нарушал gitignore-семантику**, из-за чего
   паттерн `quests/**` (исключающий `quests/questline.py`) заодно вырезал
   `config/ftbquests/quests/**` — квесты не попадали в пак. Паттерн со слэшем

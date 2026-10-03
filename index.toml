@@ -60,17 +60,17 @@ metafile = true
 
 [[files]]
 file = "mods/ftb-library.pw.toml"
-hash = "3f9b1d649a1e6d7c4566bfda5cd5893d91f0c4d00a446916d7016d57ed4b65fe"
+hash = "d58406f6e6585a0d0ddd3fa459dafd24e73d124c842f70562b23a7aa01fbb8e7"
 metafile = true
 
 [[files]]
 file = "mods/ftb-quests.pw.toml"
-hash = "cfbe97712fd6f306d48ae806190d852030c1994a123b0e9440ad848e7977230d"
+hash = "4580b29e2ca04da0131dac8f8af7696a143079b7c55a9cfbf2076206dad4b71c"
 metafile = true
 
 [[files]]
 file = "mods/ftb-teams.pw.toml"
-hash = "ba51bbf78335b46558c677138b91b2e7cf52190b5502fff2786fbfc0b1841e85"
+hash = "17ed96ff5d865091d09afb300aee4343ad6bdea604ae5e235bea990ff539b26e"
 metafile = true
 
 [[files]]

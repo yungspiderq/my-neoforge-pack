@@ -128,6 +128,12 @@ def _unquote(tok: str):
     return tok
 
 
+class TomlError(Exception):
+    """Ошибка разбора TOML. Дубликаты ключей/секций считаются ошибкой: packwiz
+    использует строгий BurntSushi-парсер и на них падает, поэтому наш парсер
+    обязан падать тоже — иначе битый файл уезжает в CI."""
+
+
 def read_toml(path: str) -> dict:
     """Очень маленький парсер TOML: таблицы, строки, bool, числа, массивы строк."""
     if not os.path.isfile(path):
@@ -137,6 +143,9 @@ def read_toml(path: str) -> dict:
 
     root: dict = {}
     cur = root
+    cur_path: list = []
+    seen_tables: dict = {}
+    seen_keys: dict = {}
     i = 0
     while i < len(lines):
         line = lines[i]
@@ -146,10 +155,21 @@ def read_toml(path: str) -> dict:
             continue
         if stripped.startswith("["):
             name = stripped.strip("[]").strip()
+            path_parts = [x.strip().strip('"') for x in name.split(".")]
+            if name in seen_tables:
+                raise TomlError("%s: строка %d: секция [%s] уже определена "
+                                "(строка %d). Строгий TOML-парсер packwiz на этом "
+                                "падает, поэтому здесь это тоже ошибка."
+                                % (path, i, name, seen_tables[name]))
+            seen_tables[name] = i
             cur = root
-            for part in name.split("."):
-                part = part.strip().strip('"')
-                cur = cur.setdefault(part, {})
+            cur_path = list(path_parts)
+            for part in path_parts:
+                nxt = cur.setdefault(part, {})
+                if not isinstance(nxt, dict):
+                    raise TomlError("%s: строка %d: [%s] конфликтует со скаляром"
+                                    % (path, i, name))
+                cur = nxt
             continue
         m = re.match(r'^([A-Za-z0-9_\-."]+)\s*=\s*(.*)$', stripped)
         if not m:
@@ -157,6 +177,11 @@ def read_toml(path: str) -> dict:
         key = m.group(1).strip().strip('"')
         value, i = _parse_value(m.group(2), lines, i - 1)
         i += 1
+        kk = ".".join(cur_path + [key])
+        if kk in seen_keys:
+            raise TomlError("%s: строка %d: ключ %r уже определён (строка %d)"
+                            % (path, i, kk, seen_keys[kk]))
+        seen_keys[kk] = i
         cur[key] = value
     return root
 
@@ -455,11 +480,14 @@ def write_mod(slug: str, name: str, filename: str, side: str, url: str,
         'url = "%s"' % url,
         'hash-format = "%s"' % hash_format,
         'hash = "%s"' % hash_value,
-        "",
-        "[update]",
-        update_block.rstrip(),
-        "",
     ]
+    # [update] пишем ТОЛЬКО если есть содержимое. Пустая секция с последующим
+    # "[update]" внутри update_block давала дубль ключа, на котором packwiz
+    # (строгий BurntSushi TOML) падал с "Key 'update' has already been defined".
+    body = (update_block or "").strip()
+    if body:
+        lines += ["", "[update]", body]
+    lines.append("")
     with open(path, "w", encoding="utf-8", newline="\n") as fh:
         fh.write("\n".join(lines))
     return path
@@ -599,7 +627,7 @@ def cmd_add_maven(args) -> None:
         title = args.name if args.name and a == args.artifact else _maven_display_name(a)
         slug = slugify(title) or re.sub(r"[^a-z\d]+", "-", a.lower()).strip("-")
         write_mod(slug, title, "%s-%s.jar" % (a, v), args.side, url,
-                  "sha1", digest, "[update]\n", optional=args.optional)
+                  "sha1", digest, "", optional=args.optional)
         ok("%-22s %-16s sha1=%s  (%s)" % (title, v, (digest[:16] + "…") if digest else "—",
                                            "; ".join(sorted(set(whys)))))
 
@@ -888,7 +916,7 @@ def cmd_add_url(args) -> None:
         urllib.request.Request(args.url, headers={"User-Agent": USER_AGENT}), timeout=120
     ).read()).hexdigest() if args.hash else ""
     write_mod(slug, args.name, filename, args.side, args.url, "sha1", digest,
-              "[update]\n", optional=args.optional)
+              "", optional=args.optional)
     ok("%s -> mods/%s.pw.toml (side=%s)" % (args.name, slug, args.side))
     cmd_refresh(args)
 
