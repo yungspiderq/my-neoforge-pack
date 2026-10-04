@@ -18,7 +18,7 @@ hash = "f1944f87823d81c677191b951c0da14aaed66054312f02712d5cbed2950ce23a"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/overworld.snbt"
-hash = "524ae5de70d3d963d33b42cca5e8b4036b460f56a3d5f0d2258098c068e3c8a3"
+hash = "4e73b0721b97291c574415399ffc84d199c4767da5bfcef062a478624dc8dcd7"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/starlight.snbt"
@@ -30,11 +30,11 @@ hash = "3247158905a839ee22728f98c8c57def95653b8ee1fc14cf554d1c7ed1641b43"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us.snbt"
-hash = "05625b34144721f29670d98ed07311e120c67fde5ebdcb2f5dd5ead517b3a14e"
+hash = "9519fc088da34542cec4c4b981738ccdfe7d8450fcd8da0fa34f60cd499f972a"
 
 [[files]]
 file = "config/ftbquests/quests/lang/ru_ru.snbt"
-hash = "7d19fdf432319aee0f5f81e0780990f687e5de45bc5440b2e29e19e445ad0dd9"
+hash = "53d3bb262c134e15d731dc78ee293928829eb8d8e53f65d2c6db11035220352f"
 
 [[files]]
 file = "config/modpack-info.txt"
@@ -110,7 +110,7 @@ hash = "f1b0a6d02645ab7233d8a3959c436684f4b4ae74e60aa58d1899771a4cc0b9ca"
 
 [[files]]
 file = "kubejs/server_scripts/star_lantern.js"
-hash = "a037c6ef69327bcba38611e06dc15a76161db8b1be498a9df89f8e4cfb9782ba"
+hash = "1ac109cebb2e83c0a8cad8d8f218c739167e7d64ca4be1e1ef79ec377f33191b"
 
 [[files]]
 file = "kubejs/startup_scripts/custom_items.js"
@@ -203,6 +203,11 @@ metafile = true
 [[files]]
 file = "mods/ferritecore.pw.toml"
 hash = "66cebcf946ddbee0c87ef58f61ab34fba55992e1bdc89c81d71b9b8adb8de3dc"
+metafile = true
+
+[[files]]
+file = "mods/ftb-filter-system.pw.toml"
+hash = "adcd4c9b9be6f6aaae6d0f1bbc16ce6e172ad450b5c224e7f4af02fd2c9427d1"
 metafile = true
 
 [[files]]

@@ -25,6 +25,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -233,7 +234,11 @@ def snbt(value, indent: int = 0, pad: str = "\t") -> str:
         if not value:
             return "{ }"
         keys = sorted(value.keys())
-        lines = ["%s%s: %s" % (pad * (indent + 1), k, snbt(value[k], indent + 1, pad))
+        # ключи вне bare-набора SNBT ([A-Za-z0-9_+.-]) обязаны быть в кавычках:
+        # иначе components вида "ftbfiltersystem:filter" сломают парсер
+        lines = ["%s%s: %s" % (pad * (indent + 1),
+                               k if re.fullmatch(r"[A-Za-z0-9_+.-]+", k) else quote(k),
+                               snbt(value[k], indent + 1, pad))
                  for k in keys]
         return "{\n" + ",\n".join(lines) + "\n" + pad * indent + "}"
     raise GenError("неподдерживаемый тип для SNBT: %r" % type(value))
@@ -335,6 +340,13 @@ def item_stack(item_id: str, count: int = 1) -> dict:
     FTB пишет saveItemSingleLine(itemStack.copyWithCount(1)) — то есть count
     внутри item ВСЕГДА 1, а реальное количество хранится в отдельном поле count.
     """
+    if isinstance(item_id, dict):          # готовый стак (фильтр FTB Filter System)
+        stack = dict(item_id)
+        stack.setdefault("count", 1)
+        iid = stack.get("id")
+        if not isinstance(iid, str) or ":" not in iid:
+            raise GenError("item.id должен быть 'namespace:path', получено %r" % (iid,))
+        return stack
     if not isinstance(item_id, str) or ":" not in item_id:
         raise GenError("item должен быть вида 'namespace:path', получено %r" % item_id)
     ns, path = item_id.split(":", 1)

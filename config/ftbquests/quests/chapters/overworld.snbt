@@ -386,8 +386,11 @@
 					count: 16L,
 					id: "0000000000201010",
 					item: {
+						components: {
+							"ftbfiltersystem:filter": "item_tag(minecraft:logs)"
+						},
 						count: 1,
-						id: "minecraft:oak_log"
+						id: "ftbfiltersystem:smart_filter"
 					},
 					type: "item"
 				}
@@ -418,8 +421,11 @@
 					count: 32L,
 					id: "0000000000201020",
 					item: {
+						components: {
+							"ftbfiltersystem:filter": "item_tag(minecraft:planks)"
+						},
 						count: 1,
-						id: "minecraft:oak_planks"
+						id: "ftbfiltersystem:smart_filter"
 					},
 					type: "item"
 				},
@@ -505,8 +511,11 @@
 					count: 64L,
 					id: "0000000000201040",
 					item: {
+						components: {
+							"ftbfiltersystem:filter": "item_tag(c:cobblestones)"
+						},
 						count: 1,
-						id: "minecraft:cobblestone"
+						id: "ftbfiltersystem:smart_filter"
 					},
 					type: "item"
 				},
@@ -589,8 +598,11 @@
 				{
 					id: "0000000000201060",
 					item: {
+						components: {
+							"ftbfiltersystem:filter": "item_tag(minecraft:wooden_doors)"
+						},
 						count: 1,
-						id: "minecraft:oak_door"
+						id: "ftbfiltersystem:smart_filter"
 					},
 					type: "item"
 				},
@@ -633,8 +645,11 @@
 				{
 					id: "0000000000201070",
 					item: {
+						components: {
+							"ftbfiltersystem:filter": "item_tag(minecraft:beds)"
+						},
 						count: 1,
-						id: "minecraft:white_bed"
+						id: "ftbfiltersystem:smart_filter"
 					},
 					type: "item"
 				},
@@ -1762,8 +1777,11 @@
 				{
 					id: "0000000000201232",
 					item: {
+						components: {
+							"ftbfiltersystem:filter": "item_tag(minecraft:boats)"
+						},
 						count: 1,
-						id: "minecraft:oak_boat"
+						id: "ftbfiltersystem:smart_filter"
 					},
 					type: "item"
 				}
@@ -2051,8 +2069,11 @@
 					count: 16L,
 					id: "00000000002012A1",
 					item: {
+						components: {
+							"ftbfiltersystem:filter": "item_tag(c:seeds)"
+						},
 						count: 1,
-						id: "minecraft:wheat_seeds"
+						id: "ftbfiltersystem:smart_filter"
 					},
 					type: "item"
 				}
@@ -2284,8 +2305,11 @@
 					count: 24L,
 					id: "00000000002012F1",
 					item: {
+						components: {
+							"ftbfiltersystem:filter": "item_tag(minecraft:wool)"
+						},
 						count: 1,
-						id: "minecraft:white_wool"
+						id: "ftbfiltersystem:smart_filter"
 					},
 					type: "item"
 				}

@@ -42,6 +42,19 @@ def item(item_id, count=1, **kw):
     return d
 
 
+def tag(tag_id, count=1):
+    """«Принеси N любых предметов с тегом» — фильтр FTB Filter System.
+
+    В задачу ложится smart_filter с компонентой ftbfiltersystem:filter вида
+    item_tag(<тег>); FTB Quests матчит по фильтру, поэтому засчитывается
+    любой вид: #minecraft:logs примет и дуб, и тис, и лунное дерево.
+    """
+    return {"type": "item", "count": count,
+            "item": {"id": "ftbfiltersystem:smart_filter", "count": 1,
+                     "components": {"ftbfiltersystem:filter":
+                                    "item_tag(%s)" % tag_id}}}
+
+
 def check():
     """Галочка — «сделано вручную»: вехи, сюжетные отметки, финал."""
     return {"type": "checkmark"}
