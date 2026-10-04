@@ -137,6 +137,8 @@ jobs:
           python3 scripts/check_mods.py
           python3 scripts/check_quests.py --registry
           python3 scripts/gen_quests.py --check
+          python3 scripts/check_lang.py
+          python3 scripts/gen_resourcepack.py --check
 
       - name: Stage Pages payload
         run: python3 scripts/pw.py site --out site
@@ -193,7 +195,7 @@ jobs:
             echo "| **ModpackManager.exe** | \`${PACK_BASE}/latest/ModpackManager.exe\` |"
             echo "| pack.mrpack | \`${PACK_BASE}/latest/pack.mrpack\` |"
             echo "| instance.zip | \`${PACK_BASE}/latest/instance.zip\` |"
-            echo "| установщик | \`irm ${PACK_BASE}/install.ps1 ^| iex\` |"
+            echo "| установщик | \`irm ${PACK_BASE}/install.ps1 \\| iex\` |"
             echo ""
             echo "Уже установленные инстансы обновятся сами при следующем запуске игры."
           } >> "$GITHUB_STEP_SUMMARY"

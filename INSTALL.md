@@ -34,8 +34,51 @@ irm https://yungspiderq.github.io/my-neoforge-pack/install.ps1 | iex
 **Нет лаунчера вообще?** Добавьте флаг — скрипт сам скачает и поставит Freesm Launcher:
 
 ```powershell
-irm https://yungspiderq.github.io/my-neoforge-pack/install.ps1 -WithLauncher | iex
+iex "& {$(irm https://yungspiderq.github.io/my-neoforge-pack/install.ps1)} -WithLauncher"
 ```
+
+> ⚠️ Флаг **нельзя** ставить между `irm` и `| iex` (т.е. `irm <адрес> -WithLauncher | iex` —
+> ошибка). Всё, что стоит до трубы `|`, PowerShell отдаёт командлету `Invoke-RestMethod`,
+> а у него нет параметра `WithLauncher` — строка падает с `ParameterBindingException`
+> ещё до скачивания. Поэтому скачанный текст оборачивают в script block и вызывают через `&` —
+> тогда флаг доходит до самого установщика.
+
+Если однострочник кажется страшным — ровно то же самое в две строки:
+
+```powershell
+irm https://yungspiderq.github.io/my-neoforge-pack/install.ps1 -OutFile "$env:TEMP\mp-install.ps1"
+powershell -NoProfile -ExecutionPolicy Bypass -File "$env:TEMP\mp-install.ps1" -WithLauncher
+```
+
+Вторая строка сознательно запускает отдельный процесс с `-ExecutionPolicy Bypass`:
+политика Windows по умолчанию — `Restricted`, она запрещает запуск любых `.ps1`-файлов,
+поэтому наивное `& "$env:TEMP\mp-install.ps1"` умирает с `PSSecurityException`
+(`UnauthorizedAccess`), не дойдя до первой строки скрипта. `Bypass` здесь действует
+только на этот один процесс и ничего не меняет в настройках системы.
+
+### Если PowerShell пишет «выполнение сценариев отключено в этой системе»
+
+Ошибка вида «Невозможно загрузить файл …, так как выполнение сценариев отключено
+в этой системе» (`CategoryInfo : Ошибка безопасности`, `PSSecurityException`,
+`FullyQualifiedErrorId : UnauthorizedAccess`) означает политику `Restricted`.
+Она блокирует только запуск `.ps1`-**файлов**; скачивание и выполнение строк она
+не блокирует. Поэтому работают любые три варианта:
+
+```powershell
+# 1) запустить уже скачанный файл в процессе с Bypass (настройки системы не трогает)
+powershell -NoProfile -ExecutionPolicy Bypass -File "$env:TEMP\mp-install.ps1" -WithLauncher
+
+# 2) однострочник: iex выполняет скачанный текст в памяти, политика к нему не применяется
+iex "& {$(irm https://yungspiderq.github.io/my-neoforge-pack/install.ps1)} -WithLauncher"
+
+# 3) поднять политику только для текущей сессии и запустить файл как обычно
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+& "$env:TEMP\mp-install.ps1" -WithLauncher
+```
+
+Вариант 1 удобен тем, что ничего не перекачивает: файл из примера выше уже лежит
+в `%TEMP%`. Постоянно менять политику системы (`-Scope LocalMachine` / `CurrentUser`)
+мы сознательно не советуем — для разовой установки хватает этих трёх вариантов.
 
 ### Альтернатива без PowerShell — двойной клик
 

@@ -29,6 +29,22 @@
     irm https://<user>.github.io/<repo>/install.ps1 | iex
 
 .EXAMPLE
+    iex "& {$(irm https://<user>.github.io/<repo>/install.ps1)} -WithLauncher"
+    # Однострочник С флагом: скачанный текст вызывается как script block через &,
+    # поэтому -WithLauncher доходит до установщика. Вариант
+    # "irm <адрес> -WithLauncher | iex" НЕ работает: флаг уходит в Invoke-RestMethod
+    # (ParameterBindingException), а iex получает скрипт без аргументов.
+
+.EXAMPLE
+    irm https://<user>.github.io/<repo>/install.ps1 -OutFile "$env:TEMP\mp-install.ps1"
+    powershell -NoProfile -ExecutionPolicy Bypass -File "$env:TEMP\mp-install.ps1" -WithLauncher
+    # «Скачать файл, затем запустить». Политика Windows по умолчанию Restricted
+    # запрещает запуск .ps1-файлов (& file.ps1 -> UnauthorizedAccess, PSSecurityException),
+    # поэтому файл запускают отдельным процессом с -ExecutionPolicy Bypass — это не
+    # меняет настройки системы. Однострочник с iex выше политике не подвержен:
+    # строка выполняется в памяти.
+
+.EXAMPLE
     .\install.ps1 -Launcher astralrinth -WithLauncher
 #>
 
@@ -354,7 +370,10 @@ if (-not $target) {
         Write-Host '      https://freesmlauncher.org/' -ForegroundColor White
         Write-Host ''
         Write-Host '  Затем перезапустите установщик. Или поставьте лаунчер автоматически:' -ForegroundColor Cyan
-        Write-Host '      irm <адрес>/install.ps1 -WithLauncher | iex' -ForegroundColor White
+        Write-Host '      iex "& {$(irm <адрес>/install.ps1)} -WithLauncher"' -ForegroundColor White
+        Write-Host '  Однострочник с iex работает даже при политике Restricted: выполняется' -ForegroundColor DarkGray
+        Write-Host '  строка в памяти, а не файл. Если же скрипт сохранён в файл, запускайте его так:' -ForegroundColor DarkGray
+        Write-Host '      powershell -NoProfile -ExecutionPolicy Bypass -File <файл.ps1> -WithLauncher' -ForegroundColor White
         Write-Host ''
         exit 1
     }

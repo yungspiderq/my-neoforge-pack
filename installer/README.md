@@ -62,6 +62,29 @@ Hook при этом **вписывается вручную**: установщ
 релиза (`api.github.com/repos/FreesmTeam/FreesmLauncher/releases/latest`),
 запускает его и повторяет поиск. Отдельный паттерн для ARM64.
 
+В однострочнике флаг передаётся оборачиванием скачанного текста в script block:
+
+```powershell
+iex "& {$(irm <base>/install.ps1)} -WithLauncher"
+```
+
+Вариант `irm <base>/install.ps1 -WithLauncher | iex` **невалиден**: всё до `|`
+PowerShell отдаёт командлету `Invoke-RestMethod`, у которого нет параметра
+`WithLauncher` → `ParameterBindingException` ещё до скачивания; а `iex` в принципе
+выполняет строку без аргументов, поэтому «протолкнуть» флаг через трубу нельзя.
+
+Политика выполнения Windows по умолчанию (`Restricted`) однострочникам с `iex`
+не мешает — строка выполняется в памяти. Но она блокирует запуск сохранённого
+`.ps1`-файла: `& "$env:TEMP\mp-install.ps1"` → `PSSecurityException /
+UnauthorizedAccess` («выполнение сценариев отключено в этой системе») ещё до
+первой строки скрипта. Поэтому вариант «скачать файл, затем запустить» годится
+только через отдельный процесс с Bypass (настройки системы не меняются):
+
+```powershell
+irm <base>/install.ps1 -OutFile "$env:TEMP\mp-install.ps1"
+powershell -NoProfile -ExecutionPolicy Bypass -File "$env:TEMP\mp-install.ps1" -WithLauncher
+```
+
 ---
 
 ## Почему hook не прописывается в базу AstralRinth автоматически

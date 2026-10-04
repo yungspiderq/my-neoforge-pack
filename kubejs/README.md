@@ -12,7 +12,10 @@ kubejs/
 ├── server_scripts/    выполняются на сервере (в одиночной игре — на встроенном)
 │   ├── recipes.js         рецепты
 │   └── diagnostics.js     строка в лог при загрузке
-└── client_scripts/    выполняются только на клиенте (JEI-подсказки, HUD)
+├── client_scripts/    выполняются только на клиенте (JEI-подсказки, HUD)
+└── assets/            работает как РЕСУРСПАК (приоритет выше jar'ов модов!)
+    ├── kubejs/textures/…          картинки глав квестов и кастомных предметов
+    └── galosphere/lang/ru_ru.json полный русский перевод Galosphere (см. ниже)
 ```
 
 ---
@@ -40,6 +43,65 @@ kubejs/assets/kubejs/textures/item/quest_token.png
 
 и в `custom_items.js` замените `.texture('minecraft:item/gold_ingot')`
 на `.texture('kubejs:item/quest_token')`.
+
+---
+
+## Перевод Galosphere (`assets/galosphere/lang/ru_ru.json`)
+
+Родной `ru_ru.json` внутри Galosphere 1.21.1-1.5.5 устарел ещё с 1.20.x: из
+297 ключей `en_us.json` переведено лишь 73 (и ещё 34 — мёртвые ключи старой
+номенклатуры: `silver_*` → `palladium_*`, `warped_anchor` → `burrow_anchor`,
+`advancements.story.*` → `advancements.galosphere.*`). В игре это выглядело
+как английские названия почти всех блоков, предметов, мобов, достижений и
+субтитров мода.
+
+Наш файл `kubejs/assets/galosphere/lang/ru_ru.json` — **полный оверрайд на
+297/297 ключей**. Это работает, потому что `kubejs/assets/` подключается как
+ресурс-пак с приоритетом выше jar'ов модов, а языковые файлы Minecraft
+мержит **по ключам** (наши значения перекрывают модовые). Терминология сведена
+1-в-1 с главой квестов «Галосфера» (`scripts/quests/chapters/galosphere.py`):
+«Стол горения», «Мешочек старателя», «Световая шашка», «Консервированный»,
+«Норный якорь», «Спектерпиллар», «Искорка»…; достижения, которые квесты
+цитируют по имени, в игре теперь называются ровно так же.
+
+Полноту перевода стережёт чекер (подключён в CI, в шаг Validate):
+
+```bash
+python scripts/check_lang.py                            # офлайн: по снимку ключей jar'а
+python scripts/check_lang.py --online                   # сверка с живым jar'ом с Modrinth
+python scripts/check_lang.py --online --update-snapshot # переснять ключи после обновления мода
+```
+
+Он проверяет: покрытие всех ключей `en_us`, отсутствие лишних ключей (опечатка
+в имени = тихий пропуск), непустые значения, значения, оставленные
+английскими, и совпадение `%s`-плейсхолдеров. Снимок ключей лежит в
+`scripts/lang/galosphere_en_us.json` (в пак не входит — `scripts/` исключён
+`.packwizignore`). **После обновления версии Galosphere** обязательно:
+`--online --update-snapshot`, затем доперевести новые ключи.
+
+Тот же перевод собирается в **ресурс-пак `GalosphereRU.zip`**, который
+включён в пак и **скачивается игрокам автоматически** в
+`.minecraft/resourcepacks/` (при установке/обновлении любым способом:
+однострочник packwiz, Modpack Manager, .mrpack через `overrides/`):
+
+```bash
+python scripts/gen_resourcepack.py          # → resourcepacks/GalosphereRU.zip
+                                            #   + ../GalosphereRU.zip (запасная копия)
+python scripts/gen_resourcepack.py --check  # CI: упакованная копия актуальна?
+```
+
+Внутри zip — байт-в-байт тот же `ru_ru.json` + `pack.mcmeta`
+(pack_format 34 = MC 1.21.1) + рисованная `pack.png`; сборка
+детерминирована (фиксированные метки времени в zip), поэтому `--check`
+сверяет файл побайтово. После любой правки `ru_ru.json` перезапустите
+генератор — иначе CI упадёт.
+
+**Включать ресурспак в настройках не нужно**: в сборке перевод и так
+применяется автоматически через `kubejs/assets/`. Упакованный zip —
+портативная копия того же перевода: её можно унести в любой клиент
+1.21.1 без KubeJS (положить в `resourcepacks/` и включить в «Настройки →
+Наборы ресурсов») или раздать друзьям вручную — запасная копия лежит в
+корне workspace и на Pages (`<base>/resourcepacks/GalosphereRU.zip`).
 
 ---
 

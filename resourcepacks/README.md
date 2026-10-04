@@ -17,3 +17,10 @@ python scripts/pw.py refresh
 
 Активируется ресурспак у игроков автоматически, если прописать его
 в `options.txt` (см. `config/README.md` про флаг `preserve`).
+
+---
+
+**`GalosphereRU.zip`** — не редактировать руками: файл детерминированно
+генерируется из `kubejs/assets/galosphere/lang/ru_ru.json` скриптом
+`python scripts/gen_resourcepack.py` (после правки перевода — перезапустить,
+иначе CI-проверка `--check` упадёт). См. `kubejs/README.md`.
