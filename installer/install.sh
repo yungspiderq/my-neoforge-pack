@@ -45,7 +45,7 @@ printf '  %s  Установка модпака%s\n' "$C_C" "$C_0"
 printf '  %s=============================================================%s\n' "$C_C" "$C_0"
 
 case "$BASE_URL" in
-    *'@@BASE_URL@@'*)
+    *'@@BASE'*)
         bad 'адрес пака не задан: скачайте скрипт со страницы GitHub Pages'
         bad 'или передайте --base-url https://<user>.github.io/<repo>'
         exit 1 ;;

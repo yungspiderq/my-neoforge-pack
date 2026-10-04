@@ -325,7 +325,11 @@ function Install-ViaTheseus($found) {
 Write-Title 'Установщик модпака'
 Write-Info "адрес пака: $BaseUrl"
 
-if ($BaseUrl -like '*@@BASE_URL@@*') {
+# NB: страж проверяет ПРЕФИКС плейсхолдера ('@@BASE'), а не плейсхолдер целиком:
+# CI подставляет вместо плейсхолдера адрес пака во всём файле, и «полная»
+# проверка после подстановки инвертировалась — установщик всегда падал
+# на собственном адресе (в т.ч. через irm ... | iex).
+if ([string]::IsNullOrWhiteSpace($BaseUrl) -or $BaseUrl -like '*@@BASE*') {
     Write-Bad 'BaseUrl не задан. Запустите скрипт с GitHub Pages или передайте -BaseUrl явно:'
     Write-Host '        .\install.ps1 -BaseUrl https://<user>.github.io/<repo>' -ForegroundColor White
     exit 1
