@@ -21,16 +21,20 @@ file = "config/ftbquests/quests/chapters/overworld.snbt"
 hash = "524ae5de70d3d963d33b42cca5e8b4036b460f56a3d5f0d2258098c068e3c8a3"
 
 [[files]]
+file = "config/ftbquests/quests/chapters/starlight.snbt"
+hash = "dae06ff5fde45c7af6bba699784deb90106082c77ab7ba85e7cbe21a3d40ced5"
+
+[[files]]
 file = "config/ftbquests/quests/data.snbt"
 hash = "3247158905a839ee22728f98c8c57def95653b8ee1fc14cf554d1c7ed1641b43"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us.snbt"
-hash = "d4d65046d6bf1d18eafaa46e7eff130a11d5b49ae23a384b8abee94fe56a4733"
+hash = "fd0732c188a894b8dfd43c985aa1af7458f2fedf0ae8755e947838863fea4f98"
 
 [[files]]
 file = "config/ftbquests/quests/lang/ru_ru.snbt"
-hash = "7b5e0559196cc3435065357431b5c671bfbcd642785b2baf346e4db40b66bb5c"
+hash = "80bb55b4a5aa5dc86a8a4fa4fd15797665c44be57eb5b2e3073c9079a6d5bbf0"
 
 [[files]]
 file = "config/modpack-info.txt"
@@ -55,6 +59,10 @@ hash = "caf69b38768f540fbbfc5d3f45d43ea9b94da801196aa5920e0a1206d8380f6b"
 [[files]]
 file = "kubejs/assets/kubejs/textures/gui/banner_overworld.png"
 hash = "bf8eed9cfae573f6079732ae12418c75639fa7c26d047e505bd4e44d9df5ef8d"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/banner_starlight.png"
+hash = "64e157b93918c326c5ba120798604e90b833033f323987e81692b1835b26f44a"
 
 [[files]]
 file = "kubejs/assets/kubejs/textures/gui/halo.png"
@@ -132,6 +140,11 @@ metafile = true
 [[files]]
 file = "mods/embeddium.pw.toml"
 hash = "9c1cb62e82392fdeb6dd9a9996a97d774c94416af2b76b440771f4a11ece5358"
+metafile = true
+
+[[files]]
+file = "mods/eternal-starlight.pw.toml"
+hash = "af65e87dcbb16d8e9a05f22492952cc357e8c2b4220e6ac5744bbafcb5e8b867"
 metafile = true
 
 [[files]]

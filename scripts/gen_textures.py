@@ -344,11 +344,55 @@ def banner_galosphere():
     return img
 
 
+def banner_starlight():
+    """Вечное Звездосветье: ночное небо, полярное сияние, снежные холмы,
+    кристальные друзы и птица-звездопад над горизонтом."""
+    W, H = 256, 64
+    img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    for y in range(H):                                     # ночное небо
+        t = y / (H - 1)
+        c = mix((6, 8, 26), (26, 34, 72), t)
+        for x in range(W):
+            shade = 0 if ((x // 8) + (y // 8)) % 2 == 0 else -4
+            img.putpixel((x, y), (clamp(c[0] + shade), clamp(c[1] + shade),
+                                  clamp(c[2] + shade), 240))
+    for i in range(3):                                     # ленты полярного сияния
+        col = [(90, 220, 200), (150, 120, 230), (90, 180, 240)][i]
+        y0 = 6 + i * 7
+        for x in range(W):
+            h = 10 + int(6 * math.sin(x * 0.05 + i * 1.7))
+            for k in range(h):
+                a = max(0, 90 - k * 8)
+                px(img, x, y0 + k, (col[0], col[1], col[2], a))
+    stars(img, 60, 7)                                      # звёзды
+    circle(img, 214, 16, 9, (235, 240, 255, 70))           # луна
+    circle(img, 214, 16, 6, (248, 250, 255, 160))
+    hills(img, 46, 7, (210, 224, 246), 11)                 # снежные холмы
+    hills(img, 52, 5, (176, 196, 230), 23)
+    for i in range(14):                                    # кристаллы из снега
+        x = int(rnd(i * 6.1) * W)
+        h = 4 + int(rnd(i * 3.3) * 9)
+        col = [(150, 210, 240), (240, 150, 200), (240, 220, 150)][i % 3]
+        for k in range(h):
+            w = max(1, (h - k) // 4)
+            rect(img, x - w, 52 - k, w * 2 + 1, 1, col + (235,))
+        px(img, x, 52 - h, (255, 255, 255, 255))
+    for i in range(5):                                     # метеоритный дождик
+        x = 20 + i * 46
+        y = 6 + (i % 3) * 5
+        for k in range(7):
+            px(img, x + k, y + k, (255, 244, 200, 220 - k * 26))
+    rect(img, 0, 62, W, 2, (14, 18, 40, 255))              # земля
+    frame(img, (150, 190, 240), (10, 14, 34))
+    return img
+
+
 BANNERS = {
     "banner_overworld": banner_overworld,
     "banner_nether":    banner_nether,
     "banner_end":       banner_end,
     "banner_galosphere": banner_galosphere,
+    "banner_starlight": banner_starlight,
 }
 
 

@@ -84,7 +84,7 @@ ChapterImageButton), порядок между ними задаёт поле or
 таблиц наград, advancement/gamestage/currency — не нужны паку).
 """
 
-from chapters import end, galosphere, nether, overworld
+from chapters import end, galosphere, nether, overworld, starlight
 from qdsl import CUSTOM          # noqa: F401  (используется главами и доками)
 
 # Порядок глав = порядок вкладок в книге квестов (order_index в SNBT).
@@ -93,6 +93,7 @@ QUESTLINE = [
     nether.CHAPTER,              # 0xC002  Багровое Пекло   (Нижний мир)
     end.CHAPTER,                 # 0xC003  Грань Пустоты    (Край)
     galosphere.CHAPTER,          # 0xC004  Галосфера        (мод Galosphere)
+    starlight.CHAPTER,           # 0xC005  Вечное Звездосветье (мод Eternal Starlight)
 ]
 
 # --- data.snbt ------------------------------------------------------------- #
