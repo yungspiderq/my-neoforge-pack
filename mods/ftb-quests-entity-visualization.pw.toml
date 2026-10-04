@@ -1,0 +1,13 @@
+name = "FTB Quests Entity Visualization"
+filename = "ftbquestsentityvis-1.11.0-1.21.1-neoforge.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/5yC9BlYm/versions/u9hIAPQu/ftbquestsentityvis-1.11.0-1.21.1-neoforge.jar"
+hash-format = "sha1"
+hash = "aa9778647928f77cf8034aaa8fac0c954e41e524"
+
+[update]
+[update.modrinth]
+mod-id = "5yC9BlYm"
+version = "u9hIAPQu"

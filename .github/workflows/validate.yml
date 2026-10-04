@@ -53,6 +53,17 @@ jobs:
           python3 scripts/pw.py list
           python3 scripts/pw.py versions
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Pillow
+        run: pip install --quiet Pillow
+
+      - name: Textures must be up to date
+        run: |
+          python3 scripts/gen_textures.py --check
+
       - name: Quest files must be up to date
         run: |
           python3 scripts/gen_quests.py --out /tmp/quests-regen

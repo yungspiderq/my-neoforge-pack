@@ -1,0 +1,13 @@
+name = "FTB Quests Optimizer"
+filename = "FTBQuestsOptimizer-neoforge-3.2.0-1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/oPwMsrcf/versions/T0bGa7Hg/FTBQuestsOptimizer-neoforge-3.2.0-1.21.1.jar"
+hash-format = "sha1"
+hash = "28e4926c62f9f010aea43a091f7fc113200175be"
+
+[update]
+[update.modrinth]
+mod-id = "oPwMsrcf"
+version = "T0bGa7Hg"

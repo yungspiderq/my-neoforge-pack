@@ -37,26 +37,46 @@ OUT_DIR = os.path.join(ROOT, "config", "ftbquests", "quests")
 # --------------------------------------------------------------------------- #
 
 S, I, L, D, B, C, LS = "str", "int", "long", "double", "byte", "compound", "list<str>"
+INTARRAY = "intarray"
 TRISTATE = "tristate"
 
 TASK_SCHEMA = {
-    "item":      {"item": C, "count": L, "consume_items": TRISTATE,
-                  "only_from_crafting": TRISTATE, "match_components": S,
-                  "task_screen_only": B},
-    "checkmark": {},
-    "kill":      {"entity": S, "value": L, "entityTypeTag": S,
-                  "custom_name": S, "nbt_filter": S},
-    "dimension": {"dimension": S},
-    "xp":        {"value": L, "points": B},
+    "item":        {"item": C, "count": L, "consume_items": TRISTATE,
+                    "only_from_crafting": TRISTATE, "match_components": S,
+                    "task_screen_only": B},
+    "checkmark":   {},
+    "kill":        {"entity": S, "value": L, "entityTypeTag": S,
+                    "custom_name": S, "nbt_filter": S},
+    "dimension":   {"dimension": S},
+    "xp":          {"value": L, "points": B},
+    "stat":        {"stat": S, "value": I},
+    "location":    {"dimension": S, "ignore_dimension": B,
+                    "position": INTARRAY, "size": INTARRAY},
+    "advancement": {"advancement": S, "criterion": S},
+    "observation": {"timer": L, "observation_type": S, "observe_type": I,
+                    "to_observe": S},
+    "biome":       {"biome": S},
+    "structure":   {"structure": S},
 }
 TASK_REQUIRED = {"item": ["item"], "kill": ["entity", "value"],
-                 "dimension": ["dimension"], "xp": ["value"]}
+                 "dimension": ["dimension"], "xp": ["value"],
+                 "stat": ["stat", "value"],
+                 "location": ["dimension", "position", "size"],
+                 "advancement": ["advancement"],
+                 "observation": ["timer", "observation_type", "to_observe"],
+                 "biome": ["biome"], "structure": ["structure"]}
+
+# ObserveType.NAME_MAP: id = name().toLowerCase(), а в NBT пишется ЕЩЁ и
+# observe_type = ordinal(). Порядок enum из ObservationTask.java:
+OBSERVE_TYPES = ["block", "block_tag", "block_state", "block_entity",
+                 "block_entity_type", "entity_type", "entity_type_tag"]
 
 REWARD_SCHEMA = {
     "item":      {"item": C, "count": I, "random_bonus": I, "only_one": B},
     "xp_levels": {"xp_levels": I},
     "xp":        {"xp": I},
-    "command":   {"command": S, "permission_level": I, "silent": B, "feedback_message": S},
+    "command":   {"command": S, "permission_level": I, "silent": B,
+                  "feedback_message": S},
     "toast":     {"description": S},
 }
 REWARD_REQUIRED = {"item": ["item"], "xp_levels": ["xp_levels"], "xp": ["xp"],
@@ -68,7 +88,7 @@ QUEST_SCHEMA = {
     "hide_dependent_lines": B, "hide_lock_icon": B, "ignore_reward_blocking": B,
     "min_required_dependencies": I, "max_completable_dependents": I,
     "repeat_cooldown": I, "dependency_requirement": S, "progression_mode": S,
-    "preset": S,
+    "preset": S, "icon": C,
     "hide_dependency_lines": TRISTATE, "disable_recipe_mod": TRISTATE,
     "hide_until_deps_visible": TRISTATE, "hide_until_deps_complete": TRISTATE,
     "hide_text_until_complete": TRISTATE, "can_repeat": TRISTATE,
@@ -80,13 +100,20 @@ CHAPTER_SCHEMA = {
     "id": S, "group": S, "order_index": I, "filename": S, "always_invisible": B,
     "default_quest_shape": S, "default_quest_size": D,
     "default_hide_dependency_lines": B, "default_min_width": I,
-    "progression_mode": S, "consume_items": TRISTATE,
+    "progression_mode": S, "consume_items": TRISTATE, "icon": C,
     "hide_quest_details_until_startable": B, "hide_quest_until_deps_visible": B,
     "hide_quest_until_deps_complete": B, "hide_text_until_complete": B,
     "default_repeatable_quest": B, "require_sequential_tasks": B,
     "autofocus_id": S, "preset": S,
     "quests": "list", "quest_links": "list", "images": "list",
 }
+
+# поля, которые автор задаёт в questline.py, но которые НЕ попадают в SNBT главы
+# как обычные ключи (обрабатываются генератором отдельно)
+CHAPTER_META = {"id", "filename", "shape", "title", "subtitle", "quests",
+                "layout", "cols", "banner", "gate", "icon"}
+
+LAYOUTS = ("line", "zigzag", "grid", "ring", "spiral", "tree")
 
 VALID_SHAPES = {"circle", "diamond", "gear", "heart", "hexagon", "none",
                 "octagon", "pentagon", "rsquare", "square", ""}
@@ -111,6 +138,10 @@ class GenError(Exception):
 
 class Long(int):
     """Маркер long-литерала: в SNBT это 8L, а не 8."""
+
+
+class IntArray(list):
+    """Маркер IntArrayTag: в SNBT это [I; 1, 2, 3]."""
 
 
 class Double(float):
@@ -143,6 +174,8 @@ def snbt(value, indent: int = 0, pad: str = "\t") -> str:
         return snbt(Double(value))
     if isinstance(value, str):
         return quote(value)
+    if isinstance(value, IntArray):
+        return "[I; %s]" % ", ".join(str(int(v)) for v in value)
     if isinstance(value, (list, tuple)):
         if not value:
             return "[ ]"
@@ -209,6 +242,12 @@ def coerce(field: str, value, want: str, ctx: str):
         if not isinstance(value, (list, tuple)) or any(not isinstance(x, str) for x in value):
             raise GenError("%s: поле %s должно быть списком строк" % (ctx, field))
         return list(value)
+    if want == INTARRAY:
+        if not isinstance(value, (list, tuple)) or len(value) != 3 or \
+                any(isinstance(v, bool) or not isinstance(v, int) for v in value):
+            raise GenError("%s: поле %s должно быть целочисленным массивом из 3 "
+                           "элементов ([x, y, z]), получено %r" % (ctx, field, value))
+        return IntArray([int(v) for v in value])
     if want == TRISTATE:
         if isinstance(value, bool):
             return "true" if value else "false"
@@ -277,46 +316,96 @@ def text_pair(v, field, ctx):
     raise GenError("%s: %s должен быть строкой или парой (en, ru), получено %r" % (ctx, field, v))
 
 
+def layout_points(layout, n, cols=4):
+    """Координаты квестов главы. Шаг 1.5 — как в редакторе FTB Quests."""
+    import math
+    pts = []
+    if layout == "line":
+        for k in range(n):
+            pts.append(((k - (n - 1) / 2) * 1.5, 0.0))
+    elif layout == "zigzag":
+        for k in range(n):
+            r, c = divmod(k, cols)
+            x = c if r % 2 == 0 else (cols - 1 - c)
+            pts.append(((x - (cols - 1) / 2) * 1.5, r * 1.5))
+    elif layout == "grid":
+        rows = max(1, -(-n // cols))
+        for k in range(n):
+            r, c = divmod(k, cols)
+            pts.append(((c - (cols - 1) / 2) * 1.5, (r - (rows - 1) / 2) * 1.5))
+    elif layout == "ring":
+        R = 1.8 + 0.22 * n
+        for k in range(n):
+            a = -math.pi / 2 + 2 * math.pi * k / max(1, n)
+            pts.append((R * math.cos(a), R * math.sin(a)))
+    elif layout == "spiral":
+        for k in range(n):
+            a = k * 0.85
+            r = 0.9 + k * 0.34
+            pts.append((r * math.cos(a), r * math.sin(a)))
+    elif layout == "tree":
+        for k in range(n):
+            branch = 0.0 if k % 3 == 0 else (1.7 if (k // 3) % 2 == 0 else -1.7)
+            pts.append((branch, k * 1.3))
+    else:
+        raise GenError("неизвестная раскладка %r (есть: %s)"
+                       % (layout, ", ".join(LAYOUTS)))
+    return pts
+
+
+def quest_id_of(ci: int, qi: int) -> int:
+    """ci — номер главы с 1, qi — номер квеста с 1. Младший байт нулевой."""
+    return 0x1000 + ci * 0x100 + qi * 0x10
+
+
 def build(questline, file_version, file_settings):
-    chapters, ids, used_ids = [], {}, {}
+    chapters = []
+    ids = {}                 # int id -> code string
+    used_ids = {}            # int id -> описание, кто занял
     translations = {"en_us": {}, "ru_ru": {}}
-    problems = []
+    last_quest_of_chapter = []
 
     def take(n, what):
         if n in used_ids:
-            raise GenError("дублирующийся ID %s: %s и %s" % (code_string(n), used_ids[n], what))
+            raise GenError("дублирующийся ID %s: %s и %s"
+                           % (code_string(n), used_ids[n], what))
         used_ids[n] = what
+        ids[n] = code_string(n)
         return code_string(n)
 
-    for ci, ch in enumerate(questline):
-        ctx = "глава %r" % ch.get("filename", ci)
-        if "id" not in ch or "filename" not in ch:
-            raise GenError("%s: нужны 'id' и 'filename'" % ctx)
+    for ci, ch in enumerate(questline, start=1):
+        ctx = "глава #%d %r" % (ci, ch.get("filename", ci))
+        for req in ("id", "filename", "title"):
+            if req not in ch:
+                raise GenError("%s: нет обязательного поля %r" % (ctx, req))
+        layout = ch.get("layout", "line")
+        if layout not in LAYOUTS:
+            raise GenError("%s: layout=%r не из %s" % (ctx, layout, LAYOUTS))
         shape = ch.get("shape", "")
         if shape not in VALID_SHAPES:
-            raise GenError("%s: shape=%r нет среди текстур мода (%s)"
-                           % (ctx, shape, ", ".join(sorted(x for x in VALID_SHAPES if x))))
+            raise GenError("%s: shape=%r нет среди текстур мода" % (ctx, shape))
 
-        ch_id_raw = ch["id"]
-        ch_id = take(ch_id_raw, ctx)
-
-        # заголовок и подзаголовок главы -> lang
+        ch_id = take(ch["id"], ctx)
         t_en, t_ru = text_pair(ch["title"], "title", ctx)
         translations["en_us"]["chapter.%s.title" % ch_id] = t_en
         translations["ru_ru"]["chapter.%s.title" % ch_id] = t_ru
-        sub = ch.get("subtitle") or []
-        if sub:
-            for loc, idx in (("en_us", 0), ("ru_ru", 1)):
-                lines = []
-                for item in sub:
-                    pair = item if isinstance(item, (list, tuple)) else (item, item)
-                    lines.append(pair[idx] if isinstance(pair, (list, tuple)) else pair)
+        for loc, idx in (("en_us", 0), ("ru_ru", 1)):
+            lines = []
+            for item in (ch.get("subtitle") or []):
+                pair = item if isinstance(item, (list, tuple)) else (item, item)
+                lines.append(pair[idx] if isinstance(pair, (list, tuple)) else pair)
+            if lines:
                 translations[loc]["chapter.%s.chapter_subtitle" % ch_id] = lines
+
+        quests = ch.get("quests") or []
+        if not quests:
+            raise GenError("%s: нет ни одного квеста" % ctx)
+        pts = layout_points(layout, len(quests), ch.get("cols", 4))
 
         chapter_nbt = {
             "id": ch_id,
-            "group": "",                 # пустая строка = default group (так пишет сам мод)
-            "order_index": ci,
+            "group": "",
+            "order_index": ci - 1,
             "filename": ch["filename"],
             "default_quest_shape": shape,
             "default_hide_dependency_lines": False,
@@ -325,73 +414,79 @@ def build(questline, file_version, file_settings):
             "images": [],
         }
         for k, v in ch.items():
-            if k in ("id", "filename", "shape", "title", "subtitle", "quests"):
+            if k in CHAPTER_META:
                 continue
             if k not in CHAPTER_SCHEMA:
                 raise GenError("%s: неизвестное поле главы %r" % (ctx, k))
             chapter_nbt[k] = coerce("%s.%s" % (ctx, k), v, CHAPTER_SCHEMA[k], ctx)
+        if "icon" in ch:
+            chapter_nbt["icon"] = item_stack(ch["icon"], 1)
 
-        for qi, q in enumerate(ch.get("quests", [])):
-            qctx = "%s / квест %#x" % (ctx, q.get("id", 0))
-            if "id" not in q:
-                raise GenError("%s: нужен 'id'" % qctx)
-            q_id = take(q["id"], qctx)
-            ids[q["id"]] = q_id
+        chapter_quests = []
+        for qi, q in enumerate(quests, start=1):
+            qctx = "%s / квест %d" % (ctx, qi)
+            raw_id = quest_id_of(ci, qi)
+            q_id = take(raw_id, qctx)
 
+            qx, qy = pts[qi - 1]
             quest_nbt = {
                 "id": q_id,
-                "x": Double(float(q.get("x", qi * 1.5))),
-                "y": Double(float(q.get("y", 0.0))),
+                "x": Double(float(q.get("x", qx))),
+                "y": Double(float(q.get("y", qy))),
             }
             for k, v in q.items():
-                if k in ("id", "x", "y", "title", "subtitle", "desc", "deps", "tasks", "rewards"):
+                if k in ("id", "x", "y", "title", "subtitle", "desc", "deps",
+                         "tasks", "rewards", "icon"):
                     continue
                 if k not in QUEST_SCHEMA:
                     raise GenError("%s: неизвестное поле квеста %r" % (qctx, k))
                 quest_nbt[k] = coerce("%s.%s" % (qctx, k), v, QUEST_SCHEMA[k], qctx)
+            if "icon" in q:
+                quest_nbt["icon"] = item_stack(q["icon"], 1)
 
-            # --- текст квеста -> lang ---
-            if "title" in q:
-                te, tr = text_pair(q["title"], "title", qctx)
-                translations["en_us"]["quest.%s.title" % q_id] = te
-                translations["ru_ru"]["quest.%s.title" % q_id] = tr
-            if "subtitle" in q:
-                se, sr = text_pair(q["subtitle"], "subtitle", qctx)
-                translations["en_us"]["quest.%s.quest_subtitle" % q_id] = se
-                translations["ru_ru"]["quest.%s.quest_subtitle" % q_id] = sr
-            if q.get("desc"):
-                for loc, idx in (("en_us", 0), ("ru_ru", 1)):
-                    lines = []
-                    for item in q["desc"]:
-                        pair = item if isinstance(item, (list, tuple)) else (item, item)
-                        lines.append(pair[idx] if isinstance(pair, (list, tuple)) else pair)
+            for loc, idx in (("en_us", 0), ("ru_ru", 1)):
+                pair = text_pair(q["title"], "title", qctx)
+                translations[loc]["quest.%s.title" % q_id] = pair[idx]
+                if q.get("subtitle"):
+                    sp = text_pair(q["subtitle"], "subtitle", qctx)
+                    translations[loc]["quest.%s.quest_subtitle" % q_id] = sp[idx]
+                lines = []
+                for item in (q.get("desc") or []):
+                    p2 = item if isinstance(item, (list, tuple)) else (item, item)
+                    lines.append(p2[idx] if isinstance(p2, (list, tuple)) else p2)
+                if lines:
                     translations[loc]["quest.%s.quest_desc" % q_id] = lines
 
-            # --- задачи ---
             tasks = []
             for ti, t in enumerate(q.get("tasks", [])):
                 tctx = "%s / задача %d" % (qctx, ti + 1)
                 raw = dict(t)
+                if raw.get("type") == "observation":
+                    name = raw.get("observation_type")
+                    if name not in OBSERVE_TYPES:
+                        raise GenError("%s: observation_type=%r не из enum "
+                                       "ObserveType (%s)" % (tctx, name, OBSERVE_TYPES))
+                    raw.setdefault("observe_type", OBSERVE_TYPES.index(name))
                 if raw.get("type") == "item" and "item" in raw:
                     raw["item"] = item_stack(raw["item"], raw.get("count", 1))
-                t_id = take(_sub_id(q["id"], 0x2000, ti, "задача"), tctx)
+                t_id = take(_sub_id(raw_id, 0x2000, ti, "задача"), tctx)
                 entry = validate_entry(raw, TASK_SCHEMA, None, tctx, "task")
                 entry = {"id": t_id, **entry}
-                # count=1 FTB не пишет
                 if entry.get("count") == 1:
                     entry.pop("count", None)
                 tasks.append(entry)
             if tasks:
                 quest_nbt["tasks"] = tasks
+            else:
+                raise GenError("%s: у квеста нет ни одной задачи" % qctx)
 
-            # --- награды ---
             rewards = []
             for ri, r in enumerate(q.get("rewards", [])):
                 rctx = "%s / награда %d" % (qctx, ri + 1)
                 raw = dict(r)
                 if raw.get("type") == "item" and "item" in raw:
                     raw["item"] = item_stack(raw["item"], raw.get("count", 1))
-                r_id = take(_sub_id(q["id"], 0x3000, ri, "награда"), rctx)
+                r_id = take(_sub_id(raw_id, 0x3000, ri, "награда"), rctx)
                 entry = validate_entry(raw, REWARD_SCHEMA, None, rctx, "reward")
                 entry = {"id": r_id, **entry}
                 if entry.get("count") == 1:
@@ -400,22 +495,51 @@ def build(questline, file_version, file_settings):
             if rewards:
                 quest_nbt["rewards"] = rewards
 
+            chapter_quests.append((raw_id, q, quest_nbt))
             chapter_nbt["quests"].append(quest_nbt)
 
-        chapters.append((ch, ch_id, chapter_nbt))
+        # --- зависимости: явные deps > цепочка внутри главы > gate главы ---
+        prev_chapter_last = last_quest_of_chapter[-1] if last_quest_of_chapter else None
+        for k, (raw_id, q, qn) in enumerate(chapter_quests):
+            deps = []
+            if "deps" in q:
+                for d in q["deps"]:
+                    deps.append(("ext", d))
+            elif k > 0:
+                deps.append(("local", chapter_quests[k - 1][0]))
+            elif ch.get("gate") and prev_chapter_last is not None:
+                deps.append(("ext", prev_chapter_last))
+            q["_deps"] = deps
+        last_quest_of_chapter.append(chapter_quests[-1][0])
 
-    # --- зависимости: проверяем, что все цели существуют ---
-    for ch, ch_id, nbt in chapters:
-        for q, qn in zip(ch.get("quests", []), nbt["quests"]):
-            deps = q.get("deps") or []
+        # --- баннер главы как ChapterImage ---
+        if ch.get("banner"):
+            xs = [p[0] for p in pts]; ys = [p[1] for p in pts]
+            cx = (min(xs) + max(xs)) / 2
+            top = min(ys)
+            chapter_nbt["images"] = [{
+                "x": Double(cx - 4.0), "y": Double(top - 3.4),
+                "width": Double(8.0), "height": Double(2.0),
+                "rotation": Double(0.0),
+                "image": "kubejs:textures/gui/%s.png" % ch["banner"],
+            }]
+        chapters.append((ch, ch_id, chapter_nbt, chapter_quests))
+
+    # --- разрешение зависимостей (после всех глав) ---
+    id_by_raw = {raw: cid for (_, ch_list) in
+                 [(c, c[3]) for c in chapters] for (raw, q, qn) in ch_list
+                 for cid in [qn["id"]]}
+    for ch, ch_id, chapter_nbt, cqs in chapters:
+        for raw_id, q, qn in cqs:
             out = []
-            for d in deps:
-                if d not in ids:
-                    raise GenError("квест %#x ссылается на несуществующую зависимость %#x"
-                                   % (q["id"], d))
-                out.append(ids[d])
+            for kind, d in q.get("_deps", []):
+                target = d if kind == "ext" else d
+                if target not in id_by_raw:
+                    raise GenError("квест %#x ссылается на несуществующую "
+                                   "зависимость %#x" % (raw_id, target))
+                out.append(id_by_raw[target])
             if out:
-                qn["dependencies"] = sorted(out)
+                qn["dependencies"] = sorted(set(out))
 
     data_nbt = {"version": int(file_version)}
     for k, v in (file_settings or {}).items():
@@ -468,8 +592,9 @@ def main():
     nq = sum(len(c[2]["quests"]) for c in chapters)
     nt = sum(len(q.get("tasks", [])) for c in chapters for q in c[2]["quests"])
     nr = sum(len(q.get("rewards", [])) for c in chapters for q in c[2]["quests"])
-    print("глав: %d   квестов: %d   задач: %d   наград: %d   уникальных ID: %d"
-          % (len(chapters), nq, nt, nr, len(used)))
+    ni = sum(len(c[2].get("images", [])) for c in chapters)
+    print("глав: %d   квестов: %d   задач: %d   наград: %d   картинок: %d   уникальных ID: %d"
+          % (len(chapters), nq, nt, nr, ni, len(used)))
 
     # --- перекрёстная проверка lang-ключей ---
     # used: {int id -> описание}; lang-ключи содержат code-строки, поэтому
@@ -505,7 +630,7 @@ def main():
 
     write_snbt(os.path.join(out, "data.snbt"), data_nbt)
     write_snbt(os.path.join(out, "chapter_groups.snbt"), {"chapter_groups": []})
-    for ch, ch_id, nbt in chapters:
+    for ch, ch_id, nbt, _cqs in chapters:
         write_snbt(os.path.join(out, "chapters", ch["filename"] + ".snbt"), nbt)
     for loc, table in translations.items():
         write_snbt(os.path.join(out, "lang", loc + ".snbt"), table)

@@ -35,16 +35,31 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 QUESTS = os.path.join(ROOT, "config", "ftbquests", "quests")
 KUBEJS = os.path.join(ROOT, "kubejs")
 
-MC_LANG_URL = ("https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/"
-               "1.21.1/assets/minecraft/lang/en_us.json")
-REGISTRY_CACHE = os.path.join(ROOT, ".cache", "mc-1.21.1-registry.json")
+REGISTRY_PATH = os.path.join(ROOT, "scripts", "quests", "mc_registry_1.21.1.json")
 
-TASK_TYPES = {"item", "checkmark", "kill", "dimension", "xp"}
+TASK_TYPES = {"item", "checkmark", "kill", "dimension", "xp", "stat",
+              "location", "advancement", "observation", "biome", "structure"}
 TASK_REQUIRED = {"item": ["item"], "kill": ["entity", "value"],
-                 "dimension": ["dimension"], "xp": ["value"]}
+                 "dimension": ["dimension"], "xp": ["value"],
+                 "stat": ["stat", "value"],
+                 "location": ["dimension", "position", "size"],
+                 "advancement": ["advancement"],
+                 "observation": ["timer", "observation_type", "to_observe"],
+                 "biome": ["biome"], "structure": ["structure"]}
+TASK_FIELD_TYPES = {
+    "kill":       {"value": "long"},
+    "xp":         {"value": "long"},
+    "stat":       {"value": "int"},
+    "observation": {"timer": "long", "observe_type": "int"},
+    "item":       {"count": "long"},
+}
+OBSERVE_TYPES = {"block", "block_tag", "block_state", "block_entity",
+                 "block_entity_type", "entity_type", "entity_type_tag"}
 REWARD_TYPES = {"item", "xp_levels", "xp", "command", "toast"}
 REWARD_REQUIRED = {"item": ["item"], "xp_levels": ["xp_levels"],
                    "xp": ["xp"], "command": ["command"]}
+REWARD_FIELD_TYPES = {"item": {"count": "int", "random_bonus": "int"},
+                      "xp_levels": {"xp_levels": "int"}, "xp": {"xp": "int"}}
 VALID_SHAPES = {"circle", "diamond", "gear", "heart", "hexagon", "none",
                 "octagon", "pentagon", "rsquare", "square", ""}
 LIST_KEYS = {"quest_desc", "chapter_subtitle"}
@@ -286,14 +301,28 @@ def check_tasks_rewards(entries, allowed, required, kind, ctx, ids):
         for r in required.get(t, []):
             if r not in e:
                 err("%s: type=%r требует поле %r" % (ectx, t, r))
+        ft = TASK_FIELD_TYPES.get(t, {}) if kind == "tasks" else REWARD_FIELD_TYPES.get(t, {})
+        for fk, fw in ft.items():
+            if fk in e and num_kind(e[fk]) != fw:
+                err("%s: поле %s должно быть %s, получено %r (%s)"
+                    % (ectx, fk, fw, e[fk], num_kind(e[fk])))
         if t == "item":
             iid = check_item_stack(e.get("item"), ectx)
-            c = e.get("count")
-            want = "long" if kind == "tasks" else "int"
-            if c is not None and num_kind(c) != want:
-                err("%s: count должен быть %s (ItemTask=long, ItemReward=int), "
-                    "получено %r (%s)" % (ectx, want, c, num_kind(c)))
             yield_items.append(iid)
+        if t == "stat":
+            yield_stats.append(e.get("stat"))
+        if t == "biome":
+            yield_biomes.append(e.get("biome"))
+        if t == "structure":
+            yield_structs.append(e.get("structure"))
+        if t == "advancement":
+            yield_advs.append(e.get("advancement"))
+        if t == "observation":
+            ot = e.get("observation_type")
+            if ot not in OBSERVE_TYPES:
+                err("%s: observation_type=%r не из enum ObserveType" % (ectx, ot))
+            if num_kind(e.get("observe_type")) != "int":
+                err("%s: observe_type должен быть int (ordinal enum)" % ectx)
         if t == "kill":
             if not isinstance(e.get("entity"), str) or ":" not in str(e.get("entity")):
                 err("%s: entity должен быть 'namespace:path'" % ectx)
@@ -310,11 +339,12 @@ def check_tasks_rewards(entries, allowed, required, kind, ctx, ids):
         if t == "xp_levels" and num_kind(e.get("xp_levels")) != "int":
             err("%s: xp_levels должен быть int, получено %r (%s)"
                 % (ectx, e.get("xp_levels"), num_kind(e.get("xp_levels"))))
-        if t == "xp" and num_kind(e.get("xp")) != "int":
-            err("%s: xp должен быть int, получено %r" % (ectx, e.get("xp")))
+        # NB: у XPTask поле называется value (long); поле xp (int) есть только
+        # у XPReward — его проверяет REWARD_FIELD_TYPES выше.
 
 
 yield_items, yield_ents, yield_dims = [], [], []
+yield_stats, yield_biomes, yield_structs, yield_advs = [], [], [], []
 
 
 def check_kubejs(items):
@@ -347,36 +377,27 @@ def check_kubejs(items):
 
 
 def load_registry():
-    if os.path.isfile(REGISTRY_CACHE):
-        try:
-            return json.load(open(REGISTRY_CACHE, encoding="utf-8"))
-        except Exception:
-            pass
-    try:
-        req = urllib.request.Request(MC_LANG_URL, headers={"User-Agent": "check-quests/1.0"})
-        j = json.loads(urllib.request.urlopen(req, timeout=90).read())
-    except Exception as e:                                      # noqa: BLE001
-        warn("реестр MC недоступен (%s) — проверка minecraft:* пропущена" % e)
+    """Реестр лежит в репозитории (scripts/quests/mc_registry_1.21.1.json),
+    собран из клиентского jar 1.21.1 — CI работает без интернета."""
+    if not os.path.isfile(REGISTRY_PATH):
+        warn("нет %s — проверка minecraft:* пропущена" % REGISTRY_PATH)
         return None
-    names = set()
-    for pref in ("item.minecraft.", "block.minecraft."):
-        names |= {k[len(pref):] for k in j if k.startswith(pref)}
-    ents = {k[len("entity.minecraft."):] for k in j if k.startswith("entity.minecraft.")}
-    data = {"items": sorted(names), "entities": sorted(ents)}
     try:
-        os.makedirs(os.path.dirname(REGISTRY_CACHE), exist_ok=True)
-        json.dump(data, open(REGISTRY_CACHE, "w", encoding="utf-8"))
-    except OSError:
-        pass
-    return data
+        return json.load(open(REGISTRY_PATH, encoding="utf-8"))
+    except Exception as e:                                      # noqa: BLE001
+        warn("реестр не читается (%s)" % e)
+        return None
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--quests-dir", default=QUESTS)
-    ap.add_argument("--registry", action="store_true",
-                    help="сверить minecraft:* с реальным реестром 1.21.1 (нужен интернет)")
+    ap.add_argument("--registry", action="store_true", default=True,
+                    help="сверить minecraft:* с реестром 1.21.1 из репозитория "
+                         "(включено по умолчанию)")
+    ap.add_argument("--no-registry", dest="registry", action="store_false",
+                    help="отключить сверку с реестром")
     args = ap.parse_args()
 
     qd = args.quests_dir
@@ -451,6 +472,19 @@ def main():
         for extra in ("quests", "quest_links", "images"):
             if not isinstance(ch.get(extra, []), list):
                 err("%s: %s должен быть списком" % (ctx, extra))
+        for img in ch.get("images", []):
+            if not isinstance(img, dict):
+                err("%s: image должен быть compound" % ctx)
+                continue
+            for fk in ("x", "y", "width", "height", "rotation"):
+                if fk in img and num_kind(img[fk]) != "double":
+                    err("%s: image.%s должен быть double, получено %r (%s)"
+                        % (ctx, fk, img[fk], num_kind(img[fk])))
+            im = img.get("image")
+            if not isinstance(im, str) or ":" not in im:
+                err("%s: image.image должен быть ResourceLocation или путём к .png" % ctx)
+            elif not (im.endswith(".png") or im.endswith(".jpg") or im.startswith(("item:", "block:", "color:"))):
+                warn("%s: image.image=%r — нестандартный формат иконки" % (ctx, im))
 
         quest_ids_here = []
         for qi, q in enumerate(ch.get("quests", []), 1):
@@ -576,28 +610,36 @@ def main():
     if args.registry:
         reg = load_registry()
         if reg:
-            items = set(reg["items"])
-            ents = set(reg["entities"])
-            bad = []
-            for iid in sorted(set(yield_items)):
-                if not iid or iid.startswith("kubejs:"):
-                    continue
-                ns, path = iid.split(":", 1)
-                if ns == "minecraft" and path not in items:
-                    bad.append(iid)
-            for e in sorted(set(yield_ents)):
-                ns, path = e.split(":", 1)
-                if ns == "minecraft" and path not in ents:
-                    bad.append(e)
-            if bad:
-                for b in bad:
-                    err("ID %s отсутствует в реестре Minecraft 1.21.1" % b)
-            else:
-                ok("реестр MC 1.21.1: %d предметов/блоков, %d мобов — все валидны"
-                   % (len(set(yield_items)), len(set(yield_ents))))
-            for d in sorted(set(yield_dims)):
-                if d not in ("minecraft:overworld", "minecraft:the_nether", "minecraft:the_end"):
-                    err("измерение %s не является ванильным" % d)
+            checks = [("предмет/блок", yield_items, set(reg["items"])),
+                      ("моб", yield_ents, set(reg["entities"])),
+                      ("биом", yield_biomes, set(reg["biomes"])),
+                      ("структура", yield_structs, set(reg["structures"])),
+                      ("достижение", yield_advs, set(reg["advancements"])),
+                      ("custom-стат", [x and x.split(":")[-1] for x in yield_stats],
+                       set(reg["custom_stats"])),
+                      ("измерение", yield_dims, set(reg["dimensions"]))]
+            total_bad = 0
+            for label, vals, pool in checks:
+                # пулы собраны разнородно: lang даёт имена без неймспейса,
+                # а worldgen/advancement — с ним. Приводим всё к bare-виду.
+                bare = {(q.split(":", 1)[1] if ":" in q else q) for q in pool}
+                bad = []
+                for v in sorted({x for x in vals if x}):
+                    if v.startswith("kubejs:"):
+                        continue
+                    key = v.split(":", 1)[1] if ":" in v else v
+                    if key not in bare:
+                        bad.append(v)
+                if bad:
+                    total_bad += len(bad)
+                    for b in bad:
+                        err("%s %s отсутствует в реестре Minecraft %s"
+                            % (label, b, reg.get("minecraft", "1.21.1")))
+                elif vals:
+                    ok("%s-ов проверено: %d — все есть в реестре %s"
+                       % (label, len({x for x in vals if x}), reg.get("minecraft", "")))
+            if total_bad == 0:
+                ok("все ID сверены с реестром Minecraft %s" % reg.get("minecraft"))
 
     # --- итог ---
     print()

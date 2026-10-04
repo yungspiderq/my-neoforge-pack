@@ -1,0 +1,331 @@
+{
+	default_hide_dependency_lines: 0b,
+	default_quest_shape: "pentagon",
+	filename: "nether",
+	group: "",
+	icon: {
+		count: 1,
+		id: "minecraft:nether_bricks"
+	},
+	id: "000000000000C007",
+	images: [
+		{
+			height: 2.0d,
+			image: "kubejs:textures/gui/banner_nether.png",
+			rotation: 0.0d,
+			width: 8.0d,
+			x: -3.5188725000816072d,
+			y: -6.121895166043533d
+		}
+	],
+	order_index: 6,
+	quest_links: [ ],
+	quests: [
+		{
+			id: "0000000000001710",
+			rewards: [
+				{
+					id: "0000000000003710",
+					item: {
+						count: 1,
+						id: "minecraft:golden_apple"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					dimension: "minecraft:the_nether",
+					id: "0000000000002710",
+					type: "dimension"
+				}
+			],
+			x: 0.9d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000001710"],
+			id: "0000000000001720",
+			rewards: [
+				{
+					id: "0000000000003720",
+					type: "xp_levels",
+					xp_levels: 5
+				}
+			],
+			tasks: [
+				{
+					biome: "minecraft:crimson_forest",
+					id: "0000000000002720",
+					type: "biome"
+				},
+				{
+					biome: "minecraft:warped_forest",
+					id: "0000000000002721",
+					type: "biome"
+				},
+				{
+					biome: "minecraft:soul_sand_valley",
+					id: "0000000000002722",
+					type: "biome"
+				},
+				{
+					biome: "minecraft:basalt_deltas",
+					id: "0000000000002723",
+					type: "biome"
+				}
+			],
+			x: 0.8183791008973779d,
+			y: 0.9315877023739629d
+		},
+		{
+			dependencies: ["0000000000001720"],
+			id: "0000000000001730",
+			rewards: [
+				{
+					count: 32,
+					id: "0000000000003730",
+					item: {
+						count: 1,
+						id: "minecraft:nether_bricks"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000002730",
+					structure: "minecraft:fortress",
+					type: "structure"
+				}
+			],
+			x: -0.20357430098692894d,
+			y: 1.5668304005149003d
+		},
+		{
+			dependencies: ["0000000000001730"],
+			id: "0000000000001740",
+			rewards: [
+				{
+					count: 12,
+					id: "0000000000003740",
+					item: {
+						count: 1,
+						id: "minecraft:ender_pearl"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					entity: "minecraft:blaze",
+					id: "0000000000002740",
+					type: "kill",
+					value: 6L
+				},
+				{
+					count: 7L,
+					id: "0000000000002741",
+					item: {
+						count: 1,
+						id: "minecraft:blaze_rod"
+					},
+					type: "item"
+				}
+			],
+			x: -1.5937027876516263d,
+			y: 1.0707527373915207d
+		},
+		{
+			dependencies: ["0000000000001740"],
+			id: "0000000000001750",
+			rewards: [
+				{
+					count: 4,
+					id: "0000000000003750",
+					item: {
+						count: 1,
+						id: "minecraft:soul_lantern"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 8L,
+					id: "0000000000002750",
+					item: {
+						count: 1,
+						id: "minecraft:nether_wart"
+					},
+					type: "item"
+				},
+				{
+					count: 9L,
+					id: "0000000000002751",
+					item: {
+						count: 1,
+						id: "minecraft:soul_sand"
+					},
+					type: "item"
+				}
+			],
+			x: -2.184963915229582d,
+			y: -0.5775228905806387d
+		},
+		{
+			dependencies: ["0000000000001750"],
+			id: "0000000000001760",
+			rewards: [
+				{
+					count: 8,
+					id: "0000000000003760",
+					item: {
+						count: 1,
+						id: "minecraft:gilded_blackstone"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 32L,
+					id: "0000000000002760",
+					item: {
+						count: 1,
+						id: "minecraft:quartz"
+					},
+					type: "item"
+				},
+				{
+					count: 32L,
+					id: "0000000000002761",
+					item: {
+						count: 1,
+						id: "minecraft:gold_ingot"
+					},
+					type: "item"
+				}
+			],
+			x: -1.1598274737758614d,
+			y: -2.3269723313943174d
+		},
+		{
+			dependencies: ["0000000000001760"],
+			id: "0000000000001770",
+			rewards: [
+				{
+					id: "0000000000003770",
+					item: {
+						count: 1,
+						id: "minecraft:music_disc_pigstep"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000002770",
+					structure: "minecraft:bastion_remnant",
+					type: "structure"
+				}
+			],
+			x: 1.111254563576162d,
+			y: -2.7218951660435335d
+		},
+		{
+			dependencies: ["0000000000001770"],
+			id: "0000000000001780",
+			rewards: [
+				{
+					count: 8,
+					id: "0000000000003780",
+					item: {
+						count: 1,
+						id: "minecraft:fire_charge"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					entity: "minecraft:ghast",
+					id: "0000000000002780",
+					type: "kill",
+					value: 3L
+				},
+				{
+					count: 2L,
+					id: "0000000000002781",
+					item: {
+						count: 1,
+						id: "minecraft:ghast_tear"
+					},
+					type: "item"
+				}
+			],
+			x: 3.0996176114162663d,
+			y: -1.0727397927727493d
+		},
+		{
+			dependencies: ["0000000000001780"],
+			id: "0000000000001790",
+			rewards: [
+				{
+					count: 32,
+					id: "0000000000003790",
+					item: {
+						count: 1,
+						id: "minecraft:gold_nugget"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000002790",
+					observation_type: "entity_type",
+					observe_type: 5,
+					timer: 60L,
+					to_observe: "minecraft:piglin",
+					type: "observation"
+				}
+			],
+			x: 3.1472189150663676d,
+			y: 1.7886903311217617d
+		},
+		{
+			dependencies: ["0000000000001790"],
+			id: "00000000000017A0",
+			rewards: [
+				{
+					id: "00000000000037A0",
+					item: {
+						count: 1,
+						id: "minecraft:enchanted_golden_apple"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					entity: "minecraft:wither_skeleton",
+					id: "00000000000027A0",
+					type: "kill",
+					value: 10L
+				},
+				{
+					count: 3L,
+					id: "00000000000027A1",
+					item: {
+						count: 1,
+						id: "minecraft:wither_skeleton_skull"
+					},
+					type: "item"
+				}
+			],
+			x: 0.802177247824703d,
+			y: 3.8779004194373514d
+		}
+	]
+}

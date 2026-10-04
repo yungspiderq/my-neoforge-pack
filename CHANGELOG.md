@@ -7,6 +7,59 @@
 
 ## [Unreleased]
 
+## [1.2.0] — 2026-10-04
+
+Большое расширение квестовой линейки и оформления.
+
+### Added
+- **Квестовая линейка выросла с 4 глав / 19 квестов до 13 глав / 117 квестов
+  / 196 задач / 141 награды.** Ванильные главы полностью переработаны
+  (Основы, Пещеры и руда, Бой и мобы, Еда и ферма, Чары и зелья, Редстоун,
+  Нижний мир, Край, Исследование, Строительство, Ванильные достижения),
+  плюс главы Кастомный контент и Мастерство.
+- **Используются 11 из 14 типов задач FTB Quests**: `item`, `checkmark`,
+  `kill`, `dimension`, `xp`, `stat`, `location`, `advancement`, `observation`,
+  `biome`, `structure`. Схемы всех полей выверены по исходникам
+  (включая `IntArray`-поля `position`/`size` у `location` и пару
+  `observation_type` + `observe_type` у `observation`).
+  Не используются `fluid`/`energy` (нужны моды с жидкостями/энергией),
+  `gamestage` (нужен Game Stages) и `custom` (без обработчика квест
+  невыполним — KubeJS-core не содержит интеграции с FTB Quests).
+- **Собственные текстуры** (скрипт `scripts/gen_textures.py`, Pillow):
+  3 предмета 16x16 (`kubejs/assets/kubejs/textures/item/*.png`) и 13 баннеров
+  глав 256x64 (`.../textures/gui/*.png`). Баннеры подключаются как
+  `ChapterImage` через `image: "kubejs:textures/gui/<имя>.png"` — формат
+  строки иконки (`*.png` → `ImageIcon`) подтверждён по `Icon.getIcon0`.
+- **Оформление каждой главы своё**: форма квестов (`default_quest_shape` —
+  9 разных), иконка главы и квестов (`icon`, ItemStack), баннер-картинка и
+  раскладка (`line / zigzag / grid / ring / spiral / tree`, считается
+  генератором — координаты руками не проставляются).
+- **Три аддона FTB Quests** с Modrinth: FTB Quests Optimizer 3.2.0-1.21.1,
+  FTB Quests Entity Visualization 1.11.0, Certain Questing Additions 1.2.0.4.
+  Всего модов: 13.
+- `scripts/quests/mc_registry_1.21.1.json` — реестр для валидации, собранный
+  из клиентского jar 1.21.1: 2385 предметов/блоков, 181 моб, 78 custom-статов,
+  64 биома, 34 структуры, 1399 достижений, 3 измерения. Лежит в репозитории —
+  CI сверяет ID без интернета.
+
+### Changed
+- `check_quests.py`: сверка с реестром включена по умолчанию и расширена на
+  биомы/структуры/достижения/статы/измерения; добавлена проверка типов
+  числовых полей задач и наград и полей `ChapterImage`.
+- `gen_quests.py`: зависимости можно не проставлять — по умолчанию квест
+  зависит от предыдущего в главе, а глава с `gate: true` начинается с
+  последнего квеста предыдущей главы.
+- CI (`validate.yml`): шаг «Textures must be up to date» (`gen_textures.py
+  --check`, требует Pillow).
+
+### Fixed
+- Валидатор ловил две реальные ошибки данных: у `XPTask` поле называется
+  `value` (long), а не `xp` (int — это поле `XPReward`); и ID достижения
+  «Следуй за очами» — `minecraft:story/follow_ender_eye`, а не
+  `follow_eyes`/`follow_the_eye`. Обе найдены сверкой с реестром.
+
+## [1.1.0] — 2026-10-04
+
 ### Added
 - **FTB Quests 2101.1.36** + зависимости (FTB Library 2101.1.36, FTB Teams
   2101.1.9) с `maven.ftb.dev`, **Architectury API 13.0.11**, **KubeJS

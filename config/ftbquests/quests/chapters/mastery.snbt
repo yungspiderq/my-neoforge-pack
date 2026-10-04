@@ -1,0 +1,189 @@
+{
+	default_hide_dependency_lines: 0b,
+	default_quest_shape: "diamond",
+	filename: "mastery",
+	group: "",
+	icon: {
+		count: 1,
+		id: "minecraft:nether_star"
+	},
+	id: "000000000000C00D",
+	images: [
+		{
+			height: 2.0d,
+			image: "kubejs:textures/gui/banner_mastery.png",
+			rotation: 0.0d,
+			width: 8.0d,
+			x: -4.0d,
+			y: -6.300000000000001d
+		}
+	],
+	order_index: 12,
+	quest_links: [ ],
+	quests: [
+		{
+			id: "0000000000001D10",
+			rewards: [
+				{
+					id: "0000000000003D10",
+					item: {
+						count: 1,
+						id: "minecraft:beacon"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000003D11",
+					type: "xp_levels",
+					xp_levels: 20
+				}
+			],
+			tasks: [
+				{
+					entity: "minecraft:wither",
+					id: "0000000000002D10",
+					type: "kill",
+					value: 1L
+				},
+				{
+					id: "0000000000002D11",
+					item: {
+						count: 1,
+						id: "minecraft:nether_star"
+					},
+					type: "item"
+				}
+			],
+			x: 1.7757378587636624e-16d,
+			y: -2.9000000000000004d
+		},
+		{
+			dependencies: ["0000000000001D10"],
+			id: "0000000000001D20",
+			rewards: [
+				{
+					id: "0000000000003D20",
+					type: "xp_levels",
+					xp_levels: 10
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000002D20",
+					item: {
+						count: 1,
+						id: "minecraft:beacon"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000002D21",
+					item: {
+						count: 1,
+						id: "minecraft:netherite_block"
+					},
+					type: "item"
+				}
+			],
+			x: 2.7580638972559455d,
+			y: -0.8961492836873476d
+		},
+		{
+			dependencies: ["0000000000001D20"],
+			id: "0000000000001D30",
+			rewards: [
+				{
+					count: 64,
+					id: "0000000000003D30",
+					item: {
+						count: 1,
+						id: "minecraft:firework_rocket"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000002D30",
+					stat: "minecraft:fly_one_cm",
+					type: "stat",
+					value: 100000
+				},
+				{
+					count: 32L,
+					id: "0000000000002D31",
+					item: {
+						count: 1,
+						id: "minecraft:firework_rocket"
+					},
+					type: "item"
+				}
+			],
+			x: 1.7045772316481722d,
+			y: 2.346149283687348d
+		},
+		{
+			dependencies: ["0000000000001D30"],
+			id: "0000000000001D40",
+			rewards: [
+				{
+					count: 2,
+					id: "0000000000003D40",
+					item: {
+						count: 1,
+						id: "minecraft:enchanted_golden_apple"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000002D40",
+					stat: "minecraft:play_time",
+					type: "stat",
+					value: 360000
+				},
+				{
+					id: "0000000000002D41",
+					stat: "minecraft:mob_kills",
+					type: "stat",
+					value: 500
+				}
+			],
+			x: -1.704577231648172d,
+			y: 2.346149283687348d
+		},
+		{
+			dependencies: ["0000000000001D40"],
+			id: "0000000000001D50",
+			rewards: [
+				{
+					id: "0000000000003D50",
+					item: {
+						count: 1,
+						id: "kubejs:quest_medal"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000003D51",
+					type: "xp_levels",
+					xp_levels: 30
+				},
+				{
+					command: "tell @s You finished the pack. Congratulations.",
+					id: "0000000000003D52",
+					type: "command"
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000002D50",
+					type: "checkmark"
+				}
+			],
+			x: -2.758063897255946d,
+			y: -0.8961492836873473d
+		}
+	]
+}

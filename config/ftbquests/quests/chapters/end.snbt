@@ -1,0 +1,238 @@
+{
+	default_hide_dependency_lines: 0b,
+	default_quest_shape: "hexagon",
+	filename: "end",
+	group: "",
+	icon: {
+		count: 1,
+		id: "minecraft:end_stone"
+	},
+	id: "000000000000C008",
+	images: [
+		{
+			height: 2.0d,
+			image: "kubejs:textures/gui/banner_end.png",
+			rotation: 0.0d,
+			width: 8.0d,
+			x: -4.0d,
+			y: -3.4d
+		}
+	],
+	order_index: 7,
+	quest_links: [ ],
+	quests: [
+		{
+			id: "0000000000001810",
+			rewards: [
+				{
+					count: 8,
+					id: "0000000000003810",
+					item: {
+						count: 1,
+						id: "minecraft:ender_pearl"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 12L,
+					id: "0000000000002810",
+					item: {
+						count: 1,
+						id: "minecraft:ender_eye"
+					},
+					type: "item"
+				}
+			],
+			x: -5.25d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000001810"],
+			id: "0000000000001820",
+			rewards: [
+				{
+					id: "0000000000003820",
+					type: "xp_levels",
+					xp_levels: 6
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000002820",
+					structure: "minecraft:stronghold",
+					type: "structure"
+				}
+			],
+			x: -3.75d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000001820"],
+			id: "0000000000001830",
+			rewards: [
+				{
+					count: 16,
+					id: "0000000000003830",
+					item: {
+						count: 1,
+						id: "minecraft:snowball"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					advancement: "minecraft:story/follow_ender_eye",
+					id: "0000000000002830",
+					type: "advancement"
+				}
+			],
+			x: -2.25d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000001830"],
+			id: "0000000000001840",
+			rewards: [
+				{
+					count: 32,
+					id: "0000000000003840",
+					item: {
+						count: 1,
+						id: "minecraft:end_stone"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					dimension: "minecraft:the_end",
+					id: "0000000000002840",
+					type: "dimension"
+				}
+			],
+			x: -0.75d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000001840"],
+			id: "0000000000001850",
+			rewards: [
+				{
+					id: "0000000000003850",
+					type: "xp_levels",
+					xp_levels: 20
+				},
+				{
+					id: "0000000000003851",
+					item: {
+						count: 1,
+						id: "minecraft:dragon_egg"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					entity: "minecraft:ender_dragon",
+					id: "0000000000002850",
+					type: "kill",
+					value: 1L
+				},
+				{
+					advancement: "minecraft:end/kill_dragon",
+					id: "0000000000002851",
+					type: "advancement"
+				}
+			],
+			x: 0.75d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000001850"],
+			id: "0000000000001860",
+			rewards: [
+				{
+					count: 32,
+					id: "0000000000003860",
+					item: {
+						count: 1,
+						id: "minecraft:purpur_block"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000002860",
+					structure: "minecraft:end_city",
+					type: "structure"
+				}
+			],
+			x: 2.25d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000001860"],
+			id: "0000000000001870",
+			rewards: [
+				{
+					count: 32,
+					id: "0000000000003870",
+					item: {
+						count: 1,
+						id: "minecraft:firework_rocket"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000002870",
+					item: {
+						count: 1,
+						id: "minecraft:elytra"
+					},
+					type: "item"
+				}
+			],
+			x: 3.75d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000001870"],
+			id: "0000000000001880",
+			rewards: [
+				{
+					id: "0000000000003880",
+					item: {
+						count: 1,
+						id: "minecraft:shulker_box"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					entity: "minecraft:shulker",
+					id: "0000000000002880",
+					type: "kill",
+					value: 2L
+				},
+				{
+					count: 2L,
+					id: "0000000000002881",
+					item: {
+						count: 1,
+						id: "minecraft:shulker_shell"
+					},
+					type: "item"
+				}
+			],
+			x: 5.25d,
+			y: 0.0d
+		}
+	]
+}
