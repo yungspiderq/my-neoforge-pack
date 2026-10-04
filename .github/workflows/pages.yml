@@ -31,6 +31,10 @@ concurrency:
 env:
   PACKWIZ_JAVA: "21"
   PYTHON_VERSION: "3.12"
+  # Windows-раннеры: без этого python печатает в cp1252 и кириллица в
+  # smoke-тестах/тестах ядра падает с UnicodeEncodeError.
+  PYTHONUTF8: "1"
+  PYTHONIOENCODING: "utf-8"
 
 jobs:
   # --------------------------------------------------------------------- #

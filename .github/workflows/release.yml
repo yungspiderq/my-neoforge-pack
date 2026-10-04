@@ -25,6 +25,10 @@ permissions:
 env:
   PACKWIZ_JAVA: "21"
   PYTHON_VERSION: "3.12"
+  # Windows-раннеры: python по умолчанию печатает в cp1252 — кириллица
+  # в smoke-тестах и тестах ядра падает с UnicodeEncodeError.
+  PYTHONUTF8: "1"
+  PYTHONIOENCODING: "utf-8"
 
 jobs:
   # ModpackManager.exe — приложение проверки и починки (один файл, Python не нужен)

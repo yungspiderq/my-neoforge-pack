@@ -38,7 +38,9 @@
   pack-сервере (устаревший мод и старая глава → «ЛИШНИЙ»; `clean_reinstall`
   → бэкап + свежая закачка + сохранность `saves/`, `local/`, `journeymap/`,
   `options.txt`, `packsync/`; восстановление `preserve`-файла). Подключены
-  в CI (`pages.yml`, `release.yml`) перед сборкой `.exe`.
+  в CI (`pages.yml`, `release.yml`) перед сборкой `.exe`; в воркфлоу включён
+  UTF-8-режим Python (`PYTHONUTF8=1`) — Windows-раннеры по умолчанию
+  печатают в cp1252 и падают на кириллице с `UnicodeEncodeError`.
 
 ### Changed
 - `docs/TROUBLESHOOTING.md`: раздел про краш CQA дополнен сценарием «пак
