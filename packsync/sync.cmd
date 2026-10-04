@@ -19,6 +19,12 @@ rem =====================================================================
 
 set "PACKSYNC_DIR=%~dp0"
 if "%PACKSYNC_DIR:~-1%"=="\" set "PACKSYNC_DIR=%PACKSYNC_DIR:~0,-1%"
+rem sync.cmd mozhet lezhat v korne instansa, a packsync/ - v igrovoj papke;
+rem igrovaya papka byvaet .minecraft ili minecraft (legacy-import):
+rem vybirayem tot variant, gde realno lezhat jar-y.
+if not exist "%PACKSYNC_DIR%\packwiz-installer-bootstrap.jar" if exist "%PACKSYNC_DIR%\packsync\packwiz-installer-bootstrap.jar" set "PACKSYNC_DIR=%PACKSYNC_DIR%\packsync"
+if not exist "%PACKSYNC_DIR%\packwiz-installer-bootstrap.jar" if exist "%PACKSYNC_DIR%\.minecraft\packsync\packwiz-installer-bootstrap.jar" set "PACKSYNC_DIR=%PACKSYNC_DIR%\.minecraft\packsync"
+if not exist "%PACKSYNC_DIR%\packwiz-installer-bootstrap.jar" if exist "%PACKSYNC_DIR%\minecraft\packsync\packwiz-installer-bootstrap.jar" set "PACKSYNC_DIR=%PACKSYNC_DIR%\minecraft\packsync"
 for %%I in ("%PACKSYNC_DIR%\..") do set "GAME_DIR=%%~fI"
 
 set "BOOT_JAR=%PACKSYNC_DIR%\packwiz-installer-bootstrap.jar"

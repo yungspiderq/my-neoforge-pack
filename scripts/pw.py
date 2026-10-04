@@ -1237,7 +1237,7 @@ def cmd_instance(args) -> None:
 
     java_major, java_uid = _java_runtime_for(mc)
 
-    prelaunch = 'cmd /c "$INST_DIR/.minecraft/packsync/sync.cmd"'
+    prelaunch = 'cmd /c $INST_DIR/sync.cmd'
 
     tpl_cfg = os.path.join(INSTANCE_TEMPLATE, "instance.cfg")
     if os.path.isfile(tpl_cfg):
@@ -1285,6 +1285,9 @@ def cmd_instance(args) -> None:
             src = os.path.join(PACKSYNC_DIR, fn)
             if os.path.isfile(src) and not _skip_packsync(fn):
                 z.write(src, "minecraft/packsync/" + fn)
+        # dubl' v korne instansa: PreLaunchCommand = cmd /c $INST_DIR/sync.cmd,
+        # a igrovuyu papku (.minecraft ili minecraft) on opredelyaet sam.
+        z.write(os.path.join(PACKSYNC_DIR, "sync.cmd"), "sync.cmd")
     ok("%s" % args.out)
     print("   Импорт: Prism/Freesm -> Add instance -> Import from zip")
     print("   URL пака: %s" % url)

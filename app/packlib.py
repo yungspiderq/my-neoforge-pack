@@ -840,7 +840,7 @@ def install_prism_instance(instances_dir: str, name: str, base_url: str,
     os.makedirs(ps, exist_ok=True)
     rep(5, "Создаю " + inst)
 
-    prelaunch = 'cmd /c "$INST_DIR/.minecraft/packsync/sync.cmd"'  # java ischet sam sync.cmd
+    prelaunch = 'cmd /c $INST_DIR/sync.cmd'  # java i igrovuyu papku ishchet sam sync.cmd
 
     cfg = (
         "[General]\n"
@@ -895,6 +895,11 @@ def install_prism_instance(instances_dir: str, name: str, base_url: str,
             fh.write(data)
         if on_log:
             on_log("packsync/%s  %.2f МБ" % (fn, len(data) / 1048576))
+    # dubl' sync.cmd v korne instansa - PreLaunchCommand bez puti do igrovoj papki
+    with open(os.path.join(ps, "sync.cmd"), "rb") as fh:
+        root_copy = fh.read()
+    with open(os.path.join(inst, "sync.cmd"), "wb") as fh:
+        fh.write(root_copy)
     rep(100, "Инстанс создан: " + inst)
     return inst
 
