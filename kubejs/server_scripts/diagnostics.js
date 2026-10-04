@@ -1,9 +1,13 @@
 // =====================================================================
-//  Диагностика загрузки
+//  Диагностика загрузки (server_scripts)
 // ---------------------------------------------------------------------
 //  Печатает строку в лог при старте сервера. Если кастомные предметы или
 //  рецепты «не появились», первое, что нужно проверить — есть ли эта
 //  строка в logs/latest.log. Нет строки = скрипты не загрузились вообще.
+//
+//  ВАЖНО: здесь только ServerEvents. Обработчики StartupEvents в
+//  server_scripts запрещены (KubeJS ругается «invalid script type SERVER»),
+//  они живут в startup_scripts/diagnostics.js.
 //
 //  Смотреть лог KubeJS:  logs/kubejs/  (start.log, server.log)
 //  Перезагрузить скрипты без перезапуска:  /kubejs reload server_scripts
@@ -11,8 +15,4 @@
 
 ServerEvents.loaded(event => {
     console.info('[modpack] server_scripts загружены: recipes.js активен')
-})
-
-StartupEvents.init(event => {
-    console.info('[modpack] startup_scripts загружены: custom_items.js активен')
 })

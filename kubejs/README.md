@@ -28,7 +28,8 @@ kubejs/
 | `kubejs:quest_medal` | Medal of the Quest Master | форменный: алмазные/изумрудные блоки, 2 улучшенные медали, звезда Нижнего мира |
 
 Все три используются в главе **«Кастомный контент»**
-(`config/ftbquests/quests/chapters/kubejs_custom.snbt`).
+(главы «Земли Рассвета», «Багровое Пекло» и «Грань Пустоты»;
+данные — `scripts/quests/chapters/*.py`).
 
 Текстуры взяты из ванили (`gold_ingot`, `netherite_ingot`, `nether_star`) —
 это гарантирует, что предмет отрисуется сразу. Свои png:
@@ -68,6 +69,7 @@ kubejs/assets/kubejs/textures/item/quest_token.png
 | Рецепт не крафтится | `logs/kubejs/server.log` |
 | Ничего не загрузилось | `logs/latest.log`: нет строк `[modpack] … загружены` |
 | Иконка «missing» | не указан `.texture()` или путь до png неверный |
+| В чате «KubeJS errors found», в логе `Tried to register event handler 'StartupEvents.…' for invalid script type SERVER` | обработчик StartupEvents попал в `server_scripts` — ему место только в `startup_scripts` (см. `startup_scripts/diagnostics.js`) |
 
 Перезагрузить скрипты без перезапуска игры:
 
@@ -86,9 +88,11 @@ kubejs/assets/kubejs/textures/item/quest_token.png
 
 ```js
 // регистрация
+// ТОЛЬКО в startup_scripts (в server_scripts KubeJS откажет с ошибкой):
 StartupEvents.registry('item',  e => { e.create('id').displayName('Name') })
 StartupEvents.registry('block', e => { e.create('id').material('metal') })
 StartupEvents.init(e => { /* ранняя инициализация */ })
+StartupEvents.postInit(e => { /* после закрытия реестров */ })
 
 // рецепты
 ServerEvents.recipes(e => {

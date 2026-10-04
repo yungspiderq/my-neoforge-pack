@@ -1,670 +1,106 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Описание квестовой линейки. Это ДАННЫЕ — их редактирует автор пака.
-SNBT из них генерирует scripts/gen_quests.py.
+Квестовая линейка модпака. Это ТОЧКА ВХОДА в данные: сами главы лежат в
+scripts/quests/chapters/<имя>.py, а вспомогательные функции записи — в
+scripts/quests/qdsl.py.
 
-Формат текста: (english, russian). en_us — fallback-локаль FTB Quests,
-грузится всегда; ru_ru подхватится при русском клиенте.
+SNBT из этих данных генерирует scripts/gen_quests.py, проверяет —
+scripts/check_quests.py. Руками .snbt-файлы не правятся: при следующей
+генерации изменения потеряются.
 
-Схема ID (младший байт квеста должен быть 0 — в него генератор пишет индекс
-задачи/награды, максимум 15 на квест):
-    главы    0xC00n
-    квесты   0x1cq0     (c = номер главы hex, q = номер квеста hex)
-    задачи   0x2cqt     (автоматически)
-    награды  0x3cqr     (автоматически)
+    python scripts/gen_quests.py            # пересобрать config/ftbquests/quests
+    python scripts/gen_quests.py --check    # только проверить данные
+    python scripts/check_quests.py --registry   # + сверка ID с реестром MC 1.21.1
 
-Раскладка главы задаётся полем layout, координаты квестов считать руками
-не нужно:
-    line    — горизонтальная цепочка
-    zigzag  — «змейка» по строкам
-    grid    — сетка cols x N
-    ring    — кольцо вокруг центра
-    spiral  — спираль от центра
-    tree    — вертикальное дерево (ствол)
+────────────────────────────────────────────────────────────────────────────
+ФОРМАТ ТЕКСТА
+    Всё, что видит игрок, задаётся парой (english, russian) или одной строкой
+    на обе локали. en_us — fallback-локаль FTB Quests и грузится всегда,
+    ru_ru подхватывается русским клиентом. Заголовки и описания НЕ пишутся
+    в .snbt главы: мод хранит их в lang/<локаль>.snbt ключами
+        <типОбъекта>.<ID16HEX>.<поле>
+    например quest.0000000000101010.title или image.0000000000401001.title.
+    ID в ключе жёстко привязан к объекту, поэтому рассинхрон = пустые названия.
 
-Типы задач, которые использует линейка (все сверены по исходникам
-FTB Quests 2101.1.36):
-    item, checkmark, kill, dimension, xp, stat, location,
-    advancement, observation, biome, structure
+────────────────────────────────────────────────────────────────────────────
+СХЕМА ID (генератор строит её сам, руками ID писать не нужно)
+    глава       0xC000 + ci                     ci = 1..255
+    квест       0x100000 + ci*0x1000 + qi*0x10  qi = 1..255
+    задача      0x200000 + slot + t             t  = 0..15
+    награда     0x300000 + slot + r             r  = 0..15
+    картинка    0x400000 + ci*0x1000 + i        i  = 1..255
+    quest_link  0x500000 + ci*0x1000 + l        l  = 1..255
+    slot        = (id квеста) & 0xFFFFF
+Младший полубайт квеста всегда 0 — туда генератор пишет индекс задачи или
+награды, поэтому на один квест приходится максимум 15 задач и 15 наград.
+ID не должны быть 0 или 1: FTB Quests молча перегенерирует такие и все связи
+поедут (BaseQuestFile.readID).
+
+────────────────────────────────────────────────────────────────────────────
+РАСКЛАДКА (layout)
+    blocks  — глава делится на секции (SEC в qdsl.py); каждая секция рисуется
+              отдельным блоком с подложкой и подписью, внутри блока — flow.
+              Секции укладываются полками по cols штук в ряд.
+    flow    — слоистое дерево по графу зависимостей: слой узла = 1 + максимум
+              слоёв родителей, внутри слоя узлы сортируются по медиане позиций
+              соседей, поэтому линии почти не пересекаются.
+    line / zigzag / grid / ring / spiral / tree — геометрические раскладки,
+              где порядок квестов в списке = порядок на экране.
+Координаты руками задавать не нужно; если очень хочется — поля x и y квеста
+перекрывают раскладку.
+
+────────────────────────────────────────────────────────────────────────────
+ЗАВИСИМОСТИ (deps)
+    deps=[3]                  — квест №3 этой же главы (номер с 1);
+    deps=["diamonds"]         — квест с key="diamonds" в этой главе;
+    deps=["nether:stronghold"]— квест из другой главы;
+    нет deps                  — наследует предыдущего квеста главы (цепочка).
+Связи между главами работают: зависимости — это обычные ID квестов, FTB Quests
+не требует, чтобы они жили в одной главе.
+
+────────────────────────────────────────────────────────────────────────────
+ОФОРМЛЕНИЕ ГЛАВЫ
+    banner    — широкая картинка сверху (текстура из kubejs/assets/.../gui);
+    sections  — секции с подложкой и подписью (layout="blocks");
+    images    — произвольные картинки: подложки, подписи, ореолы вех,
+                кликабельные порталы (click_quest/click_command/click_uri);
+    links     — quest_link: иконка квеста из другой главы, по клику открывает
+                его прямо здесь.
+Все картинки главы рисуются ПОД квестами (DrawLayer.BACKGROUND в
+ChapterImageButton), порядок между ними задаёт поле order.
+
+────────────────────────────────────────────────────────────────────────────
+ТИПЫ ЗАДАЧ, которые использует линейка (все сверены с исходниками FTB Quests
+2101.1.36, ветка 1.21.1/main):
+    item, checkmark, kill, dimension, xp, stat, location, advancement,
+    observation, biome, structure
 НЕ используются и почему:
-    fluid / energy  — требуют установленных модов с жидкостями/энергией
-    gamestage       — требует мода Game Stages
-    custom          — без обработчика (KubeJS-core не содержит интеграции
-                      с FTB Quests) такой квест невыполним; для вех KubeJS
-                      используется checkmark
+    fluid / energy — нужны моды с жидкостями и энергией;
+    gamestage      — нужен мод Game Stages;
+    custom         — без обработчика задачу невозможно завершить: интеграции
+                     KubeJS↔FTB Quests в KubeJS-core нет, а аддона-моста для
+                     1.21.1/NeoForge в открытом доступе не нашлось.
+Награды: item, xp, xp_levels, command, toast (loot/random/choice требуют
+таблиц наград, advancement/gamestage/currency — не нужны паку).
 """
 
-CUSTOM = {
-    "token":   "kubejs:quest_token",
-    "premium": "kubejs:quest_token_premium",
-    "medal":   "kubejs:quest_medal",
-}
+from chapters import end, nether, overworld
+from qdsl import CUSTOM          # noqa: F401  (используется главами и доками)
 
+# Порядок глав = порядок вкладок в книге квестов (order_index в SNBT).
 QUESTLINE = [
-# ========================================================================== #
-{
- "id": 0xC001, "filename": "beginning", "layout": "line", "shape": "square",
- "icon": "minecraft:crafting_table", "banner": "banner_beginning",
- "title": ("Foundations", "Основы"),
- "subtitle": [("From bare hands to iron. Everything here is vanilla.",
-               "От голых рук до железа. Всё здесь — чистая ваниль.")],
- "quests": [
-  {"title": ("First Wood", "Первое дерево"),
-   "desc": [("Punch a tree. 16 oak logs to get going.",
-             "Ударь дерево. 16 дубовых брёвен, чтобы начать.")],
-   "tasks": [{"type": "item", "item": "minecraft:oak_log", "count": 16}],
-   "rewards": [{"type": "item", "item": "minecraft:crafting_table"}]},
-  {"title": ("Workbench", "Верстак"),
-   "tasks": [{"type": "item", "item": "minecraft:crafting_table"}],
-   "rewards": [{"type": "item", "item": "minecraft:stick", "count": 8}]},
-  {"title": ("Wooden Tools", "Деревянные инструменты"),
-   "tasks": [{"type": "item", "item": "minecraft:wooden_pickaxe"},
-             {"type": "item", "item": "minecraft:wooden_axe"}],
-   "rewards": [{"type": "item", "item": "minecraft:bread", "count": 6}]},
-  {"title": ("Shelter", "Укрытие"),
-   "desc": [("Planks for walls, a door, and you can survive the first night.",
-             "Доски на стены, дверь — и первая ночь пережита.")],
-   "tasks": [{"type": "item", "item": "minecraft:oak_planks", "count": 32},
-             {"type": "item", "item": "minecraft:oak_door"}],
-   "rewards": [{"type": "item", "item": "minecraft:glass", "count": 8}]},
-  {"title": ("Bed Time", "Время спать"),
-   "tasks": [{"type": "item", "item": "minecraft:white_bed"}],
-   "rewards": [{"type": "xp_levels", "xp_levels": 2}]},
-  {"title": ("Stone Age", "Каменный век"),
-   "tasks": [{"type": "item", "item": "minecraft:cobblestone", "count": 64},
-             {"type": "item", "item": "minecraft:stone_pickaxe"}],
-   "rewards": [{"type": "item", "item": "minecraft:furnace"},
-               {"type": "item", "item": "minecraft:coal", "count": 16}]},
-  {"title": ("Light It Up", "Свет"),
-   "tasks": [{"type": "item", "item": "minecraft:torch", "count": 32}],
-   "rewards": [{"type": "item", "item": "minecraft:lantern", "count": 4}]},
-  {"title": ("Bucket", "Ведро"),
-   "desc": [("One iron ingot too many? Turn it into a bucket. Lava and water "
-             "both matter later.",
-             "Лишний слиток железа? Сделай ведро. Лава и вода понадобятся позже.")],
-   "tasks": [{"type": "item", "item": "minecraft:bucket"}],
-   "rewards": [{"type": "item", "item": "minecraft:water_bucket"}]},
-  {"title": ("Iron", "Железо"),
-   "tasks": [{"type": "item", "item": "minecraft:iron_ingot", "count": 8}],
-   "rewards": [{"type": "item", "item": "minecraft:iron_pickaxe"}]},
-  {"title": ("Full Kit", "Полный комплект"),
-   "tasks": [{"type": "item", "item": "minecraft:iron_sword"},
-             {"type": "item", "item": "minecraft:iron_axe"},
-             {"type": "item", "item": "minecraft:iron_shovel"},
-             {"type": "item", "item": "minecraft:shield"}],
-   "rewards": [{"type": "item", "item": "minecraft:golden_apple"},
-               {"type": "xp_levels", "xp_levels": 5}]},
- ]},
-
-# ========================================================================== #
-{
- "id": 0xC002, "filename": "mining", "layout": "zigzag", "cols": 4, "shape": "diamond",
- "icon": "minecraft:iron_pickaxe", "banner": "banner_mining",
- "title": ("Caves and Ore", "Пещеры и руда"),
- "subtitle": [("Everything the ground hides.", "Всё, что прячет земля.")],
- "quests": [
-  {"title": ("Down We Go", "Вниз"),
-   "tasks": [{"type": "item", "item": "minecraft:deepslate", "count": 64},
-             {"type": "stat", "stat": "minecraft:walk_one_cm", "value": 50000}],
-   "rewards": [{"type": "item", "item": "minecraft:torch", "count": 64}]},
-  {"title": ("Common Metals", "Обычные металлы"),
-   "tasks": [{"type": "item", "item": "minecraft:copper_ingot", "count": 8},
-             {"type": "item", "item": "minecraft:iron_ingot", "count": 16},
-             {"type": "item", "item": "minecraft:gold_ingot", "count": 4}],
-   "rewards": [{"type": "item", "item": "minecraft:raw_iron_block", "count": 2}]},
-  {"title": ("Red and Blue", "Красное и синее"),
-   "tasks": [{"type": "item", "item": "minecraft:redstone", "count": 32},
-             {"type": "item", "item": "minecraft:lapis_lazuli", "count": 32}],
-   "rewards": [{"type": "item", "item": "minecraft:repeater"}]},
-  {"title": ("Diamonds", "Алмазы"),
-   "desc": [("Below Y=16, best around Y=-59. Five diamonds: pickaxe plus two.",
-             "Ниже Y=16, лучше всего около Y=-59. Пять алмазов: кирка плюс два.")],
-   "tasks": [{"type": "item", "item": "minecraft:diamond", "count": 5}],
-   "rewards": [{"type": "item", "item": "minecraft:diamond_pickaxe"}]},
-  {"title": ("Amethyst", "Аметист"),
-   "tasks": [{"type": "item", "item": "minecraft:amethyst_shard", "count": 12}],
-   "rewards": [{"type": "item", "item": "minecraft:spyglass"},
-               {"type": "item", "item": "minecraft:tinted_glass", "count": 4}]},
-  {"title": ("Emeralds", "Изумруды"),
-   "tasks": [{"type": "item", "item": "minecraft:emerald", "count": 4}],
-   "rewards": [{"type": "item", "item": "minecraft:emerald_block"}]},
-  {"title": ("Crystal Caves", "Хрустальные пещеры"),
-   "tasks": [{"type": "biome", "biome": "minecraft:dripstone_caves"},
-             {"type": "biome", "biome": "minecraft:lush_caves"}],
-   "rewards": [{"type": "xp_levels", "xp_levels": 4}]},
-  {"title": ("Deep Dark", "Глубокая тьма"),
-   "desc": [("Do not bring a bell. Do not sprint.", "Не бери колокол. Не беги.")],
-   "tasks": [{"type": "biome", "biome": "minecraft:deep_dark"},
-             {"type": "structure", "structure": "minecraft:ancient_city"}],
-   "rewards": [{"type": "item", "item": "minecraft:echo_shard", "count": 4},
-               {"type": "xp_levels", "xp_levels": 8}]},
-  {"title": ("Obsidian", "Обсидиан"),
-   "tasks": [{"type": "item", "item": "minecraft:obsidian", "count": 14}],
-   "rewards": [{"type": "item", "item": "minecraft:flint_and_steel"}]},
-  {"title": ("Ancient Debris", "Древние обломки"),
-   "desc": [("Y=15 in the Nether, bed mining works.", "Y=15 в Нижнем мире, работает взрыв кроватей.")],
-   "tasks": [{"type": "item", "item": "minecraft:ancient_debris", "count": 4}],
-   "rewards": [{"type": "item", "item": "minecraft:netherite_scrap", "count": 2}]},
- ]},
-
-# ========================================================================== #
-{
- "id": 0xC003, "filename": "combat", "layout": "grid", "cols": 4, "shape": "rsquare",
- "icon": "minecraft:iron_sword", "banner": "banner_combat",
- "title": ("Combat and Mobs", "Бой и мобы"),
- "subtitle": [("The overworld wants you dead. Prove it wrong.",
-               "Верхний мир хочет твоей смерти. Докажи обратное.")],
- "quests": [
-  {"title": ("First Blood", "Первая кровь"),
-   "tasks": [{"type": "kill", "entity": "minecraft:zombie", "value": 5}],
-   "rewards": [{"type": "item", "item": "minecraft:rotten_flesh", "count": 8},
-               {"type": "xp", "xp": 30}]},
-  {"title": ("Bones", "Кости"),
-   "tasks": [{"type": "kill", "entity": "minecraft:skeleton", "value": 5},
-             {"type": "item", "item": "minecraft:bone", "count": 10}],
-   "rewards": [{"type": "item", "item": "minecraft:arrow", "count": 32}]},
-  {"title": ("Eight Legs", "Восемь ног"),
-   "tasks": [{"type": "kill", "entity": "minecraft:spider", "value": 5},
-             {"type": "item", "item": "minecraft:string", "count": 10}],
-   "rewards": [{"type": "item", "item": "minecraft:bow"}]},
-  {"title": ("Do Not Hiss", "Не шипи"),
-   "tasks": [{"type": "kill", "entity": "minecraft:creeper", "value": 3},
-             {"type": "item", "item": "minecraft:gunpowder", "count": 8}],
-   "rewards": [{"type": "item", "item": "minecraft:tnt", "count": 4}]},
-  {"title": ("Witch Hut", "Ведьма"),
-   "tasks": [{"type": "kill", "entity": "minecraft:witch", "value": 2}],
-   "rewards": [{"type": "item", "item": "minecraft:glass_bottle", "count": 6},
-               {"type": "item", "item": "minecraft:glowstone_dust", "count": 4}]},
-  {"title": ("Enderman", "Эндермен"),
-   "tasks": [{"type": "kill", "entity": "minecraft:enderman", "value": 3},
-             {"type": "item", "item": "minecraft:ender_pearl", "count": 6}],
-   "rewards": [{"type": "item", "item": "minecraft:ender_chest"}]},
-  {"title": ("Pillagers", "Разбойники"),
-   "tasks": [{"type": "kill", "entity": "minecraft:pillager", "value": 5},
-             {"type": "structure", "structure": "minecraft:pillager_outpost"}],
-   "rewards": [{"type": "item", "item": "minecraft:crossbow"}]},
-  {"title": ("Vindicator", "Поборник"),
-   "tasks": [{"type": "kill", "entity": "minecraft:vindicator", "value": 2}],
-   "rewards": [{"type": "item", "item": "minecraft:emerald", "count": 4}]},
-  {"title": ("Ravager", "Разоритель"),
-   "tasks": [{"type": "kill", "entity": "minecraft:ravager", "value": 1}],
-   "rewards": [{"type": "xp_levels", "xp_levels": 6},
-               {"type": "item", "item": "minecraft:totem_of_undying"}]},
-  {"title": ("Stat: Mob Killer", "Статистика: охотник"),
-   "tasks": [{"type": "stat", "stat": "minecraft:mob_kills", "value": 100}],
-   "rewards": [{"type": "item", "item": "minecraft:iron_sword"},
-               {"type": "xp", "xp": 80}]},
-  {"title": ("Damage Dealt", "Нанесённый урон"),
-   "tasks": [{"type": "stat", "stat": "minecraft:damage_dealt", "value": 20000}],
-   "rewards": [{"type": "item", "item": "minecraft:golden_apple", "count": 2}]},
-  {"title": ("Still Alive", "Всё ещё жив"),
-   "tasks": [{"type": "stat", "stat": "minecraft:deaths", "value": 5},
-             {"type": "stat", "stat": "minecraft:time_since_death", "value": 60000}],
-   "rewards": [{"type": "item", "item": "minecraft:shield"}]},
- ]},
-
-# ========================================================================== #
-{
- "id": 0xC004, "filename": "food_and_farm", "layout": "tree", "shape": "heart",
- "icon": "minecraft:bread", "banner": "banner_food",
- "title": ("Food and Farming", "Еда и ферма"),
- "subtitle": [("Stable food means stable expeditions.",
-               "Стабильная еда — стабильные вылазки.")],
- "quests": [
-  {"title": ("Seeds", "Семена"),
-   "tasks": [{"type": "item", "item": "minecraft:wheat_seeds", "count": 8}],
-   "rewards": [{"type": "item", "item": "minecraft:bone_meal", "count": 8}]},
-  {"title": ("Wheat", "Пшеница"),
-   "tasks": [{"type": "item", "item": "minecraft:wheat", "count": 24},
-             {"type": "item", "item": "minecraft:bread", "count": 12}],
-   "rewards": [{"type": "item", "item": "minecraft:hay_block", "count": 4}]},
-  {"title": ("Root Vegetables", "Корнеплоды"),
-   "tasks": [{"type": "item", "item": "minecraft:carrot", "count": 16},
-             {"type": "item", "item": "minecraft:potato", "count": 16},
-             {"type": "item", "item": "minecraft:baked_potato", "count": 8}],
-   "rewards": [{"type": "item", "item": "minecraft:golden_carrot", "count": 4}]},
-  {"title": ("Cattle", "Скот"),
-   "tasks": [{"type": "item", "item": "minecraft:cooked_beef", "count": 16},
-             {"type": "item", "item": "minecraft:leather", "count": 6}],
-   "rewards": [{"type": "item", "item": "minecraft:lead", "count": 4}]},
-  {"title": ("Poultry and Pork", "Птица и свиньи"),
-   "tasks": [{"type": "item", "item": "minecraft:cooked_chicken", "count": 8},
-             {"type": "item", "item": "minecraft:cooked_porkchop", "count": 8},
-             {"type": "item", "item": "minecraft:egg", "count": 8}],
-   "rewards": [{"type": "item", "item": "minecraft:chicken_spawn_egg"}]},
-  {"title": ("Milk", "Молоко"),
-   "tasks": [{"type": "item", "item": "minecraft:milk_bucket"}],
-   "rewards": [{"type": "item", "item": "minecraft:cake"}]},
-  {"title": ("Fishing", "Рыбалка"),
-   "tasks": [{"type": "item", "item": "minecraft:fishing_rod"},
-             {"type": "item", "item": "minecraft:cod", "count": 8},
-             {"type": "item", "item": "minecraft:salmon", "count": 4}],
-   "rewards": [{"type": "item", "item": "minecraft:cooked_cod", "count": 8},
-               {"type": "xp_levels", "xp_levels": 2}]},
-  {"title": ("Beekeeping", "Пасека"),
-   "tasks": [{"type": "item", "item": "minecraft:beehive"},
-             {"type": "item", "item": "minecraft:honey_bottle", "count": 3},
-             {"type": "item", "item": "minecraft:honeycomb", "count": 6}],
-   "rewards": [{"type": "item", "item": "minecraft:honey_block", "count": 2}]},
-  {"title": ("Breeder", "Селекционер"),
-   "tasks": [{"type": "stat", "stat": "minecraft:animals_bred", "value": 20}],
-   "rewards": [{"type": "item", "item": "minecraft:golden_carrot", "count": 6}]},
-  {"title": ("Feast", "Пир"),
-   "tasks": [{"type": "item", "item": "minecraft:golden_apple", "count": 2},
-             {"type": "item", "item": "minecraft:cake"},
-             {"type": "item", "item": "minecraft:cookie", "count": 16}],
-   "rewards": [{"type": "xp_levels", "xp_levels": 5}]},
- ]},
-
-# ========================================================================== #
-{
- "id": 0xC005, "filename": "enchanting", "layout": "ring", "shape": "gear",
- "icon": "minecraft:enchanting_table", "banner": "banner_enchanting",
- "title": ("Enchanting and Brewing", "Чары и зелья"),
- "subtitle": [("Power that is not in the tool.", "Сила, которой нет в инструменте.")],
- "quests": [
-  {"title": ("Paper and Books", "Бумага и книги"),
-   "tasks": [{"type": "item", "item": "minecraft:paper", "count": 24},
-             {"type": "item", "item": "minecraft:book", "count": 12}],
-   "rewards": [{"type": "item", "item": "minecraft:sugar_cane", "count": 16}]},
-  {"title": ("Library", "Библиотека"),
-   "tasks": [{"type": "item", "item": "minecraft:bookshelf", "count": 15}],
-   "rewards": [{"type": "item", "item": "minecraft:lapis_lazuli", "count": 32}]},
-  {"title": ("The Table", "Стол зачаровывания"),
-   "tasks": [{"type": "item", "item": "minecraft:enchanting_table"}],
-   "rewards": [{"type": "xp_levels", "xp_levels": 10}]},
-  {"title": ("Level 30", "Уровень 30"),
-   "tasks": [{"type": "xp", "value": 30, "points": False}],
-   "rewards": [{"type": "item", "item": "minecraft:lapis_lazuli", "count": 64}]},
-  {"title": ("First Enchant", "Первое зачарование"),
-   "tasks": [{"type": "advancement", "advancement": "minecraft:story/enchant_item"}],
-   "rewards": [{"type": "item", "item": "minecraft:experience_bottle", "count": 8}]},
-  {"title": ("Anvil", "Наковальня"),
-   "tasks": [{"type": "item", "item": "minecraft:anvil"}],
-   "rewards": [{"type": "item", "item": "minecraft:enchanted_book"}]},
-  {"title": ("Brewing", "Зельеварение"),
-   "tasks": [{"type": "item", "item": "minecraft:brewing_stand"},
-             {"type": "item", "item": "minecraft:blaze_powder", "count": 6},
-             {"type": "item", "item": "minecraft:nether_wart", "count": 6}],
-   "rewards": [{"type": "item", "item": "minecraft:glass_bottle", "count": 9}]},
-  {"title": ("Potions", "Зелья"),
-   "tasks": [{"type": "item", "item": "minecraft:potion"},
-             {"type": "item", "item": "minecraft:golden_carrot", "count": 4}],
-   "rewards": [{"type": "item", "item": "minecraft:glistering_melon_slice", "count": 4}]},
-  {"title": ("Smithing", "Кузнечный стол"),
-   "tasks": [{"type": "item", "item": "minecraft:smithing_table"},
-             {"type": "item", "item": "minecraft:netherite_upgrade_smithing_template"}],
-   "rewards": [{"type": "item", "item": "minecraft:netherite_ingot"}]},
- ]},
-
-# ========================================================================== #
-{
- "id": 0xC006, "filename": "redstone", "layout": "grid", "cols": 4, "shape": "gear",
- "icon": "minecraft:redstone", "banner": "banner_redstone",
- "title": ("Redstone", "Редстоун"),
- "subtitle": [("Machines instead of hands.", "Машины вместо рук.")],
- "quests": [
-  {"title": ("Dust", "Пыль"),
-   "tasks": [{"type": "item", "item": "minecraft:redstone", "count": 64}],
-   "rewards": [{"type": "item", "item": "minecraft:redstone_torch", "count": 8}]},
-  {"title": ("Torch and Repeater", "Факел и повторитель"),
-   "tasks": [{"type": "item", "item": "minecraft:redstone_torch", "count": 8},
-             {"type": "item", "item": "minecraft:repeater", "count": 4}],
-   "rewards": [{"type": "item", "item": "minecraft:redstone_block"}]},
-  {"title": ("Comparator", "Компаратор"),
-   "tasks": [{"type": "item", "item": "minecraft:comparator", "count": 2},
-             {"type": "item", "item": "minecraft:quartz", "count": 12}],
-   "rewards": [{"type": "xp_levels", "xp_levels": 3}]},
-  {"title": ("Pistons", "Поршни"),
-   "tasks": [{"type": "item", "item": "minecraft:piston", "count": 4},
-             {"type": "item", "item": "minecraft:sticky_piston", "count": 2}],
-   "rewards": [{"type": "item", "item": "minecraft:slime_ball", "count": 4}]},
-  {"title": ("Observer", "Наблюдатель"),
-   "tasks": [{"type": "item", "item": "minecraft:observer", "count": 2}],
-   "rewards": [{"type": "item", "item": "minecraft:daylight_detector"}]},
-  {"title": ("Item Transport", "Транспорт предметов"),
-   "tasks": [{"type": "item", "item": "minecraft:hopper", "count": 4},
-             {"type": "item", "item": "minecraft:dropper", "count": 2},
-             {"type": "item", "item": "minecraft:dispenser", "count": 2}],
-   "rewards": [{"type": "item", "item": "minecraft:chest", "count": 8}]},
-  {"title": ("Automatic Farm", "Автоферма"),
-   "desc": [("Any working automatic farm: crops, cactus, iron. Show it with a "
-            "checkmark when it runs.",
-            "Любая рабочая автоферма: культуры, кактус, железо. Отметь галочкой, "
-            "когда работает.")],
-   "tasks": [{"type": "checkmark"}],
-   "rewards": [{"type": "item", "item": "minecraft:composter", "count": 2},
-               {"type": "xp_levels", "xp_levels": 4}]},
-  {"title": ("Door of Logic", "Логическая дверь"),
-   "tasks": [{"type": "observation", "observation_type": "block",
-              "to_observe": "minecraft:redstone_lamp", "timer": 40}],
-   "rewards": [{"type": "item", "item": "minecraft:redstone_lamp", "count": 4}]},
- ]},
-
-# ========================================================================== #
-{
- "id": 0xC007, "filename": "nether", "layout": "spiral", "shape": "pentagon",
- "icon": "minecraft:nether_bricks", "banner": "banner_nether",
- "title": ("The Nether", "Нижний мир"),
- "subtitle": [("Eight blocks for every one above.",
-               "Восемь блоков за каждый наверху.")],
- "quests": [
-  {"title": ("Through the Portal", "Через портал"),
-   "tasks": [{"type": "dimension", "dimension": "minecraft:the_nether"}],
-   "rewards": [{"type": "item", "item": "minecraft:golden_apple"}]},
-  {"title": ("Nether Biomes", "Биомы Нижнего мира"),
-   "tasks": [{"type": "biome", "biome": "minecraft:crimson_forest"},
-             {"type": "biome", "biome": "minecraft:warped_forest"},
-             {"type": "biome", "biome": "minecraft:soul_sand_valley"},
-             {"type": "biome", "biome": "minecraft:basalt_deltas"}],
-   "rewards": [{"type": "xp_levels", "xp_levels": 5}]},
-  {"title": ("Fortress", "Крепость"),
-   "tasks": [{"type": "structure", "structure": "minecraft:fortress"}],
-   "rewards": [{"type": "item", "item": "minecraft:nether_bricks", "count": 32}]},
-  {"title": ("Blaze Rods", "Огненные стержни"),
-   "tasks": [{"type": "kill", "entity": "minecraft:blaze", "value": 6},
-             {"type": "item", "item": "minecraft:blaze_rod", "count": 7}],
-   "rewards": [{"type": "item", "item": "minecraft:ender_pearl", "count": 12}]},
-  {"title": ("Nether Wart", "Незеритовый нарост"),
-   "tasks": [{"type": "item", "item": "minecraft:nether_wart", "count": 8},
-             {"type": "item", "item": "minecraft:soul_sand", "count": 9}],
-   "rewards": [{"type": "item", "item": "minecraft:soul_lantern", "count": 4}]},
-  {"title": ("Quartz and Gold", "Кварц и золото"),
-   "tasks": [{"type": "item", "item": "minecraft:quartz", "count": 32},
-             {"type": "item", "item": "minecraft:gold_ingot", "count": 32}],
-   "rewards": [{"type": "item", "item": "minecraft:gilded_blackstone", "count": 8}]},
-  {"title": ("Bastion", "Бастион"),
-   "tasks": [{"type": "structure", "structure": "minecraft:bastion_remnant"}],
-   "rewards": [{"type": "item", "item": "minecraft:music_disc_pigstep"}]},
-  {"title": ("Ghast", "Гаст"),
-   "tasks": [{"type": "kill", "entity": "minecraft:ghast", "value": 3},
-             {"type": "item", "item": "minecraft:ghast_tear", "count": 2}],
-   "rewards": [{"type": "item", "item": "minecraft:fire_charge", "count": 8}]},
-  {"title": ("Piglin Barter", "Бартер с пиглинами"),
-   "tasks": [{"type": "observation", "observation_type": "entity_type",
-              "to_observe": "minecraft:piglin", "timer": 60}],
-   "rewards": [{"type": "item", "item": "minecraft:gold_nugget", "count": 32}]},
-  {"title": ("Skulls for the Wither", "Черепа для Иссушителя"),
-   "tasks": [{"type": "kill", "entity": "minecraft:wither_skeleton", "value": 10},
-             {"type": "item", "item": "minecraft:wither_skeleton_skull", "count": 3}],
-   "rewards": [{"type": "item", "item": "minecraft:enchanted_golden_apple"}]},
- ]},
-
-# ========================================================================== #
-{
- "id": 0xC008, "filename": "end", "layout": "line", "shape": "hexagon",
- "icon": "minecraft:end_stone", "banner": "banner_end",
- "title": ("The End", "Край"),
- "subtitle": [("One dragon, one city, one pair of wings.",
-               "Один дракон, один город, одни крылья.")],
- "quests": [
-  {"title": ("Eyes of Ender", "Очи Края"),
-   "tasks": [{"type": "item", "item": "minecraft:ender_eye", "count": 12}],
-   "rewards": [{"type": "item", "item": "minecraft:ender_pearl", "count": 8}]},
-  {"title": ("The Stronghold", "Крепость Края"),
-   "tasks": [{"type": "structure", "structure": "minecraft:stronghold"}],
-   "rewards": [{"type": "xp_levels", "xp_levels": 6}]},
-  {"title": ("Follow the Eyes", "Следуй за очами"),
-   "tasks": [{"type": "advancement", "advancement": "minecraft:story/follow_ender_eye"}],
-   "rewards": [{"type": "item", "item": "minecraft:snowball", "count": 16}]},
-  {"title": ("The End", "Край"),
-   "tasks": [{"type": "dimension", "dimension": "minecraft:the_end"}],
-   "rewards": [{"type": "item", "item": "minecraft:end_stone", "count": 32}]},
-  {"title": ("Dragon", "Дракон"),
-   "tasks": [{"type": "kill", "entity": "minecraft:ender_dragon", "value": 1},
-             {"type": "advancement", "advancement": "minecraft:end/kill_dragon"}],
-   "rewards": [{"type": "xp_levels", "xp_levels": 20},
-               {"type": "item", "item": "minecraft:dragon_egg"}]},
-  {"title": ("End City", "Город Края"),
-   "tasks": [{"type": "structure", "structure": "minecraft:end_city"}],
-   "rewards": [{"type": "item", "item": "minecraft:purpur_block", "count": 32}]},
-  {"title": ("Elytra", "Элитры"),
-   "tasks": [{"type": "item", "item": "minecraft:elytra"}],
-   "rewards": [{"type": "item", "item": "minecraft:firework_rocket", "count": 32}]},
-  {"title": ("Shulker", "Шалкер"),
-   "tasks": [{"type": "kill", "entity": "minecraft:shulker", "value": 2},
-             {"type": "item", "item": "minecraft:shulker_shell", "count": 2}],
-   "rewards": [{"type": "item", "item": "minecraft:shulker_box"}]},
- ]},
-
-# ========================================================================== #
-{
- "id": 0xC009, "filename": "exploration", "layout": "grid", "cols": 5, "shape": "octagon",
- "icon": "minecraft:compass", "banner": "banner_exploration",
- "title": ("Exploration", "Исследование"),
- "subtitle": [("Sixty-four biomes, thirty-four structures. You do not have to "
-               "see all of them. You will want to.",
-               "64 биома, 34 структуры. Не обязательно увидеть все. Но захочется.")],
- "quests": [
-  {"title": ("Home Biomes", "Домашние биомы"),
-   "tasks": [{"type": "biome", "biome": "minecraft:plains"},
-             {"type": "biome", "biome": "minecraft:forest"},
-             {"type": "biome", "biome": "minecraft:river"}],
-   "rewards": [{"type": "item", "item": "minecraft:map"}]},
-  {"title": ("Cold North", "Холодный север"),
-   "tasks": [{"type": "biome", "biome": "minecraft:taiga"},
-             {"type": "biome", "biome": "minecraft:snowy_plains"},
-             {"type": "biome", "biome": "minecraft:frozen_river"}],
-   "rewards": [{"type": "item", "item": "minecraft:leather_horse_armor"}]},
-  {"title": ("Hot South", "Жаркий юг"),
-   "tasks": [{"type": "biome", "biome": "minecraft:desert"},
-             {"type": "biome", "biome": "minecraft:jungle"},
-             {"type": "biome", "biome": "minecraft:swamp"}],
-   "rewards": [{"type": "item", "item": "minecraft:cocoa_beans", "count": 8}]},
-  {"title": ("Mountains", "Горы"),
-   "tasks": [{"type": "biome", "biome": "minecraft:windswept_hills"},
-             {"type": "biome", "biome": "minecraft:grove"},
-             {"type": "biome", "biome": "minecraft:jagged_peaks"}],
-   "rewards": [{"type": "item", "item": "minecraft:goat_horn"}]},
-  {"title": ("Ocean", "Океан"),
-   "tasks": [{"type": "biome", "biome": "minecraft:ocean"},
-             {"type": "biome", "biome": "minecraft:deep_ocean"},
-             {"type": "structure", "structure": "minecraft:shipwreck"}],
-   "rewards": [{"type": "item", "item": "minecraft:heart_of_the_sea"}]},
-  {"title": ("Monument", "Монумент"),
-   "tasks": [{"type": "structure", "structure": "minecraft:monument"},
-             {"type": "kill", "entity": "minecraft:guardian", "value": 5}],
-   "rewards": [{"type": "item", "item": "minecraft:prismarine_shard", "count": 16},
-               {"type": "item", "item": "minecraft:sponge", "count": 2}]},
-  {"title": ("Villages", "Деревни"),
-   "tasks": [{"type": "structure", "structure": "minecraft:village_plains"},
-             {"type": "structure", "structure": "minecraft:village_desert"}],
-   "rewards": [{"type": "item", "item": "minecraft:emerald", "count": 6}]},
-  {"title": ("Ruins", "Руины"),
-   "tasks": [{"type": "structure", "structure": "minecraft:desert_pyramid"},
-             {"type": "structure", "structure": "minecraft:jungle_pyramid"},
-             {"type": "structure", "structure": "minecraft:trail_ruins"}],
-   "rewards": [{"type": "item", "item": "minecraft:brush"},
-               {"type": "item", "item": "minecraft:gold_ingot", "count": 6}]},
-  {"title": ("Mansion", "Особняк"),
-   "tasks": [{"type": "structure", "structure": "minecraft:mansion"}],
-   "rewards": [{"type": "item", "item": "minecraft:totem_of_undying"},
-               {"type": "xp_levels", "xp_levels": 8}]},
-  {"title": ("Trial Chambers", "Испытательные покои"),
-   "tasks": [{"type": "structure", "structure": "minecraft:trial_chambers"},
-             {"type": "kill", "entity": "minecraft:breeze", "value": 2}],
-   "rewards": [{"type": "item", "item": "minecraft:trial_key"},
-               {"type": "item", "item": "minecraft:breeze_rod", "count": 4}]},
-  {"title": ("Buried Treasure", "Закопанный клад"),
-   "tasks": [{"type": "structure", "structure": "minecraft:buried_treasure"}],
-   "rewards": [{"type": "item", "item": "minecraft:nautilus_shell", "count": 2}]},
-  {"title": ("World Spawn", "Центр мира"),
-   "desc": [("Stand within 64 blocks of 0,0 at any height.",
-             "Встань в пределах 64 блоков от 0,0 на любой высоте.")],
-   "tasks": [{"type": "location", "dimension": "minecraft:overworld",
-              "position": [-32, 0, -32], "size": [64, 384, 64]}],
-   "rewards": [{"type": "item", "item": "minecraft:compass"}]},
-  {"title": ("Adventuring Time", "Время приключений"),
-   "tasks": [{"type": "advancement", "advancement": "minecraft:adventure/adventuring_time"}],
-   "rewards": [{"type": "xp_levels", "xp_levels": 15},
-               {"type": "item", "item": "minecraft:filled_map"}]},
- ]},
-
-# ========================================================================== #
-{
- "id": 0xC00A, "filename": "building", "layout": "tree", "shape": "square",
- "icon": "minecraft:bricks", "banner": "banner_building",
- "title": ("Building", "Строительство"),
- "subtitle": [("A base is not a hole with a door.",
-               "База — это не яма с дверью.")],
- "quests": [
-  {"title": ("First Home", "Первый дом"),
-   "desc": [("Any enclosed, lit, furnished shelter. You know when it is done.",
-             "Любое закрытое, освещённое, обставленное укрытие. Ты поймёшь, когда будет готово.")],
-   "tasks": [{"type": "checkmark"}],
-   "rewards": [{"type": "item", "item": "minecraft:oak_door", "count": 2},
-               {"type": "item", "item": "minecraft:glass", "count": 16}]},
-  {"title": ("Glass House", "Стеклянный дом"),
-   "tasks": [{"type": "item", "item": "minecraft:glass", "count": 32},
-             {"type": "item", "item": "minecraft:glass_pane", "count": 16}],
-   "rewards": [{"type": "item", "item": "minecraft:white_stained_glass", "count": 16}]},
-  {"title": ("Decoration", "Украшения"),
-   "tasks": [{"type": "item", "item": "minecraft:painting", "count": 2},
-             {"type": "item", "item": "minecraft:item_frame", "count": 4},
-             {"type": "item", "item": "minecraft:flower_pot", "count": 2}],
-   "rewards": [{"type": "item", "item": "minecraft:glow_lichen", "count": 8}]},
-  {"title": ("Colour", "Цвет"),
-   "tasks": [{"type": "item", "item": "minecraft:white_wool", "count": 8},
-             {"type": "item", "item": "minecraft:red_dye", "count": 4},
-             {"type": "item", "item": "minecraft:blue_dye", "count": 4},
-             {"type": "item", "item": "minecraft:yellow_dye", "count": 4}],
-   "rewards": [{"type": "item", "item": "minecraft:white_banner"}]},
-  {"title": ("Storage Room", "Кладовая"),
-   "tasks": [{"type": "item", "item": "minecraft:chest", "count": 12},
-             {"type": "item", "item": "minecraft:barrel", "count": 6},
-             {"type": "item", "item": "minecraft:shulker_box"}],
-   "rewards": [{"type": "item", "item": "minecraft:item_frame", "count": 8}]},
-  {"title": ("Beacon Base", "Пьедестал маяка"),
-   "tasks": [{"type": "item", "item": "minecraft:iron_block", "count": 9},
-             {"type": "item", "item": "minecraft:gold_block", "count": 9}],
-   "rewards": [{"type": "item", "item": "minecraft:beacon"}]},
-  {"title": ("Mega Build", "Мегапостройка"),
-   "desc": [("Something you are proud of. Screenshot it.",
-             "То, чем ты гордишься. Сделай скриншот.")],
-   "tasks": [{"type": "checkmark"}],
-   "rewards": [{"type": "xp_levels", "xp_levels": 10},
-               {"type": "item", "item": "minecraft:firework_rocket", "count": 16}]},
- ]},
-
-# ========================================================================== #
-{
- "id": 0xC00B, "filename": "advancements", "layout": "line", "shape": "circle",
- "icon": "minecraft:writable_book", "banner": "banner_advancement",
- "title": ("Vanilla Advancements", "Ванильные достижения"),
- "subtitle": [("The game already has a quest line. This chapter mirrors it.",
-               "У игры уже есть квестовая линейка. Эта глава её повторяет.")],
- "quests": [
-  {"title": ("Minecraft!", "Minecraft!"),
-   "tasks": [{"type": "advancement", "advancement": "minecraft:story/root"}],
-   "rewards": [{"type": "item", "item": "minecraft:apple", "count": 4}]},
-  {"title": ("Stone Age", "Каменный век (достижение)"),
-   "tasks": [{"type": "advancement", "advancement": "minecraft:story/mine_stone"}],
-   "rewards": [{"type": "item", "item": "minecraft:stone", "count": 16}]},
-  {"title": ("Getting an Upgrade", "Апгрейд"),
-   "tasks": [{"type": "advancement", "advancement": "minecraft:story/upgrade_tools"}],
-   "rewards": [{"type": "item", "item": "minecraft:iron_nugget", "count": 9}]},
-  {"title": ("Acquire Hardware", "Железо!"),
-   "tasks": [{"type": "advancement", "advancement": "minecraft:story/iron_tools"}],
-   "rewards": [{"type": "xp_levels", "xp_levels": 2}]},
-  {"title": ("Adventure", "Приключение"),
-   "tasks": [{"type": "advancement", "advancement": "minecraft:adventure/root"}],
-   "rewards": [{"type": "item", "item": "minecraft:leather", "count": 4}]},
-  {"title": ("Monster Hunter", "Охотник на монстров"),
-   "tasks": [{"type": "advancement", "advancement": "minecraft:adventure/kill_a_mob"}],
-   "rewards": [{"type": "item", "item": "minecraft:bone", "count": 8}]},
-  {"title": ("Husbandry", "Сельское хозяйство"),
-   "tasks": [{"type": "advancement", "advancement": "minecraft:husbandry/root"}],
-   "rewards": [{"type": "item", "item": "minecraft:wheat_seeds", "count": 8}]},
-  {"title": ("A Seedy Place", "Семенное место"),
-   "tasks": [{"type": "advancement", "advancement": "minecraft:husbandry/plant_seed"}],
-   "rewards": [{"type": "item", "item": "minecraft:bone_meal", "count": 8}]},
-  {"title": ("We Need to Go Deeper", "Нам нужно глубже"),
-   "tasks": [{"type": "advancement", "advancement": "minecraft:nether/root"}],
-   "rewards": [{"type": "item", "item": "minecraft:netherrack", "count": 16}]},
-  {"title": ("The End?", "Конец?"),
-   "tasks": [{"type": "advancement", "advancement": "minecraft:end/root"}],
-   "rewards": [{"type": "item", "item": "minecraft:end_stone", "count": 16}]},
- ]},
-
-# ========================================================================== #
-{
- "id": 0xC00C, "filename": "kubejs_custom", "layout": "line", "shape": "gear",
- "icon": CUSTOM["medal"], "banner": "banner_custom",
- "title": ("Custom Content", "Кастомный контент"),
- "subtitle": [("These items do not exist in vanilla. KubeJS registers them at "
-               "startup from kubejs/startup_scripts/custom_items.js.",
-               "Этих предметов нет в ванили. KubeJS регистрирует их при старте "
-               "из kubejs/startup_scripts/custom_items.js.")],
- "quests": [
-  {"title": ("Quest Token", "Медаль квеста"),
-   "desc": [("Shapeless: diamond + gold ingot + emerald.",
-             "Бесформенно: алмаз + золотой слиток + изумруд.")],
-   "tasks": [{"type": "item", "item": CUSTOM["token"]}],
-   "rewards": [{"type": "xp_levels", "xp_levels": 3},
-               {"type": "item", "item": "minecraft:gold_ingot", "count": 4}]},
-  {"title": ("Premium Token", "Улучшенная медаль"),
-   "tasks": [{"type": "item", "item": CUSTOM["premium"]}],
-   "rewards": [{"type": "item", "item": "minecraft:diamond", "count": 4},
-               {"type": "xp_levels", "xp_levels": 6}]},
-  {"title": ("Medal of the Master", "Медаль мастера"),
-   "desc": [("Requires a Nether Star. Kill the Wither first.",
-             "Требует звезду Нижнего мира. Сначала убей Иссушителя.")],
-   "tasks": [{"type": "item", "item": CUSTOM["medal"]}],
-   "rewards": [{"type": "item", "item": "minecraft:netherite_ingot", "count": 2},
-               {"type": "xp_levels", "xp_levels": 15}]},
-  {"title": ("Custom Item Showcase", "Витрина кастомных предметов"),
-   "desc": [("Hold one of each token type. The tooltip explains what it is.",
-             "Подержи по одному предмету каждого типа. Подсказка объяснит, что это.")],
-   "tasks": [{"type": "item", "item": CUSTOM["token"], "count": 3},
-             {"type": "item", "item": CUSTOM["premium"]}],
-   "rewards": [{"type": "item", "item": "minecraft:experience_bottle", "count": 16}]},
-  {"title": ("KubeJS Milestone", "Веха KubeJS"),
-   "desc": [("Scripts reloaded and items registered: check the log lines "
-             "[modpack] startup_scripts loaded / server_scripts loaded.",
-             "Скрипты перезагружены и предметы зарегистрированы: проверь строки "
-             "лога [modpack] startup_scripts loaded / server_scripts loaded.")],
-   "tasks": [{"type": "checkmark"}],
-   "rewards": [{"type": "item", "item": CUSTOM["token"], "count": 2}]},
- ]},
-
-# ========================================================================== #
-{
- "id": 0xC00D, "filename": "mastery", "layout": "ring", "shape": "diamond",
- "icon": "minecraft:nether_star", "banner": "banner_mastery",
- "title": ("Mastery", "Мастерство"),
- "subtitle": [("The last page. Everything before it was warm-up.",
-               "Последняя страница. Всё до неё было разминкой.")],
- "quests": [
-  {"title": ("Wither", "Иссушитель"),
-   "tasks": [{"type": "kill", "entity": "minecraft:wither", "value": 1},
-             {"type": "item", "item": "minecraft:nether_star"}],
-   "rewards": [{"type": "item", "item": "minecraft:beacon"},
-               {"type": "xp_levels", "xp_levels": 20}]},
-  {"title": ("Full Beacon", "Полный маяк"),
-   "tasks": [{"type": "item", "item": "minecraft:beacon"},
-             {"type": "item", "item": "minecraft:netherite_block"}],
-   "rewards": [{"type": "xp_levels", "xp_levels": 10}]},
-  {"title": ("Elytra Flight", "Полёт на элитрах"),
-   "tasks": [{"type": "stat", "stat": "minecraft:fly_one_cm", "value": 100000},
-             {"type": "item", "item": "minecraft:firework_rocket", "count": 32}],
-   "rewards": [{"type": "item", "item": "minecraft:firework_rocket", "count": 64}]},
-  {"title": ("Veteran", "Ветеран"),
-   "tasks": [{"type": "stat", "stat": "minecraft:play_time", "value": 360000},
-             {"type": "stat", "stat": "minecraft:mob_kills", "value": 500}],
-   "rewards": [{"type": "item", "item": "minecraft:enchanted_golden_apple", "count": 2}]},
-  {"title": ("All Chapters Done", "Все главы пройдены"),
-   "desc": [("Every other chapter complete. This is the last box you will tick.",
-             "Все остальные главы завершены. Это последняя галочка, которую ты поставишь.")],
-   "tasks": [{"type": "checkmark"}],
-   "rewards": [{"type": "item", "item": CUSTOM["medal"]},
-               {"type": "xp_levels", "xp_levels": 30},
-               {"type": "command", "command": "tell @s You finished the pack. Congratulations."}],
-   },
-  ],
- },
+    overworld.CHAPTER,           # 0xC001  Земли Рассвета   (Верхний мир)
+    nether.CHAPTER,              # 0xC002  Багровое Пекло   (Нижний мир)
+    end.CHAPTER,                 # 0xC003  Грань Пустоты    (Край)
 ]
 
-# --------------------------------------------------------------------------- #
-FILE_SETTINGS = {"default_quest_shape": "circle"}
+# --- data.snbt ------------------------------------------------------------- #
+FILE_SETTINGS = {
+    # форма иконки квеста по умолчанию (главы её переопределяют)
+    "default_quest_shape": "circle",
+    # en_us грузится всегда и используется, если у клиента другая локаль
+    "fallback_locale": "en_us",
+    # предметы в задачах НЕ расходуются: сдавать их можно много раз
+    "default_consume_items": False,
+}
 FILE_VERSION = 13

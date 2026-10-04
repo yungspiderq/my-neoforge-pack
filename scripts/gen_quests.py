@@ -111,20 +111,63 @@ CHAPTER_SCHEMA = {
 # поля, которые автор задаёт в questline.py, но которые НЕ попадают в SNBT главы
 # как обычные ключи (обрабатываются генератором отдельно)
 CHAPTER_META = {"id", "filename", "shape", "title", "subtitle", "quests",
-                "layout", "cols", "banner", "gate", "icon"}
+                "layout", "cols", "dx", "dy", "pad_x", "pad_y", "sections",
+                "banner", "banner_w", "banner_h", "banner_gap", "gate", "icon",
+                "images", "links"}
 
-LAYOUTS = ("line", "zigzag", "grid", "ring", "spiral", "tree")
+# flow — раскладка по графу зависимостей (слева направо, ветвление видно);
+# остальные — «геометрические»: порядок квестов в списке = порядок на экране
+LAYOUTS = ("blocks", "flow", "line", "zigzag", "grid", "ring", "spiral", "tree")
+
+# поля секции (layout="blocks"): key/title обязательны, остальное — оформление
+SECTION_META = {"key", "title", "color", "alpha", "pad", "header", "backdrop",
+                "header_h", "header_w"}
 
 VALID_SHAPES = {"circle", "diamond", "gear", "heart", "hexagon", "none",
                 "octagon", "pentagon", "rsquare", "square", ""}
 
+# ChapterImage.writeData() — все поля картинки главы, сверено с исходниками
+# 2101.1.36. "image" — строка-иконка Icon.getIcon():
+#   "kubejs:textures/gui/x.png"  — текстура из ресурсов
+#   "item:minecraft:diamond"     — иконка предмета
+#   "color:#RRGGBB"               — сплошной цвет (панель/подложка)
+#   "a + b"                      — несколько иконок друг на другом
+IMAGE_SCHEMA = {
+    "x": D, "y": D, "width": D, "height": D, "rotation": D, "image": S,
+    "color": I, "alpha": I, "order": I, "click_action": S, "dev": B,
+    "corner": B, "dependency": S, "position_locked": B, "text_on_image": B,
+    "text_shadow": B, "text_inset": I, "text_h_align": S, "text_v_align": S,
+}
+# короткие имена автора -> имена полей NBT
+IMAGE_ALIASES = {"w": "width", "h": "height", "rot": "rotation",
+                 "lock": "position_locked", "text": "text_on_image",
+                 "text_h": "text_h_align", "text_v": "text_v_align"}
+# эти ключи автора обрабатывает генератор, в NBT они не пишутся
+IMAGE_META = {"at", "dx", "dy", "dep", "title", "fit", "margin",
+              "align_y", "offset", "click_quest", "click_command",
+              "click_uri"}
+
+# ImageClickAction.ActionType — id перечисления; в NBT пишется "<type>:<data>"
+CLICK_ACTIONS = ("none", "open_uri", "open_quest", "run_command",
+                 "custom_event", "show_recipe", "show_docs")
+
+TEXT_ALIGN = ("start", "middle", "end")
+
+# QuestLink.writeData() — «портал» к квесту из другой главы
+LINK_SCHEMA = {"x": D, "y": D, "shape": S, "size": D}
+LINK_META = {"quest", "at", "dx", "dy"}
+
 # TranslationKey enum: TITLE(str), QUEST_SUBTITLE(str), QUEST_DESC(list),
-# CHAPTER_SUBTITLE(list)
+# CHAPTER_SUBTITLE(list). Ключ lang-таблицы строится как
+# "<objectType.id>.<ID16hex>.<subKey>" (TranslationManager.makeKey), поэтому
+# заголовок картинки главы живёт в ключе image.<ID>.title.
 TRANSLATION_KEYS = {
-    "chapter": {"title": S, "chapter_subtitle": LS},
-    "quest":   {"title": S, "quest_subtitle": S, "quest_desc": LS},
-    "task":    {"title": S},
-    "reward":  {"title": S},
+    "chapter":    {"title": S, "chapter_subtitle": LS},
+    "quest":      {"title": S, "quest_subtitle": S, "quest_desc": LS},
+    "task":       {"title": S},
+    "reward":     {"title": S},
+    "image":      {"title": S},
+    "quest_link": {"title": S},
 }
 
 
@@ -163,7 +206,9 @@ def snbt(value, indent: int = 0, pad: str = "\t") -> str:
     if isinstance(value, Long):
         return "%dL" % int(value)
     if isinstance(value, Double):
-        f = float(value)
+        # округление до 1e-6: координаты считаются арифметикой раскладки,
+        # и без него в файл уезжает хвост вида 7.300000000000001d
+        f = round(float(value), 6)
         txt = repr(f)
         if "." not in txt and "e" not in txt and "E" not in txt:
             txt += ".0"
@@ -316,23 +361,27 @@ def text_pair(v, field, ctx):
     raise GenError("%s: %s должен быть строкой или парой (en, ru), получено %r" % (ctx, field, v))
 
 
-def layout_points(layout, n, cols=4):
-    """Координаты квестов главы. Шаг 1.5 — как в редакторе FTB Quests."""
+def layout_points(layout, n, cols=4, dx=1.5, dy=1.5):
+    """«Геометрические» раскладки: координаты зависят только от номера квеста.
+
+    Шаг 1.5 — как в редакторе FTB Quests. Для ветвящихся деревьев используйте
+    layout="flow" (см. flow_points).
+    """
     import math
     pts = []
     if layout == "line":
         for k in range(n):
-            pts.append(((k - (n - 1) / 2) * 1.5, 0.0))
+            pts.append(((k - (n - 1) / 2) * dx, 0.0))
     elif layout == "zigzag":
         for k in range(n):
             r, c = divmod(k, cols)
             x = c if r % 2 == 0 else (cols - 1 - c)
-            pts.append(((x - (cols - 1) / 2) * 1.5, r * 1.5))
+            pts.append(((x - (cols - 1) / 2) * dx, r * dy))
     elif layout == "grid":
         rows = max(1, -(-n // cols))
         for k in range(n):
             r, c = divmod(k, cols)
-            pts.append(((c - (cols - 1) / 2) * 1.5, (r - (rows - 1) / 2) * 1.5))
+            pts.append(((c - (cols - 1) / 2) * dx, (r - (rows - 1) / 2) * dy))
     elif layout == "ring":
         R = 1.8 + 0.22 * n
         for k in range(n):
@@ -346,16 +395,188 @@ def layout_points(layout, n, cols=4):
     elif layout == "tree":
         for k in range(n):
             branch = 0.0 if k % 3 == 0 else (1.7 if (k // 3) % 2 == 0 else -1.7)
-            pts.append((branch, k * 1.3))
+            pts.append((branch, k * dy))
     else:
         raise GenError("неизвестная раскладка %r (есть: %s)"
                        % (layout, ", ".join(LAYOUTS)))
     return pts
 
 
+def flow_points(n, deps, dx=2.0, dy=1.35):
+    """Слоистая раскладка по графу зависимостей (слева направо).
+
+    deps: {индекс_квеста_0based: [индексы_родителей]} — только внутри главы.
+    Слой узла = 1 + максимум слоёв родителей, у корней 0. Внутри слоя узлы
+    сортируются по медиане позиций родителей/детей (несколько проходов
+    вверх-вниз), поэтому линии зависимостей почти не пересекаются и глава
+    читается как дерево прокачки, а не как свалка кружков.
+    """
+    if n == 0:
+        return []
+    layer = {}
+    state = [0] * n                     # 0 не был, 1 в стеке, 2 готов
+
+    def visit(i, stack):
+        if state[i] == 1:
+            cycle = stack[stack.index(i):] + [i]
+            raise GenError("цикл в зависимостях главы: %s"
+                           % " -> ".join(str(c + 1) for c in cycle))
+        if state[i] == 2:
+            return layer[i]
+        state[i] = 1
+        d = 0
+        for p in deps.get(i, []):
+            if p == i:
+                raise GenError("квест %d зависит сам от себя" % (i + 1))
+            d = max(d, visit(p, stack + [i]) + 1)
+        state[i] = 2
+        layer[i] = d
+        return d
+
+    for i in range(n):
+        visit(i, [])
+
+    children = {i: [] for i in range(n)}
+    for i, ps in deps.items():
+        for p in ps:
+            children.setdefault(p, []).append(i)
+
+    max_layer = max(layer.values())
+    layers = [[] for _ in range(max_layer + 1)]
+    for i in range(n):                  # порядок объявления как начальный
+        layers[layer[i]].append(i)
+
+    pos = {}
+    for L in layers:
+        for k, i in enumerate(L):
+            pos[i] = k
+
+    def bary(i, neigh):
+        vals = [pos[j] for j in neigh if j in pos]
+        return sum(vals) / len(vals) if vals else float(pos[i])
+
+    for _ in range(8):
+        for li in range(1, len(layers)):
+            L = layers[li]
+            L.sort(key=lambda i: (bary(i, deps.get(i, [])), i))
+            for k, i in enumerate(L):
+                pos[i] = k
+        for li in range(len(layers) - 2, -1, -1):
+            L = layers[li]
+            L.sort(key=lambda i: (bary(i, children.get(i, [])), i))
+            for k, i in enumerate(L):
+                pos[i] = k
+
+    pts = [None] * n
+    for i in range(n):
+        L = layers[layer[i]]
+        pts[i] = (layer[i] * dx, (pos[i] - (len(L) - 1) / 2.0) * dy)
+    return pts
+
+
+def blocks_layout(n, deps_by_idx, sec_of, sections, dx, dy, cols, pad_x, pad_y):
+    """Раскладка «витрина»: глава делится на секции, каждая рисуется отдельным
+    блоком со своей подложкой и подписью.
+
+    Внутри секции — обычная слоистая раскладка flow по её собственным
+    зависимостям; связи между секциями остаются (линии рисуются поверх блоков),
+    но на геометрию не влияют. Блоки укладываются полками по cols штук в ряд.
+
+    Возвращает (positions {индекс0: (x, y)}, boxes {секция: (x0, y0, x1, y1)}).
+    """
+    members = {s: [] for s in sections}
+    for i in range(n):
+        members[sec_of[i]].append(i)
+
+    local_pts, sizes = {}, {}
+    for sec in sections:
+        mem = members[sec]
+        remap = {i: k for k, i in enumerate(mem)}
+        ldeps = {k: [remap[p] for p in deps_by_idx.get(i, []) if p in remap]
+                 for k, i in enumerate(mem)}
+        pts = flow_points(len(mem), ldeps, dx, dy)
+        minx = min(p[0] for p in pts)
+        miny = min(p[1] for p in pts)
+        local_pts[sec] = {i: (pts[k][0] - minx, pts[k][1] - miny)
+                          for k, i in enumerate(mem)}
+        sizes[sec] = (max(p[0] for p in pts) - minx, max(p[1] for p in pts) - miny)
+
+    positions, boxes = {}, {}
+    y_off = 0.0
+    for row in range(0, len(sections), max(1, cols)):
+        chunk = sections[row:row + max(1, cols)]
+        x_off, row_h = 0.0, 0.0
+        for sec in chunk:
+            w, h = sizes[sec]
+            for i, (lx, ly) in local_pts[sec].items():
+                positions[i] = (x_off + lx, y_off + ly)
+            boxes[sec] = (x_off, y_off, x_off + w, y_off + h)
+            x_off += w + pad_x
+            row_h = max(row_h, h)
+        y_off += row_h + pad_y
+    return positions, boxes
+
+
+# --------------------------------------------------------------------------- #
+#  ID
+#
+#  Схема (младший полубайт квеста всегда 0 — в него пишутся индексы задач
+#  и наград, до 15 штук на квест):
+#      глава      0xC000 + ci                     ci = 1..255
+#      квест      0x100000 + ci*0x1000 + qi*0x10  qi = 1..255
+#      задача     0x200000 + slot + t             t  = 0..15
+#      награда    0x300000 + slot + r             r  = 0..15
+#      картинка   0x400000 + ci*0x1000 + i        i  = 1..255
+#      quest_link 0x500000 + ci*0x1000 + l        l  = 1..255
+#  где slot = (id квеста) & 0xFFFFF = ci*0x1000 + qi*0x10.
+#  Диапазоны не пересекаются, поэтому коллизий не бывает by construction.
+# --------------------------------------------------------------------------- #
+
+QUEST_BASE, TASK_BASE, REWARD_BASE, IMAGE_BASE, LINK_BASE = \
+    0x100000, 0x200000, 0x300000, 0x400000, 0x500000
+CHAPTER_BASE = 0xC000
+
+
 def quest_id_of(ci: int, qi: int) -> int:
-    """ci — номер главы с 1, qi — номер квеста с 1. Младший байт нулевой."""
-    return 0x1000 + ci * 0x100 + qi * 0x10
+    """ci — номер главы с 1, qi — номер квеста с 1."""
+    if not 1 <= ci <= 0xFF:
+        raise GenError("номер главы %d вне диапазона 1..255" % ci)
+    if not 1 <= qi <= 0xFF:
+        raise GenError("номер квеста %d вне диапазона 1..255 (глава %d)" % (qi, ci))
+    return QUEST_BASE + ci * 0x1000 + qi * 0x10
+
+
+def quest_index_of(raw: int):
+    """raw id квеста -> (ci, qi); None, если это не id квеста."""
+    if raw < QUEST_BASE or raw >= QUEST_BASE + 0x100000:
+        return None
+    slot = raw - QUEST_BASE
+    if slot % 0x10 != 0:
+        return None
+    return slot // 0x1000, (slot % 0x1000) // 0x10
+
+
+def image_id_of(ci: int, ii: int) -> int:
+    return IMAGE_BASE + ci * 0x1000 + ii
+
+
+def link_id_of(ci: int, li: int) -> int:
+    return LINK_BASE + ci * 0x1000 + li
+
+
+def _sub_id(quest_id: int, base: int, index: int, what: str) -> int:
+    """ID задачи/награды из ID квеста (см. схему выше)."""
+    if index > 0xF:
+        raise GenError("у квеста %#x больше 15 под-объектов (%s) — не хватает "
+                       "младшего полубайта ID" % (quest_id, what))
+    slot = quest_id & 0xFFFFF
+    if slot == 0:
+        raise GenError("ID квеста %#x: младшие 20 бит не должны быть нулём" % quest_id)
+    if slot % 0x10 != 0:
+        raise GenError("ID квеста %#x: младший полубайт должен быть 0, чтобы в нём "
+                       "разместить индекс (%s). Используйте quest_id_of() из "
+                       "gen_quests.py" % (quest_id, what))
+    return base + slot + index
 
 
 def build(questline, file_version, file_settings):
@@ -363,7 +584,6 @@ def build(questline, file_version, file_settings):
     ids = {}                 # int id -> code string
     used_ids = {}            # int id -> описание, кто занял
     translations = {"en_us": {}, "ru_ru": {}}
-    last_quest_of_chapter = []
 
     def take(n, what):
         if n in used_ids:
@@ -373,17 +593,188 @@ def build(questline, file_version, file_settings):
         ids[n] = code_string(n)
         return code_string(n)
 
+    # --- pass 0: обязательные поля глав -------------------------------------
     for ci, ch in enumerate(questline, start=1):
         ctx = "глава #%d %r" % (ci, ch.get("filename", ci))
         for req in ("id", "filename", "title"):
             if req not in ch:
                 raise GenError("%s: нет обязательного поля %r" % (ctx, req))
-        layout = ch.get("layout", "line")
+        layout = ch.get("layout", "flow")
         if layout not in LAYOUTS:
-            raise GenError("%s: layout=%r не из %s" % (ctx, layout, LAYOUTS))
+            raise GenError("%s: layout=%r не из %s" % (ctx, layout, ", ".join(LAYOUTS)))
         shape = ch.get("shape", "")
         if shape not in VALID_SHAPES:
             raise GenError("%s: shape=%r нет среди текстур мода" % (ctx, shape))
+        if not (ch.get("quests") or []):
+            raise GenError("%s: нет ни одного квеста" % ctx)
+        for k in ch:
+            if k not in CHAPTER_META and k not in CHAPTER_SCHEMA:
+                raise GenError("%s: неизвестное поле главы %r" % (ctx, k))
+        sec_keys = [sec.get("key") for sec in (ch.get("sections") or [])]
+        if len(set(sec_keys)) != len(sec_keys):
+            raise GenError("%s: дублирующийся key секции" % ctx)
+        for sec in (ch.get("sections") or []):
+            for k in sec:
+                if k not in SECTION_META:
+                    raise GenError("%s: неизвестное поле секции %r" % (ctx, k))
+            for req in ("key", "title"):
+                if req not in sec:
+                    raise GenError("%s: у секции нет %r" % (ctx, req))
+        for qi, q in enumerate(ch["quests"], 1):
+            if layout == "blocks":
+                if q.get("section") not in sec_keys:
+                    raise GenError("%s / квест %d: section=%r не объявлен в "
+                                   "sections главы (%s)"
+                                   % (ctx, qi, q.get("section"), ", ".join(sec_keys)))
+            elif "section" in q:
+                raise GenError("%s / квест %d: section работает только с "
+                               "layout=\"blocks\"" % (ctx, qi))
+            for k in q:
+                if k in ("key", "deps", "x", "y", "title", "subtitle", "desc",
+                         "tasks", "rewards", "icon", "section"):
+                    continue
+                if k not in QUEST_SCHEMA:
+                    raise GenError("%s / квест %d: неизвестное поле %r" % (ctx, qi, k))
+
+    # --- pass 1: ID квестов и ключи для зависимостей ------------------------
+    # Глобальные ключи всегда содержат имя главы ("<файл>:<key|номер>"), поэтому
+    # одинаковые key в разных главах не конфликтуют. Внутри главы key и номер
+    # квеста доступны и без префикса.
+    keymap = {}              # "<файл>:<key|номер>" -> (raw id, контекст)
+    localmap = {}            # "<файл>" -> {"<key>": (raw id, контекст)}
+
+    def reg(key, raw, ctx):
+        if key in keymap:
+            raise GenError("дублирующийся ключ квеста %r: %s и %s"
+                           % (key, keymap[key][1], ctx))
+        keymap[key] = (raw, ctx)
+
+    for ci, ch in enumerate(questline, start=1):
+        fn = ch["filename"]
+        localmap.setdefault(fn, {})
+        for qi, q in enumerate(ch["quests"], start=1):
+            raw = quest_id_of(ci, qi)
+            ctx = "%s / квест %d" % (fn, qi)
+            reg("%s:%d" % (fn, qi), raw, ctx)
+            if q.get("key"):
+                if not isinstance(q["key"], str):
+                    raise GenError("%s: key должен быть строкой" % ctx)
+                if ":" in q["key"]:
+                    raise GenError("%s: key не должен содержать двоеточие" % ctx)
+                if q["key"] in localmap[fn]:
+                    raise GenError("%s: дублирующийся key внутри главы" % ctx)
+                localmap[fn][q["key"]] = (raw, ctx)
+                reg("%s:%s" % (fn, q["key"]), raw, ctx)
+
+    def dep_raw(spec, fn, ctx):
+        if isinstance(spec, bool):
+            raise GenError("%s: ссылка не должна быть bool" % ctx)
+        if isinstance(spec, int):
+            key = "%s:%d" % (fn, spec)
+        elif isinstance(spec, str):
+            if ":" in spec:
+                key = spec
+            elif spec in localmap.get(fn, {}):
+                return localmap[fn][spec][0]
+            else:
+                key = "%s:%s" % (fn, spec)
+        else:
+            raise GenError("%s: ссылка %r — не номер и не строка" % (ctx, spec))
+        if key not in keymap:
+            raise GenError(
+                "%s: %r не найдено. Формат: номер квеста в этой главе (3), его "
+                'key ("diamonds") либо "<файл_главы>:<key|номер>" '
+                '("overworld:portalow")' % (ctx, spec))
+        return keymap[key][0]
+
+
+    # --- pass 2: зависимости ------------------------------------------------
+    deps_raw = {}            # raw id квеста -> [raw id]
+    prev_chapter_last = None
+    for ci, ch in enumerate(questline, start=1):
+        fn = ch["filename"]
+        n = len(ch["quests"])
+        for qi, q in enumerate(ch["quests"], start=1):
+            raw = quest_id_of(ci, qi)
+            ctx = "%s / квест %d" % (fn, qi)
+            specs = q.get("deps")
+            if specs is None:
+                # без явных deps — цепочка от предыдущего квеста главы;
+                # первый квест может быть «привязан» к предыдущей главе (gate)
+                if qi > 1:
+                    specs = [qi - 1]
+                elif ch.get("gate") and prev_chapter_last is not None:
+                    deps_raw[raw] = [prev_chapter_last]
+                    continue
+                else:
+                    specs = []
+            if isinstance(specs, (int, str)):
+                specs = [specs]
+            if not isinstance(specs, (list, tuple)):
+                raise GenError("%s: deps должен быть списком" % ctx)
+            out = []
+            for s in specs:
+                t = dep_raw(s, fn, ctx)
+                if t == raw:
+                    raise GenError("%s: квест зависит сам от себя" % ctx)
+                out.append(t)
+            deps_raw[raw] = sorted(set(out))
+        prev_chapter_last = quest_id_of(ci, n)
+
+    # --- pass 3: раскладки ---------------------------------------------------
+    positions = {}           # raw id квеста -> (x, y)
+    section_boxes = {}       # ci -> {секция: (x0, y0, x1, y1)}
+    section_order = {}       # ci -> [key секции]
+    for ci, ch in enumerate(questline, start=1):
+        n = len(ch["quests"])
+        layout = ch.get("layout", "flow")
+        if layout == "blocks":
+            secs = [sec["key"] for sec in ch["sections"]]
+            section_order[ci] = secs
+            sec_of = {}
+            deps_by_idx = {}
+            for qi in range(1, n + 1):
+                raw = quest_id_of(ci, qi)
+                sec_of[qi - 1] = ch["quests"][qi - 1]["section"]
+                idxs = []
+                for d in deps_raw.get(raw, []):
+                    t = quest_index_of(d)
+                    if t and t[0] == ci:
+                        idxs.append(t[1] - 1)
+                deps_by_idx[qi - 1] = idxs
+            pts, boxes = blocks_layout(n, deps_by_idx, sec_of, secs,
+                                       float(ch.get("dx", 2.0)),
+                                       float(ch.get("dy", 1.4)),
+                                       int(ch.get("cols", 2)),
+                                       float(ch.get("pad_x", 4.0)),
+                                       float(ch.get("pad_y", 5.0)))
+            section_boxes[ci] = boxes
+            for qi in range(1, n + 1):
+                positions[quest_id_of(ci, qi)] = pts[qi - 1]
+        elif layout == "flow":
+            local = {}
+            for qi in range(1, n + 1):
+                raw = quest_id_of(ci, qi)
+                idxs = []
+                for d in deps_raw.get(raw, []):
+                    t = quest_index_of(d)
+                    if t and t[0] == ci:
+                        idxs.append(t[1] - 1)
+                local[qi - 1] = idxs
+            pts = flow_points(n, local, float(ch.get("dx", 2.0)),
+                              float(ch.get("dy", 1.35)))
+        else:
+            pts = layout_points(layout, n, ch.get("cols", 4),
+                                float(ch.get("dx", 1.5)), float(ch.get("dy", 1.5)))
+        for qi in range(1, n + 1):
+            positions[quest_id_of(ci, qi)] = pts[qi - 1]
+
+    # --- pass 4: NBT ---------------------------------------------------------
+    for ci, ch in enumerate(questline, start=1):
+        ctx = "глава #%d %r" % (ci, ch.get("filename", ci))
+        fn = ch["filename"]
+        quests = ch["quests"]
+        n = len(quests)
 
         ch_id = take(ch["id"], ctx)
         t_en, t_ru = text_pair(ch["title"], "title", ctx)
@@ -397,17 +788,12 @@ def build(questline, file_version, file_settings):
             if lines:
                 translations[loc]["chapter.%s.chapter_subtitle" % ch_id] = lines
 
-        quests = ch.get("quests") or []
-        if not quests:
-            raise GenError("%s: нет ни одного квеста" % ctx)
-        pts = layout_points(layout, len(quests), ch.get("cols", 4))
-
         chapter_nbt = {
             "id": ch_id,
             "group": "",
             "order_index": ci - 1,
-            "filename": ch["filename"],
-            "default_quest_shape": shape,
+            "filename": fn,
+            "default_quest_shape": ch.get("shape", ""),
             "default_hide_dependency_lines": False,
             "quests": [],
             "quest_links": [],
@@ -416,8 +802,6 @@ def build(questline, file_version, file_settings):
         for k, v in ch.items():
             if k in CHAPTER_META:
                 continue
-            if k not in CHAPTER_SCHEMA:
-                raise GenError("%s: неизвестное поле главы %r" % (ctx, k))
             chapter_nbt[k] = coerce("%s.%s" % (ctx, k), v, CHAPTER_SCHEMA[k], ctx)
         if "icon" in ch:
             chapter_nbt["icon"] = item_stack(ch["icon"], 1)
@@ -427,19 +811,17 @@ def build(questline, file_version, file_settings):
             qctx = "%s / квест %d" % (ctx, qi)
             raw_id = quest_id_of(ci, qi)
             q_id = take(raw_id, qctx)
+            qx, qy = positions[raw_id]
 
-            qx, qy = pts[qi - 1]
             quest_nbt = {
                 "id": q_id,
                 "x": Double(float(q.get("x", qx))),
                 "y": Double(float(q.get("y", qy))),
             }
             for k, v in q.items():
-                if k in ("id", "x", "y", "title", "subtitle", "desc", "deps",
-                         "tasks", "rewards", "icon"):
+                if k in ("key", "deps", "id", "x", "y", "title", "subtitle",
+                         "desc", "tasks", "rewards", "icon", "section"):
                     continue
-                if k not in QUEST_SCHEMA:
-                    raise GenError("%s: неизвестное поле квеста %r" % (qctx, k))
                 quest_nbt[k] = coerce("%s.%s" % (qctx, k), v, QUEST_SCHEMA[k], qctx)
             if "icon" in q:
                 quest_nbt["icon"] = item_stack(q["icon"], 1)
@@ -469,7 +851,7 @@ def build(questline, file_version, file_settings):
                     raw.setdefault("observe_type", OBSERVE_TYPES.index(name))
                 if raw.get("type") == "item" and "item" in raw:
                     raw["item"] = item_stack(raw["item"], raw.get("count", 1))
-                t_id = take(_sub_id(raw_id, 0x2000, ti, "задача"), tctx)
+                t_id = take(_sub_id(raw_id, TASK_BASE, ti, "задача"), tctx)
                 entry = validate_entry(raw, TASK_SCHEMA, None, tctx, "task")
                 entry = {"id": t_id, **entry}
                 if entry.get("count") == 1:
@@ -486,7 +868,7 @@ def build(questline, file_version, file_settings):
                 raw = dict(r)
                 if raw.get("type") == "item" and "item" in raw:
                     raw["item"] = item_stack(raw["item"], raw.get("count", 1))
-                r_id = take(_sub_id(raw_id, 0x3000, ri, "награда"), rctx)
+                r_id = take(_sub_id(raw_id, REWARD_BASE, ri, "награда"), rctx)
                 entry = validate_entry(raw, REWARD_SCHEMA, None, rctx, "reward")
                 entry = {"id": r_id, **entry}
                 if entry.get("count") == 1:
@@ -495,51 +877,188 @@ def build(questline, file_version, file_settings):
             if rewards:
                 quest_nbt["rewards"] = rewards
 
-            chapter_quests.append((raw_id, q, quest_nbt))
+            dep_codes = [code_string(d) for d in deps_raw.get(raw_id, [])]
+            if dep_codes:
+                quest_nbt["dependencies"] = sorted(set(dep_codes))
+
             chapter_nbt["quests"].append(quest_nbt)
+            chapter_quests.append((raw_id, q, quest_nbt))
 
-        # --- зависимости: явные deps > цепочка внутри главы > gate главы ---
-        prev_chapter_last = last_quest_of_chapter[-1] if last_quest_of_chapter else None
-        for k, (raw_id, q, qn) in enumerate(chapter_quests):
-            deps = []
-            if "deps" in q:
-                for d in q["deps"]:
-                    deps.append(("ext", d))
-            elif k > 0:
-                deps.append(("local", chapter_quests[k - 1][0]))
-            elif ch.get("gate") and prev_chapter_last is not None:
-                deps.append(("ext", prev_chapter_last))
-            q["_deps"] = deps
-        last_quest_of_chapter.append(chapter_quests[-1][0])
+        # --- картинки главы (баннер + авторские) ---
+        xs = [positions[quest_id_of(ci, qi)][0] for qi in range(1, n + 1)]
+        ys = [positions[quest_id_of(ci, qi)][1] for qi in range(1, n + 1)]
+        cx_all = (min(xs) + max(xs)) / 2.0
+        cy_all = (min(ys) + max(ys)) / 2.0
 
-        # --- баннер главы как ChapterImage ---
+        img_no = 0
+        raw_images = []
+        for sec in (ch.get("sections") or []):
+            x0, y0, x1, y1 = section_boxes[ci][sec["key"]]
+            color = int(sec.get("color", 0x2E6B3A))
+            pad = float(sec.get("pad", 1.05))
+            if sec.get("backdrop", True):
+                img_no += 1
+                raw_images.append((img_no, {
+                    "x": Double((x0 + x1) / 2.0), "y": Double((y0 + y1) / 2.0),
+                    "width": Double(x1 - x0 + 2 * pad + 1.0),
+                    "height": Double(y1 - y0 + 2 * pad + 1.0),
+                    "rotation": Double(0.0),
+                    "image": "kubejs:textures/gui/panel_soft.png",
+                    "color": color, "alpha": int(sec.get("alpha", 46)),
+                    "order": -200, "position_locked": True,
+                }, None, "%s / подложка секции %r" % (ctx, sec["key"])))
+            if sec.get("header", True):
+                img_no += 1
+                hw = float(sec.get("header_w") or min(max(x1 - x0 + 2.2, 3.6), 9.5))
+                hh = float(sec.get("header_h", 0.9))
+                raw_images.append((img_no, {
+                    "x": Double((x0 + x1) / 2.0),
+                    "y": Double(y0 - pad - hh / 2.0 - 0.25),
+                    "width": Double(hw), "height": Double(hh),
+                    "rotation": Double(0.0),
+                    "image": "kubejs:textures/gui/plate.png",
+                    "color": color, "alpha": 225, "order": -40,
+                    "text_on_image": True, "text_shadow": True, "text_inset": 7,
+                    "position_locked": True,
+                }, text_pair(sec["title"], "title",
+                             "%s / секция %r" % (ctx, sec["key"])),
+                    "%s / заголовок секции %r" % (ctx, sec["key"])))
+
         if ch.get("banner"):
-            xs = [p[0] for p in pts]; ys = [p[1] for p in pts]
-            cx = (min(xs) + max(xs)) / 2
-            top = min(ys)
-            chapter_nbt["images"] = [{
-                "x": Double(cx - 4.0), "y": Double(top - 3.4),
-                "width": Double(8.0), "height": Double(2.0),
-                "rotation": Double(0.0),
+            img_no += 1
+            bw = float(ch.get("banner_w", 12.0))
+            bh = float(ch.get("banner_h", 3.0))
+            gap = float(ch.get("banner_gap", 1.7))
+            raw_images.append((img_no, {
+                "x": Double(cx_all),
+                "y": Double(min(ys) - gap - bh / 2.0),
+                "width": Double(bw), "height": Double(bh), "rotation": Double(0.0),
                 "image": "kubejs:textures/gui/%s.png" % ch["banner"],
-            }]
-        chapters.append((ch, ch_id, chapter_nbt, chapter_quests))
+                "order": -100,
+            }, None, "%s / баннер" % ctx))
 
-    # --- разрешение зависимостей (после всех глав) ---
-    id_by_raw = {raw: cid for (_, ch_list) in
-                 [(c, c[3]) for c in chapters] for (raw, q, qn) in ch_list
-                 for cid in [qn["id"]]}
-    for ch, ch_id, chapter_nbt, cqs in chapters:
-        for raw_id, q, qn in cqs:
-            out = []
-            for kind, d in q.get("_deps", []):
-                target = d if kind == "ext" else d
-                if target not in id_by_raw:
-                    raise GenError("квест %#x ссылается на несуществующую "
-                                   "зависимость %#x" % (raw_id, target))
-                out.append(id_by_raw[target])
-            if out:
-                qn["dependencies"] = sorted(set(out))
+        for im in (ch.get("images") or []):
+            img_no += 1
+            ictx = "%s / картинка %d" % (ctx, img_no)
+            out, title, base = {}, None, None
+
+            if "at" in im:
+                tgt = dep_raw(im["at"], fn, ictx)
+                if tgt not in positions:
+                    raise GenError("%s: at=%r — не квест этой главы" % (ictx, im["at"]))
+                base = positions[tgt]
+
+            for k, v in im.items():
+                if k in IMAGE_META:
+                    continue
+                kk = IMAGE_ALIASES.get(k, k)
+                if kk not in IMAGE_SCHEMA:
+                    raise GenError("%s: неизвестное поле картинки %r" % (ictx, k))
+                out[kk] = coerce("%s.%s" % (ictx, kk), v, IMAGE_SCHEMA[kk], ictx)
+            if "image" not in out:
+                raise GenError("%s: нет поля image (строка-иконка)" % ictx)
+
+            # --- позиция ---
+            if im.get("fit") == "quests":
+                m = float(im.get("margin", 1.5))
+                out.setdefault("x", Double(cx_all))
+                out.setdefault("y", Double(cy_all))
+                out.setdefault("width", Double(max(xs) - min(xs) + 2 * m + 1.0))
+                out.setdefault("height", Double(max(ys) - min(ys) + 2 * m + 1.0))
+            elif "x" not in out or "y" not in out:
+                if base is None:
+                    raise GenError("%s: нужны x и y (или at=<ключ квеста>, или "
+                                   "fit=\"quests\")" % ictx)
+                bx = base[0] + float(im.get("dx", 0.0))
+                by = base[1] + float(im.get("dy", 0.0))
+                ay = im.get("align_y")
+                if ay == "top":
+                    by = min(ys) - float(im.get("offset", 3.0))
+                elif ay == "bottom":
+                    by = max(ys) + float(im.get("offset", 3.0))
+                elif ay is not None:
+                    raise GenError("%s: align_y=%r — бывает top/bottom" % (ictx, ay))
+                out.setdefault("x", Double(bx))
+                out.setdefault("y", Double(by))
+            for fk in ("width", "height", "rotation"):
+                out.setdefault(fk, Double(0.0 if fk == "rotation" else 1.0))
+
+            # --- показывать только после завершения квеста ---
+            if "dependency" in out:
+                raise GenError("%s: пишите dep=<ключ квеста>, а не dependency "
+                               "(code-строку генератор подставит сам)" % ictx)
+            if "dep" in im:
+                out["dependency"] = code_string(dep_raw(im["dep"], fn, ictx))
+
+            # --- действие по клику ---
+            clicks = [k for k in ("click_quest", "click_command", "click_uri")
+                      if k in im]
+            if len(clicks) > 1:
+                raise GenError("%s: только одно из %s" % (ictx, ", ".join(clicks)))
+            if clicks or "click_action" in out:
+                if clicks:
+                    k = clicks[0]
+                    if k == "click_quest":
+                        act = "open_quest:" + code_string(dep_raw(im[k], fn, ictx))
+                    elif k == "click_command":
+                        act = "run_command:" + str(im[k])
+                    else:
+                        act = "open_uri:" + str(im[k])
+                    out["click_action"] = act
+                act = out["click_action"]
+                if act.split(":", 1)[0] not in CLICK_ACTIONS:
+                    raise GenError("%s: click_action=%r — тип не из %s"
+                                   % (ictx, act, ", ".join(CLICK_ACTIONS)))
+
+            for a in ("text_h_align", "text_v_align"):
+                if a in out and out[a] not in TEXT_ALIGN:
+                    raise GenError("%s: %s=%r не из %s" % (ictx, a, out[a], TEXT_ALIGN))
+            if out.get("text_on_image") and "title" not in im:
+                raise GenError("%s: text_on_image без title — рисовать нечего" % ictx)
+            if "title" in im:
+                title = text_pair(im["title"], "title", ictx)
+            raw_images.append((img_no, out, title, ictx))
+
+        for img_no, out, title, ictx in raw_images:
+            i_id = take(image_id_of(ci, img_no), ictx)
+            entry = {"id": i_id}
+            entry.update(out)
+            chapter_nbt["images"].append(entry)
+            if title:
+                translations["en_us"]["image.%s.title" % i_id] = title[0]
+                translations["ru_ru"]["image.%s.title" % i_id] = title[1]
+
+        # --- ссылки на квесты других глав (quest_links) ---
+        for li, lk in enumerate(ch.get("links") or [], start=1):
+            lctx = "%s / ссылка %d" % (ctx, li)
+            if "quest" not in lk:
+                raise GenError("%s: нет поля quest" % lctx)
+            tgt = dep_raw(lk["quest"], fn, lctx)
+            out = {}
+            for k, v in lk.items():
+                if k in LINK_META:
+                    continue
+                if k not in LINK_SCHEMA:
+                    raise GenError("%s: неизвестное поле ссылки %r" % (lctx, k))
+                out[k] = coerce("%s.%s" % (lctx, k), v, LINK_SCHEMA[k], lctx)
+            if "x" not in out or "y" not in out:
+                if "at" in lk:
+                    btgt = dep_raw(lk["at"], fn, lctx)
+                    bx, by = positions[btgt]
+                else:
+                    # слева от первого столбца, на уровне квестов-наследников
+                    bx = min(xs) - float(ch.get("dx", 2.0))
+                    heirs = [positions[quest_id_of(ci, qi)][1] for qi in range(1, n + 1)
+                             if tgt in deps_raw.get(quest_id_of(ci, qi), [])]
+                    by = sum(heirs) / len(heirs) if heirs else 0.0
+                out["x"] = Double(bx + float(lk.get("dx", 0.0)))
+                out["y"] = Double(by + float(lk.get("dy", 0.0)))
+            l_id = take(link_id_of(ci, li), lctx)
+            entry = {"id": l_id, "linked_quest": code_string(tgt)}
+            entry.update(out)
+            chapter_nbt["quest_links"].append(entry)
+
+        chapters.append((ch, ch_id, chapter_nbt, chapter_quests))
 
     data_nbt = {"version": int(file_version)}
     for k, v in (file_settings or {}).items():
@@ -547,33 +1066,15 @@ def build(questline, file_version, file_settings):
             if v not in VALID_SHAPES:
                 raise GenError("data.snbt: default_quest_shape=%r недопустима" % v)
             data_nbt[k] = v
+        elif k == "fallback_locale" and isinstance(v, str):
+            data_nbt[k] = v
+        elif k == "default_consume_items" and isinstance(v, bool):
+            data_nbt[k] = v
         else:
             raise GenError("data.snbt: поле %r не проверено — добавьте его в схему "
                            "gen_quests.py, прежде чем использовать" % k)
 
     return chapters, data_nbt, translations, used_ids
-
-
-def _sub_id(quest_id: int, base: int, index: int, what: str) -> int:
-    """ID задачи/награды из ID квеста.
-
-    Младший байт ID квеста должен быть нулевым — туда пишется индекс
-    под-объекта (0..15). Например квест 0x1110:
-        задача 0 -> 0x2110, задача 1 -> 0x2111, ...
-        награда 0 -> 0x3110
-    Квесты в одной главе разнесены шагом 0x10, поэтому диапазоны не пересекаются.
-    """
-    if index > 0xF:
-        raise GenError("у квеста %#x больше 15 под-объектов (%s) — не хватает "
-                       "младшего байта ID" % (quest_id, what))
-    slot = quest_id & 0xFFF
-    if slot == 0:
-        raise GenError("ID квеста %#x: младшие 12 бит не должны быть нулём" % quest_id)
-    if slot % 0x10 != 0:
-        raise GenError("ID квеста %#x: младший байт должен быть 0, чтобы в нём "
-                       "разместить индекс (%s). Используйте схему 0x1cq0 из "
-                       "документации questline.py" % (quest_id, what))
-    return base + slot + index
 
 
 # --------------------------------------------------------------------------- #
@@ -593,8 +1094,27 @@ def main():
     nt = sum(len(q.get("tasks", [])) for c in chapters for q in c[2]["quests"])
     nr = sum(len(q.get("rewards", [])) for c in chapters for q in c[2]["quests"])
     ni = sum(len(c[2].get("images", [])) for c in chapters)
-    print("глав: %d   квестов: %d   задач: %d   наград: %d   картинок: %d   уникальных ID: %d"
-          % (len(chapters), nq, nt, nr, ni, len(used)))
+    nl = sum(len(c[2].get("quest_links", [])) for c in chapters)
+    nd = sum(len(q.get("dependencies", [])) for c in chapters for q in c[2]["quests"])
+    print("глав: %d   квестов: %d   задач: %d   наград: %d   картинок: %d   "
+          "ссылок: %d   зависимостей: %d   уникальных ID: %d"
+          % (len(chapters), nq, nt, nr, ni, nl, nd, len(used)))
+    for ch, _cid, nbt, _cqs in chapters:
+        pts = [(float(q["x"]), float(q["y"])) for q in nbt["quests"]]
+        seen = {}
+        for i, p_ in enumerate(pts, 1):
+            if p_ in seen:
+                raise GenError("глава %r: квесты %d и %d стоят в одной точке %s — "
+                               "иконки наложатся друг на друга"
+                               % (ch["filename"], seen[p_], i, p_))
+            seen[p_] = i
+        print("   %-14s квестов %-4d картинок %-3d ссылок %-2d  %s"
+              % (ch["filename"], len(nbt["quests"]), len(nbt["images"]),
+                 len(nbt["quest_links"]),
+                 "x[%.1f…%.1f] y[%.1f…%.1f]" % (min(p[0] for p in pts),
+                                                max(p[0] for p in pts),
+                                                min(p[1] for p in pts),
+                                                max(p[1] for p in pts))))
 
     # --- перекрёстная проверка lang-ключей ---
     # used: {int id -> описание}; lang-ключи содержат code-строки, поэтому
@@ -635,7 +1155,6 @@ def main():
     for loc, table in translations.items():
         write_snbt(os.path.join(out, "lang", loc + ".snbt"), table)
 
-    total = sum(len(f) for _, _, f in os.walk(out))
     print("записано в %s:" % os.path.relpath(out, ROOT))
     for root, dirs, files in os.walk(out):
         dirs.sort()

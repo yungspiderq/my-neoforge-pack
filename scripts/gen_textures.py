@@ -1,16 +1,31 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-gen_textures.py — рисует текстуры для кастомных предметов KubeJS и баннеры глав.
+gen_textures.py — рисует текстуры для кастомных предметов KubeJS и для
+оформления глав FTB Quests.
 
-Текстуры рисуются программно (Pillow), а не скачиваются: они детерминированы,
-весят байты и их можно перегенерировать в CI. Пиксель-арт 16x16 для предметов,
-баннеры глав — 256x64.
+Всё рисуется программно (Pillow), а не скачивается: картинки детерминированы
+(одни и те же байты при каждом запуске), весят килобайты и их можно
+перепроверять в CI через --check.
 
 Куда кладутся:
-  kubejs/assets/kubejs/textures/item/<имя>.png   — предметы KubeJS
-  kubejs/assets/kubejs/textures/gui/<имя>.png    — баннеры глав FTB Quests
-                                                   (в главе: image: "kubejs:textures/gui/<имя>.png")
+  kubejs/assets/kubejs/textures/item/<имя>.png   — предметы KubeJS (16x16)
+  kubejs/assets/kubejs/textures/gui/<имя>.png    — картинки глав FTB Quests
+      в SNBT главы: image: "kubejs:textures/gui/<имя>.png"
+
+Что за картинки gui/:
+  banner_<глава>.png  — широкий баннер над деревом квестов (256x64, 4:1);
+  plate.png           — пластинка для подписей секций (красится полем color,
+                        текст рисуется поверх шрифтом игры и переводится);
+  panel_soft.png      — мягкая подложка под блок секции (красится color);
+  halo.png            — ореол позади иконки вехи (красится color);
+  portal.png,
+  portal_end.png      — кликабельные «порталы» между главами.
+
+Все gui-текстуры, кроме баннеров, рисуются белыми/серыми: FTB Quests умножает
+цвет текстуры на поле color картинки (ChapterImageButton.draw →
+image.withColor(color.withAlpha(alpha))), поэтому одна текстура даёт любой
+цвет оформления.
 
 Запуск:  python scripts/gen_textures.py [--check]
 """
@@ -19,6 +34,8 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import io
+import math
 import os
 import sys
 
@@ -32,49 +49,108 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ITEM_DIR = os.path.join(ROOT, "kubejs", "assets", "kubejs", "textures", "item")
 GUI_DIR = os.path.join(ROOT, "kubejs", "assets", "kubejs", "textures", "gui")
 
-T = None            # полностью прозрачный
 
+# --------------------------------------------------------------------------- #
+#  Примитивы
+# --------------------------------------------------------------------------- #
 
 def px(img, x, y, c):
     if 0 <= x < img.width and 0 <= y < img.height:
-        img.putpixel((x, y), c)
+        img.putpixel((int(x), int(y)), c)
 
 
 def rect(img, x0, y0, w, h, c):
-    for y in range(y0, y0 + h):
-        for x in range(x0, x0 + w):
+    for y in range(int(y0), int(y0 + h)):
+        for x in range(int(x0), int(x0 + w)):
             px(img, x, y, c)
 
 
 def circle(img, cx, cy, r, c, fill=True):
-    for y in range(img.height):
-        for x in range(img.width):
-            d2 = (x - cx) ** 2 + (y - cy) ** 2
+    for y in range(int(cy - r - 1), int(cy + r + 2)):
+        for x in range(int(cx - r - 1), int(cx + r + 2)):
+            d2 = (x + 0.5 - cx) ** 2 + (y + 0.5 - cy) ** 2
             if fill and d2 <= r * r:
                 px(img, x, y, c)
-            elif not fill and abs((d2 ** 0.5) - r) < 0.75:
+            elif not fill and abs(math.sqrt(d2) - r) < 0.75:
                 px(img, x, y, c)
 
 
 def star(img, cx, cy, r, c):
     """Пятиконечная звезда попиксельно."""
-    import math
     pts = []
     for i in range(10):
         ang = -math.pi / 2 + i * math.pi / 5
         rr = r if i % 2 == 0 else r * 0.42
         pts.append((cx + rr * math.cos(ang), cy + rr * math.sin(ang)))
+
     def inside(x, y):
-        n = len(pts); s = 0
+        n = len(pts)
+        s = 0
         for i in range(n):
-            x0, y0 = pts[i]; x1, y1 = pts[(i + 1) % n]
+            x0, y0 = pts[i]
+            x1, y1 = pts[(i + 1) % n]
             if (y0 > y) != (y1 > y) and x < (x1 - x0) * (y - y0) / (y1 - y0) + x0:
                 s += 1
         return s % 2 == 1
+
     for y in range(int(cy - r - 1), int(cy + r + 2)):
         for x in range(int(cx - r - 1), int(cx + r + 2)):
             if inside(x + 0.5, y + 0.5):
                 px(img, x, y, c)
+
+
+def rnd(seed):
+    """Детерминированный псевдослучай в [0, 1): без него баннеры не были бы
+    воспроизводимы, а --check в CI начал бы падать."""
+    x = math.sin(seed * 127.1 + 311.7) * 43758.5453
+    return x - math.floor(x)
+
+
+def clamp(v, lo=0, hi=255):
+    return max(lo, min(hi, int(v)))
+
+
+def mix(a, b, t):
+    return tuple(clamp(a[i] * (1 - t) + b[i] * t) for i in range(3))
+
+
+def vgrad(img, top, bottom, y0=0, y1=None):
+    """Вертикальный градиент по всей ширине."""
+    y1 = img.height if y1 is None else y1
+    for y in range(y0, y1):
+        t = (y - y0) / max(1, (y1 - y0 - 1))
+        c = mix(top, bottom, t)
+        for x in range(img.width):
+            px(img, x, y, c + (255,))
+
+
+def frame(img, light, dark):
+    """Тонкая рамка: светлая сверху/слева, тёмная снизу/справа."""
+    W, H = img.width, img.height
+    for x in range(W):
+        px(img, x, 0, light + (255,))
+        px(img, x, H - 1, dark + (255,))
+    for y in range(H):
+        px(img, 0, y, light + (255,))
+        px(img, W - 1, y, dark + (255,))
+
+
+def hills(img, base_y, amp, color, seed, step=0.021):
+    """Силуэт холмов синусоидой: заполняет всё, что ниже линии."""
+    for x in range(img.width):
+        h = base_y + amp * math.sin(x * step * 6.283 + seed) \
+                   + amp * 0.5 * math.sin(x * step * 15.7 + seed * 2.3)
+        for y in range(int(h), img.height):
+            px(img, x, y, color + (255,))
+
+
+def stars(img, count, seed, ymax=None, bright=(255, 255, 255)):
+    ymax = img.height if ymax is None else ymax
+    for i in range(count):
+        x = int(rnd(seed + i) * img.width)
+        y = int(rnd(seed + i + 99.5) * ymax)
+        a = int(120 + rnd(seed + i + 7.25) * 135)
+        px(img, x, y, bright + (a,))
 
 
 # --------------------------------------------------------------------------- #
@@ -88,8 +164,7 @@ def tex_quest_token():
     circle(img, 7.5, 7.5, 5.2, (250, 200, 60, 255))       # золото
     circle(img, 6.0, 6.0, 2.0, (255, 236, 150, 255))      # блик
     star(img, 8, 8, 3.0, (150, 92, 10, 255))              # звезда-гравировка
-    # ушко для ленты
-    rect(img, 7, 0, 2, 2, (120, 78, 12, 255))
+    rect(img, 7, 0, 2, 2, (120, 78, 12, 255))             # ушко для ленты
     return img
 
 
@@ -108,8 +183,7 @@ def tex_quest_token_premium():
 def tex_quest_medal():
     """Финальная медаль: звезда на двух лентах."""
     img = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
-    # ленты
-    for i in range(7):
+    for i in range(7):                                    # ленты
         px(img, 4 + i // 2, i, (176, 28, 40, 255))
         px(img, 11 - i // 2, i, (28, 60, 176, 255))
     circle(img, 7.5, 10.0, 5.4, (120, 88, 20, 255))       # ободок
@@ -127,124 +201,251 @@ ITEMS = {
 
 
 # --------------------------------------------------------------------------- #
-#  Баннеры глав (256x64)
+#  Баннеры глав (256x64, соотношение 4:1 — как width/height картинки главы)
 # --------------------------------------------------------------------------- #
 
-def banner(base, accent, light, motif, label):
-    """Полосатый градиентный фон + мотив + подпись.
-
-    FTB Quests рисует картинку главы как прямоугольник в координатах сетки
-    квестов, поэтому баннер делается широким (4:1).
-    """
+def banner_overworld():
+    """Рассвет над холмами: небо, солнце, два слоя холмов, ёлки."""
     W, H = 256, 64
     img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     for y in range(H):
         t = y / (H - 1)
-        c = tuple(int(base[i] * (1 - t * 0.55) + accent[i] * (t * 0.55)) for i in range(3))
+        if t < 0.55:
+            c = mix((14, 22, 52), (96, 74, 128), t / 0.55)
+        else:
+            c = mix((96, 74, 128), (248, 178, 96), (t - 0.55) / 0.45)
         for x in range(W):
-            # лёгкая «шахматная» фактура, чтобы баннер не был плоским
-            shade = 0 if ((x // 8) + (y // 8)) % 2 == 0 else -14
-            img.putpixel((x, y), (max(0, min(255, c[0] + shade)),
-                                  max(0, min(255, c[1] + shade)),
-                                  max(0, min(255, c[2] + shade)), 235))
-    # рамка
-    for x in range(W):
-        px(img, x, 0, light + (255,)); px(img, x, H - 1, (0, 0, 0, 160))
-    for y in range(H):
-        px(img, 0, y, light + (255,)); px(img, W - 1, y, (0, 0, 0, 160))
-
-    if motif == "ore":
-        for i, (mx, my) in enumerate([(28, 30), (52, 20), (40, 44), (70, 36), (22, 14)]):
-            for dx in range(-5, 6):
-                for dy in range(-5, 6):
-                    if abs(dx) + abs(dy) <= 5:
-                        px(img, mx + dx, my + dy, light if (dx + dy) % 3 else accent)
-    elif motif == "sword":
-        for i in range(34):
-            px(img, 30 + i, 48 - i, light)
-            px(img, 31 + i, 48 - i, light)
-        rect(img, 24, 44, 12, 4, accent)
-    elif motif == "wheat":
-        for sx in (26, 40, 54):
-            for i in range(26):
-                px(img, sx, 20 + i, accent)
-            for i in range(5):
-                px(img, sx - 3 + i, 14 + i * 2, light)
-                px(img, sx + 3 - i, 14 + i * 2, light)
-    elif motif == "gear":
-        cx, cy, r = 42, 32, 16
-        for y in range(H):
-            for x in range(W):
-                d = ((x - cx) ** 2 + (y - cy) ** 2) ** 0.5
-                if r - 4 <= d <= r:
-                    import math
-                    a = math.atan2(y - cy, x - cx)
-                    if (int((a + math.pi) / (math.pi / 6))) % 2 == 0 or d <= r - 4:
-                        px(img, x, y, light)
-        circle(img, cx, cy, 6, accent)
-    elif motif == "portal":
-        for y in range(10, 54):
-            for x in range(20, 66):
-                if (x - 20) % 8 < 5 and (y - 10) % 8 < 6:
-                    px(img, x, y, accent)
-        rect(img, 18, 8, 50, 4, (60, 30, 20, 255))
-        rect(img, 18, 52, 50, 4, (60, 30, 20, 255))
-    elif motif == "star":
-        star(img, 44, 32, 22, light)
-        for i in range(40):
-            px(img, 80 + i * 3, 12 + (i * 7) % 40, (255, 255, 255, 190))
-    elif motif == "blocks":
-        for i, (bx, by) in enumerate([(20, 14), (40, 14), (60, 14), (20, 34), (40, 34), (60, 34)]):
-            rect(img, bx, by, 16, 16, light if i % 2 else accent)
-            rect(img, bx, by, 16, 2, (255, 255, 255, 90))
-    elif motif == "compass":
-        cx, cy, r = 42, 32, 20
-        circle(img, cx, cy, r, (0, 0, 0, 120), fill=False)
-        circle(img, cx, cy, r - 3, light, fill=False)
-        for i in range(-r + 4, r - 3):
-            px(img, cx + i, cy + i, accent)
-            px(img, cx + i, cy - i, (255, 255, 255, 220))
-    elif motif == "potion":
-        rect(img, 36, 10, 12, 6, (200, 200, 210, 255))
-        for y in range(16, 50):
-            w = min(20, 6 + (y - 16) * 2)
-            rect(img, 42 - w // 2, y, w, 1, accent if y > 26 else light)
-    elif motif == "cube":
-        cx, cy = 42, 32
-        for y in range(-18, 19):
-            for x in range(-18, 19):
-                if abs(x) + abs(y) <= 18:
-                    px(img, cx + x, cy + y, light if x < 0 and y < 0 else (accent if x >= 0 else base))
-    else:  # 'plain'
-        rect(img, 18, 18, 52, 28, light)
-
-    # подпись слева от мотива не рисуем: текст в FTB Quests берётся из lang-файла,
-    # а растровые буквы выглядели бы чужеродно при смене языка.
+            shade = 0 if ((x // 8) + (y // 8)) % 2 == 0 else -6
+            img.putpixel((x, y), (clamp(c[0] + shade), clamp(c[1] + shade),
+                                  clamp(c[2] + shade), 240))
+    stars(img, 70, 3.1, ymax=26)
+    circle(img, 206, 26, 11, (255, 214, 130, 235))         # солнце
+    circle(img, 206, 26, 7, (255, 244, 200, 255))
+    hills(img, 40, 5.0, (46, 88, 52), 1.7)                 # дальние холмы
+    hills(img, 50, 4.0, (26, 58, 34), 4.2)                 # ближние холмы
+    for i in range(9):                                     # ёлки на ближних
+        x = 14 + i * 27 + int(rnd(i * 3.3) * 10)
+        h = 8 + int(rnd(i * 7.7) * 6)
+        for k in range(h):
+            w = max(1, (h - k) // 3)
+            rect(img, x - w, 58 - k, w * 2 + 1, 1, (16, 40, 24))
+        rect(img, x, 58, 1, 4, (40, 26, 16))
+    rect(img, 0, 62, W, 2, (14, 30, 18, 255))
+    frame(img, (178, 226, 150), (10, 22, 12))
     return img
 
 
-CHAPTER_BANNERS = {
-    # имя файла              базовый   акцент    светлый   мотив
-    "banner_beginning":   ((58, 122, 58),  (34, 74, 34),  (150, 214, 130), "blocks"),
-    "banner_mining":      ((92, 92, 104),  (48, 48, 58),  (196, 168, 96),  "ore"),
-    "banner_combat":      ((150, 46, 46),  (74, 18, 18),  (236, 168, 150), "sword"),
-    "banner_food":        ((176, 148, 52), (96, 148, 52), (240, 226, 150), "wheat"),
-    "banner_enchanting":  ((96, 52, 156),  (44, 20, 78),  (196, 150, 240), "potion"),
-    "banner_redstone":    ((140, 40, 36),  (66, 16, 16),  (240, 120, 100), "gear"),
-    "banner_nether":      ((146, 62, 32),  (62, 20, 16),  (246, 168, 90),  "portal"),
-    "banner_end":         ((70, 56, 110),  (24, 18, 44),  (206, 196, 246), "star"),
-    "banner_exploration": ((44, 122, 132), (16, 58, 66),  (150, 224, 226), "compass"),
-    "banner_building":    ((110, 122, 150),(52, 60, 80),  (196, 206, 226), "cube"),
-    "banner_advancement": ((150, 122, 46),(86, 66, 18),  (246, 226, 150), "star"),
-    "banner_custom":      ((176, 132, 34),(96, 66, 12),  (250, 222, 130), "gear"),
-    "banner_mastery":     ((40, 40, 46),  (16, 16, 20),  (198, 176, 240), "star"),
+def banner_nether():
+    """Пекло: багровое небо, силуэт крепости, озеро лавы, угли."""
+    W, H = 256, 64
+    img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    for y in range(H):
+        t = y / (H - 1)
+        c = mix((26, 6, 8), (150, 44, 18), t) if t < 0.72 \
+            else mix((150, 44, 18), (255, 150, 44), (t - 0.72) / 0.28)
+        for x in range(W):
+            shade = 0 if ((x // 8) + (y // 8)) % 2 == 0 else -8
+            img.putpixel((x, y), (clamp(c[0] + shade), clamp(c[1] + shade),
+                                  clamp(c[2] + shade), 240))
+    for i in range(46):                                    # угли
+        x = int(rnd(i * 2.7) * W)
+        y = int(rnd(i * 5.1) * 44)
+        px(img, x, y, (255, 190 + int(rnd(i) * 60), 90, 200))
+    for bx, bw, bh in [(18, 26, 30), (52, 14, 20), (168, 30, 34), (206, 12, 18)]:
+        rect(img, bx, 46 - bh, bw, bh, (54, 16, 14, 255))  # башни крепости
+        for k in range(0, bw - 4, 6):
+            rect(img, bx + 2 + k, 46 - bh + 4, 3, 6, (255, 120, 40, 220))
+        rect(img, bx, 46 - bh, bw, 2, (86, 28, 20, 255))
+    hills(img, 46, 3.0, (74, 22, 16), 2.2)
+    for y in range(52, H):                                 # лава
+        for x in range(W):
+            w = math.sin(x * 0.09 + y * 0.6) * 0.5 + 0.5
+            c = mix((210, 78, 18), (255, 214, 96), w * (1 - (y - 52) / 14.0))
+            px(img, x, y, c + (255,))
+    frame(img, (255, 168, 92), (30, 8, 6))
+    return img
+
+
+def banner_end():
+    """Край: почти чёрное небо, звёзды, остров и обсидиановые колонны."""
+    W, H = 256, 64
+    img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    for y in range(H):
+        t = y / (H - 1)
+        c = mix((6, 5, 16), (36, 26, 62), t)
+        for x in range(W):
+            shade = 0 if ((x // 8) + (y // 8)) % 2 == 0 else -4
+            img.putpixel((x, y), (clamp(c[0] + shade), clamp(c[1] + shade),
+                                  clamp(c[2] + shade), 240))
+    stars(img, 190, 11.3)
+    for i in range(9):                                     # фиолетовая дымка
+        x = int(rnd(i * 4.4) * W)
+        y = int(rnd(i * 9.1) * 40)
+        circle(img, x, y, 3 + int(rnd(i) * 4), (120, 90, 190, 26))
+    for bx, bh in [(30, 34), (54, 26), (186, 30), (214, 22)]:   # колонны
+        rect(img, bx, 52 - bh, 10, bh, (18, 12, 26, 255))
+        rect(img, bx, 52 - bh, 10, 2, (46, 34, 62, 255))
+        if bh > 28:
+            px(img, bx + 5, 52 - bh - 3, (226, 190, 255, 255))  # кристалл
+            px(img, bx + 4, 52 - bh - 2, (190, 150, 240, 255))
+            px(img, bx + 6, 52 - bh - 2, (190, 150, 240, 255))
+    hills(img, 50, 2.5, (206, 202, 150), 3.4)              # остров Края
+    for x in range(0, W, 3):
+        px(img, x, 49 + int(rnd(x * 0.7) * 3), (170, 166, 120, 255))
+    rect(img, 118, 40, 20, 12, (8, 6, 14, 255))            # врата
+    for k in range(4):
+        px(img, 121 + k * 5, 46, (150, 240, 220, 255))
+    frame(img, (176, 160, 232), (4, 3, 10))
+    return img
+
+
+BANNERS = {
+    "banner_overworld": banner_overworld,
+    "banner_nether":    banner_nether,
+    "banner_end":       banner_end,
 }
 
+
+# --------------------------------------------------------------------------- #
+#  Оформление: белые/серые текстуры, которые FTB Quests красит полем color
+# --------------------------------------------------------------------------- #
+
+def tex_plate():
+    """Пластинка для подписи секции (128x24).
+
+    Рисуется светлой: цвет задаёт поле color картинки главы. Лёгкий градиент
+    и светлая нижняя кромка дают объём, скруглённые углы — аккуратный вид.
+    """
+    W, H = 128, 24
+    img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    r = 5
+    for y in range(H):
+        t = y / (H - 1)
+        v = int(236 - 46 * t)                       # светлый верх, темнее низ
+        for x in range(W):
+            # скругление углов
+            dx = max(r - x, x - (W - 1 - r), 0)
+            dy = max(r - y, y - (H - 1 - r), 0)
+            if dx * dx + dy * dy > r * r:
+                continue
+            a = 255
+            if dx or dy:
+                a = 200
+            img.putpixel((x, y), (v, v, v, a))
+    for x in range(r, W - r):                       # нижняя кромка-подсветка
+        img.putpixel((x, H - 2), (255, 255, 255, 255))
+        img.putpixel((x, H - 1), (180, 180, 180, 255))
+    for x in range(r, W - r):                       # верхняя кромка
+        img.putpixel((x, 0), (255, 255, 255, 210))
+    return img
+
+
+def tex_panel_soft():
+    """Мягкая подложка под блок секции (64x64).
+
+    Полностью белая внутри и прозрачная по краям: при alpha≈46 и цвете секции
+    получается лёгкая «зона» позади квестов, на которой иконки читаются лучше.
+    """
+    S = 64
+    img = Image.new("RGBA", (S, S), (0, 0, 0, 0))
+    r = 9
+    edge = 6
+    for y in range(S):
+        for x in range(S):
+            dx = max(r - x, x - (S - 1 - r), 0)
+            dy = max(r - y, y - (S - 1 - r), 0)
+            if dx * dx + dy * dy > r * r:
+                continue
+            d = min(x, y, S - 1 - x, S - 1 - y)
+            if d < edge:                              # мягкий край
+                a = int(150 + 105 * (d / edge))
+                v = int(228 + 27 * (d / edge))
+            else:
+                a, v = 255, 250
+            img.putpixel((x, y), (v, v, v, a))
+    return img
+
+
+def tex_halo():
+    """Ореол позади вехи (64x64): радиальное свечение + тонкое кольцо."""
+    S = 64
+    img = Image.new("RGBA", (S, S), (0, 0, 0, 0))
+    c = S / 2.0
+    for y in range(S):
+        for x in range(S):
+            d = math.hypot(x + 0.5 - c, y + 0.5 - c) / c
+            if d > 1.0:
+                continue
+            a = int(255 * (1 - d) ** 2.1)             # свечение к центру
+            ring = 1.0 if 0.70 <= d <= 0.76 else 0.0
+            v = int(255 * (1 - 0.25 * ring))
+            a = min(255, a + int(190 * ring))
+            img.putpixel((x, y), (v, v, v, a))
+    return img
+
+
+def tex_portal():
+    """Портал в Незер (32x32): обсидиановая рама и фиолетовое полотно."""
+    S = 32
+    img = Image.new("RGBA", (S, S), (0, 0, 0, 0))
+    rect(img, 4, 1, 24, 30, (24, 18, 34, 255))        # рама
+    for i in range(0, 24, 4):                         # блоки обсидиана
+        rect(img, 4 + i, 1, 3, 3, (38, 30, 52, 255))
+        rect(img, 4 + i, 28, 3, 3, (38, 30, 52, 255))
+    for i in range(0, 30, 4):
+        rect(img, 4, 1 + i, 3, 3, (38, 30, 52, 255))
+        rect(img, 25, 1 + i, 3, 3, (38, 30, 52, 255))
+    for y in range(4, 28):                              # полотно
+        for x in range(7, 25):
+            w = math.sin(x * 0.55 + y * 0.42) * 0.5 + 0.5
+            w2 = math.sin(y * 0.31 - x * 0.19) * 0.5 + 0.5
+            c = mix((70, 20, 130), (206, 130, 255), (w + w2) / 2)
+            px(img, x, y, c + (255,))
+    for i in range(14):                                 # блики
+        x = 8 + int(rnd(i * 3.7) * 15)
+        y = 5 + int(rnd(i * 8.1) * 21)
+        px(img, x, y, (240, 210, 255, 235))
+    return img
+
+
+def tex_portal_end():
+    """Портал Края (32x32): чёрная рама со звёздами внутри."""
+    S = 32
+    img = Image.new("RGBA", (S, S), (0, 0, 0, 0))
+    rect(img, 3, 3, 26, 26, (10, 8, 18, 255))
+    rect(img, 4, 4, 24, 24, (4, 3, 10, 255))
+    for y in range(6, 26):
+        for x in range(6, 26):
+            w = math.sin(x * 0.7 + y * 0.5) * 0.5 + 0.5
+            if w > 0.86:
+                px(img, x, y, (150, 240, 220, 255))
+            elif w > 0.72:
+                px(img, x, y, (60, 120, 130, 255))
+    for i in range(18):
+        x = 6 + int(rnd(i * 2.3) * 19)
+        y = 6 + int(rnd(i * 6.9) * 19)
+        px(img, x, y, (226, 214, 255, 235))
+    for k in range(4):                                  # зелёные «глаза» рамы
+        px(img, 4 + k * 7, 4, (150, 240, 220, 255))
+        px(img, 4 + k * 7, 27, (150, 240, 220, 255))
+    return img
+
+
+GUI_TEXTURES = {
+    "plate":        tex_plate,
+    "panel_soft":   tex_panel_soft,
+    "halo":         tex_halo,
+    "portal":       tex_portal,
+    "portal_end":   tex_portal_end,
+}
+
+
+# --------------------------------------------------------------------------- #
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true",
-                    help="не писать, а сверить хэши существующих файлов")
+                    help="не писать, а сверить хэши существующных файлов")
     args = ap.parse_args()
 
     made = []
@@ -254,13 +455,16 @@ def main():
     for name, fn in ITEMS.items():
         img = fn()
         assert img.size == (16, 16), name
-        p = os.path.join(ITEM_DIR, name + ".png")
-        made.append((p, img))
+        made.append((os.path.join(ITEM_DIR, name + ".png"), img))
 
-    for name, (base, accent, light, motif) in CHAPTER_BANNERS.items():
-        img = banner(base, accent, light, motif, name)
-        p = os.path.join(GUI_DIR, name + ".png")
-        made.append((p, img))
+    for name, fn in BANNERS.items():
+        img = fn()
+        assert img.size == (256, 64), name
+        made.append((os.path.join(GUI_DIR, name + ".png"), img))
+
+    for name, fn in GUI_TEXTURES.items():
+        img = fn()
+        made.append((os.path.join(GUI_DIR, name + ".png"), img))
 
     if args.check:
         bad = []
@@ -268,10 +472,10 @@ def main():
             if not os.path.isfile(p):
                 bad.append(p + " (нет)")
                 continue
-            buf = os.urandom(0)
-            import io
-            b = io.BytesIO(); img.save(b, "PNG")
-            if hashlib.sha256(b.getvalue()).hexdigest() != hashlib.sha256(open(p, "rb").read()).hexdigest():
+            b = io.BytesIO()
+            img.save(b, "PNG")
+            if hashlib.sha256(b.getvalue()).hexdigest() != \
+                    hashlib.sha256(open(p, "rb").read()).hexdigest():
                 bad.append(p + " (отличается)")
         if bad:
             print("ТЕКСТУРЫ УСТАРЕЛИ:")
@@ -282,11 +486,11 @@ def main():
         print("текстур %d, все актуальны" % len(made))
         return 0
 
-    import io
     for p, img in made:
         img.save(p, "PNG")
-        print("  %-64s %5d байт" % (os.path.relpath(p, ROOT).replace(os.sep, "/"),
-                                     os.path.getsize(p)))
+        print("  %-62s %4dx%-4d %6d байт"
+              % (os.path.relpath(p, ROOT).replace(os.sep, "/"),
+                 img.width, img.height, os.path.getsize(p)))
     print("всего текстур: %d" % len(made))
     return 0
 

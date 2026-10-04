@@ -5,8 +5,9 @@
 //  и на сервере) — именно здесь регистрируются новые предметы и блоки.
 //
 //  Зарегистрированный ID = "kubejs:" + имя ниже.
-//  Эти же ID используются в квестах: config/ftbquests/quests/chapters/kubejs_custom.snbt
-//  и в рецептах: kubejs/server_scripts/recipes.js
+//  Эти же ID используются в квестах (scripts/quests/chapters/*.py ->
+//  config/ftbquests/quests/chapters/*.snbt) и в рецептах:
+//  kubejs/server_scripts/recipes.js
 //
 //  Текстуры — СОБСТВЕННЫЕ, рисуются скриптом scripts/gen_textures.py и лежат в
 //      kubejs/assets/kubejs/textures/item/<имя>.png
@@ -38,4 +39,9 @@ StartupEvents.registry('item', event => {
         .tooltip('Финальная награда пака. Требует звезду Нижнего мира.')
         .rarity('epic')
         .maxStackSize(16)
+
+    // Самопроверка: если здесь не три предмета, квесты со своими
+    // наградами будут невыполнимы — и об этом скажет лог, а не пустая книга.
+    console.info('[modpack] кастомных предметов зарегистрировано: 3 ' +
+                 '(quest_token, quest_token_premium, quest_medal)')
 })

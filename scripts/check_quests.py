@@ -64,6 +64,26 @@ VALID_SHAPES = {"circle", "diamond", "gear", "heart", "hexagon", "none",
                 "octagon", "pentagon", "rsquare", "square", ""}
 LIST_KEYS = {"quest_desc", "chapter_subtitle"}
 
+# ChapterImage.writeData()/readData() — 2101.1.36. Картинки главы рисуются
+# слоем BACKGROUND под линиями зависимостей и квестами; порядок между ними
+# задаёт поле order.
+IMAGE_FIELDS = {"x": "double", "y": "double", "width": "double",
+                "height": "double", "rotation": "double", "image": "str",
+                "color": "int", "alpha": "int", "order": "int",
+                "click_action": "str", "dev": "bool", "corner": "bool",
+                "dependency": "str", "position_locked": "bool",
+                "text_on_image": "bool", "text_shadow": "bool",
+                "text_inset": "int", "text_h_align": "str",
+                "text_v_align": "str", "icon": "compound", "tags": "list"}
+IMAGE_CLICK_ACTIONS = {"none", "open_uri", "open_quest", "run_command",
+                       "custom_event", "show_recipe", "show_docs"}
+IMAGE_TEXT_ALIGN = {"start", "middle", "end"}
+# QuestLink.writeData()
+LINK_FIELDS = {"x": "double", "y": "double", "shape": "str", "size": "double",
+               "linked_quest": "str", "icon": "compound", "tags": "list"}
+# иконка объекта (QuestObjectBase.rawIcon) пишется как ItemStack SNBT
+ICON_KINDS = ("item:", "color:", "bullet:", "hollow_rectangle:", "part:")
+
 errs, warns, oks = [], [], []
 alldeps = []            # [(id_зависимости, контекст)] — заполняется при разборе глав
 
@@ -253,6 +273,9 @@ def num_kind(raw) -> str:
 ID_RE = re.compile(r"^[0-9A-F]{16}$")
 
 
+KUBEJS_TEX_RE = re.compile(r"^[a-z0-9_.\-]+:textures/[a-z0-9_./\-]+\.(png|jpg)$")
+
+
 def check_id(v, ctx):
     if not isinstance(v, str) or not ID_RE.match(v):
         err("%s: id=%r не является 16-символьным uppercase hex" % (ctx, v))
@@ -276,6 +299,104 @@ def check_item_stack(item, ctx):
         err("%s: item.count должен быть int (внутри стака), получено %r (%s)"
             % (ctx, cnt, num_kind(cnt)))
     return iid
+
+
+def check_icon_field(icon, ctx):
+    """QuestObjectBase.icon — это ItemStack SNBT {id, count} либо строка-иконка
+    (Icon.getIcon). Возвращает id предмета, если иконка предметная."""
+    if isinstance(icon, str):
+        if icon.endswith((".png", ".jpg")) or icon.startswith(ICON_KINDS):
+            return None
+        warn("%s: icon=%r — нестандартная строка-иконка" % (ctx, icon))
+        return None
+    if isinstance(icon, dict):
+        iid = check_item_stack(icon, ctx)
+        return iid
+    err("%s: icon должен быть compound или строкой, получено %r"
+        % (ctx, type(icon).__name__))
+    return None
+
+
+def check_image(img, ctx, ids):
+    """Картинка главы. Проверяет типы полей, строку-иконку, click_action и
+    зависимость (картинка показывается только после завершения квеста)."""
+    if not isinstance(img, dict):
+        err("%s: image должен быть compound" % ctx)
+        return None
+    for k, v in img.items():
+        if k == "id":
+            continue
+        want = IMAGE_FIELDS.get(k)
+        if want is None:
+            warn("%s: неизвестное поле картинки %r — мод его проигнорирует"
+                 % (ctx, k))
+            continue
+        if want in ("double", "int") and num_kind(v) != want:
+            err("%s: поле %s должно быть %s, получено %r (%s)"
+                % (ctx, k, want, v, num_kind(v)))
+        elif want == "bool" and not (isinstance(v, bool)
+                                     or (num_kind(v) == "byte"
+                                         and str(v) in ("0b", "1b"))):
+            err("%s: поле %s должно быть bool (0b/1b), получено %r" % (ctx, k, v))
+        elif want == "str" and not isinstance(v, str):
+            err("%s: поле %s должно быть строкой, получено %r" % (ctx, k, v))
+        elif want == "compound":
+            check_icon_field(v, ctx + "." + k)
+    im = img.get("image")
+    if not isinstance(im, str) or not im:
+        err("%s: image.image должен быть непустой строкой-иконкой" % ctx)
+    elif im.endswith((".png", ".jpg")):
+        if not KUBEJS_TEX_RE.match(im):
+            warn("%s: image=%r — путь не похож на ресурс пака" % (ctx, im))
+        elif im.split(":", 1)[0] == "kubejs":
+            # картинка обязана лежать в ресурсах пака, иначе в книге будет
+            # «missing texture»; рисуется всё через scripts/gen_textures.py
+            ns, path = im.split(":", 1)
+            fp = os.path.join(KUBEJS, "assets", ns, path)
+            if not os.path.isfile(fp):
+                err("%s: текстура %s не найдена (%s). Перегенерируйте: "
+                    "python scripts/gen_textures.py" % (ctx, im, fp))
+            else:
+                yield_items_tex.append(im)
+    elif not (im.startswith(ICON_KINDS) or "#" in im or " + " in im):
+        warn("%s: image=%r — нестандартный формат иконки" % (ctx, im))
+    ca = img.get("click_action")
+    if isinstance(ca, str) and ca:
+        if ca.split(":", 1)[0] not in IMAGE_CLICK_ACTIONS:
+            err("%s: click_action=%r — тип не из %s"
+                % (ctx, ca, ", ".join(sorted(IMAGE_CLICK_ACTIONS))))
+    for a in ("text_h_align", "text_v_align"):
+        if img.get(a) not in (None, *IMAGE_TEXT_ALIGN):
+            err("%s: %s=%r не из %s" % (ctx, a, img[a],
+                                        ", ".join(sorted(IMAGE_TEXT_ALIGN))))
+    if img.get("text_on_image") in (True, "1b") and img.get("id") is None:
+        warn("%s: text_on_image без id — заголовок из lang-таблицы не найдётся"
+             % ctx)
+    return img.get("dependency")
+
+
+def check_quest_link(lk, ctx, ids):
+    """QuestLink — иконка квеста из другой главы: linked_quest обязан быть
+    code-строкой существующего квеста."""
+    if not isinstance(lk, dict):
+        err("%s: quest_link должен быть compound" % ctx)
+        return None
+    for k, v in lk.items():
+        if k == "id":
+            continue
+        want = LINK_FIELDS.get(k)
+        if want is None:
+            warn("%s: неизвестное поле ссылки %r — мод его проигнорирует"
+                 % (ctx, k))
+            continue
+        if want in ("double",) and num_kind(v) != "double":
+            err("%s: поле %s должно быть double, получено %r (%s)"
+                % (ctx, k, v, num_kind(v)))
+        elif want == "str" and not isinstance(v, str):
+            err("%s: поле %s должно быть строкой, получено %r" % (ctx, k, v))
+    if lk.get("shape") not in (None, *VALID_SHAPES):
+        err("%s: shape=%r недопустима" % (ctx, lk.get("shape")))
+    return lk.get("linked_quest")
 
 
 def check_tasks_rewards(entries, allowed, required, kind, ctx, ids):
@@ -344,6 +465,7 @@ def check_tasks_rewards(entries, allowed, required, kind, ctx, ids):
 
 
 yield_items, yield_ents, yield_dims = [], [], []
+yield_items_tex = []
 yield_stats, yield_biomes, yield_structs, yield_advs = [], [], [], []
 
 
@@ -472,19 +594,50 @@ def main():
         for extra in ("quests", "quest_links", "images"):
             if not isinstance(ch.get(extra, []), list):
                 err("%s: %s должен быть списком" % (ctx, extra))
-        for img in ch.get("images", []):
-            if not isinstance(img, dict):
-                err("%s: image должен быть compound" % ctx)
+        # картинки главы: у каждой должен быть свой id (иначе мод выдаст
+        # случайный, и заголовок из lang-таблицы перестанет находиться)
+        for ii, img in enumerate(ch.get("images", []), 1):
+            ictx = "%s/images[%d]" % (ctx, ii)
+            if isinstance(img, dict):
+                if "id" in img:
+                    iid = check_id(img["id"], ictx)
+                    if iid:
+                        if iid in ids:
+                            err("%s: дублирующийся id картинки %s (уже %s в %s)"
+                                % (ictx, iid, ids[iid][0], ids[iid][1]))
+                        ids[iid] = ("image", ictx)
+                else:
+                    warn("%s: нет id — мод сгенерирует случайный, заголовок "
+                         "и зависимость из lang-таблицы потеряются" % ictx)
+                dep = check_image(img, ictx, ids)
+                if dep:
+                    alldeps.append((dep, ictx))
+            else:
+                err("%s: image должен быть compound" % ictx)
+
+        # ссылки на квесты других глав
+        for li, lk in enumerate(ch.get("quest_links", []), 1):
+            lctx = "%s/quest_links[%d]" % (ctx, li)
+            if not isinstance(lk, dict):
+                err("%s: quest_link должен быть compound" % lctx)
                 continue
-            for fk in ("x", "y", "width", "height", "rotation"):
-                if fk in img and num_kind(img[fk]) != "double":
-                    err("%s: image.%s должен быть double, получено %r (%s)"
-                        % (ctx, fk, img[fk], num_kind(img[fk])))
-            im = img.get("image")
-            if not isinstance(im, str) or ":" not in im:
-                err("%s: image.image должен быть ResourceLocation или путём к .png" % ctx)
-            elif not (im.endswith(".png") or im.endswith(".jpg") or im.startswith(("item:", "block:", "color:"))):
-                warn("%s: image.image=%r — нестандартный формат иконки" % (ctx, im))
+            lid = check_id(lk.get("id"), lctx)
+            if lid:
+                if lid in ids:
+                    err("%s: дублирующийся id ссылки %s (уже %s в %s)"
+                        % (lctx, lid, ids[lid][0], ids[lid][1]))
+                ids[lid] = ("quest_link", lctx)
+            tgt = check_quest_link(lk, lctx, ids)
+            if tgt:
+                alldeps.append((tgt, lctx))
+            else:
+                err("%s: нет linked_quest — ссылка никуда не ведёт" % lctx)
+
+        # иконка главы — тоже ItemStack, её предмет надо сверить с реестром
+        if "icon" in ch:
+            iid = check_icon_field(ch["icon"], ctx + ".icon")
+            if iid:
+                yield_items.append(iid)
 
         quest_ids_here = []
         for qi, q in enumerate(ch.get("quests", []), 1):
@@ -510,8 +663,13 @@ def main():
                                 "rewards", qctx, ids)
             if not q.get("tasks"):
                 warn("%s: у квеста нет ни одной задачи — его невозможно завершить" % qctx)
+            if "icon" in q:
+                iid = check_icon_field(q["icon"], qctx + ".icon")
+                if iid:
+                    yield_items.append(iid)
             for k, v in q.items():
                 if k not in ("id", "x", "y", "shape", "size", "icon_scale", "dependencies",
+                             "icon", "tags",
                              "tasks", "rewards", "optional", "invisible", "min_width",
                              "guide_page", "progression_mode", "preset", "can_repeat",
                              "repeat_cooldown", "min_required_dependencies",
@@ -562,6 +720,10 @@ def main():
                 err("lang/%s: ключ %r должен быть вида <тип>.<ID>.<поле>" % (loc, key))
                 continue
             otype, oid, field = parts
+            if otype not in ("chapter", "quest", "task", "reward", "image",
+                             "quest_link", "chapter_group", "reward_table"):
+                err("lang/%s: ключ %s — неизвестный тип объекта %r"
+                    % (loc, key, otype))
             if oid not in ids:
                 err("lang/%s: ключ %s ссылается на несуществующий ID" % (loc, key))
             elif ids[oid][0] != otype:
@@ -646,6 +808,8 @@ def main():
     print("глав: %d   квестов: %d   уникальных ID: %d" % (chapters, quests, len(ids)))
     print("предметов в задачах/наградах: %d   мобов: %d   измерений: %d"
           % (len(set(yield_items)), len(set(yield_ents)), len(set(yield_dims))))
+    print("текстур пака в картинках глав: %d — все файлы найдены"
+          % len(set(yield_items_tex)))
     print()
     for m in oks:
         print("  \033[32mOK\033[0m  " + m)
