@@ -10,8 +10,9 @@
 //  исполняются от имени игрока.
 // =====================================================================
 
-ServerEvents.rightClicked(event => {
-    if (!event.item || event.item.id !== 'kubejs:star_lantern') return
+// В KubeJS 2101 (MC 1.21.1) правый клик предметом — это ItemEvents.rightClicked;
+// первым аргументом принимаем фильтр по ID, чтобы не дёргать событие попусту.
+ItemEvents.rightClicked('kubejs:star_lantern', event => {
     const p = event.entity
     if (!p || !p.potionEffects) return
     p.potionEffects.add('minecraft:night_vision', 400, 0, false, true)
