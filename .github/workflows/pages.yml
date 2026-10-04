@@ -128,6 +128,7 @@ jobs:
         run: |
           python3 scripts/pw.py check
           python3 scripts/pw.py list
+          python3 scripts/check_mods.py
           python3 scripts/check_quests.py --registry
           python3 scripts/gen_quests.py --check
 

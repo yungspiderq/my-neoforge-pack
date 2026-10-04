@@ -85,6 +85,55 @@ packsync\sync.cmd
 - или отредактируйте `packsync/sync.cmd` и впишите полный путь к `java.exe`
   в самое начало блока поиска.
 
+### Краш «Rendering screen» / `MixinApplyError` при открытии книги квестов
+
+В логе `crash-reports/` видно цепочку:
+
+```
+Description: Rendering screen
+MixinApplyError: Mixin [certain_questing_additions.mixins.json:ChapterImageConfigGroupMixin …] FAILED during APPLY
+Caused by: InvalidMixinException: @Shadow field val$name was not located in the target class
+           dev.ftb.mods.ftbquests.client.gui.quests.ChapterImageButton$3
+```
+
+Это **несовместимость мода Certain Questing Additions (CQA) с новыми FTB Quests**,
+а не ошибка наших квестов:
+
+* CQA 1.2.0.4 (последняя сборка, 2026-08-06) собран против FTB Quests
+  2101.1.15…2101.1.20 — там `ChapterImageButton$3` был анонимным классом с
+  синтетическим полем `val$name`.
+* В FTB Quests 2101.1.21+ `ChapterImageButton` переписали: `$3` стал
+  синтетическим `$SwitchMap…ChapterImage$TextAlign`, поля `val$name` в нём нет.
+  Миксин не применяется → краш при первой отрисовке картинки главы с текстом.
+
+**Что делать:** мод убран из пака (v1.3.1). Достаточно запустить игру через
+профиль с автосинхронизацией: `packwiz-installer` помнит в `packwiz.json`, что
+он ставил, и сам удаляет файлы, которых больше нет в индексе (в логе
+`packsync/sync.log` будет строка `Deleted mods/certain_questing_additions-…jar
+(removed from pack)`). Если синхронизация не отработала — удалите
+`mods/certain_questing_additions-*.jar` руками и запустите игру ещё раз.
+
+Возвращать мод можно только после того, как автор выпустит сборку под
+FTB Quests 2101.1.21+
+(<https://github.com/HollowHorizon/CertainQuestingAdditions>); `check_mods.py`
+всё равно не пропустит его в пак, пока в правиле `BLOCKED` не появится
+исключение по версии.
+
+Понижать FTB Quests ради CQA **нельзя**: наша книга использует `text_on_image`
+и `click_action` у картинок глав (появились в 2101.1.28), а FTB Quests Entity
+Visualization требует `ftbquests >= 2101.1.29`.
+
+Чтобы такое больше не проходило незамеченным, в паке есть
+`scripts/check_mods.py` — он оффлайн сверяет состав модов со списком заведомо
+несовместимых пар и вызывается в CI (`validate.yml`, `pages.yml`):
+
+```bash
+python3 scripts/check_mods.py     # выход с кодом 1, если нашлась несовместимость
+python3 scripts/check_mods.py --json
+```
+
+Новую несовместимость добавляют в словарь `BLOCKED` внутри этого скрипта.
+
 ### Игра не запускается после обновления пака
 1. Удалите из папки игры `packwiz.json` — это заставит installer
    перепроверить все файлы заново.

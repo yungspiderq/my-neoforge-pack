@@ -5,7 +5,7 @@
 
 Версия пака задаётся в `pack.toml` (`version = "…"`) и соответствует git-тегам `v*`.
 
-## [Unreleased]
+## [Unreleased] — 1.3.1
 
 Реворк квестовой книги по отзыву «выглядит скучно и пусто»: вместо тринадцати
 небольших глав — три большие, по одной на измерение, с секциями-витринами.
@@ -39,6 +39,20 @@
   `portal`, `portal_end`.
 
 ### Fixed
+- **Краш клиента при открытии книги квестов** (`Rendering screen` →
+  `MixinApplyError: @Shadow field val$name was not located in …
+  ChapterImageButton$3`, отчёт `crash-2026-10-04_09.33.55-client.txt`).
+  Виновник — **Certain Questing Additions 1.2.0.4**: сборка сделана под
+  FTB Quests 2101.1.15…20, где `ChapterImageButton$3` был анонимным классом с
+  синтетическим полем `val$name`; в FTB Quests 2101.1.21+ на его месте
+  `$SwitchMap…ChapterImage$TextAlign`, и миксин `ChapterImageConfigGroupMixin`
+  не применяется. Мод **удалён из пака** (12 модов вместо 13): новой сборки
+  под 2101.1.21+ у автора нет (последняя — 2026-08-06), а понижать FTB Quests
+  нельзя — `text_on_image`/`click_action` у картинок глав появились только в
+  2101.1.28, и FTB Quests Entity Visualization требует `>= 2101.1.29`.
+  На книгу квестов удаление не влияет: баннеры, подложки секций, ореолы и
+  порталы рисует сам FTB Quests, а `text_on_image` — встроенная возможность
+  2101.1.28+, а не функция аддона.
 - **KubeJS**: обработчик `StartupEvents.init` убран из
   `server_scripts/diagnostics.js` в новый `startup_scripts/diagnostics.js`.
   Ушла ошибка «Tried to register event handler 'StartupEvents.init' for
@@ -47,6 +61,13 @@
   центр картинки, а не угол, из-за чего старый баннер уезжал влево.
 
 ### Added
+- `scripts/check_mods.py` — оффлайн-проверка состава модов: восстанавливает
+  modid и версию по имени jar, сверяет со списком заведомо несовместимых пар
+  (`BLOCKED`, первым пунктом туда занесён CQA) и обязательных модов
+  (`REQUIRED`), ищет дубли jar-ов. Подключён в CI (`validate.yml`, `pages.yml`),
+  так что вернуть сломанный аддон в пак случайно больше не получится.
+- `docs/TROUBLESHOOTING.md`: раздел про краш `MixinApplyError` при открытии
+  книги квестов — как выглядит, почему возникает и что делать.
 - `check_quests.py`: полная проверка картинок глав по `ChapterImage.java`
   (типы полей, `click_action`, `text_h_align`/`text_v_align`, наличие `id`
   у `text_on_image`), существование текстуры `kubejs:textures/…` на диске,

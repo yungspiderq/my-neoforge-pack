@@ -103,11 +103,6 @@ hash = "3125b09cbbcfdc46728e42744df30d180975396c1cff3eb140fa4341100c8af0"
 metafile = true
 
 [[files]]
-file = "mods/certain-questing-additions.pw.toml"
-hash = "f26360194711901ba86bcd202990550fc263ade6d46c9529721ceb95b307fbcc"
-metafile = true
-
-[[files]]
 file = "mods/ftb-library.pw.toml"
 hash = "d58406f6e6585a0d0ddd3fa459dafd24e73d124c842f70562b23a7aa01fbb8e7"
 metafile = true

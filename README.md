@@ -188,6 +188,7 @@ python scripts/pw.py update jei        # только один
 python scripts/pw.py remove journeymap
 python scripts/pw.py list
 python scripts/pw.py check             # целостность пака
+python scripts/check_mods.py           # совместимость модов (оффлайн, см. ниже)
 ```
 
 Чтобы зафиксировать мод на текущей версии и не обновлять его — добавьте в
@@ -256,6 +257,8 @@ python scripts/pw.py add-url "Мой приватный мод" \
 ├── scripts/
 │   ├── pw.py                     ← ведение пака (моды, индекс, артефакты)
 │   ├── verify.py                 ← проверка, что автосинк реально работает
+│   ├── check_mods.py             ← совместимость модов между собой (оффлайн)
+│   ├── gen_quests.py check_quests.py gen_textures.py preview_book.py
 │   └── setup-github.py           ← публикация на GitHub одной командой
 ├── docs/                         ← подробные инструкции
 └── .github/workflows/
@@ -402,7 +405,13 @@ python scripts/check_quests.py --registry # валидация
 | JEI / Jade / JourneyMap | см. `pw.py list` | Modrinth |
 | FTB Quests Optimizer | 3.2.0-1.21.1 | Modrinth (производительность FTB Quests) |
 | FTB Quests Entity Visualization | 1.11.0 | Modrinth (мобы в задачах рендерятся в 3D) |
-| Certain Questing Additions | 1.2.0.4 | Modrinth (доп. элементы интерфейса квестов) |
+
+**Certain Questing Additions убран из пака**: сборка 1.2.0.4 сделана под
+FTB Quests 2101.1.15…20 и на FTB Quests 2101.1.21+ роняет игру при открытии
+книги квестов (`MixinApplyError: @Shadow field val$name was not located in
+ChapterImageButton$3`). Подробности — `docs/TROUBLESHOOTING.md`.
+Проверка зашита в `scripts/check_mods.py` и в CI, поэтому случайно вернуть
+мод в пак не получится.
 
 FTB-модов **нет на Modrinth** — только на CurseForge, чей API требует ключ.
 Поэтому добавлена команда `pw.py add-maven`: она читает POM, рекурсивно
