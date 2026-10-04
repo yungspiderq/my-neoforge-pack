@@ -106,12 +106,39 @@ Caused by: InvalidMixinException: @Shadow field val$name was not located in the 
   синтетическим `$SwitchMap…ChapterImage$TextAlign`, поля `val$name` в нём нет.
   Миксин не применяется → краш при первой отрисовке картинки главы с текстом.
 
-**Что делать:** мод убран из пака (v1.3.1). Достаточно запустить игру через
-профиль с автосинхронизацией: `packwiz-installer` помнит в `packwiz.json`, что
-он ставил, и сам удаляет файлы, которых больше нет в индексе (в логе
-`packsync/sync.log` будет строка `Deleted mods/certain_questing_additions-…jar
-(removed from pack)`). Если синхронизация не отработала — удалите
-`mods/certain_questing_additions-*.jar` руками и запустите игру ещё раз.
+**Что делать:** мод убран из пака (v1.3.1). Но важно понимать: **файл удалится
+сам только там, где при запуске игры работает hook `packwiz-installer`**
+(инстансы Prism/Freesm, созданные установщиком или Modpack Manager'ом). Он
+помнит в `packwiz.json`, что ставил, и сам стирает файлы, которых больше нет
+в индексе (в логе `packsync/sync.log` будет строка
+`Deleted mods/certain_questing_additions-…jar (removed from pack)`).
+
+**AstralRinth и Modrinth App — другой случай.** Эти лаунчеры (Theseus) при
+импорте и обновлении `.mrpack` только добавляют и заменяют файлы, но никогда
+ничего не удаляют. Устаревший `mods/certain_questing_additions-*.jar` (и главы
+старой книги квестов) переживёт любое количество обновлений, и краш повторится
+один в один — отчёт `crash-2026-10-04_10.28.53-client.txt` именно такой: пак
+уже v1.3.1, а в списке модов всё ещё `mod/certain_questing_additions`.
+
+Лечение (Modpack Manager 3.1+):
+
+1. скачайте свежий `latest/ModpackManager.exe` и откройте его;
+2. выберите папку сборки (профиль AstralRinth находится сам:
+   `%APPDATA%\AstralRinthApp\profiles\<имя>`);
+3. закройте игру и нажмите **«Починить всё»** — это чистая переустановка:
+   `mods/`, `config/`, `defaultconfigs/`, `kubejs/`, `resourcepacks/`,
+   `shaderpacks/` целиком уезжают в `.modpack-backup\clean-<дата-время>\`,
+   затем всё скачивается заново. Миры, прогресс квестов (`local/`), точки
+  journeymap и `options.txt` не трогаются;
+4. запустите игру.
+
+Без приложения — вручную: удалите `mods\certain_questing_additions-*.jar`,
+а заодно всё лишнее в `config\ftbquests\quests\chapters\` (должны остаться
+только `overworld.snbt`, `nether.snbt`, `end.snbt`), и выполните синхронизацию.
+
+Проверить себя можно вкладкой **«Лишние»** Modpack Manager'а: с версии 3.1 она
+рекурсивно сканирует `config/ftbquests` и `kubejs/`, поэтому устаревшие главы
+и скрипты видны в списке сразу.
 
 Возвращать мод можно только после того, как автор выпустит сборку под
 FTB Quests 2101.1.21+

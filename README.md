@@ -318,9 +318,15 @@ https://<user>.github.io/<repo>/latest/ModpackManager.exe
 - **Проверить** mods, config, defaultconfigs, kubejs, resourcepacks, shaderpacks
   и всё прочее содержимое пака — каждый файл **по хэшу**, поэтому ловится и
   «файл есть, но битый», и «есть, но старый».
-- **Починить** — собственный загрузчик на `urllib`, **Java не нужна**. Качает во
-  временный файл, сверяет хэш и только потом подменяет; старое уходит в
-  `.modpack-backup`.
+- **Починить всё** — **чистая переустановка**: `mods/`, `config/`,
+  `defaultconfigs/`, `kubejs/`, `resourcepacks/`, `shaderpacks/` целиком
+  уезжают в `.modpack-backup/clean-<дата-время>/`, затем всё скачивается
+  заново. Это единственный способ убрать устаревшие файлы — лаунчеры вроде
+  AstralRinth при обновлении ничего не удаляют, и выпущенный из пака мод
+  остаётся крашить игру (список неприкосновенного: `saves/`, `local/`,
+  `journeymap/`, `options.txt`, `packsync/`). В меню есть и прежний режим —
+  «Быстрая починка»: собственный загрузчик на `urllib`, **Java не нужна**,
+  качает во временный файл, сверяет хэш и только потом подменяет.
 - **Установить пак с нуля** — создаёт инстанс Prism/Freesm **прямо на диске**:
   `instance.cfg` с Pre-Launch Command, `mmc-pack.json` с Minecraft и NeoForge,
   `.minecraft/packsync/`. Ни zip-файла, ни диалога импорта — лаунчер подхватывает
@@ -450,7 +456,7 @@ python scripts/pw.py instance                     # instance.zip в dist/
 |---|---|
 | [`INSTALL.md`](INSTALL.md) | **Инструкция для игроков** — можно просто отдать ссылку |
 | [`installer/README.md`](installer/README.md) | Как работает однокнопочный установщик |
-| [`app/README.md`](app/README.md) | Modpack Manager: меню, вкладки, статусы, починка и установка инстанса без Java |
+| [`app/README.md`](app/README.md) | Modpack Manager: меню, вкладки, статусы, чистая переустановка и установка инстанса без Java |
 | [`docs/SETUP.md`](docs/SETUP.md) | Первичная настройка GitHub, Pages, релизов + `setup-github.py` |
 | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Как всё устроено под капотом |
 | [`docs/SERVER.md`](docs/SERVER.md) | Выделенный сервер с тем же паком |

@@ -40,6 +40,8 @@ jobs:
         run: |
           python -c "import sys; sys.path.insert(0,'app'); import packlib; print('packlib OK')"
           python -m py_compile app/packlib.py app/modpack_app.py
+      - name: Headless-тесты ядра
+        run: python app/test_packlib.py
       - name: Build
         run: >
           pyinstaller --onefile --windowed --clean --noconfirm

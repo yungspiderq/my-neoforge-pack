@@ -15,9 +15,16 @@ Python 3.8+ и Tkinter (входит в стандартную поставку 
   • выбрать папку сборки вручную или найти её у AstralRinth / Modrinth App /
     Freesm / Prism / MultiMC / .minecraft
   • сверить с сервером ВСЁ содержимое пака по хэшам: mods, config,
-    resourcepacks, shaderpacks, defaultconfigs, kubejs
-  • починить: докачать отсутствующее и заменить несовпавшее — собственным
-    загрузчиком, БЕЗ Java
+    resourcepacks, shaderpacks, defaultconfigs, kubejs — включая РЕКУРСИВНЫЙ
+    поиск устаревших файлов внутри config/ftbquests и kubejs (старые главы
+    квестов теперь видны во вкладке «Лишние»)
+  • починить всё — ЧИСТАЯ ПЕРЕУСТАНОВКА: mods/, config/, kubejs/ и остальные
+    каталоги пака целиком уезжают в .modpack-backup/clean-<время>/, затем всё
+    скачивается с сервера заново. Устаревшие файлы (исключённый из пака мод,
+    главы прошлой версии книги) гарантированно исчезают — именно их обычный
+    лаунчер при обновлении никогда не удаляет
+  • быстрая починка — прежний режим: докачать отсутствующее и заменить
+    несовпавшее, собственным загрузчиком, БЕЗ Java
   • создать инстанс Prism/Freesm прямо на диске — без zip и без диалога импорта
 """
 
@@ -43,7 +50,7 @@ from tkinter import ttk, filedialog, messagebox           # noqa: E402
 import packlib as P                                       # noqa: E402
 
 APP_NAME = "Modpack Manager"
-APP_VERSION = "3.0.0"
+APP_VERSION = "3.1.0"
 FALLBACK_BASE = "https://yungspiderq.github.io/my-neoforge-pack"
 
 COLORS = {
@@ -149,8 +156,10 @@ class App:
         m.add_cascade(label="Проверка", menu=c)
 
         s = tk.Menu(m, tearoff=0)
-        s.add_command(label="Починить всё (скачать недостающее и несовпавшее)",
-                      command=self.fix_all, accelerator="Ctrl+R")
+        s.add_command(label="Починить всё — чистая переустановка (стереть и скачать заново)",
+                      command=self.clean_fix, accelerator="Ctrl+R")
+        s.add_command(label="Быстрая починка (только недостающее и несовпавшее)",
+                      command=self.fix_all)
         s.add_command(label="Починить только выбранное", command=self.fix_selected)
         s.add_separator()
         s.add_command(label="Убрать лишние файлы…", command=self.remove_extras)
@@ -184,7 +193,7 @@ class App:
 
         self.root.bind_all("<Control-o>", lambda e: self.pick_dir())
         self.root.bind_all("<F5>", lambda e: self.check())
-        self.root.bind_all("<Control-r>", lambda e: self.fix_all())
+        self.root.bind_all("<Control-r>", lambda e: self.clean_fix())
 
     # --- тулбар ---
 
@@ -199,7 +208,7 @@ class App:
         ttk.Button(top, text="Обзор…", command=self.pick_dir).grid(row=0, column=2, padx=2)
         self.btn_check = ttk.Button(top, text="Проверить", command=self.check)
         self.btn_check.grid(row=0, column=3, padx=2)
-        self.btn_fix = ttk.Button(top, text="Починить всё", command=self.fix_all)
+        self.btn_fix = ttk.Button(top, text="Починить всё", command=self.clean_fix)
         self.btn_fix.grid(row=0, column=4, padx=2)
         top.columnconfigure(1, weight=1)
 
@@ -511,6 +520,94 @@ class App:
                 if r:
                     out.append(r)
         return out
+
+    def clean_fix(self):
+        """«Починить всё»: чистая переустановка — стереть и скачать заново.
+
+        Единственный способ избавиться от устаревших файлов: лаунчеры
+        Theseus-семейства (AstralRinth, Modrinth App) при обновлении ничего не
+        удаляют, и выпущенный из пака мод остаётся в mods/ (краш
+        crash-2026-10-04_10.28.53-client.txt — именно так дожил до игрока
+        certain_questing_additions, удалённый ещё в v1.3.1).
+        """
+        if self.busy:
+            return
+        gd = self.game_dir()
+        if not gd:
+            messagebox.showinfo(APP_NAME, "Сначала выберите папку сборки.")
+            return
+        if not os.path.isdir(gd):
+            messagebox.showerror(APP_NAME, "Папка не существует:\n" + gd)
+            return
+        base = self.base_url() or P.read_pack_url(gd) or FALLBACK_BASE
+        dirs = "  " + "\n  ".join(d + "/" for d in P.CLEAN_DIRS)
+        msg = (
+            "ЧИСТАЯ ПЕРЕУСТАНОВКА пака.\n\n"
+            "Из папки сборки\n  %s\n\nбудут ЦЕЛИКОМ перенесены в бэкап каталоги:\n%s\n"
+            "Затем все файлы пака скачаются с сервера заново:\n  %s\n\n"
+            "Это убирает устаревшее, что обычный лаунчер никогда не удаляет:\n"
+            "  • моды, исключённые из пака (например certain_questing_additions —\n"
+            "    из-за него клиент крашился при открытии книги квестов);\n"
+            "  • старые главы квестов и скрипты прошлых версий.\n\n"
+            "НЕ трогаем: saves/, local/ (прогресс квестов), journeymap/,\n"
+            "options.txt, logs/, packsync/.\n\n"
+            "Старое не удаляется навсегда, а уезжает в:\n"
+            "  %s\\clean-<дата-время>\\\n\n"
+            "Закройте игру перед запуском (иначе файлы заблокированы).\n"
+            "Продолжить?" % (gd, dirs, base, P.BACKUP_DIR))
+        if not messagebox.askyesno(APP_NAME + " — чистая переустановка", msg,
+                                   icon="warning"):
+            return
+        side = self.side_var.get() or "client"
+        self.busy = True
+        self._set_buttons(False)
+        threading.Thread(target=self._clean_worker, args=(gd, base, side),
+                         daemon=True).start()
+
+    def _clean_worker(self, gd, base, side):
+        try:
+            self.set_progress(None, "Читаю пак с сервера…")
+            model = P.load_pack(base, progress=self.set_progress)
+            self.model = model
+            self.log_line("чистая переустановка: пак %s" % model.summary)
+            res = P.clean_reinstall(gd, model, side,
+                                    progress=self.set_progress,
+                                    on_log=lambda s: self.log_line(s))
+            w, s = res.wipe, res.sync
+            if w.errors:
+                self.log_line("ПРЕРВАНО: не удалось очистить папки — закройте игру "
+                              "и повторите", error=True)
+                self.q.put(("error",
+                            "Не удалось очистить папки сборки:\n\n"
+                            + "\n".join(w.errors)
+                            + "\n\nСкорее всего игра запущена и держит файлы. "
+                              "Закройте её и повторите починку."))
+                return
+            self.log_line("итог: в бэкап %s унесено %d файлов (%.1f МБ) из %d каталогов; "
+                          "скачано заново %d, ошибок %d"
+                          % (w.backup_dir, w.files, w.bytes / 1048576,
+                             len(w.moved_dirs), s.downloaded + s.replaced, s.failed))
+            if s.failed:
+                self.q.put(("error",
+                            "Переустановка завершена с ошибками.\n"
+                            "Скачано: %d\nС ошибками: %d\n\n"
+                            "Подробности во вкладке «Журнал»."
+                            % (s.downloaded + s.replaced, s.failed)))
+            else:
+                self.q.put(("info",
+                            "Чистая переустановка готова.\n\n"
+                            "Скачано заново: %d файлов (%.1f МБ)\n"
+                            "Старое лежит в:\n%s\n\n"
+                            "Можно запускать игру."
+                            % (s.downloaded + s.replaced, s.bytes / 1048576,
+                               w.backup_dir)))
+            self.q.put(("recheck", None))
+        except Exception as e:                              # noqa: BLE001
+            self.log_line("ОШИБКА: %s" % e, error=True)
+            self.log_line(traceback.format_exc(limit=3), error=True)
+            self.q.put(("error", str(e)))
+        finally:
+            self.q.put(("done", None))
 
     def fix_all(self):
         self._fix(self.rows)
@@ -844,6 +941,15 @@ HELP_TEXT = """\
 Скачивание идёт во временный файл, хэш проверяется ДО подмены, а заменяемый
 файл копируется в .modpack-backup.
 
+Кнопка «Починить всё» — ЧИСТАЯ ПЕРЕУСТАНОВКА. Каталоги mods/, config/,
+defaultconfigs/, kubejs/, resourcepacks/, shaderpacks/ целиком уезжают в
+.modpack-backup/clean-<дата-время>/, затем всё скачивается с сервера заново.
+Это единственный способ убрать УСТАРЕВШИЕ файлы: лаунчеры вроде AstralRinth
+при обновлении только добавляют и заменяют, поэтому выпущенный из пака мод
+остаётся в mods/ и продолжает крашить игру. Прогресс (saves/, local/,
+journeymap/, options.txt) не трогается. «Быстрая починка» в меню — прежний
+режим: только недостающее и несовпавшее, ничего не удаляет.
+
 Статусы:
   НА МЕСТЕ        файл есть и хэш совпал
   ОТСУТСТВУЕТ     файла нет — будет скачан
@@ -852,7 +958,9 @@ HELP_TEXT = """\
   НЕТ (preserve)  в index.toml стоит preserve=true — файл намеренно не
                   перезаписывается, чтобы не затирать личные настройки
   ДРУГАЯ СТОРОНА  мод только серверный, а выбрана сторона client (или наоборот)
-  ЛИШНИЙ          файл в mods/config/…, которого нет в паке
+  ЛИШНИЙ          файл в mods/config/kubejs/…, которого нет в паке; внутри
+                  config/ftbquests и kubejs поиск идёт рекурсивно — так
+                  находятся старые главы квестов прошлых версий
 
 «Установить пак с нуля» создаёт инстанс Prism/Freesm прямо на диске:
 instance.cfg с Pre-Launch Command, mmc-pack.json с Minecraft и загрузчиком,

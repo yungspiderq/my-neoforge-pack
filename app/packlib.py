@@ -13,7 +13,15 @@ GUI здесь нет намеренно: всё, что делает прило
     оборвавшаяся закачка не оставит вместо мода огрызок;
   • заменяемый файл уходит в .modpack-backup;
   • preserve=true из index.toml уважаем: такие файлы не перезаписываются,
-    чтобы не затирать личные настройки игрока.
+    чтобы не затирать личные настройки игрока;
+  • чистая переустановка (clean_reinstall): папки mods/, config/, kubejs/ и
+    остальные управляемые паком каталоги ЦЕЛИКОМ уезжают в
+    .modpack-backup/clean-<время>/, затем всё скачивается заново. Это
+    единственный способ убрать устаревшие файлы — лаунчеры вроде
+    AstralRinth/Modrinth App при импорте .mrpack ничего не удаляют, и
+    выпущенный из пака мод остаётся лежать в mods/ (реальный краш
+    crash-2026-10-04_10.28.53-client.txt: certain_questing_additions
+    дожил до v1.3.1 именно так).
 """
 
 from __future__ import annotations
@@ -30,7 +38,7 @@ import urllib.error
 import urllib.request
 from dataclasses import dataclass, field
 
-UA = "ModpackManager/2.0 (+https://github.com/packwiz/packwiz)"
+UA = "ModpackManager/3.1 (+https://github.com/packwiz/packwiz)"
 TIMEOUT = 60
 BACKUP_DIR = ".modpack-backup"
 PACKSYNC_REMOTE = "packsync"
@@ -304,6 +312,23 @@ def load_pack(base_url: str, progress=None) -> PackModel:
 SCAN_DIRS = ("mods", "config", "defaultconfigs", "resourcepacks",
              "shaderpacks", "kubejs")
 
+# Каталоги, которые пак полностью контролирует: при «чистой починке» они
+# уезжают в бэкап ЦЕЛИКОМ. packsync/ сюда намеренно не входит (это сам
+# синхронизатор), как и saves/, local/, journeymap/, options.txt, logs/ —
+# личный прогресс игрока не трогается.
+CLEAN_DIRS = ("mods", "config", "defaultconfigs", "kubejs",
+              "resourcepacks", "shaderpacks")
+
+# Поддеревья, где «лишние» файлы ищутся РЕКУРСИВНО, а не только на первом
+# уровне. config/ целиком сканировать вглубь нельзя — после первого запуска
+# mods-конфиги (sodium, jade, fml.toml…) засыпали бы вкладку «Лишние» сотнями
+# строк. А вот эти каталоги принадлежат паку полностью: всё, что лежит здесь
+# и не значится в index.toml, — устаревший мусор (например, главы квестов
+# старой версии книги: config/ftbquests/quests/chapters/start.snbt).
+DEEP_SCAN_SUBTREES = ("config/ftbquests", "defaultconfigs",
+                      "kubejs/startup_scripts", "kubejs/server_scripts",
+                      "kubejs/assets")
+
 
 def scan_local(game_dir: str, model: PackModel, side: str = "client",
                progress=None) -> list:
@@ -358,8 +383,9 @@ def scan_local(game_dir: str, model: PackModel, side: str = "client",
             row.detail = "%s верен, %.2f МБ" % (it.hash_fmt, row.size / 1048576)
         rows.append(row)
 
-    # --- лишние файлы ---
+    # --- лишние файлы (первый уровень управляемых каталогов) ---
     expected = {it.dest_rel.replace("/", os.sep).lower() for it in items}
+    expected_posix = {it.dest_rel.lower() for it in items}
     for sub in SCAN_DIRS:
         d = os.path.join(game_dir, sub)
         if not os.path.isdir(d):
@@ -378,6 +404,29 @@ def scan_local(game_dir: str, model: PackModel, side: str = "client",
                 dest_rel="%s/%s" % (sub, fn), path=fp, status=EXTRA,
                 detail="%.2f МБ, в паке не значится" % (os.path.getsize(fp) / 1048576),
                 size=os.path.getsize(fp)))
+
+    # --- лишние файлы ВГЛУБЬ полностью подконтрольных паку каталогов ---
+    # Здесь прячется то, что поверхностный скан не видит: старые главы квестов
+    # (config/ftbquests/quests/chapters/*.snbt), удалённые скрипты KubeJS и т.п.
+    for sub in DEEP_SCAN_SUBTREES:
+        root = os.path.join(game_dir, sub.replace("/", os.sep))
+        if not os.path.isdir(root):
+            continue
+        for dirpath, _dirnames, filenames in os.walk(root):
+            for fn in sorted(filenames):
+                fp = os.path.join(dirpath, fn)
+                rel = os.path.relpath(fp, game_dir).replace(os.sep, "/")
+                if rel.lower() in expected_posix:
+                    continue
+                try:
+                    size = os.path.getsize(fp)
+                except OSError:
+                    size = 0
+                rows.append(Row(
+                    item=None, category="Лишние", name=fn,
+                    dest_rel=rel, path=fp, status=EXTRA,
+                    detail="устаревший файл внутри %s/, в паке не значится" % sub,
+                    size=size))
     rep(100, "Сверка завершена")
     return rows
 
@@ -483,6 +532,138 @@ def remove_extras(game_dir: str, rows, on_log=None) -> int:
             if on_log:
                 on_log("не удалось убрать %s: %s" % (r.dest_rel, e))
     return moved
+
+
+# --------------------------------------------------------------------------- #
+#  Чистая переустановка (кнопка «Починить всё»)
+# --------------------------------------------------------------------------- #
+
+@dataclass
+class WipeResult:
+    backup_dir: str = ""
+    moved_dirs: list = field(default_factory=list)
+    files: int = 0
+    bytes: int = 0
+    errors: list = field(default_factory=list)
+
+
+def _count_tree(path: str):
+    """(число файлов, суммарный размер) — для отчёта перед переносом."""
+    n, b = 0, 0
+    for dirpath, _dirnames, filenames in os.walk(path):
+        for fn in filenames:
+            try:
+                b += os.path.getsize(os.path.join(dirpath, fn))
+                n += 1
+            except OSError:
+                pass
+    return n, b
+
+
+def wipe_managed(game_dir: str, on_log=None) -> WipeResult:
+    """Уносит управляемые паком каталоги ЦЕЛИКОМ в .modpack-backup/clean-<время>/.
+
+    Зачем: обычный фикс только докачивает и заменяет файлы из индекса, а
+    устаревшее (мод, исключённый из пака; главы квестов прошлой версии книги)
+    остаётся на диске. Лаунчеры Theseus-семейства (AstralRinth, Modrinth App)
+    при импорте .mrpack тоже ничего не удаляют — так в инстансе доживал
+    certain-questing-additions после v1.3.1 и ронял клиент при открытии книги.
+
+    Файлы НЕ удаляются навсегда — вся папка переезжает в бэкап, откуда её
+    можно достать. Не трогаем: saves/, local/ (прогресс квестов), journeymap/,
+    options.txt, logs/, crash-reports/, packsync/, packwiz.json.
+    """
+    res = WipeResult()
+    stamp = time.strftime("%Y%m%d-%H%M%S")
+    bak = os.path.join(game_dir, BACKUP_DIR, "clean-" + stamp)
+    res.backup_dir = bak
+    for sub in CLEAN_DIRS:
+        src = os.path.join(game_dir, sub)
+        if not os.path.isdir(src):
+            continue
+        n, b = _count_tree(src)
+        try:
+            os.makedirs(bak, exist_ok=True)
+            shutil.move(src, os.path.join(bak, sub))
+            res.moved_dirs.append(sub)
+            res.files += n
+            res.bytes += b
+            if on_log:
+                on_log("в бэкап: %s/ — %d файлов, %.1f МБ" % (sub, n, b / 1048576))
+        except OSError as e:
+            # Почти всегда — запущенная игра держит jar-ы открытыми.
+            res.errors.append("%s/: %s" % (sub, e))
+            if on_log:
+                on_log("ОШИБКА: не удалось унести %s/: %s "
+                       "(игра запущена?)" % (sub, e))
+    return res
+
+
+def restore_preserved(game_dir: str, wipe: WipeResult, items, on_log=None) -> int:
+    """Возвращает из бэкапа файлы с preserve=true — их нельзя затирать."""
+    if not wipe.backup_dir or not wipe.moved_dirs:
+        return 0
+    n = 0
+    for it in items:
+        if not it.preserve:
+            continue
+        rel = it.dest_rel.replace("/", os.sep)
+        src = os.path.join(wipe.backup_dir, rel)
+        dst = os.path.join(game_dir, rel)
+        if not os.path.isfile(src) or os.path.isfile(dst):
+            continue
+        try:
+            os.makedirs(os.path.dirname(dst), exist_ok=True)
+            shutil.copy2(src, dst)
+            n += 1
+            if on_log:
+                on_log("сохранён личный файл (preserve): " + it.dest_rel)
+        except OSError as e:
+            if on_log:
+                on_log("не удалось вернуть %s: %s" % (it.dest_rel, e))
+    return n
+
+
+@dataclass
+class CleanResult:
+    wipe: WipeResult = field(default_factory=WipeResult)
+    sync: SyncResult = field(default_factory=SyncResult)
+    preserved: int = 0
+
+    @property
+    def ok(self) -> bool:
+        return not self.wipe.errors and not self.sync.failed
+
+
+def clean_reinstall(game_dir: str, model: PackModel, side: str = "client",
+                    progress=None, on_log=None) -> CleanResult:
+    """Полная переустановка: стереть управляемые каталоги -> скачать всё заново.
+
+    Если очистка каталогов не удалась (файлы держит запущенная игра),
+    прерываемся ДО скачивания: полуснесённая папка mods + докачка оставила бы
+    инстанс в ещё более странном состоянии.
+    """
+    def rep(pct, msg):
+        if progress:
+            progress(pct, msg)
+
+    out = CleanResult()
+    rep(2, "Уношу старые файлы в бэкап…")
+    out.wipe = wipe_managed(game_dir, on_log)
+    if out.wipe.errors:
+        rep(100, "Прервано: не удалось очистить папки")
+        return out
+    out.preserved = restore_preserved(game_dir, out.wipe, model.items, on_log)
+
+    rep(8, "Сверяю очищенную папку с паком…")
+    rows = scan_local(game_dir, model, side,
+                      progress=lambda p, m: rep(8 + int(7 * p / 100), m))
+    todo = [r for r in rows if r.actionable]
+    rep(15, "Скачиваю заново: %d файлов" % len(todo))
+    out.sync = sync_rows(game_dir, todo,
+                         progress=lambda p, m: rep(15 + int(85 * p / 100), m),
+                         on_log=on_log)
+    return out
 
 
 # --------------------------------------------------------------------------- #

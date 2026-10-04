@@ -55,6 +55,8 @@ jobs:
           python -c "import sys; sys.path.insert(0,'app'); import packlib; print('packlib OK', len(packlib.CATEGORIES), 'категорий')"
           python -m py_compile app/packlib.py app/modpack_app.py
           echo "syntax OK"
+      - name: Headless-тесты ядра (чистая переустановка, preserve, лишние файлы)
+        run: python app/test_packlib.py
 
       - name: Build single-file exe
         run: >
