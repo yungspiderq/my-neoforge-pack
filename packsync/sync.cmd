@@ -38,23 +38,43 @@ set "PACK_URL="
 set /p PACK_URL=<"%URLFILE%"
 if not defined PACK_URL goto :nojar
 
-rem ---------------- poisk java.exe ----------------
+rem ---------------- poisk java (java.exe, zatem javaw.exe) ----------------
 set "JAVA_EXE="
 if defined JAVA_HOME if exist "%JAVA_HOME%\bin\java.exe" set "JAVA_EXE=%JAVA_HOME%\bin\java.exe"
 if not defined JAVA_EXE for /f "delims=" %%i in ('where java.exe 2^>nul') do if not defined JAVA_EXE set "JAVA_EXE=%%i"
-if not defined JAVA_EXE call :findjava "%LOCALAPPDATA%\AstralRinth\java_runtimes"
-if not defined JAVA_EXE call :findjava "%APPDATA%\AstralRinth\java_runtimes"
-if not defined JAVA_EXE call :findjava "%LOCALAPPDATA%\AstralRinthApp\java_runtimes"
-if not defined JAVA_EXE call :findjava "%APPDATA%\AstralRinthApp\java_runtimes"
-if not defined JAVA_EXE call :findjava "%LOCALAPPDATA%\ModrinthApp\java_runtimes"
-if not defined JAVA_EXE call :findjava "%APPDATA%\ModrinthApp\java_runtimes"
-if not defined JAVA_EXE call :findjava "%LOCALAPPDATA%\PrismLauncher\java"
-if not defined JAVA_EXE call :findjava "%LOCALAPPDATA%\FreesmLauncher\java"
-if not defined JAVA_EXE call :findjava "%PROGRAMFILES%\Eclipse Adoptium"
-if not defined JAVA_EXE call :findjava "%PROGRAMFILES%\Microsoft"
-if not defined JAVA_EXE call :findjava "%PROGRAMFILES%\Java"
-if not defined JAVA_EXE call :findjava "%PROGRAMFILES(X86)%\Java"
-if not defined JAVA_EXE call :findjava "%USERPROFILE%\.jdks"
+rem --- prohod 1: java.exe ---
+if not defined JAVA_EXE call :findjava "%LOCALAPPDATA%\AstralRinth\java_runtimes" java.exe
+if not defined JAVA_EXE call :findjava "%APPDATA%\AstralRinth\java_runtimes" java.exe
+if not defined JAVA_EXE call :findjava "%LOCALAPPDATA%\AstralRinthApp\java_runtimes" java.exe
+if not defined JAVA_EXE call :findjava "%APPDATA%\AstralRinthApp\java_runtimes" java.exe
+if not defined JAVA_EXE call :findjava "%LOCALAPPDATA%\ModrinthApp\java_runtimes" java.exe
+if not defined JAVA_EXE call :findjava "%APPDATA%\ModrinthApp\java_runtimes" java.exe
+if not defined JAVA_EXE call :findjava "%LOCALAPPDATA%\PrismLauncher\java" java.exe
+if not defined JAVA_EXE call :findjava "%APPDATA%\PrismLauncher\java" java.exe
+if not defined JAVA_EXE call :findjava "%LOCALAPPDATA%\FreesmLauncher\java" java.exe
+if not defined JAVA_EXE call :findjava "%APPDATA%\FreesmLauncher\java" java.exe
+if not defined JAVA_EXE call :findjava "%PROGRAMFILES%\Eclipse Adoptium" java.exe
+if not defined JAVA_EXE call :findjava "%PROGRAMFILES%\Microsoft" java.exe
+if not defined JAVA_EXE call :findjava "%PROGRAMFILES%\Java" java.exe
+if not defined JAVA_EXE call :findjava "%PROGRAMFILES(X86)%\Java" java.exe
+if not defined JAVA_EXE call :findjava "%USERPROFILE%\.jdks" java.exe
+rem --- prohod 2: javaw.exe --- upravlyaemye runtime Freesm/Prism mogut
+rem     ne imet java.exe; javaw.exe dlya sinhronizacii dostatochen.
+if not defined JAVA_EXE call :findjava "%LOCALAPPDATA%\AstralRinth\java_runtimes" javaw.exe
+if not defined JAVA_EXE call :findjava "%APPDATA%\AstralRinth\java_runtimes" javaw.exe
+if not defined JAVA_EXE call :findjava "%LOCALAPPDATA%\AstralRinthApp\java_runtimes" javaw.exe
+if not defined JAVA_EXE call :findjava "%APPDATA%\AstralRinthApp\java_runtimes" javaw.exe
+if not defined JAVA_EXE call :findjava "%LOCALAPPDATA%\ModrinthApp\java_runtimes" javaw.exe
+if not defined JAVA_EXE call :findjava "%APPDATA%\ModrinthApp\java_runtimes" javaw.exe
+if not defined JAVA_EXE call :findjava "%LOCALAPPDATA%\PrismLauncher\java" javaw.exe
+if not defined JAVA_EXE call :findjava "%APPDATA%\PrismLauncher\java" javaw.exe
+if not defined JAVA_EXE call :findjava "%LOCALAPPDATA%\FreesmLauncher\java" javaw.exe
+if not defined JAVA_EXE call :findjava "%APPDATA%\FreesmLauncher\java" javaw.exe
+if not defined JAVA_EXE call :findjava "%PROGRAMFILES%\Eclipse Adoptium" javaw.exe
+if not defined JAVA_EXE call :findjava "%PROGRAMFILES%\Microsoft" javaw.exe
+if not defined JAVA_EXE call :findjava "%PROGRAMFILES%\Java" javaw.exe
+if not defined JAVA_EXE call :findjava "%PROGRAMFILES(X86)%\Java" javaw.exe
+if not defined JAVA_EXE call :findjava "%USERPROFILE%\.jdks" javaw.exe
 
 if not defined JAVA_EXE (
     echo %STAMP% JAVA NOT FOUND - sinhronizaciya propushena, igra zapustitsya bez mods>>"%LOGFILE%"
@@ -95,5 +115,5 @@ endlocal
 exit /b 0
 
 :findjava
-if not defined JAVA_EXE if exist "%~1" for /f "delims=" %%f in ('dir /b /s /a-d "%~1\java.exe" 2^>nul') do if not defined JAVA_EXE set "JAVA_EXE=%%f"
+if not defined JAVA_EXE if exist "%~1" for /f "delims=" %%f in ('dir /b /s /a-d "%~1\%~2" 2^>nul') do if not defined JAVA_EXE set "JAVA_EXE=%%f"
 goto :eof

@@ -1237,12 +1237,7 @@ def cmd_instance(args) -> None:
 
     java_major, java_uid = _java_runtime_for(mc)
 
-    prelaunch = (
-        '"$INST_JAVA" -jar "$INST_DIR/minecraft/packsync/packwiz-installer-bootstrap.jar" '
-        '--bootstrap-no-update '
-        '--bootstrap-main-jar "$INST_DIR/minecraft/packsync/packwiz-installer.jar" '
-        '--pack-folder "$INST_DIR/minecraft" -g "%s"' % url
-    )
+    prelaunch = 'cmd /c "$INST_MC_DIR\\packsync\\sync.cmd"'
 
     tpl_cfg = os.path.join(INSTANCE_TEMPLATE, "instance.cfg")
     if os.path.isfile(tpl_cfg):

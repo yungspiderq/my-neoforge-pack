@@ -840,11 +840,7 @@ def install_prism_instance(instances_dir: str, name: str, base_url: str,
     os.makedirs(ps, exist_ok=True)
     rep(5, "Создаю " + inst)
 
-    prelaunch = (
-        '"$INST_JAVA" -jar "$INST_DIR/minecraft/packsync/packwiz-installer-bootstrap.jar" '
-        '--bootstrap-no-update '
-        '--bootstrap-main-jar "$INST_DIR/minecraft/packsync/packwiz-installer.jar" '
-        '--pack-folder "$INST_DIR/minecraft" -g "%s/pack.toml"' % base_url.rstrip("/"))
+    prelaunch = 'cmd /c "$INST_MC_DIR\\packsync\\sync.cmd"'  # java ischet sam sync.cmd
 
     cfg = (
         "[General]\n"
