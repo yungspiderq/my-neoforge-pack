@@ -1237,7 +1237,7 @@ def cmd_instance(args) -> None:
 
     java_major, java_uid = _java_runtime_for(mc)
 
-    prelaunch = 'cmd /c "$INST_MC_DIR\\packsync\\sync.cmd"'
+    prelaunch = 'cmd /c "$INST_DIR/.minecraft/packsync/sync.cmd"'
 
     tpl_cfg = os.path.join(INSTANCE_TEMPLATE, "instance.cfg")
     if os.path.isfile(tpl_cfg):

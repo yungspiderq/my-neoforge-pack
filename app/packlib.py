@@ -840,7 +840,7 @@ def install_prism_instance(instances_dir: str, name: str, base_url: str,
     os.makedirs(ps, exist_ok=True)
     rep(5, "Создаю " + inst)
 
-    prelaunch = 'cmd /c "$INST_MC_DIR\\packsync\\sync.cmd"'  # java ischet sam sync.cmd
+    prelaunch = 'cmd /c "$INST_DIR/.minecraft/packsync/sync.cmd"'  # java ischet sam sync.cmd
 
     cfg = (
         "[General]\n"
