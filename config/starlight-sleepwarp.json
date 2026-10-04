@@ -1,0 +1,8 @@
+{
+  "enabled": true,
+  "minSleepingPercent": 50,
+  "warpRatePerTick": 60,
+  "clearWeatherOnWake": true,
+  "broadcastMessages": true,
+  "comment": "Конфиг фишки пака «sleep-warp» (kubejs/server_scripts/sleep_warp.js). minSleepingPercent — доля спящих от онлайна (0-100), при которой ночь начинает ускоряться; warpRatePerTick — сколько дополнительных тиков времени добавляется за каждый серверный тик, пока условие выполнено (60 = ночь пролетает примерно в минуту); clearWeatherOnWake — убрать дождь/грозу на рассвете; broadcastMessages — писать в чат начало и конец варпа."
+}

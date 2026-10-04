@@ -383,16 +383,9 @@
 			],
 			tasks: [
 				{
-					count: 16L,
+					advancement: "kubejs:hold_logs_16",
 					id: "0000000000201010",
-					item: {
-						components: {
-							"ftbfiltersystem:filter": "item_tag(minecraft:logs)"
-						},
-						count: 1,
-						id: "ftbfiltersystem:smart_filter"
-					},
-					type: "item"
+					type: "advancement"
 				}
 			],
 			x: 0.0d,
@@ -418,16 +411,9 @@
 			],
 			tasks: [
 				{
-					count: 32L,
+					advancement: "kubejs:hold_planks_32",
 					id: "0000000000201020",
-					item: {
-						components: {
-							"ftbfiltersystem:filter": "item_tag(minecraft:planks)"
-						},
-						count: 1,
-						id: "ftbfiltersystem:smart_filter"
-					},
-					type: "item"
+					type: "advancement"
 				},
 				{
 					id: "0000000000201021",
@@ -508,16 +494,9 @@
 			],
 			tasks: [
 				{
-					count: 64L,
+					advancement: "kubejs:hold_cobble_64",
 					id: "0000000000201040",
-					item: {
-						components: {
-							"ftbfiltersystem:filter": "item_tag(c:cobblestones)"
-						},
-						count: 1,
-						id: "ftbfiltersystem:smart_filter"
-					},
-					type: "item"
+					type: "advancement"
 				},
 				{
 					id: "0000000000201041",
@@ -596,15 +575,9 @@
 			],
 			tasks: [
 				{
+					advancement: "kubejs:hold_door_1",
 					id: "0000000000201060",
-					item: {
-						components: {
-							"ftbfiltersystem:filter": "item_tag(minecraft:wooden_doors)"
-						},
-						count: 1,
-						id: "ftbfiltersystem:smart_filter"
-					},
-					type: "item"
+					type: "advancement"
 				},
 				{
 					id: "0000000000201061",
@@ -643,15 +616,9 @@
 			],
 			tasks: [
 				{
+					advancement: "kubejs:hold_bed_1",
 					id: "0000000000201070",
-					item: {
-						components: {
-							"ftbfiltersystem:filter": "item_tag(minecraft:beds)"
-						},
-						count: 1,
-						id: "ftbfiltersystem:smart_filter"
-					},
-					type: "item"
+					type: "advancement"
 				},
 				{
 					id: "0000000000201071",
@@ -1775,15 +1742,9 @@
 					type: "item"
 				},
 				{
+					advancement: "kubejs:hold_boat_1",
 					id: "0000000000201232",
-					item: {
-						components: {
-							"ftbfiltersystem:filter": "item_tag(minecraft:boats)"
-						},
-						count: 1,
-						id: "ftbfiltersystem:smart_filter"
-					},
-					type: "item"
+					type: "advancement"
 				}
 			],
 			x: 2.1d,
@@ -2066,16 +2027,9 @@
 					type: "advancement"
 				},
 				{
-					count: 16L,
+					advancement: "kubejs:hold_seeds_16",
 					id: "00000000002012A1",
-					item: {
-						components: {
-							"ftbfiltersystem:filter": "item_tag(c:seeds)"
-						},
-						count: 1,
-						id: "ftbfiltersystem:smart_filter"
-					},
-					type: "item"
+					type: "advancement"
 				}
 			],
 			x: 10.8d,
@@ -2302,16 +2256,9 @@
 					type: "item"
 				},
 				{
-					count: 24L,
+					advancement: "kubejs:hold_wool_24",
 					id: "00000000002012F1",
-					item: {
-						components: {
-							"ftbfiltersystem:filter": "item_tag(minecraft:wool)"
-						},
-						count: 1,
-						id: "ftbfiltersystem:smart_filter"
-					},
-					type: "item"
+					type: "advancement"
 				}
 			],
 			x: 17.1d,

@@ -5967,17 +5967,6 @@
    "dimensions": [
     "eternal_starlight:starlight"
    ]
-  },
-  "ftbfiltersystem": {
-   "items": [
-    "smart_filter"
-   ],
-   "entities": [],
-   "custom_stats": [],
-   "biomes": [],
-   "structures": [],
-   "advancements": [],
-   "dimensions": []
   }
  }
 }

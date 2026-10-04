@@ -1,6 +1,10 @@
 hash-format = "sha256"
 
 [[files]]
+file = "config/distanthorizons-starlight-recommended.txt"
+hash = "14a83a36e1d4318b5b6ac713d576b70fb10c7e4cb1bce1f933dbeae255a15562"
+
+[[files]]
 file = "config/ftbquests/quests/chapter_groups.snbt"
 hash = "e57d8311aec9f524911ed1313cabf138bb7fa5a2d3ba985a00a2a267ff35ef78"
 
@@ -18,7 +22,7 @@ hash = "f1944f87823d81c677191b951c0da14aaed66054312f02712d5cbed2950ce23a"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/overworld.snbt"
-hash = "4e73b0721b97291c574415399ffc84d199c4767da5bfcef062a478624dc8dcd7"
+hash = "6adf283d075617e00fa23c8cec7c73e1ec7f9a27648a96509991c6deb7b14584"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/starlight.snbt"
@@ -30,15 +34,19 @@ hash = "3247158905a839ee22728f98c8c57def95653b8ee1fc14cf554d1c7ed1641b43"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us.snbt"
-hash = "9519fc088da34542cec4c4b981738ccdfe7d8450fcd8da0fa34f60cd499f972a"
+hash = "9b9eb7fc824a83e9952595a943354fe4f23d558862f535b52f7beb77998f68a9"
 
 [[files]]
 file = "config/ftbquests/quests/lang/ru_ru.snbt"
-hash = "53d3bb262c134e15d731dc78ee293928829eb8d8e53f65d2c6db11035220352f"
+hash = "881b6428af0ab2edace88a623b1123c188673468570e8a2cb5d01980e9d8fa8b"
 
 [[files]]
 file = "config/modpack-info.txt"
 hash = "555858a51c7638b6e67444c22fe908a91e81c6e95dad037db4999807c9021c79"
+
+[[files]]
+file = "config/starlight-sleepwarp.json"
+hash = "e4809546a530314526aad477050d3d5c2311152e00d9a59243fbcddefe7349f4"
 
 [[files]]
 file = "kubejs/assets/galosphere/lang/ru_ru.json"
@@ -101,12 +109,48 @@ file = "kubejs/assets/kubejs/textures/item/star_lantern.png"
 hash = "7e9f97e881a816044e28e45c19b1ffeaed5851a141df797a71eb12f44edff470"
 
 [[files]]
+file = "kubejs/data/kubejs/advancement/hold_bed_1.json"
+hash = "0e662af8b05aeeae16cf90681de8eb9b9a5612d6ee0bb66afca8a6147d3e563c"
+
+[[files]]
+file = "kubejs/data/kubejs/advancement/hold_boat_1.json"
+hash = "bde7be3b5c14990d313be79dc298b290914bac416e9b11f7264ba09dae387e17"
+
+[[files]]
+file = "kubejs/data/kubejs/advancement/hold_cobble_64.json"
+hash = "97957c609446e81f807858c9006755fe877ec41c323bc89d05914381eb09c7bc"
+
+[[files]]
+file = "kubejs/data/kubejs/advancement/hold_door_1.json"
+hash = "029b9f27aa4aca7cc8c2158e53cd51d78b81904b4cdbf2242093fc38881fb04e"
+
+[[files]]
+file = "kubejs/data/kubejs/advancement/hold_logs_16.json"
+hash = "f7f5bb89a1fa4014ab27a9db11ec4bd4bf493f402b33df16685264c1057e33c0"
+
+[[files]]
+file = "kubejs/data/kubejs/advancement/hold_planks_32.json"
+hash = "97a7ce30e055ce776d8cba688192c3c53e06ec39f84326299a7e59306034ed6c"
+
+[[files]]
+file = "kubejs/data/kubejs/advancement/hold_seeds_16.json"
+hash = "52e7035840ea3da16782c734270c089f6cdeeb8378e4dd3dd0f0ff893d5919e6"
+
+[[files]]
+file = "kubejs/data/kubejs/advancement/hold_wool_24.json"
+hash = "62eed62be1ed7c8ddd55d815c89af1c9548899f0af99860fddaec87968aa9050"
+
+[[files]]
 file = "kubejs/server_scripts/diagnostics.js"
 hash = "d611c676b374ed5a887291cb08fcc784c937eddf5c9cbbaa8827264501a3f612"
 
 [[files]]
 file = "kubejs/server_scripts/recipes.js"
 hash = "f1b0a6d02645ab7233d8a3959c436684f4b4ae74e60aa58d1899771a4cc0b9ca"
+
+[[files]]
+file = "kubejs/server_scripts/sleep_warp.js"
+hash = "9234bd7fb36234419763efbe8c650290106209c0f1250effb22360e4b3f62f09"
 
 [[files]]
 file = "kubejs/server_scripts/star_lantern.js"
@@ -186,6 +230,11 @@ hash = "9fd14fae5ded9b4d765beefbffbe4c8652f0b5e7afea5b9aeab4654a27cc2ac1"
 metafile = true
 
 [[files]]
+file = "mods/distant-horizons.pw.toml"
+hash = "67d5a19527b4f163776177f09f2c2e5ae299ed41b22c5f4de95b4d31ea55e650"
+metafile = true
+
+[[files]]
 file = "mods/embeddium.pw.toml"
 hash = "9c1cb62e82392fdeb6dd9a9996a97d774c94416af2b76b440771f4a11ece5358"
 metafile = true
@@ -203,11 +252,6 @@ metafile = true
 [[files]]
 file = "mods/ferritecore.pw.toml"
 hash = "66cebcf946ddbee0c87ef58f61ab34fba55992e1bdc89c81d71b9b8adb8de3dc"
-metafile = true
-
-[[files]]
-file = "mods/ftb-filter-system.pw.toml"
-hash = "adcd4c9b9be6f6aaae6d0f1bbc16ce6e172ad450b5c224e7f4af02fd2c9427d1"
 metafile = true
 
 [[files]]

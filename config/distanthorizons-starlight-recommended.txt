@@ -1,0 +1,21 @@
+Distant Horizons — рекомендуемые настройки пака «Вечное Звездосветье»
+=====================================================================
+Конфиг DH создаётся самим модом при первом запуске (клиентский, в
+config/distanthorizons/) и открывается из игры: Options -> Distant Horizons.
+Файл руками не поставляем: схема конфига у DH 3.x глубокая и версионно-
+зависимая, кривой TOML мод молча исправит или сломает. Вместо этого —
+проверенный пресет для GTX 1070 / 32 ГБ RAM (наши тесты):
+
+  Max render distance (chunks)      200      (больше 256 — только для RTX-классов)
+  LOD quality                       Balanced (High — скриншоты, не игра)
+  Horizontal quality / resolution   Balanced
+  Vertical quality                  Balanced
+  Ambient occlusion                 ON       (LOD перестаёт быть «плоским»)
+  LOD shading                       Enabled
+  Fog distance                      Match LOD (иначе дымка режет горизонт)
+  Auto-updater                      OFF      (версию мода держит пак, не апдейтер)
+  Multiplayer: server mode          Disabled (нашем серверу DH-плагин не нужен)
+
+Почему так: LOD-ы строятся из чанков в фоне; на GTX 1070 баланс даёт
++горизонт без просадок ниже ~60 FPS в Землях Рассвета и Звездосветье.
+Sleep-warp пака (config/starlight-sleepwarp.json) с DH не конфликтует.
