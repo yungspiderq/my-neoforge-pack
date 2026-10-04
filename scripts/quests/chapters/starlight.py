@@ -1894,7 +1894,25 @@ Q("q104", ('Light of the Night', 'Свет ночи'), section="s9",
       xpr(70),
   ]),
 
-Q("q105", ('Flowers With No Home', 'Цветы, которых нет дома'), section="s9",
+Q("q105", ("The Stargazer's Lantern", 'Фонарь звездочёта'), section="s9",
+  deps=['q104'],
+  icon="kubejs:star_lantern",
+  size=1.3,
+  desc=[
+      ('A KubeJS item of the pack: a starfire frame around a starlit diamond.',
+       'KubeJS-предмет пака: оправа из звездопала вокруг звёздного алмаза.'),
+      ('Right-click grants 20 seconds of night vision and a spray of star sparks. The recipe is at the crafting table.',
+       'Правый клик — 20 секунд ночного зрения и сноп звёздных искр. Рецепт — в верстаке.'),
+  ],
+  tasks=[
+      item("kubejs:star_lantern"),
+  ],
+  rewards=[
+      xpr(80),
+      toast('Фонарь зажжён: ночь больше не темнее тебя.'),
+  ]),
+
+Q("q106", ('Flowers With No Home', 'Цветы, которых нет дома'), section="s9",
   deps=['q104'],
   icon="eternal_starlight:sacred_starlight_flower",
   desc=[
@@ -1917,7 +1935,7 @@ Q("q105", ('Flowers With No Home', 'Цветы, которых нет дома')
       xpr(70),
   ]),
 
-Q("q106", ('Furs and Aviaries', 'Меха и вольеры'), section="s9",
+Q("q107", ('Furs and Aviaries', 'Меха и вольеры'), section="s9",
   deps=['q104'],
   icon="eternal_starlight:white_yeti_fur",
   desc=[
@@ -1940,7 +1958,7 @@ Q("q106", ('Furs and Aviaries', 'Меха и вольеры'), section="s9",
       xpr(70),
   ]),
 
-Q("q107", ('Northern Flotilla', 'Флотилия севера'), section="s9",
+Q("q108", ('Northern Flotilla', 'Флотилия севера'), section="s9",
   deps=['q104'],
   icon="eternal_starlight:lunar_boat",
   size=1.2,
@@ -1962,7 +1980,7 @@ Q("q107", ('Northern Flotilla', 'Флотилия севера'), section="s9",
       xpr(60),
   ]),
 
-Q("q108", ('Southern Flotilla', 'Флотилия юга'), section="s9",
+Q("q109", ('Southern Flotilla', 'Флотилия юга'), section="s9",
   deps=['q104'],
   icon="eternal_starlight:scarlet_boat",
   size=1.2,
@@ -1986,8 +2004,8 @@ Q("q108", ('Southern Flotilla', 'Флотилия юга'), section="s9",
       xpr(60),
   ]),
 
-Q("q109", ('Encyclopaedia Tail', 'Хвост энциклопедии'), section="s9",
-  deps=['q104'],
+Q("q110", ('Encyclopaedia Tail', 'Хвост энциклопедии'), section="s9",
+  deps=['q109'],
   icon="eternal_starlight:abyssal_fruit",
   desc=[
       ('Small things the sections above did not name: every thing of the mod is counted.',
@@ -2009,8 +2027,8 @@ Q("q109", ('Encyclopaedia Tail', 'Хвост энциклопедии'), section
       xpr(45),
   ]),
 
-Q("q110", ('Encyclopaedia Tail · 2', 'Хвост энциклопедии · 2'), section="s9",
-  deps=['q109'],
+Q("q111", ('Encyclopaedia Tail · 2', 'Хвост энциклопедии · 2'), section="s9",
+  deps=['q104'],
   icon="eternal_starlight:aurora_deer_antler",
   desc=[
       ('Small things the sections above did not name: every thing of the mod is counted.',
@@ -2032,7 +2050,7 @@ Q("q110", ('Encyclopaedia Tail · 2', 'Хвост энциклопедии · 2'
       xpr(45),
   ]),
 
-Q("q111", ('Encyclopaedia Tail · 3', 'Хвост энциклопедии · 3'), section="s9",
+Q("q112", ('Encyclopaedia Tail · 3', 'Хвост энциклопедии · 3'), section="s9",
   deps=['q104'],
   icon="eternal_starlight:cooked_ratlin_meat",
   desc=[
@@ -2055,7 +2073,7 @@ Q("q111", ('Encyclopaedia Tail · 3', 'Хвост энциклопедии · 3'
       xpr(45),
   ]),
 
-Q("q112", ('Encyclopaedia Tail · 4', 'Хвост энциклопедии · 4'), section="s9",
+Q("q113", ('Encyclopaedia Tail · 4', 'Хвост энциклопедии · 4'), section="s9",
   deps=['q104'],
   icon="eternal_starlight:doomeden_carrion",
   desc=[
@@ -2078,7 +2096,7 @@ Q("q112", ('Encyclopaedia Tail · 4', 'Хвост энциклопедии · 4'
       xpr(45),
   ]),
 
-Q("q113", ('Encyclopaedia Tail · 5', 'Хвост энциклопедии · 5'), section="s9",
+Q("q114", ('Encyclopaedia Tail · 5', 'Хвост энциклопедии · 5'), section="s9",
   deps=['q104'],
   icon="eternal_starlight:flowglaze_shovel",
   desc=[
@@ -2101,7 +2119,7 @@ Q("q113", ('Encyclopaedia Tail · 5', 'Хвост энциклопедии · 5'
       xpr(45),
   ]),
 
-Q("q114", ('Encyclopaedia Tail · 6', 'Хвост энциклопедии · 6'), section="s9",
+Q("q115", ('Encyclopaedia Tail · 6', 'Хвост энциклопедии · 6'), section="s9",
   deps=['q104'],
   icon="eternal_starlight:luminofish",
   desc=[
@@ -2124,8 +2142,8 @@ Q("q114", ('Encyclopaedia Tail · 6', 'Хвост энциклопедии · 6'
       xpr(45),
   ]),
 
-Q("q115", ('Encyclopaedia Tail · 7', 'Хвост энциклопедии · 7'), section="s9",
-  deps=['q104'],
+Q("q116", ('Encyclopaedia Tail · 7', 'Хвост энциклопедии · 7'), section="s9",
+  deps=['q115'],
   icon="eternal_starlight:oxidized_golem_steel_nugget",
   desc=[
       ('Small things the sections above did not name: every thing of the mod is counted.',
@@ -2147,8 +2165,8 @@ Q("q115", ('Encyclopaedia Tail · 7', 'Хвост энциклопедии · 7'
       xpr(45),
   ]),
 
-Q("q116", ('Encyclopaedia Tail · 8', 'Хвост энциклопедии · 8'), section="s9",
-  deps=['q115'],
+Q("q117", ('Encyclopaedia Tail · 8', 'Хвост энциклопедии · 8'), section="s9",
+  deps=['q104'],
   icon="eternal_starlight:ratlin_meat",
   desc=[
       ('Small things the sections above did not name: every thing of the mod is counted.',
@@ -2170,7 +2188,7 @@ Q("q116", ('Encyclopaedia Tail · 8', 'Хвост энциклопедии · 8'
       xpr(45),
   ]),
 
-Q("q117", ('Encyclopaedia Tail · 9', 'Хвост энциклопедии · 9'), section="s9",
+Q("q118", ('Encyclopaedia Tail · 9', 'Хвост энциклопедии · 9'), section="s9",
   deps=['q104'],
   icon="eternal_starlight:shadow_snail_meat",
   desc=[
@@ -2193,7 +2211,7 @@ Q("q117", ('Encyclopaedia Tail · 9', 'Хвост энциклопедии · 9'
       xpr(45),
   ]),
 
-Q("q118", ('Encyclopaedia Tail · 10', 'Хвост энциклопедии · 10'), section="s9",
+Q("q119", ('Encyclopaedia Tail · 10', 'Хвост энциклопедии · 10'), section="s9",
   deps=['q104'],
   icon="eternal_starlight:starlit_diamond_shovel",
   desc=[
@@ -2216,7 +2234,7 @@ Q("q118", ('Encyclopaedia Tail · 10', 'Хвост энциклопедии · 1
       xpr(45),
   ]),
 
-Q("q119", ('Encyclopaedia Tail · 11', 'Хвост энциклопедии · 11'), section="s9",
+Q("q120", ('Encyclopaedia Tail · 11', 'Хвост энциклопедии · 11'), section="s9",
   deps=['q104'],
   icon="eternal_starlight:tooth_of_hunger",
   desc=[
@@ -2236,7 +2254,7 @@ Q("q119", ('Encyclopaedia Tail · 11', 'Хвост энциклопедии · 1
       xpr(45),
   ]),
 
-Q("q120", ('The Star Encyclopaedia', 'Звёздная энциклопедия'), section="s9",
+Q("q121", ('The Star Encyclopaedia', 'Звёздная энциклопедия'), section="s9",
   deps=['q104'],
   icon="eternal_starlight:blossom_of_stars",
   size=1.8,
@@ -2335,7 +2353,7 @@ CHAPTER = {
             "title": ('Deactivate the energy block first', 'Сначала обесточь энергоблок'),
         },
         {
-            "at": 'q120', "dx": 0.0, "dy": 0.0,
+            "at": 'q121', "dx": 0.0, "dy": 0.0,
             "w": 2.6, "h": 2.6, "image": 'kubejs:textures/gui/halo.png',
             "color": 0xFFD75E, "alpha": 120, "order": -30,
             "lock": True, "text": False,

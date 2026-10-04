@@ -1,0 +1,13 @@
+name = "Client Sort"
+filename = "clientsort-neoforge-3.89.2+1.21.1.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/K0AkAin6/versions/2c4hM8Ut/clientsort-neoforge-3.89.2%2B1.21.1.jar"
+hash-format = "sha1"
+hash = "05c7d37ad5f8aa5dcbe81623842b6f87f5ce1ae8"
+
+[update]
+[update.modrinth]
+mod-id = "K0AkAin6"
+version = "2c4hM8Ut"

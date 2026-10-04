@@ -50,6 +50,20 @@ ServerEvents.recipes(event => {
         S: 'minecraft:nether_star'
     })
 
+    // --- Фонарь звездочёта: оправа из звездопала вокруг звёздного алмаза ---
+    //     S
+    //     G D G        S = звездопал, G = стекло, D = звёздный алмаз
+    //     S
+    event.shaped('kubejs:star_lantern', [
+        ' S ',
+        'GDG',
+        ' S '
+    ], {
+        S: 'eternal_starlight:starfire',
+        G: 'minecraft:glass',
+        D: 'eternal_starlight:starlit_diamond'
+    })
+
     // --- Пример обратной стороны: убираем ванильный рецепт, если он мешает ---
     // event.remove({ output: 'minecraft:tnt' })
 })

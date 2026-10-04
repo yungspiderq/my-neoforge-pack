@@ -40,8 +40,18 @@ StartupEvents.registry('item', event => {
         .rarity('epic')
         .maxStackSize(16)
 
-    // Самопроверка: если здесь не три предмета, квесты со своими
+    // Предмет-фишка пака: фонарь звездочёта (см. server_scripts/star_lantern.js).
+    // Правый клик — короткое ночное зрение и сноп звёздных искр.
+    event.create('star_lantern')
+        .displayName('Stargazer\'s Lantern')
+        .texture('kubejs:item/star_lantern')
+        .tooltip('Правый клик: 20 секунд ночного зрения и сноп звёздных искр.')
+        .tooltip('Оправа из звездопала вокруг звёздного алмаза — рецепт в верстаке.')
+        .rarity('rare')
+        .maxStackSize(1)
+
+    // Самопроверка: если здесь не четыре предмета, квесты со своими
     // наградами будут невыполнимы — и об этом скажет лог, а не пустая книга.
-    console.info('[modpack] кастомных предметов зарегистрировано: 3 ' +
-                 '(quest_token, quest_token_premium, quest_medal)')
+    console.info('[modpack] кастомных предметов зарегистрировано: 4 ' +
+                 '(quest_token, quest_token_premium, quest_medal, star_lantern)')
 })

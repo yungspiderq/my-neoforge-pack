@@ -244,7 +244,7 @@
 		{
 			alpha: 46,
 			color: 13214247,
-			height: 23.45d,
+			height: 24.9d,
 			id: "0000000000405011",
 			image: "kubejs:textures/gui/panel_soft.png",
 			order: -200,
@@ -252,7 +252,7 @@
 			rotation: 0.0d,
 			width: 8.8d,
 			x: 2.1d,
-			y: 122.425d
+			y: 123.15d
 		},
 		{
 			alpha: 225,
@@ -406,7 +406,7 @@
 			text_shadow: 1b,
 			width: 2.6d,
 			x: 2.1d,
-			y: 131.85d
+			y: 133.3d
 		}
 	],
 	order_index: 4,
@@ -4484,84 +4484,34 @@
 				}
 			],
 			x: 0.0d,
-			y: 122.425d
+			y: 123.15d
 		},
 		{
 			dependencies: ["0000000000105680"],
 			icon: {
 				count: 1,
-				id: "eternal_starlight:sacred_starlight_flower"
+				id: "kubejs:star_lantern"
 			},
 			id: "0000000000105690",
 			rewards: [
 				{
 					id: "0000000000305690",
 					type: "xp",
-					xp: 70
+					xp: 80
+				},
+				{
+					description: "Фонарь зажжён: ночь больше не темнее тебя.",
+					id: "0000000000305691",
+					type: "toast"
 				}
 			],
+			size: 1.3d,
 			tasks: [
 				{
 					id: "0000000000205690",
 					item: {
 						count: 1,
-						id: "eternal_starlight:sacred_starlight_flower"
-					},
-					type: "item"
-				},
-				{
-					id: "0000000000205691",
-					item: {
-						count: 1,
-						id: "eternal_starlight:starlight_flower"
-					},
-					type: "item"
-				},
-				{
-					id: "0000000000205692",
-					item: {
-						count: 1,
-						id: "eternal_starlight:whisperbloom"
-					},
-					type: "item"
-				},
-				{
-					id: "0000000000205693",
-					item: {
-						count: 1,
-						id: "eternal_starlight:fire_orchid"
-					},
-					type: "item"
-				},
-				{
-					id: "0000000000205694",
-					item: {
-						count: 1,
-						id: "eternal_starlight:sea_rosa"
-					},
-					type: "item"
-				},
-				{
-					id: "0000000000205695",
-					item: {
-						count: 1,
-						id: "eternal_starlight:orbflora"
-					},
-					type: "item"
-				},
-				{
-					id: "0000000000205696",
-					item: {
-						count: 1,
-						id: "eternal_starlight:starlight_torchflower"
-					},
-					type: "item"
-				},
-				{
-					id: "0000000000205697",
-					item: {
-						count: 1,
-						id: "eternal_starlight:starlit_lily_pad"
+						id: "kubejs:star_lantern"
 					},
 					type: "item"
 				}
@@ -4573,7 +4523,7 @@
 			dependencies: ["0000000000105680"],
 			icon: {
 				count: 1,
-				id: "eternal_starlight:white_yeti_fur"
+				id: "eternal_starlight:sacred_starlight_flower"
 			},
 			id: "00000000001056A0",
 			rewards: [
@@ -4588,7 +4538,7 @@
 					id: "00000000002056A0",
 					item: {
 						count: 1,
-						id: "eternal_starlight:white_yeti_fur"
+						id: "eternal_starlight:sacred_starlight_flower"
 					},
 					type: "item"
 				},
@@ -4596,7 +4546,7 @@
 					id: "00000000002056A1",
 					item: {
 						count: 1,
-						id: "eternal_starlight:orange_yeti_fur"
+						id: "eternal_starlight:starlight_flower"
 					},
 					type: "item"
 				},
@@ -4604,7 +4554,7 @@
 					id: "00000000002056A2",
 					item: {
 						count: 1,
-						id: "eternal_starlight:pink_yeti_fur"
+						id: "eternal_starlight:whisperbloom"
 					},
 					type: "item"
 				},
@@ -4612,7 +4562,7 @@
 					id: "00000000002056A3",
 					item: {
 						count: 1,
-						id: "eternal_starlight:purple_yeti_fur"
+						id: "eternal_starlight:fire_orchid"
 					},
 					type: "item"
 				},
@@ -4620,7 +4570,7 @@
 					id: "00000000002056A4",
 					item: {
 						count: 1,
-						id: "eternal_starlight:red_yeti_fur"
+						id: "eternal_starlight:sea_rosa"
 					},
 					type: "item"
 				},
@@ -4628,7 +4578,7 @@
 					id: "00000000002056A5",
 					item: {
 						count: 1,
-						id: "eternal_starlight:yellow_yeti_fur"
+						id: "eternal_starlight:orbflora"
 					},
 					type: "item"
 				},
@@ -4636,7 +4586,7 @@
 					id: "00000000002056A6",
 					item: {
 						count: 1,
-						id: "eternal_starlight:starfire_bird_nest"
+						id: "eternal_starlight:starlight_torchflower"
 					},
 					type: "item"
 				},
@@ -4644,7 +4594,7 @@
 					id: "00000000002056A7",
 					item: {
 						count: 1,
-						id: "eternal_starlight:oak_starfire_bird_aviary"
+						id: "eternal_starlight:starlit_lily_pad"
 					},
 					type: "item"
 				}
@@ -4656,23 +4606,22 @@
 			dependencies: ["0000000000105680"],
 			icon: {
 				count: 1,
-				id: "eternal_starlight:lunar_boat"
+				id: "eternal_starlight:white_yeti_fur"
 			},
 			id: "00000000001056B0",
 			rewards: [
 				{
 					id: "00000000003056B0",
 					type: "xp",
-					xp: 60
+					xp: 70
 				}
 			],
-			size: 1.2d,
 			tasks: [
 				{
 					id: "00000000002056B0",
 					item: {
 						count: 1,
-						id: "eternal_starlight:lunar_boat"
+						id: "eternal_starlight:white_yeti_fur"
 					},
 					type: "item"
 				},
@@ -4680,7 +4629,7 @@
 					id: "00000000002056B1",
 					item: {
 						count: 1,
-						id: "eternal_starlight:lunar_chest_boat"
+						id: "eternal_starlight:orange_yeti_fur"
 					},
 					type: "item"
 				},
@@ -4688,7 +4637,7 @@
 					id: "00000000002056B2",
 					item: {
 						count: 1,
-						id: "eternal_starlight:northland_boat"
+						id: "eternal_starlight:pink_yeti_fur"
 					},
 					type: "item"
 				},
@@ -4696,7 +4645,7 @@
 					id: "00000000002056B3",
 					item: {
 						count: 1,
-						id: "eternal_starlight:northland_chest_boat"
+						id: "eternal_starlight:purple_yeti_fur"
 					},
 					type: "item"
 				},
@@ -4704,7 +4653,7 @@
 					id: "00000000002056B4",
 					item: {
 						count: 1,
-						id: "eternal_starlight:banyin_boat"
+						id: "eternal_starlight:red_yeti_fur"
 					},
 					type: "item"
 				},
@@ -4712,7 +4661,23 @@
 					id: "00000000002056B5",
 					item: {
 						count: 1,
-						id: "eternal_starlight:banyin_chest_boat"
+						id: "eternal_starlight:yellow_yeti_fur"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056B6",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starfire_bird_nest"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056B7",
+					item: {
+						count: 1,
+						id: "eternal_starlight:oak_starfire_bird_aviary"
 					},
 					type: "item"
 				}
@@ -4724,7 +4689,7 @@
 			dependencies: ["0000000000105680"],
 			icon: {
 				count: 1,
-				id: "eternal_starlight:scarlet_boat"
+				id: "eternal_starlight:lunar_boat"
 			},
 			id: "00000000001056C0",
 			rewards: [
@@ -4740,7 +4705,7 @@
 					id: "00000000002056C0",
 					item: {
 						count: 1,
-						id: "eternal_starlight:scarlet_boat"
+						id: "eternal_starlight:lunar_boat"
 					},
 					type: "item"
 				},
@@ -4748,7 +4713,7 @@
 					id: "00000000002056C1",
 					item: {
 						count: 1,
-						id: "eternal_starlight:scarlet_chest_boat"
+						id: "eternal_starlight:lunar_chest_boat"
 					},
 					type: "item"
 				},
@@ -4756,7 +4721,7 @@
 					id: "00000000002056C2",
 					item: {
 						count: 1,
-						id: "eternal_starlight:torreya_boat"
+						id: "eternal_starlight:northland_boat"
 					},
 					type: "item"
 				},
@@ -4764,7 +4729,7 @@
 					id: "00000000002056C3",
 					item: {
 						count: 1,
-						id: "eternal_starlight:torreya_chest_boat"
+						id: "eternal_starlight:northland_chest_boat"
 					},
 					type: "item"
 				},
@@ -4772,7 +4737,7 @@
 					id: "00000000002056C4",
 					item: {
 						count: 1,
-						id: "eternal_starlight:jinglestem_raft"
+						id: "eternal_starlight:banyin_boat"
 					},
 					type: "item"
 				},
@@ -4780,23 +4745,7 @@
 					id: "00000000002056C5",
 					item: {
 						count: 1,
-						id: "eternal_starlight:jinglestem_chest_raft"
-					},
-					type: "item"
-				},
-				{
-					id: "00000000002056C6",
-					item: {
-						count: 1,
-						id: "eternal_starlight:cradlewood_boat"
-					},
-					type: "item"
-				},
-				{
-					id: "00000000002056C7",
-					item: {
-						count: 1,
-						id: "eternal_starlight:cradlewood_chest_boat"
+						id: "eternal_starlight:banyin_chest_boat"
 					},
 					type: "item"
 				}
@@ -4808,22 +4757,23 @@
 			dependencies: ["0000000000105680"],
 			icon: {
 				count: 1,
-				id: "eternal_starlight:abyssal_fruit"
+				id: "eternal_starlight:scarlet_boat"
 			},
 			id: "00000000001056D0",
 			rewards: [
 				{
 					id: "00000000003056D0",
 					type: "xp",
-					xp: 45
+					xp: 60
 				}
 			],
+			size: 1.2d,
 			tasks: [
 				{
 					id: "00000000002056D0",
 					item: {
 						count: 1,
-						id: "eternal_starlight:abyssal_fruit"
+						id: "eternal_starlight:scarlet_boat"
 					},
 					type: "item"
 				},
@@ -4831,7 +4781,7 @@
 					id: "00000000002056D1",
 					item: {
 						count: 1,
-						id: "eternal_starlight:aethersent_nugget"
+						id: "eternal_starlight:scarlet_chest_boat"
 					},
 					type: "item"
 				},
@@ -4839,7 +4789,7 @@
 					id: "00000000002056D2",
 					item: {
 						count: 1,
-						id: "eternal_starlight:air_sac_mask"
+						id: "eternal_starlight:torreya_boat"
 					},
 					type: "item"
 				},
@@ -4847,7 +4797,7 @@
 					id: "00000000002056D3",
 					item: {
 						count: 1,
-						id: "eternal_starlight:amaramber_hoe"
+						id: "eternal_starlight:torreya_chest_boat"
 					},
 					type: "item"
 				},
@@ -4855,7 +4805,7 @@
 					id: "00000000002056D4",
 					item: {
 						count: 1,
-						id: "eternal_starlight:amaramber_ingot"
+						id: "eternal_starlight:jinglestem_raft"
 					},
 					type: "item"
 				},
@@ -4863,7 +4813,7 @@
 					id: "00000000002056D5",
 					item: {
 						count: 1,
-						id: "eternal_starlight:amaramber_mask"
+						id: "eternal_starlight:jinglestem_chest_raft"
 					},
 					type: "item"
 				},
@@ -4871,7 +4821,7 @@
 					id: "00000000002056D6",
 					item: {
 						count: 1,
-						id: "eternal_starlight:amaramber_nugget"
+						id: "eternal_starlight:cradlewood_boat"
 					},
 					type: "item"
 				},
@@ -4879,7 +4829,7 @@
 					id: "00000000002056D7",
 					item: {
 						count: 1,
-						id: "eternal_starlight:amaramber_shovel"
+						id: "eternal_starlight:cradlewood_chest_boat"
 					},
 					type: "item"
 				}
@@ -4891,7 +4841,7 @@
 			dependencies: ["00000000001056D0"],
 			icon: {
 				count: 1,
-				id: "eternal_starlight:aurora_deer_antler"
+				id: "eternal_starlight:abyssal_fruit"
 			},
 			id: "00000000001056E0",
 			rewards: [
@@ -4906,7 +4856,7 @@
 					id: "00000000002056E0",
 					item: {
 						count: 1,
-						id: "eternal_starlight:aurora_deer_antler"
+						id: "eternal_starlight:abyssal_fruit"
 					},
 					type: "item"
 				},
@@ -4914,7 +4864,7 @@
 					id: "00000000002056E1",
 					item: {
 						count: 1,
-						id: "eternal_starlight:aurora_deer_steak"
+						id: "eternal_starlight:aethersent_nugget"
 					},
 					type: "item"
 				},
@@ -4922,7 +4872,7 @@
 					id: "00000000002056E2",
 					item: {
 						count: 1,
-						id: "eternal_starlight:blue_starlight_crystal_shard"
+						id: "eternal_starlight:air_sac_mask"
 					},
 					type: "item"
 				},
@@ -4930,7 +4880,7 @@
 					id: "00000000002056E3",
 					item: {
 						count: 1,
-						id: "eternal_starlight:broken_doomeden_bone"
+						id: "eternal_starlight:amaramber_hoe"
 					},
 					type: "item"
 				},
@@ -4938,7 +4888,7 @@
 					id: "00000000002056E4",
 					item: {
 						count: 1,
-						id: "eternal_starlight:cinder_brick"
+						id: "eternal_starlight:amaramber_ingot"
 					},
 					type: "item"
 				},
@@ -4946,7 +4896,7 @@
 					id: "00000000002056E5",
 					item: {
 						count: 1,
-						id: "eternal_starlight:cooked_aurora_deer_steak"
+						id: "eternal_starlight:amaramber_mask"
 					},
 					type: "item"
 				},
@@ -4954,7 +4904,7 @@
 					id: "00000000002056E6",
 					item: {
 						count: 1,
-						id: "eternal_starlight:cooked_luminaris"
+						id: "eternal_starlight:amaramber_nugget"
 					},
 					type: "item"
 				},
@@ -4962,19 +4912,19 @@
 					id: "00000000002056E7",
 					item: {
 						count: 1,
-						id: "eternal_starlight:cooked_luminofish"
+						id: "eternal_starlight:amaramber_shovel"
 					},
 					type: "item"
 				}
 			],
 			x: 4.2d,
-			y: 121.7d
+			y: 122.425d
 		},
 		{
 			dependencies: ["0000000000105680"],
 			icon: {
 				count: 1,
-				id: "eternal_starlight:cooked_ratlin_meat"
+				id: "eternal_starlight:aurora_deer_antler"
 			},
 			id: "00000000001056F0",
 			rewards: [
@@ -4989,7 +4939,7 @@
 					id: "00000000002056F0",
 					item: {
 						count: 1,
-						id: "eternal_starlight:cooked_ratlin_meat"
+						id: "eternal_starlight:aurora_deer_antler"
 					},
 					type: "item"
 				},
@@ -4997,7 +4947,7 @@
 					id: "00000000002056F1",
 					item: {
 						count: 1,
-						id: "eternal_starlight:cooked_rookfish"
+						id: "eternal_starlight:aurora_deer_steak"
 					},
 					type: "item"
 				},
@@ -5005,7 +4955,7 @@
 					id: "00000000002056F2",
 					item: {
 						count: 1,
-						id: "eternal_starlight:cooked_shadow_snail_meat"
+						id: "eternal_starlight:blue_starlight_crystal_shard"
 					},
 					type: "item"
 				},
@@ -5013,7 +4963,7 @@
 					id: "00000000002056F3",
 					item: {
 						count: 1,
-						id: "eternal_starlight:creteor_hide"
+						id: "eternal_starlight:broken_doomeden_bone"
 					},
 					type: "item"
 				},
@@ -5021,7 +4971,7 @@
 					id: "00000000002056F4",
 					item: {
 						count: 1,
-						id: "eternal_starlight:crinoa_seeds"
+						id: "eternal_starlight:cinder_brick"
 					},
 					type: "item"
 				},
@@ -5029,7 +4979,7 @@
 					id: "00000000002056F5",
 					item: {
 						count: 1,
-						id: "eternal_starlight:deepsilver_hoe"
+						id: "eternal_starlight:cooked_aurora_deer_steak"
 					},
 					type: "item"
 				},
@@ -5037,7 +4987,7 @@
 					id: "00000000002056F6",
 					item: {
 						count: 1,
-						id: "eternal_starlight:deepsilver_nugget"
+						id: "eternal_starlight:cooked_luminaris"
 					},
 					type: "item"
 				},
@@ -5045,7 +4995,7 @@
 					id: "00000000002056F7",
 					item: {
 						count: 1,
-						id: "eternal_starlight:deepsilver_shovel"
+						id: "eternal_starlight:cooked_luminofish"
 					},
 					type: "item"
 				}
@@ -5057,7 +5007,7 @@
 			dependencies: ["0000000000105680"],
 			icon: {
 				count: 1,
-				id: "eternal_starlight:doomeden_carrion"
+				id: "eternal_starlight:cooked_ratlin_meat"
 			},
 			id: "0000000000105700",
 			rewards: [
@@ -5072,7 +5022,7 @@
 					id: "0000000000205700",
 					item: {
 						count: 1,
-						id: "eternal_starlight:doomeden_carrion"
+						id: "eternal_starlight:cooked_ratlin_meat"
 					},
 					type: "item"
 				},
@@ -5080,7 +5030,7 @@
 					id: "0000000000205701",
 					item: {
 						count: 1,
-						id: "eternal_starlight:doomeden_rag"
+						id: "eternal_starlight:cooked_rookfish"
 					},
 					type: "item"
 				},
@@ -5088,7 +5038,7 @@
 					id: "0000000000205702",
 					item: {
 						count: 1,
-						id: "eternal_starlight:doomeden_rapier"
+						id: "eternal_starlight:cooked_shadow_snail_meat"
 					},
 					type: "item"
 				},
@@ -5096,7 +5046,7 @@
 					id: "0000000000205703",
 					item: {
 						count: 1,
-						id: "eternal_starlight:ether_bucket"
+						id: "eternal_starlight:creteor_hide"
 					},
 					type: "item"
 				},
@@ -5104,7 +5054,7 @@
 					id: "0000000000205704",
 					item: {
 						count: 1,
-						id: "eternal_starlight:etheric_eye"
+						id: "eternal_starlight:crinoa_seeds"
 					},
 					type: "item"
 				},
@@ -5112,7 +5062,7 @@
 					id: "0000000000205705",
 					item: {
 						count: 1,
-						id: "eternal_starlight:eye_of_doom"
+						id: "eternal_starlight:deepsilver_hoe"
 					},
 					type: "item"
 				},
@@ -5120,7 +5070,7 @@
 					id: "0000000000205706",
 					item: {
 						count: 1,
-						id: "eternal_starlight:flare_brick"
+						id: "eternal_starlight:deepsilver_nugget"
 					},
 					type: "item"
 				},
@@ -5128,7 +5078,7 @@
 					id: "0000000000205707",
 					item: {
 						count: 1,
-						id: "eternal_starlight:flowglaze_hoe"
+						id: "eternal_starlight:deepsilver_shovel"
 					},
 					type: "item"
 				}
@@ -5140,7 +5090,7 @@
 			dependencies: ["0000000000105680"],
 			icon: {
 				count: 1,
-				id: "eternal_starlight:flowglaze_shovel"
+				id: "eternal_starlight:doomeden_carrion"
 			},
 			id: "0000000000105710",
 			rewards: [
@@ -5155,7 +5105,7 @@
 					id: "0000000000205710",
 					item: {
 						count: 1,
-						id: "eternal_starlight:flowglaze_shovel"
+						id: "eternal_starlight:doomeden_carrion"
 					},
 					type: "item"
 				},
@@ -5163,7 +5113,7 @@
 					id: "0000000000205711",
 					item: {
 						count: 1,
-						id: "eternal_starlight:glacite_hoe"
+						id: "eternal_starlight:doomeden_rag"
 					},
 					type: "item"
 				},
@@ -5171,7 +5121,7 @@
 					id: "0000000000205712",
 					item: {
 						count: 1,
-						id: "eternal_starlight:glacite_shovel"
+						id: "eternal_starlight:doomeden_rapier"
 					},
 					type: "item"
 				},
@@ -5179,7 +5129,7 @@
 					id: "0000000000205713",
 					item: {
 						count: 1,
-						id: "eternal_starlight:gleech_egg"
+						id: "eternal_starlight:ether_bucket"
 					},
 					type: "item"
 				},
@@ -5187,7 +5137,7 @@
 					id: "0000000000205714",
 					item: {
 						count: 1,
-						id: "eternal_starlight:golem_steel_nugget"
+						id: "eternal_starlight:etheric_eye"
 					},
 					type: "item"
 				},
@@ -5195,7 +5145,7 @@
 					id: "0000000000205715",
 					item: {
 						count: 1,
-						id: "eternal_starlight:loot_bag"
+						id: "eternal_starlight:eye_of_doom"
 					},
 					type: "item"
 				},
@@ -5203,7 +5153,7 @@
 					id: "0000000000205716",
 					item: {
 						count: 1,
-						id: "eternal_starlight:luminaris"
+						id: "eternal_starlight:flare_brick"
 					},
 					type: "item"
 				},
@@ -5211,7 +5161,7 @@
 					id: "0000000000205717",
 					item: {
 						count: 1,
-						id: "eternal_starlight:luminaris_bucket"
+						id: "eternal_starlight:flowglaze_hoe"
 					},
 					type: "item"
 				}
@@ -5223,7 +5173,7 @@
 			dependencies: ["0000000000105680"],
 			icon: {
 				count: 1,
-				id: "eternal_starlight:luminofish"
+				id: "eternal_starlight:flowglaze_shovel"
 			},
 			id: "0000000000105720",
 			rewards: [
@@ -5238,7 +5188,7 @@
 					id: "0000000000205720",
 					item: {
 						count: 1,
-						id: "eternal_starlight:luminofish"
+						id: "eternal_starlight:flowglaze_shovel"
 					},
 					type: "item"
 				},
@@ -5246,7 +5196,7 @@
 					id: "0000000000205721",
 					item: {
 						count: 1,
-						id: "eternal_starlight:luminofish_bucket"
+						id: "eternal_starlight:glacite_hoe"
 					},
 					type: "item"
 				},
@@ -5254,7 +5204,7 @@
 					id: "0000000000205722",
 					item: {
 						count: 1,
-						id: "eternal_starlight:lunaris_cactus_fruit"
+						id: "eternal_starlight:glacite_shovel"
 					},
 					type: "item"
 				},
@@ -5262,7 +5212,7 @@
 					id: "0000000000205723",
 					item: {
 						count: 1,
-						id: "eternal_starlight:malarite_hoe"
+						id: "eternal_starlight:gleech_egg"
 					},
 					type: "item"
 				},
@@ -5270,7 +5220,7 @@
 					id: "0000000000205724",
 					item: {
 						count: 1,
-						id: "eternal_starlight:malarite_shovel"
+						id: "eternal_starlight:golem_steel_nugget"
 					},
 					type: "item"
 				},
@@ -5278,7 +5228,7 @@
 					id: "0000000000205725",
 					item: {
 						count: 1,
-						id: "eternal_starlight:nightfall_spider_eye"
+						id: "eternal_starlight:loot_bag"
 					},
 					type: "item"
 				},
@@ -5286,7 +5236,7 @@
 					id: "0000000000205726",
 					item: {
 						count: 1,
-						id: "eternal_starlight:nocturnal_millet_seeds"
+						id: "eternal_starlight:luminaris"
 					},
 					type: "item"
 				},
@@ -5294,7 +5244,7 @@
 					id: "0000000000205727",
 					item: {
 						count: 1,
-						id: "eternal_starlight:oxidized_golem_steel_ingot"
+						id: "eternal_starlight:luminaris_bucket"
 					},
 					type: "item"
 				}
@@ -5306,7 +5256,7 @@
 			dependencies: ["0000000000105680"],
 			icon: {
 				count: 1,
-				id: "eternal_starlight:oxidized_golem_steel_nugget"
+				id: "eternal_starlight:luminofish"
 			},
 			id: "0000000000105730",
 			rewards: [
@@ -5321,7 +5271,7 @@
 					id: "0000000000205730",
 					item: {
 						count: 1,
-						id: "eternal_starlight:oxidized_golem_steel_nugget"
+						id: "eternal_starlight:luminofish"
 					},
 					type: "item"
 				},
@@ -5329,7 +5279,7 @@
 					id: "0000000000205731",
 					item: {
 						count: 1,
-						id: "eternal_starlight:pearl_necklace"
+						id: "eternal_starlight:luminofish_bucket"
 					},
 					type: "item"
 				},
@@ -5337,7 +5287,7 @@
 					id: "0000000000205732",
 					item: {
 						count: 1,
-						id: "eternal_starlight:petal_scythe"
+						id: "eternal_starlight:lunaris_cactus_fruit"
 					},
 					type: "item"
 				},
@@ -5345,7 +5295,7 @@
 					id: "0000000000205733",
 					item: {
 						count: 1,
-						id: "eternal_starlight:popped_nocturnal_millet_bucket"
+						id: "eternal_starlight:malarite_hoe"
 					},
 					type: "item"
 				},
@@ -5353,7 +5303,7 @@
 					id: "0000000000205734",
 					item: {
 						count: 1,
-						id: "eternal_starlight:pungency_fruit_seeds"
+						id: "eternal_starlight:malarite_shovel"
 					},
 					type: "item"
 				},
@@ -5361,7 +5311,7 @@
 					id: "0000000000205735",
 					item: {
 						count: 1,
-						id: "eternal_starlight:pungency_fruit_upgrade_smithing_template"
+						id: "eternal_starlight:nightfall_spider_eye"
 					},
 					type: "item"
 				},
@@ -5369,7 +5319,7 @@
 					id: "0000000000205736",
 					item: {
 						count: 1,
-						id: "eternal_starlight:pungency_stew"
+						id: "eternal_starlight:nocturnal_millet_seeds"
 					},
 					type: "item"
 				},
@@ -5377,7 +5327,7 @@
 					id: "0000000000205737",
 					item: {
 						count: 1,
-						id: "eternal_starlight:rage_of_stars"
+						id: "eternal_starlight:oxidized_golem_steel_ingot"
 					},
 					type: "item"
 				}
@@ -5389,7 +5339,7 @@
 			dependencies: ["0000000000105730"],
 			icon: {
 				count: 1,
-				id: "eternal_starlight:ratlin_meat"
+				id: "eternal_starlight:oxidized_golem_steel_nugget"
 			},
 			id: "0000000000105740",
 			rewards: [
@@ -5404,7 +5354,7 @@
 					id: "0000000000205740",
 					item: {
 						count: 1,
-						id: "eternal_starlight:ratlin_meat"
+						id: "eternal_starlight:oxidized_golem_steel_nugget"
 					},
 					type: "item"
 				},
@@ -5412,7 +5362,7 @@
 					id: "0000000000205741",
 					item: {
 						count: 1,
-						id: "eternal_starlight:raw_aethersent"
+						id: "eternal_starlight:pearl_necklace"
 					},
 					type: "item"
 				},
@@ -5420,7 +5370,7 @@
 					id: "0000000000205742",
 					item: {
 						count: 1,
-						id: "eternal_starlight:raw_deepsilver"
+						id: "eternal_starlight:petal_scythe"
 					},
 					type: "item"
 				},
@@ -5428,7 +5378,7 @@
 					id: "0000000000205743",
 					item: {
 						count: 1,
-						id: "eternal_starlight:red_starlight_crystal_shard"
+						id: "eternal_starlight:popped_nocturnal_millet_bucket"
 					},
 					type: "item"
 				},
@@ -5436,7 +5386,7 @@
 					id: "0000000000205744",
 					item: {
 						count: 1,
-						id: "eternal_starlight:rookfish_air_sac"
+						id: "eternal_starlight:pungency_fruit_seeds"
 					},
 					type: "item"
 				},
@@ -5444,7 +5394,7 @@
 					id: "0000000000205745",
 					item: {
 						count: 1,
-						id: "eternal_starlight:rookfish_bucket"
+						id: "eternal_starlight:pungency_fruit_upgrade_smithing_template"
 					},
 					type: "item"
 				},
@@ -5452,7 +5402,7 @@
 					id: "0000000000205746",
 					item: {
 						count: 1,
-						id: "eternal_starlight:seeds_launcher"
+						id: "eternal_starlight:pungency_stew"
 					},
 					type: "item"
 				},
@@ -5460,19 +5410,19 @@
 					id: "0000000000205747",
 					item: {
 						count: 1,
-						id: "eternal_starlight:seeker_tentacle"
+						id: "eternal_starlight:rage_of_stars"
 					},
 					type: "item"
 				}
 			],
 			x: 4.2d,
-			y: 123.15d
+			y: 123.875d
 		},
 		{
 			dependencies: ["0000000000105680"],
 			icon: {
 				count: 1,
-				id: "eternal_starlight:shadow_snail_meat"
+				id: "eternal_starlight:ratlin_meat"
 			},
 			id: "0000000000105750",
 			rewards: [
@@ -5487,7 +5437,7 @@
 					id: "0000000000205750",
 					item: {
 						count: 1,
-						id: "eternal_starlight:shadow_snail_meat"
+						id: "eternal_starlight:ratlin_meat"
 					},
 					type: "item"
 				},
@@ -5495,7 +5445,7 @@
 					id: "0000000000205751",
 					item: {
 						count: 1,
-						id: "eternal_starlight:shadow_snail_pie"
+						id: "eternal_starlight:raw_aethersent"
 					},
 					type: "item"
 				},
@@ -5503,7 +5453,7 @@
 					id: "0000000000205752",
 					item: {
 						count: 1,
-						id: "eternal_starlight:shattered_sword_blade"
+						id: "eternal_starlight:raw_deepsilver"
 					},
 					type: "item"
 				},
@@ -5511,7 +5461,7 @@
 					id: "0000000000205753",
 					item: {
 						count: 1,
-						id: "eternal_starlight:starfall_longbow"
+						id: "eternal_starlight:red_starlight_crystal_shard"
 					},
 					type: "item"
 				},
@@ -5519,7 +5469,7 @@
 					id: "0000000000205754",
 					item: {
 						count: 1,
-						id: "eternal_starlight:starfire_hammer"
+						id: "eternal_starlight:rookfish_air_sac"
 					},
 					type: "item"
 				},
@@ -5527,7 +5477,7 @@
 					id: "0000000000205755",
 					item: {
 						count: 1,
-						id: "eternal_starlight:starfire_hoe"
+						id: "eternal_starlight:rookfish_bucket"
 					},
 					type: "item"
 				},
@@ -5535,7 +5485,7 @@
 					id: "0000000000205756",
 					item: {
 						count: 1,
-						id: "eternal_starlight:starfire_shovel"
+						id: "eternal_starlight:seeds_launcher"
 					},
 					type: "item"
 				},
@@ -5543,7 +5493,7 @@
 					id: "0000000000205757",
 					item: {
 						count: 1,
-						id: "eternal_starlight:starlit_diamond_hoe"
+						id: "eternal_starlight:seeker_tentacle"
 					},
 					type: "item"
 				}
@@ -5555,7 +5505,7 @@
 			dependencies: ["0000000000105680"],
 			icon: {
 				count: 1,
-				id: "eternal_starlight:starlit_diamond_shovel"
+				id: "eternal_starlight:shadow_snail_meat"
 			},
 			id: "0000000000105760",
 			rewards: [
@@ -5570,7 +5520,7 @@
 					id: "0000000000205760",
 					item: {
 						count: 1,
-						id: "eternal_starlight:starlit_diamond_shovel"
+						id: "eternal_starlight:shadow_snail_meat"
 					},
 					type: "item"
 				},
@@ -5578,7 +5528,7 @@
 					id: "0000000000205761",
 					item: {
 						count: 1,
-						id: "eternal_starlight:tear_bomb_minecart"
+						id: "eternal_starlight:shadow_snail_pie"
 					},
 					type: "item"
 				},
@@ -5586,7 +5536,7 @@
 					id: "0000000000205762",
 					item: {
 						count: 1,
-						id: "eternal_starlight:tenacious_petal"
+						id: "eternal_starlight:shattered_sword_blade"
 					},
 					type: "item"
 				},
@@ -5594,7 +5544,7 @@
 					id: "0000000000205763",
 					item: {
 						count: 1,
-						id: "eternal_starlight:tentacle_spike"
+						id: "eternal_starlight:starfall_longbow"
 					},
 					type: "item"
 				},
@@ -5602,7 +5552,7 @@
 					id: "0000000000205764",
 					item: {
 						count: 1,
-						id: "eternal_starlight:thermal_springstone_hammer"
+						id: "eternal_starlight:starfire_hammer"
 					},
 					type: "item"
 				},
@@ -5610,7 +5560,7 @@
 					id: "0000000000205765",
 					item: {
 						count: 1,
-						id: "eternal_starlight:thermal_springstone_hoe"
+						id: "eternal_starlight:starfire_hoe"
 					},
 					type: "item"
 				},
@@ -5618,7 +5568,7 @@
 					id: "0000000000205766",
 					item: {
 						count: 1,
-						id: "eternal_starlight:thermal_springstone_ingot"
+						id: "eternal_starlight:starfire_shovel"
 					},
 					type: "item"
 				},
@@ -5626,7 +5576,7 @@
 					id: "0000000000205767",
 					item: {
 						count: 1,
-						id: "eternal_starlight:thermal_springstone_shovel"
+						id: "eternal_starlight:starlit_diamond_hoe"
 					},
 					type: "item"
 				}
@@ -5638,7 +5588,7 @@
 			dependencies: ["0000000000105680"],
 			icon: {
 				count: 1,
-				id: "eternal_starlight:tooth_of_hunger"
+				id: "eternal_starlight:starlit_diamond_shovel"
 			},
 			id: "0000000000105770",
 			rewards: [
@@ -5653,7 +5603,7 @@
 					id: "0000000000205770",
 					item: {
 						count: 1,
-						id: "eternal_starlight:tooth_of_hunger"
+						id: "eternal_starlight:starlit_diamond_shovel"
 					},
 					type: "item"
 				},
@@ -5661,7 +5611,7 @@
 					id: "0000000000205771",
 					item: {
 						count: 1,
-						id: "eternal_starlight:unrealium_hoe"
+						id: "eternal_starlight:tear_bomb_minecart"
 					},
 					type: "item"
 				},
@@ -5669,7 +5619,7 @@
 					id: "0000000000205772",
 					item: {
 						count: 1,
-						id: "eternal_starlight:unrealium_nugget"
+						id: "eternal_starlight:tenacious_petal"
 					},
 					type: "item"
 				},
@@ -5677,7 +5627,7 @@
 					id: "0000000000205773",
 					item: {
 						count: 1,
-						id: "eternal_starlight:unrealium_shovel"
+						id: "eternal_starlight:tentacle_spike"
 					},
 					type: "item"
 				},
@@ -5685,7 +5635,31 @@
 					id: "0000000000205774",
 					item: {
 						count: 1,
-						id: "eternal_starlight:wand_of_teleportation"
+						id: "eternal_starlight:thermal_springstone_hammer"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205775",
+					item: {
+						count: 1,
+						id: "eternal_starlight:thermal_springstone_hoe"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205776",
+					item: {
+						count: 1,
+						id: "eternal_starlight:thermal_springstone_ingot"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205777",
+					item: {
+						count: 1,
+						id: "eternal_starlight:thermal_springstone_shovel"
 					},
 					type: "item"
 				}
@@ -5697,17 +5671,76 @@
 			dependencies: ["0000000000105680"],
 			icon: {
 				count: 1,
-				id: "eternal_starlight:blossom_of_stars"
+				id: "eternal_starlight:tooth_of_hunger"
 			},
 			id: "0000000000105780",
 			rewards: [
 				{
 					id: "0000000000305780",
+					type: "xp",
+					xp: 45
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205780",
+					item: {
+						count: 1,
+						id: "eternal_starlight:tooth_of_hunger"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205781",
+					item: {
+						count: 1,
+						id: "eternal_starlight:unrealium_hoe"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205782",
+					item: {
+						count: 1,
+						id: "eternal_starlight:unrealium_nugget"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205783",
+					item: {
+						count: 1,
+						id: "eternal_starlight:unrealium_shovel"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205784",
+					item: {
+						count: 1,
+						id: "eternal_starlight:wand_of_teleportation"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 131.85d
+		},
+		{
+			dependencies: ["0000000000105680"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:blossom_of_stars"
+			},
+			id: "0000000000105790",
+			rewards: [
+				{
+					id: "0000000000305790",
 					type: "xp_levels",
 					xp_levels: 30
 				},
 				{
-					id: "0000000000305781",
+					id: "0000000000305791",
 					item: {
 						count: 1,
 						id: "kubejs:quest_token_premium"
@@ -5716,14 +5749,14 @@
 				},
 				{
 					description: "Вечное Звездосветье познано: оружие, звери, биомы и боссы — всё твоё.",
-					id: "0000000000305782",
+					id: "0000000000305792",
 					type: "toast"
 				}
 			],
 			size: 1.8d,
 			tasks: [
 				{
-					id: "0000000000205780",
+					id: "0000000000205790",
 					item: {
 						count: 1,
 						id: "eternal_starlight:blossom_of_stars"
@@ -5732,7 +5765,7 @@
 				}
 			],
 			x: 2.1d,
-			y: 131.85d
+			y: 133.3d
 		}
 	]
 }

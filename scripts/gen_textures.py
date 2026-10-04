@@ -387,6 +387,26 @@ def banner_starlight():
     return img
 
 
+def tex_star_lantern():
+    """Фонарь звездочёта: тёмная оправа, аметистовое стекло, звезда внутри."""
+    img = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
+    rect(img, 5, 1, 6, 1, (46, 50, 66, 255))                # крышка
+    rect(img, 7, 0, 2, 1, (46, 50, 66, 255))               # ушко
+    rect(img, 5, 14, 6, 1, (46, 50, 66, 255))              # донце
+    rect(img, 4, 2, 1, 12, (46, 50, 66, 255))              # стойки
+    rect(img, 11, 2, 1, 12, (46, 50, 66, 255))
+    rect(img, 5, 2, 6, 12, (148, 118, 214, 150))           # аметистовое стекло
+    rect(img, 6, 3, 4, 10, (186, 156, 240, 170))
+    circle(img, 8, 8, 3.4, (255, 240, 190, 90))            # ореол звезды
+    star(img, 8, 8, 3.0, (255, 246, 210, 255))             # звезда-пламя
+    px(img, 8, 8, (255, 255, 255, 255))
+    px(img, 6, 4, (255, 255, 255, 160))                    # блик на стекле
+    return img
+
+
+ITEMS["star_lantern"] = tex_star_lantern
+
+
 BANNERS = {
     "banner_overworld": banner_overworld,
     "banner_nether":    banner_nether,
