@@ -768,40 +768,56 @@ def main():
     # --- KubeJS ---
     check_kubejs(yield_items)
 
-    # --- реестр Minecraft ---
+    # --- реестр Minecraft и модов ---
+    # Ванильные ID сверяются с основным реестром; ID модов — с секцией
+    # reg["mods"]["<namespace>"] (собирается из jar мода, см. README в
+    # scripts/quests). kubejs:* проверяет check_kubejs() выше.
     if args.registry:
         reg = load_registry()
         if reg:
-            checks = [("предмет/блок", yield_items, set(reg["items"])),
-                      ("моб", yield_ents, set(reg["entities"])),
-                      ("биом", yield_biomes, set(reg["biomes"])),
-                      ("структура", yield_structs, set(reg["structures"])),
-                      ("достижение", yield_advs, set(reg["advancements"])),
+            mods_reg = reg.get("mods") or {}
+            checks = [("предмет/блок", yield_items, set(reg["items"]), "items"),
+                      ("моб", yield_ents, set(reg["entities"]), "entities"),
+                      ("биом", yield_biomes, set(reg["biomes"]), "biomes"),
+                      ("структура", yield_structs, set(reg["structures"]), "structures"),
+                      ("достижение", yield_advs, set(reg["advancements"]), "advancements"),
                       ("custom-стат", [x and x.split(":")[-1] for x in yield_stats],
-                       set(reg["custom_stats"])),
-                      ("измерение", yield_dims, set(reg["dimensions"]))]
+                       set(reg["custom_stats"]), "custom_stats"),
+                      ("измерение", yield_dims, set(reg["dimensions"]), "dimensions")]
             total_bad = 0
-            for label, vals, pool in checks:
+            for label, vals, pool, kind in checks:
                 # пулы собраны разнородно: lang даёт имена без неймспейса,
                 # а worldgen/advancement — с ним. Приводим всё к bare-виду.
                 bare = {(q.split(":", 1)[1] if ":" in q else q) for q in pool}
+                mbare = {ns: {(q.split(":", 1)[1] if ":" in q else q)
+                              for q in mreg.get(kind, [])}
+                         for ns, mreg in mods_reg.items()}
                 bad = []
                 for v in sorted({x for x in vals if x}):
                     if v.startswith("kubejs:"):
                         continue
-                    key = v.split(":", 1)[1] if ":" in v else v
-                    if key not in bare:
+                    ns, sep, path = v.partition(":")
+                    if not sep:                 # без неймспейса — считаем minecraft
+                        ns, path = "minecraft", v
+                    if ns == "minecraft":
+                        if path not in bare:
+                            bad.append(v)
+                    elif ns not in mbare:
+                        bad.append("%s (в реестре нет мода %r)" % (v, ns))
+                    elif path not in mbare[ns]:
                         bad.append(v)
                 if bad:
                     total_bad += len(bad)
                     for b in bad:
-                        err("%s %s отсутствует в реестре Minecraft %s"
+                        err("%s %s отсутствует в реестре %s"
                             % (label, b, reg.get("minecraft", "1.21.1")))
                 elif vals:
                     ok("%s-ов проверено: %d — все есть в реестре %s"
                        % (label, len({x for x in vals if x}), reg.get("minecraft", "")))
             if total_bad == 0:
-                ok("все ID сверены с реестром Minecraft %s" % reg.get("minecraft"))
+                extra = ("+ моды: " + ", ".join(sorted(mods_reg))) if mods_reg else ""
+                ok("все ID сверены с реестром Minecraft %s %s"
+                   % (reg.get("minecraft"), extra))
 
     # --- итог ---
     print()

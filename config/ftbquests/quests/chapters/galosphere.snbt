@@ -1,0 +1,3401 @@
+{
+	default_hide_dependency_lines: 0b,
+	default_quest_shape: "hexagon",
+	filename: "galosphere",
+	group: "",
+	icon: {
+		count: 1,
+		id: "galosphere:pink_salt_cluster"
+	},
+	id: "000000000000C004",
+	images: [
+		{
+			alpha: 46,
+			color: 13131931,
+			height: 7.45d,
+			id: "0000000000404001",
+			image: "kubejs:textures/gui/panel_soft.png",
+			order: -200,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 11.5d,
+			x: 4.2d,
+			y: 2.175d
+		},
+		{
+			alpha: 225,
+			color: 13131931,
+			height: 0.9d,
+			id: "0000000000404002",
+			image: "kubejs:textures/gui/plate.png",
+			order: -40,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 7,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 9.5d,
+			x: 4.2d,
+			y: -1.75d
+		},
+		{
+			alpha: 46,
+			color: 6983484,
+			height: 8.9d,
+			id: "0000000000404003",
+			image: "kubejs:textures/gui/panel_soft.png",
+			order: -200,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 7.3d,
+			x: 15.0d,
+			y: 2.9d
+		},
+		{
+			alpha: 225,
+			color: 6983484,
+			height: 0.9d,
+			id: "0000000000404004",
+			image: "kubejs:textures/gui/plate.png",
+			order: -40,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 7,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 6.4d,
+			x: 15.0d,
+			y: -1.75d
+		},
+		{
+			alpha: 46,
+			color: 5873878,
+			height: 8.9d,
+			id: "0000000000404005",
+			image: "kubejs:textures/gui/panel_soft.png",
+			order: -200,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 7.3d,
+			x: 2.1d,
+			y: 15.2d
+		},
+		{
+			alpha: 225,
+			color: 5873878,
+			height: 0.9d,
+			id: "0000000000404006",
+			image: "kubejs:textures/gui/plate.png",
+			order: -40,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 7,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 6.4d,
+			x: 2.1d,
+			y: 10.55d
+		},
+		{
+			alpha: 46,
+			color: 10135495,
+			height: 4.55d,
+			id: "0000000000404007",
+			image: "kubejs:textures/gui/panel_soft.png",
+			order: -200,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 11.5d,
+			x: 12.9d,
+			y: 13.025d
+		},
+		{
+			alpha: 225,
+			color: 10135495,
+			height: 0.9d,
+			id: "0000000000404008",
+			image: "kubejs:textures/gui/plate.png",
+			order: -40,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 7,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 9.5d,
+			x: 12.9d,
+			y: 10.55d
+		},
+		{
+			alpha: 46,
+			color: 9400138,
+			height: 3.1d,
+			id: "0000000000404009",
+			image: "kubejs:textures/gui/panel_soft.png",
+			order: -200,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 11.5d,
+			x: 4.2d,
+			y: 24.6d
+		},
+		{
+			alpha: 225,
+			color: 9400138,
+			height: 0.9d,
+			id: "000000000040400A",
+			image: "kubejs:textures/gui/plate.png",
+			order: -40,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 7,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 9.5d,
+			x: 4.2d,
+			y: 22.85d
+		},
+		{
+			alpha: 46,
+			color: 11040318,
+			height: 4.55d,
+			id: "000000000040400B",
+			image: "kubejs:textures/gui/panel_soft.png",
+			order: -200,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 5.2d,
+			x: 13.95d,
+			y: 25.325d
+		},
+		{
+			alpha: 225,
+			color: 11040318,
+			height: 0.9d,
+			id: "000000000040400C",
+			image: "kubejs:textures/gui/plate.png",
+			order: -40,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 7,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 4.3d,
+			x: 13.95d,
+			y: 22.85d
+		},
+		{
+			alpha: 46,
+			color: 5147274,
+			height: 4.55d,
+			id: "000000000040400D",
+			image: "kubejs:textures/gui/panel_soft.png",
+			order: -200,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 9.4d,
+			x: 3.15d,
+			y: 33.275d
+		},
+		{
+			alpha: 225,
+			color: 5147274,
+			height: 0.9d,
+			id: "000000000040400E",
+			image: "kubejs:textures/gui/plate.png",
+			order: -40,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 7,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 8.5d,
+			x: 3.15d,
+			y: 30.8d
+		},
+		{
+			alpha: 46,
+			color: 9056079,
+			height: 4.55d,
+			id: "000000000040400F",
+			image: "kubejs:textures/gui/panel_soft.png",
+			order: -200,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 11.5d,
+			x: 15.0d,
+			y: 33.275d
+		},
+		{
+			alpha: 225,
+			color: 9056079,
+			height: 0.9d,
+			id: "0000000000404010",
+			image: "kubejs:textures/gui/plate.png",
+			order: -40,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 7,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 9.5d,
+			x: 15.0d,
+			y: 30.8d
+		},
+		{
+			height: 3.25d,
+			id: "0000000000404011",
+			image: "kubejs:textures/gui/banner_galosphere.png",
+			order: -100,
+			rotation: 0.0d,
+			width: 13.0d,
+			x: 9.6d,
+			y: -4.525d
+		},
+		{
+			alpha: 170,
+			color: 15902418,
+			height: 3.6d,
+			id: "0000000000404012",
+			image: "kubejs:textures/gui/halo.png",
+			order: -50,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 3.6d,
+			x: 0.0d,
+			y: 2.175d
+		},
+		{
+			alpha: 170,
+			color: 5873878,
+			height: 3.2d,
+			id: "0000000000404013",
+			image: "kubejs:textures/gui/halo.png",
+			order: -50,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 3.2d,
+			x: 0.0d,
+			y: 15.2d
+		},
+		{
+			alpha: 170,
+			color: 10135495,
+			height: 3.4d,
+			id: "0000000000404014",
+			image: "kubejs:textures/gui/halo.png",
+			order: -50,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 3.4d,
+			x: 12.9d,
+			y: 13.025d
+		},
+		{
+			alpha: 170,
+			color: 9056079,
+			height: 3.2d,
+			id: "0000000000404015",
+			image: "kubejs:textures/gui/halo.png",
+			order: -50,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 3.2d,
+			x: 10.8d,
+			y: 33.275d
+		},
+		{
+			alpha: 200,
+			color: 16734810,
+			height: 3.8d,
+			id: "0000000000404016",
+			image: "kubejs:textures/gui/halo.png",
+			order: -50,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 3.8d,
+			x: 15.0d,
+			y: 33.275d
+		},
+		{
+			alpha: 200,
+			color: 16766814,
+			height: 4.4d,
+			id: "0000000000404017",
+			image: "kubejs:textures/gui/halo.png",
+			order: -50,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 4.4d,
+			x: 19.2d,
+			y: 34.0d
+		},
+		{
+			click_action: "open_quest:0000000000101180",
+			color: 15902418,
+			height: 1.9d,
+			id: "0000000000404018",
+			image: "kubejs:textures/gui/portal.png",
+			order: -30,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 1.9d,
+			x: -2.4d,
+			y: 2.175d
+		},
+		{
+			alpha: 235,
+			color: 2758178,
+			height: 0.7d,
+			id: "0000000000404019",
+			image: "kubejs:textures/gui/plate.png",
+			order: -35,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 8,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 4.4d,
+			x: 0.0d,
+			y: 0.825d
+		},
+		{
+			alpha: 235,
+			color: 2365970,
+			height: 0.75d,
+			id: "000000000040401A",
+			image: "kubejs:textures/gui/plate.png",
+			order: -35,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 8,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 4.6d,
+			x: 4.2d,
+			y: 25.95d
+		},
+		{
+			alpha: 235,
+			color: 2756116,
+			height: 0.75d,
+			id: "000000000040401B",
+			image: "kubejs:textures/gui/plate.png",
+			order: -35,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 8,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 5.2d,
+			x: 15.0d,
+			y: 31.925d
+		}
+	],
+	order_index: 3,
+	quest_links: [
+		{
+			id: "0000000000504001",
+			linked_quest: "0000000000101180",
+			x: -2.1d,
+			y: 2.175d
+		}
+	],
+	quests: [
+		{
+			dependencies: ["0000000000101180"],
+			icon: {
+				count: 1,
+				id: "galosphere:pink_salt_cluster"
+			},
+			id: "0000000000104010",
+			rewards: [
+				{
+					id: "0000000000304010",
+					type: "xp_levels",
+					xp_levels: 4
+				},
+				{
+					count: 4,
+					id: "0000000000304011",
+					item: {
+						count: 1,
+						id: "galosphere:pink_salt_lamp"
+					},
+					type: "item"
+				},
+				{
+					description: "Добро пожаловать в Галосферу.",
+					id: "0000000000304012",
+					type: "toast"
+				}
+			],
+			shape: "hexagon",
+			size: 1.6d,
+			tasks: [
+				{
+					biome: "galosphere:pink_salt_caves",
+					id: "0000000000204010",
+					type: "biome"
+				},
+				{
+					count: 16L,
+					id: "0000000000204011",
+					item: {
+						count: 1,
+						id: "galosphere:pink_salt_shard"
+					},
+					type: "item"
+				}
+			],
+			x: 0.0d,
+			y: 2.175d
+		},
+		{
+			dependencies: ["0000000000104010"],
+			icon: {
+				count: 1,
+				id: "galosphere:pastel_pink_salt"
+			},
+			id: "0000000000104020",
+			rewards: [
+				{
+					id: "0000000000304020",
+					type: "xp",
+					xp: 120
+				},
+				{
+					count: 16,
+					id: "0000000000304021",
+					item: {
+						count: 1,
+						id: "galosphere:polished_pink_salt"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304022",
+					item: {
+						count: 1,
+						id: "galosphere:polished_rose_pink_salt"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304023",
+					item: {
+						count: 1,
+						id: "galosphere:polished_pastel_pink_salt"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 16L,
+					id: "0000000000204020",
+					item: {
+						count: 1,
+						id: "galosphere:pink_salt"
+					},
+					type: "item"
+				},
+				{
+					count: 16L,
+					id: "0000000000204021",
+					item: {
+						count: 1,
+						id: "galosphere:rose_pink_salt"
+					},
+					type: "item"
+				},
+				{
+					count: 16L,
+					id: "0000000000204022",
+					item: {
+						count: 1,
+						id: "galosphere:pastel_pink_salt"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000104020"],
+			icon: {
+				count: 1,
+				id: "galosphere:chandelier"
+			},
+			id: "0000000000104030",
+			rewards: [
+				{
+					id: "0000000000304030",
+					type: "xp",
+					xp: 120
+				},
+				{
+					count: 4,
+					id: "0000000000304031",
+					item: {
+						count: 1,
+						id: "minecraft:lantern"
+					},
+					type: "item"
+				},
+				{
+					count: 2,
+					id: "0000000000304032",
+					item: {
+						count: 1,
+						id: "galosphere:soul_chandelier"
+					},
+					type: "item"
+				},
+				{
+					count: 2,
+					id: "0000000000304033",
+					item: {
+						count: 1,
+						id: "galosphere:soul_light_stand"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 2L,
+					id: "0000000000204030",
+					item: {
+						count: 1,
+						id: "galosphere:pink_salt_lamp"
+					},
+					type: "item"
+				},
+				{
+					count: 2L,
+					id: "0000000000204031",
+					item: {
+						count: 1,
+						id: "galosphere:chandelier"
+					},
+					type: "item"
+				},
+				{
+					count: 2L,
+					id: "0000000000204032",
+					item: {
+						count: 1,
+						id: "galosphere:light_stand"
+					},
+					type: "item"
+				}
+			],
+			x: 4.2d,
+			y: 1.45d
+		},
+		{
+			dependencies: ["0000000000104010"],
+			icon: {
+				count: 1,
+				id: "galosphere:pink_salt_straw"
+			},
+			id: "0000000000104040",
+			optional: 1b,
+			rewards: [
+				{
+					count: 4,
+					id: "0000000000304040",
+					item: {
+						count: 1,
+						id: "galosphere:salted_jerky"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000304041",
+					type: "xp",
+					xp: 80
+				}
+			],
+			tasks: [
+				{
+					count: 4L,
+					id: "0000000000204040",
+					item: {
+						count: 1,
+						id: "galosphere:pink_salt_straw"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 1.45d
+		},
+		{
+			dependencies: ["0000000000104010"],
+			icon: {
+				count: 1,
+				id: "galosphere:preserved_flesh"
+			},
+			id: "0000000000104050",
+			rewards: [
+				{
+					id: "0000000000304050",
+					type: "xp_levels",
+					xp_levels: 5
+				},
+				{
+					id: "0000000000304051",
+					type: "xp",
+					xp: 150
+				}
+			],
+			shape: "diamond",
+			tasks: [
+				{
+					entity: "galosphere:preserved",
+					id: "0000000000204050",
+					type: "kill",
+					value: 4L
+				}
+			],
+			x: 2.1d,
+			y: 2.9d
+		},
+		{
+			dependencies: ["0000000000104010"],
+			icon: {
+				count: 1,
+				id: "galosphere:pink_salt_shard"
+			},
+			id: "0000000000104060",
+			optional: 1b,
+			rewards: [
+				{
+					count: 16,
+					id: "0000000000304060",
+					item: {
+						count: 1,
+						id: "minecraft:coarse_dirt"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000304061",
+					type: "xp",
+					xp: 100
+				},
+				{
+					id: "0000000000304062",
+					item: {
+						count: 1,
+						id: "galosphere:saline_composter"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					advancement: "galosphere:husbandry/coarse_dirt_compost",
+					id: "0000000000204060",
+					type: "advancement"
+				}
+			],
+			x: 2.1d,
+			y: 4.35d
+		},
+		{
+			dependencies: ["0000000000104020"],
+			icon: {
+				count: 1,
+				id: "galosphere:pink_salt_bricks"
+			},
+			id: "0000000000104070",
+			rewards: [
+				{
+					id: "0000000000304070",
+					type: "xp_levels",
+					xp_levels: 4
+				},
+				{
+					count: 16,
+					id: "0000000000304071",
+					item: {
+						count: 1,
+						id: "galosphere:pink_salt_stairs"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304072",
+					item: {
+						count: 1,
+						id: "galosphere:pink_salt_slab"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304073",
+					item: {
+						count: 1,
+						id: "galosphere:pink_salt_wall"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304074",
+					item: {
+						count: 1,
+						id: "galosphere:pink_salt_brick_stairs"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304075",
+					item: {
+						count: 1,
+						id: "galosphere:pink_salt_brick_slab"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304076",
+					item: {
+						count: 1,
+						id: "galosphere:pink_salt_brick_wall"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304077",
+					item: {
+						count: 1,
+						id: "galosphere:polished_pink_salt_stairs"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304078",
+					item: {
+						count: 1,
+						id: "galosphere:polished_pink_salt_slab"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304079",
+					item: {
+						count: 1,
+						id: "galosphere:polished_pink_salt_wall"
+					},
+					type: "item"
+				},
+				{
+					count: 4,
+					id: "000000000030407A",
+					item: {
+						count: 1,
+						id: "galosphere:chiseled_pink_salt"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 32L,
+					id: "0000000000204070",
+					item: {
+						count: 1,
+						id: "galosphere:pink_salt_bricks"
+					},
+					type: "item"
+				},
+				{
+					count: 16L,
+					id: "0000000000204071",
+					item: {
+						count: 1,
+						id: "galosphere:polished_pink_salt"
+					},
+					type: "item"
+				}
+			],
+			x: 4.2d,
+			y: 2.9d
+		},
+		{
+			dependencies: ["0000000000104070"],
+			icon: {
+				count: 1,
+				id: "galosphere:rose_pink_salt_bricks"
+			},
+			id: "0000000000104080",
+			rewards: [
+				{
+					count: 16,
+					id: "0000000000304080",
+					item: {
+						count: 1,
+						id: "galosphere:polished_rose_pink_salt"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304081",
+					item: {
+						count: 1,
+						id: "galosphere:polished_pastel_pink_salt"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304082",
+					item: {
+						count: 1,
+						id: "galosphere:rose_pink_salt_brick_stairs"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304083",
+					item: {
+						count: 1,
+						id: "galosphere:pastel_pink_salt_brick_stairs"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304084",
+					item: {
+						count: 1,
+						id: "galosphere:rose_pink_salt_wall"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304085",
+					item: {
+						count: 1,
+						id: "galosphere:pastel_pink_salt_slab"
+					},
+					type: "item"
+				},
+				{
+					count: 4,
+					id: "0000000000304086",
+					item: {
+						count: 1,
+						id: "galosphere:chiseled_rose_pink_salt"
+					},
+					type: "item"
+				},
+				{
+					count: 4,
+					id: "0000000000304087",
+					item: {
+						count: 1,
+						id: "galosphere:chiseled_pastel_pink_salt"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 16L,
+					id: "0000000000204080",
+					item: {
+						count: 1,
+						id: "galosphere:rose_pink_salt_bricks"
+					},
+					type: "item"
+				},
+				{
+					count: 16L,
+					id: "0000000000204081",
+					item: {
+						count: 1,
+						id: "galosphere:pastel_pink_salt_bricks"
+					},
+					type: "item"
+				}
+			],
+			x: 6.3d,
+			y: 2.175d
+		},
+		{
+			dependencies: ["0000000000104080"],
+			icon: {
+				count: 1,
+				id: "galosphere:polished_rose_pink_salt"
+			},
+			id: "0000000000104090",
+			optional: 1b,
+			rewards: [
+				{
+					count: 16,
+					id: "0000000000304090",
+					item: {
+						count: 1,
+						id: "galosphere:rose_pink_salt_slab"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304091",
+					item: {
+						count: 1,
+						id: "galosphere:rose_pink_salt_stairs"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304092",
+					item: {
+						count: 1,
+						id: "galosphere:rose_pink_salt_brick_slab"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304093",
+					item: {
+						count: 1,
+						id: "galosphere:rose_pink_salt_brick_wall"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304094",
+					item: {
+						count: 1,
+						id: "galosphere:pastel_pink_salt_stairs"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304095",
+					item: {
+						count: 1,
+						id: "galosphere:pastel_pink_salt_wall"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304096",
+					item: {
+						count: 1,
+						id: "galosphere:pastel_pink_salt_brick_slab"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304097",
+					item: {
+						count: 1,
+						id: "galosphere:pastel_pink_salt_brick_wall"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304098",
+					item: {
+						count: 1,
+						id: "galosphere:polished_rose_pink_salt_slab"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304099",
+					item: {
+						count: 1,
+						id: "galosphere:polished_rose_pink_salt_stairs"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "000000000030409A",
+					item: {
+						count: 1,
+						id: "galosphere:polished_rose_pink_salt_wall"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "000000000030409B",
+					item: {
+						count: 1,
+						id: "galosphere:polished_pastel_pink_salt_slab"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "000000000030409C",
+					item: {
+						count: 1,
+						id: "galosphere:polished_pastel_pink_salt_stairs"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "000000000030409D",
+					item: {
+						count: 1,
+						id: "galosphere:polished_pastel_pink_salt_wall"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 32L,
+					id: "0000000000204090",
+					item: {
+						count: 1,
+						id: "galosphere:rose_pink_salt"
+					},
+					type: "item"
+				},
+				{
+					count: 32L,
+					id: "0000000000204091",
+					item: {
+						count: 1,
+						id: "galosphere:pastel_pink_salt"
+					},
+					type: "item"
+				}
+			],
+			x: 8.4d,
+			y: 2.175d
+		},
+		{
+			dependencies: ["0000000000104010"],
+			icon: {
+				count: 1,
+				id: "galosphere:lichen_moss"
+			},
+			id: "00000000001040A0",
+			rewards: [
+				{
+					id: "00000000003040A0",
+					type: "xp_levels",
+					xp_levels: 5
+				},
+				{
+					count: 4,
+					id: "00000000003040A1",
+					item: {
+						count: 1,
+						id: "galosphere:salted_jerky"
+					},
+					type: "item"
+				}
+			],
+			shape: "hexagon",
+			size: 1.3d,
+			tasks: [
+				{
+					biome: "galosphere:lichen_caves",
+					id: "00000000002040A0",
+					type: "biome"
+				},
+				{
+					count: 8L,
+					id: "00000000002040A1",
+					item: {
+						count: 1,
+						id: "galosphere:lichen_moss"
+					},
+					type: "item"
+				},
+				{
+					count: 4L,
+					id: "00000000002040A2",
+					item: {
+						count: 1,
+						id: "galosphere:bowl_lichen"
+					},
+					type: "item"
+				}
+			],
+			x: 12.9d,
+			y: 2.9d
+		},
+		{
+			dependencies: ["00000000001040A0"],
+			icon: {
+				count: 1,
+				id: "galosphere:lichen_moss"
+			},
+			id: "00000000001040B0",
+			rewards: [
+				{
+					id: "00000000003040B0",
+					type: "xp",
+					xp: 100
+				}
+			],
+			tasks: [
+				{
+					advancement: "galosphere:adventure/light_the_way",
+					id: "00000000002040B0",
+					type: "advancement"
+				}
+			],
+			x: 15.0d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["00000000001040B0"],
+			icon: {
+				count: 1,
+				id: "galosphere:golden_lichen_cordyceps"
+			},
+			id: "00000000001040C0",
+			rewards: [
+				{
+					id: "00000000003040C0",
+					type: "xp_levels",
+					xp_levels: 4
+				},
+				{
+					count: 2,
+					id: "00000000003040C1",
+					item: {
+						count: 1,
+						id: "galosphere:golden_lichen_cordyceps"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 6L,
+					id: "00000000002040C0",
+					item: {
+						count: 1,
+						id: "galosphere:lichen_cordyceps"
+					},
+					type: "item"
+				},
+				{
+					advancement: "galosphere:adventure/edible_air",
+					id: "00000000002040C1",
+					type: "advancement"
+				}
+			],
+			x: 17.1d,
+			y: 2.175d
+		},
+		{
+			dependencies: ["00000000001040A0"],
+			icon: {
+				count: 1,
+				id: "galosphere:lichen_shelf"
+			},
+			id: "00000000001040D0",
+			rewards: [
+				{
+					id: "00000000003040D0",
+					type: "xp",
+					xp: 120
+				},
+				{
+					count: 8,
+					id: "00000000003040D1",
+					item: {
+						count: 1,
+						id: "minecraft:glow_lichen"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 8L,
+					id: "00000000002040D0",
+					item: {
+						count: 1,
+						id: "galosphere:lichen_shelf"
+					},
+					type: "item"
+				},
+				{
+					count: 8L,
+					id: "00000000002040D1",
+					item: {
+						count: 1,
+						id: "galosphere:lichen_roots"
+					},
+					type: "item"
+				},
+				{
+					count: 8L,
+					id: "00000000002040D2",
+					item: {
+						count: 1,
+						id: "galosphere:lichen_vines"
+					},
+					type: "item"
+				}
+			],
+			x: 15.0d,
+			y: 1.45d
+		},
+		{
+			dependencies: ["00000000001040A0"],
+			icon: {
+				count: 1,
+				id: "galosphere:bottle_of_spectre"
+			},
+			id: "00000000001040E0",
+			rewards: [
+				{
+					id: "00000000003040E0",
+					type: "xp",
+					xp: 200
+				},
+				{
+					id: "00000000003040E1",
+					type: "xp_levels",
+					xp_levels: 5
+				}
+			],
+			shape: "diamond",
+			tasks: [
+				{
+					id: "00000000002040E0",
+					observation_type: "entity_type",
+					observe_type: 5,
+					timer: 20L,
+					to_observe: "galosphere:spectre",
+					type: "observation"
+				},
+				{
+					advancement: "galosphere:adventure/watchfly",
+					id: "00000000002040E1",
+					type: "advancement"
+				},
+				{
+					id: "00000000002040E2",
+					item: {
+						count: 1,
+						id: "galosphere:bottle_of_spectre"
+					},
+					type: "item"
+				}
+			],
+			x: 15.0d,
+			y: 2.9d
+		},
+		{
+			dependencies: ["00000000001040E0"],
+			icon: {
+				count: 1,
+				id: "galosphere:spectre_bound_spyglass"
+			},
+			id: "00000000001040F0",
+			optional: 1b,
+			rewards: [
+				{
+					id: "00000000003040F0",
+					item: {
+						count: 1,
+						id: "galosphere:spectre_bound_spyglass"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000003040F1",
+					type: "xp",
+					xp: 200
+				}
+			],
+			tasks: [
+				{
+					advancement: "galosphere:adventure/eye_for_eye",
+					id: "00000000002040F0",
+					type: "advancement"
+				}
+			],
+			x: 17.1d,
+			y: 3.625d
+		},
+		{
+			dependencies: ["00000000001040A0"],
+			icon: {
+				count: 1,
+				id: "galosphere:specterpillar_spawn_egg"
+			},
+			id: "0000000000104100",
+			rewards: [
+				{
+					id: "0000000000304100",
+					type: "xp",
+					xp: 80
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000204100",
+					observation_type: "entity_type",
+					observe_type: 5,
+					timer: 20L,
+					to_observe: "galosphere:specterpillar",
+					type: "observation"
+				}
+			],
+			x: 15.0d,
+			y: 4.35d
+		},
+		{
+			dependencies: ["00000000001040A0"],
+			icon: {
+				count: 1,
+				id: "galosphere:spectre_flare"
+			},
+			id: "0000000000104110",
+			rewards: [
+				{
+					id: "0000000000304110",
+					type: "xp_levels",
+					xp_levels: 4
+				},
+				{
+					count: 4,
+					id: "0000000000304111",
+					item: {
+						count: 1,
+						id: "minecraft:glow_ink_sac"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 4L,
+					id: "0000000000204110",
+					item: {
+						count: 1,
+						id: "galosphere:spectre_flare"
+					},
+					type: "item"
+				}
+			],
+			x: 15.0d,
+			y: 5.8d
+		},
+		{
+			dependencies: ["0000000000104010"],
+			icon: {
+				count: 1,
+				id: "galosphere:opal"
+			},
+			id: "0000000000104120",
+			rewards: [
+				{
+					id: "0000000000304120",
+					type: "xp_levels",
+					xp_levels: 6
+				},
+				{
+					count: 2,
+					id: "0000000000304121",
+					item: {
+						count: 1,
+						id: "galosphere:opal_block"
+					},
+					type: "item"
+				}
+			],
+			shape: "hexagon",
+			size: 1.4d,
+			tasks: [
+				{
+					biome: "galosphere:crystal_canyons",
+					id: "0000000000204120",
+					type: "biome"
+				},
+				{
+					count: 12L,
+					id: "0000000000204121",
+					item: {
+						count: 1,
+						id: "galosphere:allurite_shard"
+					},
+					type: "item"
+				},
+				{
+					count: 12L,
+					id: "0000000000204122",
+					item: {
+						count: 1,
+						id: "galosphere:lumiere_shard"
+					},
+					type: "item"
+				},
+				{
+					count: 6L,
+					id: "0000000000204123",
+					item: {
+						count: 1,
+						id: "galosphere:opal"
+					},
+					type: "item"
+				}
+			],
+			x: 0.0d,
+			y: 15.2d
+		},
+		{
+			dependencies: ["0000000000104120"],
+			icon: {
+				count: 1,
+				id: "galosphere:allurite_block"
+			},
+			id: "0000000000104130",
+			rewards: [
+				{
+					id: "0000000000304130",
+					type: "xp",
+					xp: 150
+				},
+				{
+					count: 2,
+					id: "0000000000304131",
+					item: {
+						count: 1,
+						id: "galosphere:glinted_allurite_cluster"
+					},
+					type: "item"
+				},
+				{
+					count: 2,
+					id: "0000000000304132",
+					item: {
+						count: 1,
+						id: "galosphere:glinted_lumiere_cluster"
+					},
+					type: "item"
+				},
+				{
+					count: 2,
+					id: "0000000000304133",
+					item: {
+						count: 1,
+						id: "galosphere:allurite_cluster"
+					},
+					type: "item"
+				},
+				{
+					count: 2,
+					id: "0000000000304134",
+					item: {
+						count: 1,
+						id: "galosphere:lumiere_cluster"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 4L,
+					id: "0000000000204130",
+					item: {
+						count: 1,
+						id: "galosphere:allurite_block"
+					},
+					type: "item"
+				},
+				{
+					count: 4L,
+					id: "0000000000204131",
+					item: {
+						count: 1,
+						id: "galosphere:lumiere_block"
+					},
+					type: "item"
+				},
+				{
+					count: 4L,
+					id: "0000000000204132",
+					item: {
+						count: 1,
+						id: "galosphere:opal_block"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 12.3d
+		},
+		{
+			dependencies: ["0000000000104130"],
+			icon: {
+				count: 1,
+				id: "galosphere:lumiere_lamp"
+			},
+			id: "0000000000104140",
+			rewards: [
+				{
+					id: "0000000000304140",
+					type: "xp",
+					xp: 120
+				},
+				{
+					count: 8,
+					id: "0000000000304141",
+					item: {
+						count: 1,
+						id: "minecraft:amethyst_shard"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 2L,
+					id: "0000000000204140",
+					item: {
+						count: 1,
+						id: "galosphere:allurite_lamp"
+					},
+					type: "item"
+				},
+				{
+					count: 2L,
+					id: "0000000000204141",
+					item: {
+						count: 1,
+						id: "galosphere:lumiere_lamp"
+					},
+					type: "item"
+				},
+				{
+					count: 2L,
+					id: "0000000000204142",
+					item: {
+						count: 1,
+						id: "galosphere:amethyst_lamp"
+					},
+					type: "item"
+				}
+			],
+			x: 4.2d,
+			y: 13.75d
+		},
+		{
+			dependencies: ["0000000000104120"],
+			icon: {
+				count: 1,
+				id: "galosphere:sparkle_spawn_egg"
+			},
+			id: "0000000000104150",
+			rewards: [
+				{
+					id: "0000000000304150",
+					type: "xp",
+					xp: 120
+				},
+				{
+					count: 4,
+					id: "0000000000304151",
+					item: {
+						count: 1,
+						id: "galosphere:glow_ink_clumps"
+					},
+					type: "item"
+				},
+				{
+					count: 8,
+					id: "0000000000304152",
+					item: {
+						count: 1,
+						id: "minecraft:glow_lichen"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000204150",
+					observation_type: "entity_type",
+					observe_type: 5,
+					timer: 20L,
+					to_observe: "galosphere:sparkle",
+					type: "observation"
+				}
+			],
+			x: 2.1d,
+			y: 13.75d
+		},
+		{
+			dependencies: ["0000000000104120"],
+			icon: {
+				count: 1,
+				id: "galosphere:glow_flare"
+			},
+			id: "0000000000104160",
+			rewards: [
+				{
+					id: "0000000000304160",
+					type: "xp_levels",
+					xp_levels: 4
+				},
+				{
+					count: 32,
+					id: "0000000000304161",
+					item: {
+						count: 1,
+						id: "minecraft:torch"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 4L,
+					id: "0000000000204160",
+					item: {
+						count: 1,
+						id: "galosphere:glow_flare"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 16.65d
+		},
+		{
+			dependencies: ["0000000000104120"],
+			icon: {
+				count: 1,
+				id: "galosphere:monstrometer"
+			},
+			id: "0000000000104170",
+			rewards: [
+				{
+					id: "0000000000304170",
+					type: "xp",
+					xp: 150
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000204170",
+					item: {
+						count: 1,
+						id: "galosphere:monstrometer"
+					},
+					type: "item"
+				},
+				{
+					count: 4L,
+					id: "0000000000204171",
+					item: {
+						count: 1,
+						id: "galosphere:lumiere_shard"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 15.2d
+		},
+		{
+			dependencies: ["0000000000104170"],
+			icon: {
+				count: 1,
+				id: "galosphere:lumiere_shard"
+			},
+			id: "0000000000104180",
+			optional: 1b,
+			rewards: [
+				{
+					count: 8,
+					id: "0000000000304180",
+					item: {
+						count: 1,
+						id: "minecraft:glowstone_dust"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000304181",
+					type: "xp",
+					xp: 100
+				},
+				{
+					id: "0000000000304182",
+					item: {
+						count: 1,
+						id: "galosphere:lumiere_composter"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					advancement: "galosphere:husbandry/lumiere_compost",
+					id: "0000000000204180",
+					type: "advancement"
+				}
+			],
+			x: 4.2d,
+			y: 15.2d
+		},
+		{
+			dependencies: ["0000000000104120"],
+			icon: {
+				count: 1,
+				id: "galosphere:allurite_bricks"
+			},
+			id: "0000000000104190",
+			rewards: [
+				{
+					id: "0000000000304190",
+					type: "xp_levels",
+					xp_levels: 5
+				},
+				{
+					count: 16,
+					id: "0000000000304191",
+					item: {
+						count: 1,
+						id: "galosphere:smooth_allurite"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304192",
+					item: {
+						count: 1,
+						id: "galosphere:allurite_slab"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304193",
+					item: {
+						count: 1,
+						id: "galosphere:allurite_stairs"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304194",
+					item: {
+						count: 1,
+						id: "galosphere:allurite_brick_slab"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304195",
+					item: {
+						count: 1,
+						id: "galosphere:allurite_brick_stairs"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304196",
+					item: {
+						count: 1,
+						id: "galosphere:smooth_allurite_slab"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304197",
+					item: {
+						count: 1,
+						id: "galosphere:smooth_allurite_stairs"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304198",
+					item: {
+						count: 1,
+						id: "galosphere:smooth_lumiere"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "0000000000304199",
+					item: {
+						count: 1,
+						id: "galosphere:lumiere_slab"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "000000000030419A",
+					item: {
+						count: 1,
+						id: "galosphere:lumiere_stairs"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "000000000030419B",
+					item: {
+						count: 1,
+						id: "galosphere:lumiere_brick_slab"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "000000000030419C",
+					item: {
+						count: 1,
+						id: "galosphere:lumiere_brick_stairs"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "000000000030419D",
+					item: {
+						count: 1,
+						id: "galosphere:smooth_lumiere_slab"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "000000000030419E",
+					item: {
+						count: 1,
+						id: "galosphere:smooth_lumiere_stairs"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 16L,
+					id: "0000000000204190",
+					item: {
+						count: 1,
+						id: "galosphere:allurite_bricks"
+					},
+					type: "item"
+				},
+				{
+					count: 16L,
+					id: "0000000000204191",
+					item: {
+						count: 1,
+						id: "galosphere:lumiere_bricks"
+					},
+					type: "item"
+				},
+				{
+					count: 2L,
+					id: "0000000000204192",
+					item: {
+						count: 1,
+						id: "galosphere:chiseled_allurite"
+					},
+					type: "item"
+				},
+				{
+					count: 2L,
+					id: "0000000000204193",
+					item: {
+						count: 1,
+						id: "galosphere:chiseled_lumiere"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 18.1d
+		},
+		{
+			dependencies: ["0000000000104190"],
+			icon: {
+				count: 1,
+				id: "galosphere:opal_bricks"
+			},
+			id: "00000000001041A0",
+			rewards: [
+				{
+					id: "00000000003041A0",
+					type: "xp_levels",
+					xp_levels: 5
+				},
+				{
+					count: 8,
+					id: "00000000003041A1",
+					item: {
+						count: 1,
+						id: "galosphere:opal_block"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "00000000003041A2",
+					item: {
+						count: 1,
+						id: "galosphere:opal_brick_wall"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "00000000003041A3",
+					item: {
+						count: 1,
+						id: "galosphere:opal_brick_slab"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "00000000003041A4",
+					item: {
+						count: 1,
+						id: "galosphere:opal_brick_stairs"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "00000000003041A5",
+					item: {
+						count: 1,
+						id: "galosphere:amethyst_slab"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "00000000003041A6",
+					item: {
+						count: 1,
+						id: "galosphere:amethyst_stairs"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "00000000003041A7",
+					item: {
+						count: 1,
+						id: "galosphere:amethyst_brick_slab"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "00000000003041A8",
+					item: {
+						count: 1,
+						id: "galosphere:amethyst_brick_stairs"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "00000000003041A9",
+					item: {
+						count: 1,
+						id: "galosphere:smooth_amethyst"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "00000000003041AA",
+					item: {
+						count: 1,
+						id: "galosphere:smooth_amethyst_slab"
+					},
+					type: "item"
+				},
+				{
+					count: 16,
+					id: "00000000003041AB",
+					item: {
+						count: 1,
+						id: "galosphere:smooth_amethyst_stairs"
+					},
+					type: "item"
+				},
+				{
+					count: 2,
+					id: "00000000003041AC",
+					item: {
+						count: 1,
+						id: "galosphere:glinted_amethyst_cluster"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 16L,
+					id: "00000000002041A0",
+					item: {
+						count: 1,
+						id: "galosphere:opal_bricks"
+					},
+					type: "item"
+				},
+				{
+					count: 16L,
+					id: "00000000002041A1",
+					item: {
+						count: 1,
+						id: "galosphere:amethyst_bricks"
+					},
+					type: "item"
+				},
+				{
+					count: 2L,
+					id: "00000000002041A2",
+					item: {
+						count: 1,
+						id: "galosphere:chiseled_opal_bricks"
+					},
+					type: "item"
+				},
+				{
+					count: 2L,
+					id: "00000000002041A3",
+					item: {
+						count: 1,
+						id: "galosphere:chiseled_amethyst"
+					},
+					type: "item"
+				}
+			],
+			x: 4.2d,
+			y: 16.65d
+		},
+		{
+			dependencies: ["0000000000104120"],
+			icon: {
+				count: 1,
+				id: "galosphere:palladium_ingot"
+			},
+			id: "00000000001041B0",
+			rewards: [
+				{
+					id: "00000000003041B0",
+					type: "xp_levels",
+					xp_levels: 6
+				},
+				{
+					id: "00000000003041B1",
+					type: "xp",
+					xp: 150
+				},
+				{
+					count: 4,
+					id: "00000000003041B2",
+					item: {
+						count: 1,
+						id: "galosphere:palladium_ore"
+					},
+					type: "item"
+				},
+				{
+					count: 4,
+					id: "00000000003041B3",
+					item: {
+						count: 1,
+						id: "galosphere:deepslate_palladium_ore"
+					},
+					type: "item"
+				}
+			],
+			shape: "diamond",
+			tasks: [
+				{
+					count: 12L,
+					id: "00000000002041B0",
+					item: {
+						count: 1,
+						id: "galosphere:raw_palladium"
+					},
+					type: "item"
+				},
+				{
+					count: 8L,
+					id: "00000000002041B1",
+					item: {
+						count: 1,
+						id: "galosphere:palladium_ingot"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 13.025d
+		},
+		{
+			dependencies: ["00000000001041B0"],
+			icon: {
+				count: 1,
+				id: "galosphere:palladium_block"
+			},
+			id: "00000000001041C0",
+			rewards: [
+				{
+					id: "00000000003041C0",
+					type: "xp",
+					xp: 150
+				},
+				{
+					count: 8,
+					id: "00000000003041C1",
+					item: {
+						count: 1,
+						id: "galosphere:palladium_panel"
+					},
+					type: "item"
+				},
+				{
+					count: 8,
+					id: "00000000003041C2",
+					item: {
+						count: 1,
+						id: "galosphere:palladium_tiles"
+					},
+					type: "item"
+				},
+				{
+					count: 8,
+					id: "00000000003041C3",
+					item: {
+						count: 1,
+						id: "galosphere:palladium_panel_slab"
+					},
+					type: "item"
+				},
+				{
+					count: 8,
+					id: "00000000003041C4",
+					item: {
+						count: 1,
+						id: "galosphere:palladium_panel_stairs"
+					},
+					type: "item"
+				},
+				{
+					count: 8,
+					id: "00000000003041C5",
+					item: {
+						count: 1,
+						id: "galosphere:palladium_tiles_slab"
+					},
+					type: "item"
+				},
+				{
+					count: 8,
+					id: "00000000003041C6",
+					item: {
+						count: 1,
+						id: "galosphere:palladium_tiles_stairs"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 2L,
+					id: "00000000002041C0",
+					item: {
+						count: 1,
+						id: "galosphere:palladium_block"
+					},
+					type: "item"
+				},
+				{
+					count: 2L,
+					id: "00000000002041C1",
+					item: {
+						count: 1,
+						id: "galosphere:raw_palladium_block"
+					},
+					type: "item"
+				},
+				{
+					count: 9L,
+					id: "00000000002041C2",
+					item: {
+						count: 1,
+						id: "galosphere:palladium_nugget"
+					},
+					type: "item"
+				},
+				{
+					count: 4L,
+					id: "00000000002041C3",
+					item: {
+						count: 1,
+						id: "galosphere:palladium_dust"
+					},
+					type: "item"
+				},
+				{
+					count: 4L,
+					id: "00000000002041C4",
+					item: {
+						count: 1,
+						id: "galosphere:palladium_lattice"
+					},
+					type: "item"
+				}
+			],
+			x: 10.8d,
+			y: 12.3d
+		},
+		{
+			dependencies: ["00000000001041C0"],
+			icon: {
+				count: 1,
+				id: "galosphere:sterling_chestplate"
+			},
+			id: "00000000001041D0",
+			rewards: [
+				{
+					id: "00000000003041D0",
+					type: "xp_levels",
+					xp_levels: 10
+				},
+				{
+					description: "Стерлинг блестит в темноте.",
+					id: "00000000003041D1",
+					type: "toast"
+				}
+			],
+			shape: "octagon",
+			size: 1.5d,
+			tasks: [
+				{
+					id: "00000000002041D0",
+					item: {
+						count: 1,
+						id: "galosphere:sterling_helmet"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002041D1",
+					item: {
+						count: 1,
+						id: "galosphere:sterling_chestplate"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002041D2",
+					item: {
+						count: 1,
+						id: "galosphere:sterling_leggings"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002041D3",
+					item: {
+						count: 1,
+						id: "galosphere:sterling_boots"
+					},
+					type: "item"
+				}
+			],
+			x: 12.9d,
+			y: 13.025d
+		},
+		{
+			dependencies: ["00000000001041D0"],
+			icon: {
+				count: 1,
+				id: "minecraft:white_banner"
+			},
+			id: "00000000001041E0",
+			rewards: [
+				{
+					id: "00000000003041E0",
+					type: "xp_levels",
+					xp_levels: 5
+				},
+				{
+					count: 2,
+					id: "00000000003041E1",
+					item: {
+						count: 1,
+						id: "minecraft:red_banner"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002041E0",
+					item: {
+						count: 1,
+						id: "minecraft:white_banner"
+					},
+					type: "item"
+				},
+				{
+					advancement: "galosphere:adventure/attached_sterling",
+					id: "00000000002041E1",
+					type: "advancement"
+				}
+			],
+			x: 15.0d,
+			y: 13.025d
+		},
+		{
+			dependencies: ["00000000001041E0"],
+			icon: {
+				count: 1,
+				id: "galosphere:sterling_horse_armor"
+			},
+			id: "00000000001041F0",
+			optional: 1b,
+			rewards: [
+				{
+					id: "00000000003041F0",
+					type: "xp_levels",
+					xp_levels: 5
+				},
+				{
+					count: 8,
+					id: "00000000003041F1",
+					item: {
+						count: 1,
+						id: "minecraft:golden_carrot"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002041F0",
+					item: {
+						count: 1,
+						id: "galosphere:sterling_horse_armor"
+					},
+					type: "item"
+				},
+				{
+					advancement: "galosphere:husbandry/attached_sterling_horse",
+					id: "00000000002041F1",
+					type: "advancement"
+				}
+			],
+			x: 17.1d,
+			y: 13.025d
+		},
+		{
+			dependencies: ["00000000001041B0"],
+			icon: {
+				count: 1,
+				id: "galosphere:palladium_bomb"
+			},
+			id: "0000000000104200",
+			rewards: [
+				{
+					id: "0000000000304200",
+					type: "xp",
+					xp: 150
+				},
+				{
+					count: 8,
+					id: "0000000000304201",
+					item: {
+						count: 1,
+						id: "minecraft:gunpowder"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 4L,
+					id: "0000000000204200",
+					item: {
+						count: 1,
+						id: "galosphere:palladium_bomb"
+					},
+					type: "item"
+				}
+			],
+			x: 10.8d,
+			y: 13.75d
+		},
+		{
+			dependencies: ["0000000000104010"],
+			icon: {
+				count: 1,
+				id: "galosphere:mole_spawn_egg"
+			},
+			id: "0000000000104210",
+			rewards: [
+				{
+					id: "0000000000304210",
+					type: "xp",
+					xp: 120
+				},
+				{
+					count: 4,
+					id: "0000000000304211",
+					item: {
+						count: 1,
+						id: "minecraft:allium"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000204210",
+					observation_type: "entity_type",
+					observe_type: 5,
+					timer: 20L,
+					to_observe: "galosphere:mole",
+					type: "observation"
+				}
+			],
+			x: 0.0d,
+			y: 24.6d
+		},
+		{
+			dependencies: ["0000000000104210"],
+			icon: {
+				count: 1,
+				id: "galosphere:mole_burrow"
+			},
+			id: "0000000000104220",
+			rewards: [
+				{
+					id: "0000000000304220",
+					type: "xp_levels",
+					xp_levels: 4
+				},
+				{
+					count: 16,
+					id: "0000000000304221",
+					item: {
+						count: 1,
+						id: "minecraft:tuff"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000204220",
+					item: {
+						count: 1,
+						id: "galosphere:mole_burrow"
+					},
+					type: "item"
+				},
+				{
+					count: 8L,
+					id: "0000000000204221",
+					item: {
+						count: 1,
+						id: "galosphere:tuff_dirt"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 24.6d
+		},
+		{
+			dependencies: ["0000000000104220"],
+			icon: {
+				count: 1,
+				id: "galosphere:mining_pouch"
+			},
+			id: "0000000000104230",
+			rewards: [
+				{
+					id: "0000000000304230",
+					type: "xp_levels",
+					xp_levels: 6
+				},
+				{
+					id: "0000000000304231",
+					type: "xp",
+					xp: 200
+				},
+				{
+					count: 4,
+					id: "0000000000304232",
+					item: {
+						count: 1,
+						id: "minecraft:golden_carrot"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000304233",
+					item: {
+						count: 1,
+						id: "galosphere:broken_echo_bell"
+					},
+					type: "item"
+				},
+				{
+					description: "Крот принял заказ.",
+					id: "0000000000304234",
+					type: "toast"
+				}
+			],
+			shape: "hexagon",
+			size: 1.3d,
+			tasks: [
+				{
+					id: "0000000000204230",
+					item: {
+						count: 1,
+						id: "galosphere:mining_pouch"
+					},
+					type: "item"
+				},
+				{
+					advancement: "galosphere:adventure/questful",
+					id: "0000000000204231",
+					type: "advancement"
+				}
+			],
+			x: 4.2d,
+			y: 24.6d
+		},
+		{
+			dependencies: ["0000000000104230"],
+			icon: {
+				count: 1,
+				id: "galosphere:opal_flakes"
+			},
+			id: "0000000000104240",
+			optional: 1b,
+			rewards: [
+				{
+					count: 2,
+					id: "0000000000304240",
+					item: {
+						count: 1,
+						id: "galosphere:opal_block"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000304241",
+					type: "xp",
+					xp: 150
+				}
+			],
+			tasks: [
+				{
+					count: 2L,
+					id: "0000000000204240",
+					item: {
+						count: 1,
+						id: "galosphere:opal_flakes"
+					},
+					type: "item"
+				}
+			],
+			x: 6.3d,
+			y: 24.6d
+		},
+		{
+			dependencies: ["0000000000104240"],
+			icon: {
+				count: 1,
+				id: "galosphere:opal_sapling"
+			},
+			id: "0000000000104250",
+			optional: 1b,
+			rewards: [
+				{
+					id: "0000000000304250",
+					type: "xp_levels",
+					xp_levels: 6
+				},
+				{
+					count: 16,
+					id: "0000000000304251",
+					item: {
+						count: 1,
+						id: "galosphere:opal_leaves"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					advancement: "galosphere:adventure/opalising",
+					id: "0000000000204250",
+					type: "advancement"
+				},
+				{
+					id: "0000000000204251",
+					item: {
+						count: 1,
+						id: "galosphere:opal_sapling"
+					},
+					type: "item"
+				},
+				{
+					count: 8L,
+					id: "0000000000204252",
+					item: {
+						count: 1,
+						id: "galosphere:opal_log"
+					},
+					type: "item"
+				}
+			],
+			x: 8.4d,
+			y: 24.6d
+		},
+		{
+			dependencies: ["0000000000104010"],
+			icon: {
+				count: 1,
+				id: "galosphere:thirst_pottery_sherd"
+			},
+			id: "0000000000104260",
+			rewards: [
+				{
+					id: "0000000000304260",
+					type: "xp_levels",
+					xp_levels: 6
+				},
+				{
+					id: "0000000000304261",
+					item: {
+						count: 1,
+						id: "minecraft:brush"
+					},
+					type: "item"
+				}
+			],
+			shape: "diamond",
+			tasks: [
+				{
+					id: "0000000000204260",
+					structure: "galosphere:forgotten_ruins",
+					type: "structure"
+				},
+				{
+					advancement: "galosphere:adventure/find_forgotten_ruins",
+					id: "0000000000204261",
+					type: "advancement"
+				}
+			],
+			x: 12.9d,
+			y: 24.6d
+		},
+		{
+			dependencies: ["0000000000104260"],
+			icon: {
+				count: 1,
+				id: "galosphere:wave_pottery_sherd"
+			},
+			id: "0000000000104270",
+			rewards: [
+				{
+					id: "0000000000304270",
+					type: "xp_levels",
+					xp_levels: 5
+				},
+				{
+					id: "0000000000304271",
+					item: {
+						count: 1,
+						id: "minecraft:decorated_pot"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000304272",
+					type: "xp",
+					xp: 150
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000204270",
+					item: {
+						count: 1,
+						id: "galosphere:thirst_pottery_sherd"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000204271",
+					item: {
+						count: 1,
+						id: "galosphere:wave_pottery_sherd"
+					},
+					type: "item"
+				},
+				{
+					advancement: "galosphere:adventure/rebrushing",
+					id: "0000000000204272",
+					type: "advancement"
+				}
+			],
+			x: 15.0d,
+			y: 25.325d
+		},
+		{
+			dependencies: ["0000000000104230"],
+			icon: {
+				count: 1,
+				id: "galosphere:faith_armor_trim_smithing_template"
+			},
+			id: "0000000000104280",
+			optional: 1b,
+			rewards: [
+				{
+					id: "0000000000304280",
+					type: "xp_levels",
+					xp_levels: 8
+				},
+				{
+					count: 8,
+					id: "0000000000304281",
+					item: {
+						count: 1,
+						id: "minecraft:emerald"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000204280",
+					item: {
+						count: 1,
+						id: "galosphere:faith_armor_trim_smithing_template"
+					},
+					type: "item"
+				},
+				{
+					advancement: "galosphere:misc/faith_armor_trim_smithing_template_smithing_trim",
+					id: "0000000000204281",
+					type: "advancement"
+				}
+			],
+			x: 12.9d,
+			y: 26.05d
+		},
+		{
+			dependencies: ["00000000001041B0"],
+			icon: {
+				count: 1,
+				id: "galosphere:rope_dart"
+			},
+			id: "0000000000104290",
+			rewards: [
+				{
+					id: "0000000000304290",
+					type: "xp_levels",
+					xp_levels: 4
+				},
+				{
+					id: "0000000000304291",
+					type: "xp",
+					xp: 100
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000204290",
+					item: {
+						count: 1,
+						id: "galosphere:rope_dart"
+					},
+					type: "item"
+				}
+			],
+			x: 0.0d,
+			y: 32.55d
+		},
+		{
+			dependencies: ["0000000000104290"],
+			icon: {
+				count: 1,
+				id: "galosphere:saltbound_tablet"
+			},
+			id: "00000000001042A0",
+			rewards: [
+				{
+					id: "00000000003042A0",
+					type: "xp",
+					xp: 200
+				},
+				{
+					count: 16,
+					id: "00000000003042A1",
+					item: {
+						count: 1,
+						id: "galosphere:pink_salt_shard"
+					},
+					type: "item"
+				}
+			],
+			shape: "diamond",
+			tasks: [
+				{
+					id: "00000000002042A0",
+					item: {
+						count: 1,
+						id: "galosphere:saltbound_tablet"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 32.55d
+		},
+		{
+			dependencies: ["00000000001042A0"],
+			icon: {
+				count: 1,
+				id: "minecraft:totem_of_undying"
+			},
+			id: "00000000001042B0",
+			optional: 1b,
+			rewards: [
+				{
+					id: "00000000003042B0",
+					type: "xp_levels",
+					xp_levels: 15
+				},
+				{
+					id: "00000000003042B1",
+					type: "xp",
+					xp: 500
+				},
+				{
+					id: "00000000003042B2",
+					item: {
+						count: 1,
+						id: "minecraft:totem_of_undying"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					advancement: "galosphere:adventure/saltbound_kill_evoker",
+					id: "00000000002042B0",
+					type: "advancement"
+				}
+			],
+			x: 4.2d,
+			y: 32.55d
+		},
+		{
+			dependencies: ["0000000000104290"],
+			icon: {
+				count: 1,
+				id: "galosphere:combustion_table"
+			},
+			id: "00000000001042C0",
+			rewards: [
+				{
+					id: "00000000003042C0",
+					type: "xp_levels",
+					xp_levels: 4
+				},
+				{
+					count: 2,
+					id: "00000000003042C1",
+					item: {
+						count: 1,
+						id: "minecraft:crafting_table"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002042C0",
+					item: {
+						count: 1,
+						id: "galosphere:combustion_table"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 34.0d
+		},
+		{
+			dependencies: ["00000000001042C0"],
+			icon: {
+				count: 1,
+				id: "galosphere:weapon_rack"
+			},
+			id: "00000000001042D0",
+			rewards: [
+				{
+					id: "00000000003042D0",
+					type: "xp",
+					xp: 120
+				},
+				{
+					count: 4,
+					id: "00000000003042D1",
+					item: {
+						count: 1,
+						id: "galosphere:light_stand"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 2L,
+					id: "00000000002042D0",
+					item: {
+						count: 1,
+						id: "galosphere:weapon_rack"
+					},
+					type: "item"
+				},
+				{
+					count: 4L,
+					id: "00000000002042D1",
+					item: {
+						count: 1,
+						id: "galosphere:shadow_frame"
+					},
+					type: "item"
+				},
+				{
+					count: 8L,
+					id: "00000000002042D2",
+					item: {
+						count: 1,
+						id: "galosphere:gilded_beads"
+					},
+					type: "item"
+				}
+			],
+			x: 4.2d,
+			y: 34.0d
+		},
+		{
+			dependencies: ["00000000001042D0"],
+			icon: {
+				count: 1,
+				id: "galosphere:cured_membrane"
+			},
+			id: "00000000001042E0",
+			rewards: [
+				{
+					id: "00000000003042E0",
+					type: "xp_levels",
+					xp_levels: 4
+				},
+				{
+					count: 4,
+					id: "00000000003042E1",
+					item: {
+						count: 1,
+						id: "minecraft:phantom_membrane"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 4L,
+					id: "00000000002042E0",
+					item: {
+						count: 1,
+						id: "galosphere:cured_membrane"
+					},
+					type: "item"
+				},
+				{
+					count: 4L,
+					id: "00000000002042E1",
+					item: {
+						count: 1,
+						id: "galosphere:cured_membrane_block"
+					},
+					type: "item"
+				},
+				{
+					count: 4L,
+					id: "00000000002042E2",
+					item: {
+						count: 1,
+						id: "galosphere:stranded_membrane_block"
+					},
+					type: "item"
+				}
+			],
+			x: 6.3d,
+			y: 33.275d
+		},
+		{
+			dependencies: ["0000000000104220"],
+			icon: {
+				count: 1,
+				id: "galosphere:burrow_anchor"
+			},
+			id: "00000000001042F0",
+			rewards: [
+				{
+					id: "00000000003042F0",
+					type: "xp",
+					xp: 150
+				},
+				{
+					id: "00000000003042F1",
+					type: "xp_levels",
+					xp_levels: 4
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002042F0",
+					item: {
+						count: 1,
+						id: "galosphere:burrow_anchor"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002042F1",
+					type: "checkmark"
+				}
+			],
+			x: 0.0d,
+			y: 34.0d
+		},
+		{
+			dependencies: ["0000000000104010"],
+			icon: {
+				count: 1,
+				id: "galosphere:pink_salt"
+			},
+			id: "0000000000104300",
+			rewards: [
+				{
+					id: "0000000000304300",
+					type: "xp_levels",
+					xp_levels: 8
+				},
+				{
+					id: "0000000000304301",
+					type: "xp",
+					xp: 200
+				},
+				{
+					count: 8,
+					id: "0000000000304302",
+					item: {
+						count: 1,
+						id: "galosphere:salted_jerky"
+					},
+					type: "item"
+				}
+			],
+			shape: "hexagon",
+			size: 1.4d,
+			tasks: [
+				{
+					id: "0000000000204300",
+					structure: "galosphere:pink_salt_shrine",
+					type: "structure"
+				},
+				{
+					advancement: "galosphere:adventure/find_pink_salt_shrine",
+					id: "0000000000204301",
+					type: "advancement"
+				}
+			],
+			x: 10.8d,
+			y: 33.275d
+		},
+		{
+			dependencies: ["0000000000104230", "0000000000104300"],
+			icon: {
+				count: 1,
+				id: "galosphere:echo_bell"
+			},
+			id: "0000000000104310",
+			rewards: [
+				{
+					id: "0000000000304310",
+					type: "xp",
+					xp: 200
+				},
+				{
+					id: "0000000000304311",
+					type: "xp_levels",
+					xp_levels: 6
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000204310",
+					item: {
+						count: 1,
+						id: "galosphere:echo_bell"
+					},
+					type: "item"
+				},
+				{
+					count: 2L,
+					id: "0000000000204311",
+					item: {
+						count: 1,
+						id: "minecraft:echo_shard"
+					},
+					type: "item"
+				},
+				{
+					count: 4L,
+					id: "0000000000204312",
+					item: {
+						count: 1,
+						id: "galosphere:allurite_shard"
+					},
+					type: "item"
+				}
+			],
+			x: 12.9d,
+			y: 33.275d
+		},
+		{
+			dependencies: ["0000000000104310"],
+			icon: {
+				count: 1,
+				id: "galosphere:berserker_spawn_egg"
+			},
+			id: "0000000000104320",
+			rewards: [
+				{
+					id: "0000000000304320",
+					type: "xp_levels",
+					xp_levels: 12
+				},
+				{
+					description: "Царство ужаса началось.",
+					id: "0000000000304321",
+					type: "toast"
+				}
+			],
+			shape: "gear",
+			size: 1.6d,
+			tasks: [
+				{
+					advancement: "galosphere:adventure/summon_berserker",
+					id: "0000000000204320",
+					type: "advancement"
+				}
+			],
+			x: 15.0d,
+			y: 33.275d
+		},
+		{
+			dependencies: ["0000000000104320"],
+			icon: {
+				count: 1,
+				id: "galosphere:preserved_template"
+			},
+			id: "0000000000104330",
+			rewards: [
+				{
+					id: "0000000000304330",
+					type: "xp_levels",
+					xp_levels: 10
+				},
+				{
+					id: "0000000000304331",
+					type: "xp",
+					xp: 400
+				}
+			],
+			shape: "octagon",
+			size: 1.4d,
+			tasks: [
+				{
+					entity: "galosphere:berserker",
+					id: "0000000000204330",
+					type: "kill",
+					value: 1L
+				},
+				{
+					count: 2L,
+					id: "0000000000204331",
+					item: {
+						count: 1,
+						id: "galosphere:preserved_flesh"
+					},
+					type: "item"
+				},
+				{
+					count: 2L,
+					id: "0000000000204332",
+					item: {
+						count: 1,
+						id: "galosphere:preserved_template"
+					},
+					type: "item"
+				}
+			],
+			x: 17.1d,
+			y: 33.275d
+		},
+		{
+			dependencies: ["0000000000104330"],
+			icon: {
+				count: 1,
+				id: "galosphere:preserved_template"
+			},
+			id: "0000000000104340",
+			rewards: [
+				{
+					id: "0000000000304340",
+					type: "xp",
+					xp: 300
+				},
+				{
+					count: 16,
+					id: "0000000000304341",
+					item: {
+						count: 1,
+						id: "galosphere:pink_salt_shard"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 8L,
+					id: "0000000000204340",
+					item: {
+						count: 1,
+						id: "galosphere:pink_salt_shard"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000204341",
+					type: "checkmark"
+				}
+			],
+			x: 19.2d,
+			y: 32.55d
+		},
+		{
+			dependencies: ["00000000001041D0", "00000000001042D0", "0000000000104330"],
+			icon: {
+				count: 1,
+				id: "galosphere:opal_block"
+			},
+			id: "0000000000104350",
+			rewards: [
+				{
+					id: "0000000000304350",
+					type: "xp_levels",
+					xp_levels: 20
+				},
+				{
+					id: "0000000000304351",
+					type: "xp",
+					xp: 800
+				},
+				{
+					count: 16,
+					id: "0000000000304352",
+					item: {
+						count: 1,
+						id: "galosphere:opal_block"
+					},
+					type: "item"
+				},
+				{
+					count: 4,
+					id: "0000000000304353",
+					item: {
+						count: 1,
+						id: "galosphere:chandelier"
+					},
+					type: "item"
+				},
+				{
+					description: "Глубины покорились тебе.",
+					id: "0000000000304354",
+					type: "toast"
+				}
+			],
+			shape: "gear",
+			size: 2.0d,
+			tasks: [
+				{
+					id: "0000000000204350",
+					type: "checkmark"
+				}
+			],
+			x: 19.2d,
+			y: 34.0d
+		}
+	]
+}

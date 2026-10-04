@@ -316,10 +316,23 @@
 			y: 41.975d
 		},
 		{
+			click_action: "open_quest:0000000000104010",
+			color: 15902418,
+			height: 1.9d,
+			id: "0000000000401017",
+			image: "kubejs:textures/gui/portal.png",
+			order: -30,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 1.9d,
+			x: 29.4d,
+			y: 4.35d
+		},
+		{
 			alpha: 235,
 			color: 1973800,
 			height: 0.7d,
-			id: "0000000000401017",
+			id: "0000000000401018",
 			image: "kubejs:textures/gui/plate.png",
 			order: -35,
 			position_locked: 1b,
@@ -335,7 +348,7 @@
 			alpha: 235,
 			color: 926259,
 			height: 0.75d,
-			id: "0000000000401018",
+			id: "0000000000401019",
 			image: "kubejs:textures/gui/plate.png",
 			order: -35,
 			position_locked: 1b,

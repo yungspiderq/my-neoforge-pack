@@ -85,6 +85,8 @@ REQUIRED = {
     "architectury": "обязательная зависимость FTB-модов",
     "kubejs": "кастомные предметы, рецепты и диагностика пака",
     "rhino": "JS-движок для KubeJS",
+    "galosphere": "контент 9-й секции главы «Земли Рассвета» — без него "
+                  "квесты «Глубины Галосферы» невыполнимы",
 }
 
 # modid по префиксу имени jar-файла (там, где он не выводится механически).
@@ -100,6 +102,7 @@ MODID_BY_PREFIX = [
     ("better-advanced-tooltips", "betteradvancedtooltips"),
     ("architectury-api", "architectury"),
     ("just-enough-items", "jei"),
+    ("mousetweaks", "mousetweaks"),
     ("certain_questing_additions", "certain_questing_additions"),
     ("certain-questing-additions", "certain_questing_additions"),
 ]

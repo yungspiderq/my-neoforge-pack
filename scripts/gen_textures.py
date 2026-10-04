@@ -299,10 +299,56 @@ def banner_end():
     return img
 
 
+def banner_galosphere():
+    """Галосфера: пещера — тёмная порода сверху, розовые соляные шпили снизу,
+    циановые и лимонные кристаллы, искорки-светлячки."""
+    W, H = 256, 64
+    img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    for y in range(H):                                     # порода пещеры
+        t = y / (H - 1)
+        c = mix((16, 7, 14), (64, 26, 52), t)
+        for x in range(W):
+            shade = 0 if ((x // 8) + (y // 8)) % 2 == 0 else -5
+            img.putpixel((x, y), (clamp(c[0] + shade), clamp(c[1] + shade),
+                                  clamp(c[2] + shade), 240))
+    for i in range(26):                                    # сталактиты потолка
+        x = int(rnd(i * 3.1) * W)
+        h = 5 + int(rnd(i * 5.7) * 12)
+        col = (214, 122, 172) if i % 3 else (122, 178, 214)
+        for k in range(h):
+            w = max(1, (h - k) // 4)
+            rect(img, x - w, k, w * 2 + 1, 1, col + (235,))
+    for i in range(30):                                    # соляные шпили снизу
+        x = int(rnd(i * 2.3) * W)
+        h = 8 + int(rnd(i * 9.4) * 22)
+        for k in range(h):
+            w = max(1, (h - k) // 5)
+            rect(img, x - w, H - 2 - k, w * 2 + 1, 1, (224, 132, 188, 240))
+        px(img, x, H - 2 - h, (255, 214, 240, 255))        # светлый кончик
+    # друза больших кристаллов справа (как «солнце» в баннере Рассвета)
+    for cx, cy, hh, col in [(206, 40, 20, (240, 150, 200)),
+                            (218, 44, 14, (150, 210, 240)),
+                            (196, 45, 12, (240, 220, 150))]:
+        for k in range(hh):
+            w = max(1, (hh - k) // 5)
+            rect(img, cx - w, cy - k, w * 2 + 1, 1, col + (245,))
+        px(img, cx, cy - hh, (255, 255, 255, 255))
+    for i in range(34):                                    # искорки и люмьер
+        x = int(rnd(i * 4.9) * W)
+        y = 8 + int(rnd(i * 6.3) * 46)
+        col = [(255, 236, 170), (170, 226, 255), (255, 190, 228)][i % 3]
+        px(img, x, y, col + (230,))
+        circle(img, x, y, 2, col + (40,))
+    rect(img, 0, 62, W, 2, (26, 10, 20, 255))              # пол
+    frame(img, (232, 138, 196), (24, 10, 20))
+    return img
+
+
 BANNERS = {
     "banner_overworld": banner_overworld,
     "banner_nether":    banner_nether,
     "banner_end":       banner_end,
+    "banner_galosphere": banner_galosphere,
 }
 
 

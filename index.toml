@@ -9,12 +9,16 @@ file = "config/ftbquests/quests/chapters/end.snbt"
 hash = "14bcc68aae81dd4c1efab3eaf5584687497e0571c79f7efb6be63f99d71b28c0"
 
 [[files]]
+file = "config/ftbquests/quests/chapters/galosphere.snbt"
+hash = "cdb24a51fcbd8912f0acce4585b6ecb2504525b9b86d31d711f99319509a8df3"
+
+[[files]]
 file = "config/ftbquests/quests/chapters/nether.snbt"
 hash = "f1944f87823d81c677191b951c0da14aaed66054312f02712d5cbed2950ce23a"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/overworld.snbt"
-hash = "845c21907669d849941c1dcbe973002fae2658c7913b5a779170ac82bb440d1c"
+hash = "524ae5de70d3d963d33b42cca5e8b4036b460f56a3d5f0d2258098c068e3c8a3"
 
 [[files]]
 file = "config/ftbquests/quests/data.snbt"
@@ -22,11 +26,11 @@ hash = "3247158905a839ee22728f98c8c57def95653b8ee1fc14cf554d1c7ed1641b43"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us.snbt"
-hash = "df84c52f317b808559e163bc2ffc4127305fae566e0ae4534b53d69c03854338"
+hash = "d4d65046d6bf1d18eafaa46e7eff130a11d5b49ae23a384b8abee94fe56a4733"
 
 [[files]]
 file = "config/ftbquests/quests/lang/ru_ru.snbt"
-hash = "92464c716de747f23a8eeafbb6c17826c64a086698c8b94301dd70c0b498582d"
+hash = "b4f28fd80690d3809bba8f6c19ef1c0092c9d0701d8e0c9379bfc30bb3bae4c7"
 
 [[files]]
 file = "config/modpack-info.txt"
@@ -35,6 +39,10 @@ hash = "555858a51c7638b6e67444c22fe908a91e81c6e95dad037db4999807c9021c79"
 [[files]]
 file = "kubejs/assets/kubejs/textures/gui/banner_end.png"
 hash = "cf03f4532776120c678bd77a00727af566480a896fe5f9a0cb7901b8d6d5ab09"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/banner_galosphere.png"
+hash = "a72b2643b61d3aa07aa697a93ca677d21d99cde724c585bcd1297f1d33c6b0b2"
 
 [[files]]
 file = "kubejs/assets/kubejs/textures/gui/banner_nether.png"
@@ -93,6 +101,11 @@ file = "kubejs/startup_scripts/diagnostics.js"
 hash = "77b92ab8342538119f3018c80fb6a0c99691422c858b4031bcbc7d74bb3de0bb"
 
 [[files]]
+file = "mods/appleskin.pw.toml"
+hash = "f5d103fb64b30d29cdb71e16995ef4530837ced834b90e9de974f094dc6bcddc"
+metafile = true
+
+[[files]]
 file = "mods/architectury-api.pw.toml"
 hash = "e75b840972ed4812c65083a4c4736b89ae7991c35602da536d826d5da58819d2"
 metafile = true
@@ -100,6 +113,26 @@ metafile = true
 [[files]]
 file = "mods/better-advanced-tooltips.pw.toml"
 hash = "3125b09cbbcfdc46728e42744df30d180975396c1cff3eb140fa4341100c8af0"
+metafile = true
+
+[[files]]
+file = "mods/clumps.pw.toml"
+hash = "005452c475e4ade3865fd70d9f16ac372736c1c659a06586172bb4512d117995"
+metafile = true
+
+[[files]]
+file = "mods/corpse.pw.toml"
+hash = "288906be5d62ab649b2dbdc1922366b07358744af59d6e0bdefaa2f3a6f70924"
+metafile = true
+
+[[files]]
+file = "mods/embeddium.pw.toml"
+hash = "9c1cb62e82392fdeb6dd9a9996a97d774c94416af2b76b440771f4a11ece5358"
+metafile = true
+
+[[files]]
+file = "mods/ferritecore.pw.toml"
+hash = "66cebcf946ddbee0c87ef58f61ab34fba55992e1bdc89c81d71b9b8adb8de3dc"
 metafile = true
 
 [[files]]
@@ -128,6 +161,11 @@ hash = "17ed96ff5d865091d09afb300aee4343ad6bdea604ae5e235bea990ff539b26e"
 metafile = true
 
 [[files]]
+file = "mods/galosphere.pw.toml"
+hash = "68cde5d2aded3165c9a0bf52d23923f8e67b2fc7ae238b09ef305cc1458893fe"
+metafile = true
+
+[[files]]
 file = "mods/jade.pw.toml"
 hash = "b41e7109af31de676177eba9b868d1773f4dc7e1af03fd250c85e798286fce59"
 metafile = true
@@ -145,6 +183,16 @@ metafile = true
 [[files]]
 file = "mods/kubejs.pw.toml"
 hash = "8d095248e97893ad12ee197b94bef44a843e1f3db6657f625e7dae85f62c50e1"
+metafile = true
+
+[[files]]
+file = "mods/modernfix.pw.toml"
+hash = "67782767c0e26016e0cf347b3138d645bf8729f81279f9dbb4d68da18a9d5bc1"
+metafile = true
+
+[[files]]
+file = "mods/mouse-tweaks.pw.toml"
+hash = "7bf459d780e378c5194a1562669db838b32709446a2b1d3962c4292397cb3cec"
 metafile = true
 
 [[files]]
