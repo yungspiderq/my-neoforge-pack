@@ -22,7 +22,7 @@ hash = "524ae5de70d3d963d33b42cca5e8b4036b460f56a3d5f0d2258098c068e3c8a3"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/starlight.snbt"
-hash = "bdd7f59f5ec3dfe80ebd23efd33365a6fd7010965fc08ee345734b3487d2ede2"
+hash = "35e61e8ad3c699cae535a1e364279683956b26cd8a00c926a1389cc3646ed12e"
 
 [[files]]
 file = "config/ftbquests/quests/data.snbt"
@@ -30,11 +30,11 @@ hash = "3247158905a839ee22728f98c8c57def95653b8ee1fc14cf554d1c7ed1641b43"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us.snbt"
-hash = "e0bd6d2b2ad90a68d7b634c10819968c2d14c02952a00de9f9f70366e5b44938"
+hash = "b821637e2eb0e6bcfe31479124862b6e2766630632997a31591a0b604ca86b04"
 
 [[files]]
 file = "config/ftbquests/quests/lang/ru_ru.snbt"
-hash = "bdc8433b87479c45a2345d1a516c0f724221c36305979cf08590b758de86b915"
+hash = "da6c1540bc79447cd0e29107cb581113b3c65fc0a870feb5750085835b5059b9"
 
 [[files]]
 file = "config/modpack-info.txt"
