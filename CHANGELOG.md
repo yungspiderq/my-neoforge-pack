@@ -218,6 +218,19 @@
   1.21.1). Включаются одним кликом в Options -> Resource Packs; паки, лежащие
   в папке, Minecraft видит сразу после синхронизации.
 
+## [1.6.3] — 2026-10-05
+
+### Fixed
+- **Краш MixinPreProcessorException при входе в мир (Iris+Sodium).** Миксин
+  Iris `MixinRenderSectionManager` ссылается на
+  `SodiumGameOptions$PerformanceSettings::useFogOcclusion` — класс, удалённый
+  в Sodium 0.8.x: для 1.21.1 Sodium прыгает с 0.6.13 (апрель 2025, класс есть)
+  сразу на 0.8.12 (класса нет), а все NeoForge-сборки Iris 1.8.x собраны против
+  старой версии. Совместимая пара на NeoForge 1.21.1:
+  **Sodium mc1.21.1-0.6.13 + Iris 1.8.12** — закреплены hash'ами.
+  (Проверено сканированием jar: в Sodium 0.6.13 класс и поле на месте,
+  в 0.8.12+ отсутствуют.)
+
 ## [1.3.4] — 2026-10-04
 
 ### Added
