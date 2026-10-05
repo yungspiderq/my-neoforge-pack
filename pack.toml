@@ -1,6 +1,6 @@
 name = "My NeoForge Pack"
 author = "yungspiderq"
-version = "1.5.5"
+version = "1.5.6"
 description = "Приватный модпак с автосинхронизацией через GitHub Pages"
 pack-format = "packwiz:1.1.0"
 

@@ -153,6 +153,15 @@
   компонентой. Остальное прежним осталось: var/function-стиль, guard повторной
   регистрации, канонические строки ftbfiltersystem:item_tag/item/or.
 
+## [1.5.6] — 2026-10-05
+
+### Fixed
+- **Мост FFS <-> FTB Quests, v6**: сигнатуры выверены по исходникам FTB-Quests
+  (ветка 1.21.1/main): вход в API — статический `FTBQuestsAPI.api()` (а не
+  `.instance()`, которого нет), `getName()` возвращает String, `getMatcher`
+  принимает `(filterStack, registryAccess)`. Ошибка v5 «FTBQuestsAPI has no
+  public instance field or method named instance» устранена.
+
 ## [1.3.4] — 2026-10-04
 
 ### Added
