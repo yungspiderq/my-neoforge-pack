@@ -201,6 +201,23 @@
   `options/iris.properties` (синхронизируется packsync): шейдеры включены
   из коробки, отключаются в Options -> Video Settings -> Shader Packs.
 
+## [1.6.2] — 2026-10-05
+
+### Changed
+- **Embeddium заменён на официальный Sodium mc1.21.1-0.8.13-neoforge.** Краш-экран
+  был прав: Iris-NeoForge требует Sodium 0.6+ и жёстко несовместим с Embeddium
+  («Iris and Embeddium cannot be used together»); зависимость Iris AANobbMI —
+  это и есть Sodium. Связка «Sodium + Iris», как и просили изначально.
+
+### Added
+- **Emotecraft** (both): эмо-жесты в мультиплеере, работают с голосовым чатом.
+- **Второй шейдерпак: BSL v10.1.8** в `shaderpacks/` — альтернатива Complementary
+  (переключение в Options -> Video Settings -> Shader Packs).
+- **Ресурспаки** в `resourcepacks/`: Fresh Animations v1.10.5 (анимированные мобы —
+  работает через уже лежащие ETF/EMF) и Default Dark Mode (тёмное GUI, сборка под
+  1.21.1). Включаются одним кликом в Options -> Resource Packs; паки, лежащие
+  в папке, Minecraft видит сразу после синхронизации.
+
 ## [1.3.4] — 2026-10-04
 
 ### Added

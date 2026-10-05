@@ -168,7 +168,7 @@ git push origin v1.0.0
 ### Добавить мод
 
 ```bash
-python scripts/pw.py add jei jade oculus embeddium
+python scripts/pw.py add jei jade oculus sodium
 ```
 
 Принимает slug или ID с Modrinth (`https://modrinth.com/mod/<slug>`). Скрипт сам:

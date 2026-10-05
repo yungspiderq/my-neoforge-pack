@@ -9,7 +9,7 @@
 
 ```bash
 python scripts/pw.py add oculus
-python scripts/pw.py add embeddium
+python scripts/pw.py add sodium  # Iris требует официальный Sodium
 ```
 
 ## Важный нюанс с `side`
