@@ -169,6 +169,27 @@
   («'global' cannot be assigned to in client or server scripts») — состояние
   варпа переехало на var уровня скрипта; конфиг и логика прежние.
 
+## [1.6.0] — 2026-10-05
+
+### Added
+- **Визуальные/QoL/полезные моды (без контента):** [ETF] Entity Texture Features
+  и [EMF] Entity Model Features (optifine-стиль текстуры и анимированные модели
+  мобов), Dynamic FPS (срежет FPS в свёрнутом окне), Shulker Box Tooltip
+  (превью шалкера наведением), Simple Voice Chat (войс-чат в мультиплеере),
+  spark (профайлер для диагностики лагов). Все клиентские помечены side=client.
+- Про «скачай iris и sodium»: Sodium на NeoForge — это Embeddium, он уже в паке
+  с 1.0; Iris на NeoForge 1.21.1 не существует (Oculus закрыт на 1.20.1, Iris —
+  Fabric-only), поэтому шейдерного загрузчика нет — визуальный бюджет закрыт
+  ETF/EMF/Better Clouds/Sound Physics.
+
+### Changed
+- **Восемь задач «любой вариант» переведены на фильтры FTB Filter System**
+  (smart_filter + ftbfiltersystem:item_tag(...), канон сборок вроде RLCMC):
+  появились живой счётчик 0/16 и иконки предметами вместо «Продвижение»
+  с иконкой-заглушкой. Работает через мост kubejs/startup_scripts/
+  ffs_tag_bridge.js (v6): на 1.21.1 адаптер FFS<->FTBQ регистрирует пак.
+- Data-advancement'ы kubejs:hold_* удалены за ненадобностью.
+
 ## [1.3.4] — 2026-10-04
 
 ### Added

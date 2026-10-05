@@ -17,7 +17,7 @@
   • числа в задачах подобраны так, чтобы квест занимал 5–20 минут игры.
 """
 
-from qdsl import (CUSTOM, Q, SEC, adv, biome, check, dim, give, halo, item,
+from qdsl import (CUSTOM, Q, SEC, adv, biome, check, dim, give, halo, item, tag,
                   kill, lvl, loc, obs, portal, say, stat, struct, toast, xp,
                   xpr)
 
@@ -55,11 +55,11 @@ Q("wood", ("First Wood", "Первое дерево"), section="awaken",
          "начать; остальное дадут саженцы."),
         ("Everything in this book starts here.",
          "Всё в этой книге начинается отсюда."),
-        ("Any wood counts - oak, spruce, even Starlight timber: hold a single "
-         "stack of 16 logs of one kind.",
+        ("Any wood counts - oak, spruce, even Starlight timber: the counter "
+         "accepts whatever logs you carry.",
          "Засчитывается любая древесина — дуб, ель, даже из Звездосветья: "
-         "держи один стак из 16 брёвен одного вида.")],
-  tasks=[adv("kubejs:hold_logs_16")],
+         "счётчик примет любые брёвна из инвентаря.")],
+  tasks=[tag("minecraft:logs", 16)],
   rewards=[give("minecraft:bread", 4)]),
 
 Q("bench", ("Workbench", "Верстак"), section="awaken",
@@ -68,8 +68,8 @@ Q("bench", ("Workbench", "Верстак"), section="awaken",
          "From now on 3x3 recipes are available. Any planks count (one stack "
          "of 32).",
          "Доски — в сетку крафта в инвентаре, затем четыре доски в стол. "
-         "С этого момента доступны рецепты 3x3. Доски — любые: один стак из 32.")],
-  tasks=[adv("kubejs:hold_planks_32"), item("minecraft:crafting_table")],
+         "С этого момента доступны рецепты 3x3. Доски — любые.")],
+  tasks=[tag("minecraft:planks", 32), item("minecraft:crafting_table")],
   rewards=[give("minecraft:stick", 16)]),
 
 Q("tools", ("Wooden Set", "Деревянный набор"), section="awaken",
@@ -83,7 +83,7 @@ Q("tools", ("Wooden Set", "Деревянный набор"), section="awaken",
 
 Q("stoneage", ("Stone Age", "Каменный век"), section="awaken",
   icon="minecraft:stone_pickaxe",
-  tasks=[adv("kubejs:hold_cobble_64"), item("minecraft:stone_pickaxe")],
+  tasks=[tag("c:cobblestones", 64), item("minecraft:stone_pickaxe")],
   rewards=[give("minecraft:furnace"), give("minecraft:torch", 16)]),
 
 Q("oven", ("Furnace", "Печь"), section="awaken",
@@ -102,7 +102,7 @@ Q("walls", ("Four Walls", "Четыре стены"), section="awaken",
          "of the hole. The house can be a hole in a hill.",
          "Дверь не пускает зомби, сундук хранит добычу, лестница выводит из ямы. "
          "Домом может быть нора в склоне холма.")],
-  tasks=[adv("kubejs:hold_door_1"), item("minecraft:chest"),
+  tasks=[tag("minecraft:wooden_doors"), item("minecraft:chest"),
          item("minecraft:ladder", 4)],
   rewards=[give("minecraft:lantern", 4)]),
 
@@ -114,7 +114,7 @@ Q("bed", ("Good Night", "Спокойной ночи"), section="awaken",
          "Три шерсти и три доски. Сон пропускает ночь и переносит точку "
          "возрождения — после смерти не придётся идти через всю карту. "
          "Кровать — любого цвета.")],
-  tasks=[adv("kubejs:hold_bed_1"), stat("minecraft:sleep_in_bed", 1)],
+  tasks=[tag("minecraft:beds"), stat("minecraft:sleep_in_bed", 1)],
   rewards=[lvl(2)]),
 
 Q("light", ("Light in the Dark", "Свет в темноте"), section="awaken",
@@ -359,7 +359,7 @@ Q("fivelands", ("Five Lands", "Пять земель"), section="wilds", deps=["
 Q("ocean", ("To the Sea", "К морю"), section="wilds", deps=["explore"],
   icon="minecraft:kelp",
   tasks=[biome("minecraft:ocean"), item("minecraft:kelp", 16),
-         adv("kubejs:hold_boat_1")],
+         tag("minecraft:boats")],
   rewards=[give("minecraft:cod", 8)]),
 
 Q("monument", ("Ocean Monument", "Подводная крепость"), section="wilds",
@@ -426,7 +426,7 @@ Q("seeds", ("Seeds", "Семена"), section="farm", deps=["bench"],
          "Bone meal speeds everything up.",
          "Ломай высокую траву ради семян, вспаши землю у воды и посади. "
          "Костная мука ускоряет всё.")],
-  tasks=[adv("minecraft:husbandry/plant_seed"), adv("kubejs:hold_seeds_16")],
+  tasks=[adv("minecraft:husbandry/plant_seed"), tag("c:seeds", 16)],
   rewards=[give("minecraft:bone_meal", 16), give("minecraft:iron_hoe")]),
 
 Q("wheat", ("Bread", "Хлеб"), section="farm", deps=["seeds"],
@@ -463,11 +463,10 @@ Q("yard", ("Full Yard", "Полный двор"), section="farm", deps=["breed"]
 Q("sheep", ("Wool", "Шерсть"), section="farm", deps=["breed"],
   icon="minecraft:white_wool",
   desc=[("Shears do not hurt the sheep and regrow after feeding. Dye changes "
-         "the colour of the wool. Any wool colour counts: one stack of 24.",
+         "the colour of the wool. Any wool colour counts.",
          "Ножницы не калечат овцу, шерсть отрастает после кормления. Краситель "
-         "меняет цвет шерсти. В задаче засчитывается шерсть любого цвета: "
-         "один стак из 24.")],
-  tasks=[item("minecraft:shears"), adv("kubejs:hold_wool_24")],
+         "меняет цвет шерсти. В задаче засчитывается шерсть любого цвета.")],
+  tasks=[item("minecraft:shears"), tag("minecraft:wool", 24)],
   rewards=[give("minecraft:white_bed", 2)]),
 
 Q("fishing", ("Fishing", "Рыбалка"), section="farm", deps=["wood"],
