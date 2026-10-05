@@ -52,7 +52,7 @@ def tag(tag_id, count=1):
     return {"type": "item", "count": count,
             "item": {"id": "ftbfiltersystem:smart_filter", "count": 1,
                      "components": {"ftbfiltersystem:filter":
-                                    "item_tag(%s)" % tag_id}}}
+                                    "ftbfiltersystem:item_tag(%s)" % tag_id}}}
 
 
 def check():

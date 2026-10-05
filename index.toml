@@ -166,7 +166,7 @@ hash = "77b92ab8342538119f3018c80fb6a0c99691422c858b4031bcbc7d74bb3de0bb"
 
 [[files]]
 file = "kubejs/startup_scripts/ffs_tag_bridge.js"
-hash = "b62461eaa34ee22fd00c411735b6e59fa2ee3d3fd6e956a3e762d318c055ec9d"
+hash = "e1d79611190945b0b9bd19d796308f011592e0b5e5f3eb6cc640326e0c968ab2"
 
 [[files]]
 file = "mods/appleskin.pw.toml"

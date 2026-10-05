@@ -1,61 +1,95 @@
 // =====================================================================
-//  Мост FTB Filter System <-> FTB Quests для MC 1.21.1.
+//  Мост FTB Filter System <-> FTB Quests для MC 1.21.1 (v2).
 //
-//  Зачем: FTB Quests 2101.1.36 умеет матчить задачи через адаптеры
-//  (ItemMatchingSystem + ItemFilterAdapter) и даже показывает экран
-//  выбора тега, но адаптер должен зарегистрировать мод-фильтр. FFS 21.1.4
-//  на 1.21.1 этого не делает (интеграция появилась только в новых MC),
-//  поэтому smart_filter в задаче требовал сам себя. Этот скрипт
-//  регистрирует минимальный адаптер: понимает фильтры вида
-//  item_tag(<тег>) и матчит любой предмет тега; заодно оживает
-//  встроенный экран выбора тега в редакторе квестов.
+//  Зачем: FTB Quests 2101.1.36 матчит задачи через адаптеры
+//  (ItemMatchingSystem + ItemFilterAdapter) и показывает экран выбора
+//  тега, но адаптер регистрирует мод-фильтр, а FFS 21.1.x на 1.21.1 этого
+//  не делает (интеграция есть в 1.20.1 и в новых линейках MC — между ними
+//  дыра). Без адаптера smart_filter в задаче требует сам себя.
 //
-//  Проверка: в logs/kubejs/startup.log должна быть строка
-//  "[starlight] FFS tag bridge: адаптер зарегистрирован".
+//  Мост регистрирует минимальный адаптер: понимает фильтры
+//    ftbfiltersystem:item_tag(<тег>)
+//    ftbfiltersystem:item(<предмет>)
+//    ftbfiltersystem:or(<фильтр> <фильтр> ...)   (как их пишет GUI)
+//  матчит любой предмет тега/список предметов, отдаёт display-стаки и
+//  создаёт стек фильтра для встроенного экрана выбора тега.
+//
+//  Проверка: logs/kubejs/startup.log ->
+//    "[starlight] FFS tag bridge: адаптер зарегистрирован"
 // =====================================================================
 
 StartupEvents.postInit(event => {
     try {
-        if (!Platform.isModLoaded('ftbfiltersystem')) {
-            console.info('[starlight] FFS tag bridge: мод ftbfiltersystem не стоит — мост не нужен')
+        let ModDataComponents, ModItems
+        try {
+            ModDataComponents = Java.loadClass('dev.ftb.mods.ftbfiltersystem.registry.ModDataComponents')
+            ModItems = Java.loadClass('dev.ftb.mods.ftbfiltersystem.registry.ModItems')
+        } catch (e) {
+            console.info('[starlight] FFS tag bridge: мод ftbfiltersystem не установлен — мост не нужен')
             return
         }
         const ItemStack = Java.loadClass('net.minecraft.world.item.ItemStack')
         const Registries = Java.loadClass('net.minecraft.core.registries.Registries')
         const TagKey = Java.loadClass('net.minecraft.core.registries.TagKey')
         const ResourceLocation = Java.loadClass('net.minecraft.resources.ResourceLocation')
-        const ModDataComponents = Java.loadClass('dev.ftb.mods.ftbfiltersystem.registry.ModDataComponents')
-        const ModItems = Java.loadClass('dev.ftb.mods.ftbfiltersystem.registry.ModItems')
+        const Component = Java.loadClass('net.minecraft.network.chat.Component')
         const FTBQuestsAPI = Java.loadClass('dev.ftb.mods.ftbquests.api.FTBQuestsAPI')
         const FILTER_TYPE = ModDataComponents.FILTER_STRING.get()
         const SMART_FILTER = ModItems.SMART_FILTER.get()
+        const NS = 'ftbfiltersystem:'
 
-        function filterTagString(stack) {
+        function filterString(stack) {
             if (!stack || stack.isEmpty() || stack.getItem() !== SMART_FILTER) return null
             const v = stack.get(FILTER_TYPE)
             return v == null ? null : String(v)
         }
-        function parseTag(str) {
-            // поддерживаем фильтры вида item_tag(<namespace>:<path>)
-            const m = /^item_tag\(([^)]+)\)$/.exec(str || '')
-            return m ? m[1] : null
+        // разбирает строку фильтра в функцию-предикат над ItemStack
+        function compileFilter(str) {
+            if (!str) return null
+            let s = str.trim()
+            if (s.startsWith(NS)) s = s.slice(NS.length)
+            let m = /^item_tag\(([^)]+)\)$/.exec(s)
+            if (m) {
+                const key = TagKey.create(Registries.ITEM, ResourceLocation.parse(m[1].trim()))
+                return stack => !stack.isEmpty() && stack.is(key)
+            }
+            m = /^item\(([^)]+)\)$/.exec(s)
+            if (m) {
+                const id = m[1].trim()
+                return stack => !stack.isEmpty() && stack.getItem() === Java.loadClass('net.minecraft.core.registries.BuiltInRegistries').ITEM.get(ResourceLocation.parse(id))
+            }
+            m = /^or\((.+)\)$/.exec(s)
+            if (m) {
+                const inner = []
+                const re = /([a-z0-9_.-]+:)?([a-zA-Z_]+)\(([^()]*(?:\([^()]*\))?[^()]*)\)/g
+                let part
+                while ((part = re.exec(m[1])) !== null) {
+                    const sub = compileFilter((part[1] || '') + part[2] + '(' + part[3] + ')')
+                    if (sub) inner.push(sub)
+                }
+                if (inner.length) return stack => inner.some(f => f(stack))
+            }
+            return null
         }
-        function matches(filterStack, toCheck) {
-            const tagId = parseTag(filterTagString(filterStack))
-            if (!tagId || !toCheck || toCheck.isEmpty()) return false
-            const key = TagKey.create(Registries.ITEM, ResourceLocation.parse(tagId))
-            return toCheck.is(key)
+        function matcherOf(stack) {
+            return compileFilter(filterString(stack))
         }
 
         const adapter = new JavaAdapter(dev.ftb.mods.ftbquests.api.ItemFilterAdapter, {
-            getName: () => 'Starlight Tag Bridge',
-            isFilterStack: stack => filterTagString(stack) != null,
-            doesItemMatch: (filterStack, toCheck, _registries) => matches(filterStack, toCheck),
-            getMatcher: filterStack => (toCheck => matches(filterStack, toCheck)),
+            getName: () => Component.literal('Starlight Tag Bridge'),
+            isFilterStack: stack => filterString(stack) != null,
+            doesItemMatch: (filterStack, toCheck, _registries) => {
+                const f = matcherOf(filterStack)
+                return f != null && f(toCheck)
+            },
+            getMatcher: filterStack => {
+                const f = matcherOf(filterStack)
+                return f == null ? (stack => false) : f
+            },
             hasItemTagFilter: () => true,
             makeTagFilterStack: tagKey => {
                 const stack = new ItemStack(SMART_FILTER, 1)
-                stack.set(FILTER_TYPE, 'item_tag(' + tagKey.location().toString() + ')')
+                stack.set(FILTER_TYPE, NS + 'item_tag(' + tagKey.location().toString() + ')')
                 return stack
             },
         })
