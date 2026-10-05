@@ -162,6 +162,13 @@
   принимает `(filterStack, registryAccess)`. Ошибка v5 «FTBQuestsAPI has no
   public instance field or method named instance» устранена.
 
+## [1.5.7] — 2026-10-05
+
+### Fixed
+- `sleep_warp.js`: в server-скриптах KubeJS 2101 `global` недоступен для записи
+  («'global' cannot be assigned to in client or server scripts») — состояние
+  варпа переехало на var уровня скрипта; конфиг и логика прежние.
+
 ## [1.3.4] — 2026-10-04
 
 ### Added

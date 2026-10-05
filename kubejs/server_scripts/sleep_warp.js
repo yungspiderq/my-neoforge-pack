@@ -25,13 +25,15 @@ function swLoadConfig() {
     return cfg
 }
 
-global.swCfg = swLoadConfig()
-global.swNotified = false
+// global в server-скриптах KubeJS 2101 недоступен для записи —
+// состояние держим в var уровня скрипта (живёт до /reload или рестарта).
+var swCfg = swLoadConfig()
+var swNotified = false
 
 ServerEvents.tick(event => {
     const server = event.server
     if (server.tickCount % 10 !== 0) return
-    const cfg = global.swCfg
+    const cfg = swCfg
     if (!cfg || cfg.enabled === false) return
     const level = server.getLevel('minecraft:overworld')
     if (!level) return
@@ -44,16 +46,16 @@ ServerEvents.tick(event => {
     players.forEach(p => { if (p.isSleeping()) sleeping++ })
     const percent = (sleeping * 100) / online
     if (isNight && sleeping > 0 && percent >= (cfg.minSleepingPercent ?? 50)) {
-        if (!global.swNotified) {
-            global.swNotified = true
+        if (!swNotified) {
+            swNotified = true
             if (cfg.broadcastMessages !== false) {
                 server.runCommandSilent('tellraw @a {"text":"☾ Спящих достаточно — ночь ускоряется…","color":"aqua"}')
             }
         }
         level.time = level.time + (cfg.warpRatePerTick ?? 60)
     } else if (!isNight) {
-        if (global.swNotified) {
-            global.swNotified = false
+        if (swNotified) {
+            swNotified = false
             if (cfg.clearWeatherOnWake !== false && (level.rainTime > 0 || level.thunderTime > 0)) {
                 server.runCommandSilent('weather clear')
             }
