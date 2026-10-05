@@ -287,6 +287,11 @@ hash = "441c2810e5f6ef947527c1f81702790a448634c1c44b768adb1289b83e4db937"
 metafile = true
 
 [[files]]
+file = "mods/iris.pw.toml"
+hash = "e3a86fbe52b53b28d36bc98b583bab57ade594651daf53f7cf12fb097fffd555"
+metafile = true
+
+[[files]]
 file = "mods/jade.pw.toml"
 hash = "b41e7109af31de676177eba9b868d1773f4dc7e1af03fd250c85e798286fce59"
 metafile = true
@@ -362,5 +367,13 @@ hash = "a234bac3a9980073e51960be652b8c67c7cbe35755e26658ebaf78ea82c03645"
 metafile = true
 
 [[files]]
+file = "options/iris.properties"
+hash = "3cf45842ff923c05134e0aadff7cddbf6458a99563a2b7faa2253b80c42902d6"
+
+[[files]]
 file = "resourcepacks/GalosphereRU.zip"
 hash = "b115b7aad389ff3844e84f2741e43916e3cb0be237e80b971dc7375e889c7ced"
+
+[[files]]
+file = "shaderpacks/ComplementaryReimagined_r5.9.3.zip"
+hash = "fed6c879e732cf7fc7bc6570ebb1def43235aa7e96f62859fbdbdbfa0b484b38"

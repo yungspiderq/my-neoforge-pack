@@ -190,6 +190,17 @@
   ffs_tag_bridge.js (v6): на 1.21.1 адаптер FFS<->FTBQ регистрирует пак.
 - Data-advancement'ы kubejs:hold_* удалены за ненадобностью.
 
+## [1.6.1] — 2026-10-05
+
+### Added
+- **Iris Shaders 1.8.12+1.21.1-neoforge** (client): нео-фордж сборка Iris
+  существует с декабря 2024 — предыдущая запись CHANGELOG («Iris на NeoForge
+  не существует») ошибочна и исправлена. Стабильная 1.8.12 вместо беты
+  1.8.14-beta.1; обязательная зависимость Embeddium уже в паке.
+- **Шейдерпак Complementary Reimagined r5.9.3** в `shaderpacks/` +
+  `options/iris.properties` (синхронизируется packsync): шейдеры включены
+  из коробки, отключаются в Options -> Video Settings -> Shader Packs.
+
 ## [1.3.4] — 2026-10-04
 
 ### Added
