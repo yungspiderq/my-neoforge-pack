@@ -143,6 +143,16 @@
   создаёт встроенный GUI; getName возвращает Component, а не строку.
 - `qdsl.tag()` сериализует компонент с тем же каноническим префиксом.
 
+## [1.5.5] — 2026-10-05
+
+### Fixed
+- **Мост FFS <-> FTB Quests, v5**: `Java.loadClass('net.minecraft.core.registries.TagKey')`
+  не грузится в runtime-окружении NeoForge+KubeJS 2101 — матчинг тега теперь
+  без класса TagKey, через `builtInRegistryHolder().tags()` держателя предмета
+  (сравнение адресов тегов); self-test собирает фильтрующий стак напрямую
+  компонентой. Остальное прежним осталось: var/function-стиль, guard повторной
+  регистрации, канонические строки ftbfiltersystem:item_tag/item/or.
+
 ## [1.3.4] — 2026-10-04
 
 ### Added

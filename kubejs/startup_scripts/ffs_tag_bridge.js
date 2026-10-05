@@ -1,5 +1,5 @@
 // =====================================================================
-//  Мост FTB Filter System <-> FTB Quests для MC 1.21.1 (v4).
+//  Мост FTB Filter System <-> FTB Quests для MC 1.21.1 (v5).
 //
 //  На 1.21.1 ни FFS 21.1.x, ни FTB Quests 2101.1.36 не несут интеграцию
 //  друг к другу (проверено сканированием jar): FTB Quests даёт API
@@ -15,6 +15,8 @@
 //  const/let внутри обработчика дают "TypeError: redeclaration of var X"
 //  (проверено боем: v1 упал на Platform.isModLoaded, v2/v3 на const).
 //  Повторную регистрацию исключает guard global.swFfsBridgeDone.
+//  v5: матчинг тега без класса TagKey (он не грузится Java.loadClass в этом
+//  окружении) — через builtInRegistryHolder().tags() держателя предмета.
 //
 //  Проверка: logs/kubejs/startup.log:
 //    "[starlight] FFS tag bridge: адаптер зарегистрирован"
@@ -27,8 +29,15 @@ function swParseFilter(str, ctx) {
     if (s.indexOf('ftbfiltersystem:') === 0) s = s.slice('ftbfiltersystem:'.length)
     var m = /^item_tag\(([^)]+)\)$/.exec(s)
     if (m) {
-        var key = ctx.tagKey.create(ctx.registries.ITEM, ctx.rl.parse(m[1].trim()))
-        return function (stack) { return !stack.isEmpty() && stack.is(key) }
+        var tagId = m[1].trim()
+        // TagKey не создаём: Java.loadClass('...TagKey') в этом окружении не
+        // грузится, а держатель предмета сам отдаёт все свои теги.
+        return function (stack) {
+            if (!stack || stack.isEmpty()) return false
+            return stack.getItem().builtInRegistryHolder().tags().anyMatch(function (t) {
+                return t.location().toString() === tagId
+            })
+        }
     }
     m = /^item\(([^)]+)\)$/.exec(s)
     if (m) {
@@ -68,7 +77,6 @@ function swRegisterBridge() {
     ctx.stack = Java.loadClass('net.minecraft.world.item.ItemStack')
     ctx.registries = Java.loadClass('net.minecraft.core.registries.Registries')
     ctx.builtIn = Java.loadClass('net.minecraft.core.registries.BuiltInRegistries')
-    ctx.tagKey = Java.loadClass('net.minecraft.core.registries.TagKey')
     ctx.rl = Java.loadClass('net.minecraft.resources.ResourceLocation')
     ctx.component = Java.loadClass('net.minecraft.network.chat.Component')
     ctx.api = Java.loadClass('dev.ftb.mods.ftbquests.api.FTBQuestsAPI')
@@ -108,8 +116,8 @@ function swRegisterBridge() {
     console.info('[starlight] FFS tag bridge: адаптер зарегистрирован — теги в задачах FTB Quests работают')
     try {
         var matching = Java.loadClass('dev.ftb.mods.ftbquests.integration.item_filtering.ItemMatchingSystem')
-        var testFilter = adapter.makeTagFilterStack(
-            ctx.tagKey.create(ctx.registries.ITEM, ctx.rl.parse('minecraft:logs')))
+        var testFilter = new ctx.stack(ctx.SMART_FILTER, 1)
+        testFilter.set(ctx.FILTER_TYPE, 'ftbfiltersystem:item_tag(minecraft:logs)')
         var testLog = new ctx.stack(ctx.builtIn.ITEM.get(ctx.rl.parse('minecraft:oak_log')), 1)
         var ok = matching.INSTANCE.doesItemMatch(
             testFilter, testLog, matching.ComponentMatchType.NONE, null)
