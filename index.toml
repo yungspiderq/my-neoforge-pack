@@ -165,6 +165,10 @@ file = "kubejs/startup_scripts/diagnostics.js"
 hash = "77b92ab8342538119f3018c80fb6a0c99691422c858b4031bcbc7d74bb3de0bb"
 
 [[files]]
+file = "kubejs/startup_scripts/ffs_tag_bridge.js"
+hash = "b62461eaa34ee22fd00c411735b6e59fa2ee3d3fd6e956a3e762d318c055ec9d"
+
+[[files]]
 file = "mods/appleskin.pw.toml"
 hash = "f5d103fb64b30d29cdb71e16995ef4530837ced834b90e9de974f094dc6bcddc"
 metafile = true
@@ -252,6 +256,11 @@ metafile = true
 [[files]]
 file = "mods/ferritecore.pw.toml"
 hash = "66cebcf946ddbee0c87ef58f61ab34fba55992e1bdc89c81d71b9b8adb8de3dc"
+metafile = true
+
+[[files]]
+file = "mods/ftb-filter-system.pw.toml"
+hash = "adcd4c9b9be6f6aaae6d0f1bbc16ce6e172ad450b5c224e7f4af02fd2c9427d1"
 metafile = true
 
 [[files]]

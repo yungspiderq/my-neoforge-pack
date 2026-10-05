@@ -42,6 +42,19 @@ def item(item_id, count=1, **kw):
     return d
 
 
+def tag(tag_id, count=1):
+    """«Принеси N любых предметов с тегом» — фильтр FTB Filter System.
+
+    Работает только вместе с мостом kubejs/startup_scripts/ffs_tag_bridge.js:
+    на 1.21.1 FFS не регистрирует ItemFilterAdapter в FTB Quests сам, мост
+    делает это за него (иначе smart_filter в задаче требует сам себя).
+    """
+    return {"type": "item", "count": count,
+            "item": {"id": "ftbfiltersystem:smart_filter", "count": 1,
+                     "components": {"ftbfiltersystem:filter":
+                                    "item_tag(%s)" % tag_id}}}
+
+
 def check():
     """Галочка — «сделано вручную»: вехи, сюжетные отметки, финал."""
     return {"type": "checkmark"}
