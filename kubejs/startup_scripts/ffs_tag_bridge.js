@@ -1,5 +1,5 @@
 // =====================================================================
-//  Мост FTB Filter System <-> FTB Quests для MC 1.21.1 (v5).
+//  Мост FTB Filter System <-> FTB Quests для MC 1.21.1 (v6).
 //
 //  На 1.21.1 ни FFS 21.1.x, ни FTB Quests 2101.1.36 не несут интеграцию
 //  друг к другу (проверено сканированием jar): FTB Quests даёт API
@@ -17,6 +17,9 @@
 //  Повторную регистрацию исключает guard global.swFfsBridgeDone.
 //  v5: матчинг тега без класса TagKey (он не грузится Java.loadClass в этом
 //  окружении) — через builtInRegistryHolder().tags() держателя предмета.
+//  v6: сигнатуры по исходникам FTB-Quests 1.21.1/main: вход через
+//  FTBQuestsAPI.api() (не .instance()), getName возвращает String,
+//  getMatcher принимает (filterStack, registryAccess).
 //
 //  Проверка: logs/kubejs/startup.log:
 //    "[starlight] FFS tag bridge: адаптер зарегистрирован"
@@ -94,13 +97,13 @@ function swRegisterBridge() {
     }
 
     var adapter = new JavaAdapter(ctx.iface, {
-        getName: function () { return ctx.component.literal('Starlight Tag Bridge') },
+        getName: function () { return 'Starlight Tag Bridge' },
         isFilterStack: function (stack) { return ctx.filterString(stack) != null },
         doesItemMatch: function (filterStack, toCheck, registries) {
             var f = ctx.matcherOf(filterStack)
             return f != null && f(toCheck)
         },
-        getMatcher: function (filterStack) {
+        getMatcher: function (filterStack, registryAccess) {
             var f = ctx.matcherOf(filterStack)
             if (f == null) return function (stack) { return false }
             return f
@@ -112,7 +115,7 @@ function swRegisterBridge() {
             return stack
         },
     })
-    ctx.api.instance().registerFilterAdapter(adapter)
+    ctx.api.api().registerFilterAdapter(adapter)
     console.info('[starlight] FFS tag bridge: адаптер зарегистрирован — теги в задачах FTB Quests работают')
     try {
         var matching = Java.loadClass('dev.ftb.mods.ftbquests.integration.item_filtering.ItemMatchingSystem')
