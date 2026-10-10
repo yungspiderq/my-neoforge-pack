@@ -1,5 +1,5 @@
 // =====================================================================
-//  Мост FTB Filter System <-> FTB Quests для MC 1.21.1 (v6).
+//  Мост FTB Filter System <-> FTB Quests для MC 1.21.1 (v7).
 //
 //  На 1.21.1 ни FFS 21.1.x, ни FTB Quests 2101.1.36 не несут интеграцию
 //  друг к другу (проверено сканированием jar): FTB Quests даёт API
@@ -84,6 +84,7 @@ function swRegisterBridge() {
     ctx.component = Java.loadClass('net.minecraft.network.chat.Component')
     ctx.api = Java.loadClass('dev.ftb.mods.ftbquests.api.FTBQuestsAPI')
     ctx.iface = Java.loadClass('dev.ftb.mods.ftbquests.api.ItemFilterAdapter')
+    ctx.matcherIface = Java.loadClass('dev.ftb.mods.ftbquests.api.ItemFilterAdapter$Matcher')
     ctx.FILTER_TYPE = ctx.components.FILTER_STRING.get()
     ctx.SMART_FILTER = ctx.items.SMART_FILTER.get()
 
@@ -105,8 +106,14 @@ function swRegisterBridge() {
         },
         getMatcher: function (filterStack, registryAccess) {
             var f = ctx.matcherOf(filterStack)
-            if (f == null) return function (stack) { return false }
-            return f
+            if (f == null) return ctx.iface.NO_MATCH
+            // ВОЗВРАЩАЕМ JAVA-ОБЪЕКТ, а не JS-функцию: Rhino не конвертирует
+            // функцию в интерфейс вне top-call (краш IllegalStateException в
+            // InterfaceAdapter.create, когда FTB Quests строит display-стаки
+            // на render-потоке). JavaAdapter создаётся внутри JS-вызова.
+            return new JavaAdapter(ctx.matcherIface, {
+                test: function (stack) { return f(stack) }
+            })
         },
         hasItemTagFilter: function () { return true },
         makeTagFilterStack: function (tagKey) {

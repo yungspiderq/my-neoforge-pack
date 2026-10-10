@@ -231,6 +231,17 @@
   (Проверено сканированием jar: в Sodium 0.6.13 класс и поле на месте,
   в 0.8.12+ отсутствуют.)
 
+## [1.6.4] — 2026-10-10
+
+### Fixed
+- **Краш «Rendering screen» при открытии квеста с тег-фильтром.** FTB Quests
+  строит display-стаки задачи на render-потоке и вызывает адаптерный
+  `getMatcher`; возврат JS-функции ломал Rhino-конвертацию функции в интерфейс
+  `Matcher` вне top-call (IllegalStateException в InterfaceAdapter.create).
+  Мост v7: `getMatcher` возвращает готовый Java-объект (JavaAdapter от
+  `ItemFilterAdapter$Matcher`, созданный внутри JS-вызова), а при пустом
+  фильтре — статическое `ItemFilterAdapter.NO_MATCH`.
+
 ## [1.3.4] — 2026-10-04
 
 ### Added
