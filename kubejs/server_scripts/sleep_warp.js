@@ -1,11 +1,14 @@
 // =====================================================================
 //  Sleep-warp — фишка пака (замена SleepWarp (Updated), которого нет
-//  под NeoForge 1.21.1: мод выходит только под Fabric/Quilt).
-//  Конфиг: config/starlight-sleepwarp.json (перечитывается при /reload).
+//  под NeoForge 1.21.1). Работает НА СЕРВЕРЕ: в одиночной игре это
+//  встроенный сервер, в мультиплеере — тот сервер, где лежит пак
+//  (версия скриптов >= 1.6.5!). Конфиг: config/starlight-sleepwarp.json,
+//  перечитывается при /reload и рестарте.
 //
-//  Логика: ночью, когда спит не меньше minSleepingPercent игроков,
-//  время мира ускоряется на warpRatePerTick тиков за тик. На рассвете
-//  (если clearWeatherOnWake) погода очищается. Одиночная игра = 100%.
+//  Условие варпа: ночь И спит >= minSleepingPlayers И доля спящих
+//  (без зрителей) >= minSleepingPercent. Дефолт: достаточно одного.
+//  Диагностика:_reason-строки в лого сервера, когда кто-то спит,
+//  но варп не включился.
 // =====================================================================
 
 const SW_CONFIG_PATH = 'config/starlight-sleepwarp.json'
@@ -18,17 +21,17 @@ function swLoadConfig() {
         cfg = null
     }
     if (!cfg) {
-        cfg = { enabled: true, minSleepingPercent: 50, warpRatePerTick: 60,
-                clearWeatherOnWake: true, broadcastMessages: true }
-        JsonIO.write(SW_CONFIG_PATH, cfg)
+        cfg = { enabled: true, minSleepingPlayers: 1, minSleepingPercent: 0,
+                warpRatePerTick: 60, clearWeatherOnWake: true, broadcastMessages: true }
+        try { JsonIO.write(SW_CONFIG_PATH, cfg) } catch (e) { /* readonly? не страшно */ }
     }
     return cfg
 }
 
-// global в server-скриптах KubeJS 2101 недоступен для записи —
-// состояние держим в var уровня скрипта (живёт до /reload или рестарта).
+// global в server-скриптах KubeJS 2101 недоступен для записи — var уровня скрипта
 var swCfg = swLoadConfig()
 var swNotified = false
+var swReasonLogged = false
 
 ServerEvents.tick(event => {
     const server = event.server
@@ -38,24 +41,43 @@ ServerEvents.tick(event => {
     const level = server.getLevel('minecraft:overworld')
     if (!level) return
     const players = server.players
-    const online = players.length
+    let online = 0
+    let sleeping = 0
+    players.forEach(p => {
+        let spectator = false
+        try { spectator = p.getGameMode() === 'spectator' } catch (e) { spectator = false }
+        if (spectator) return
+        online++
+        if (p.isSleeping()) sleeping++
+    })
     if (online === 0) return
     const tod = level.time % 24000
     const isNight = tod >= 13000 && tod <= 23400
-    let sleeping = 0
-    players.forEach(p => { if (p.isSleeping()) sleeping++ })
     const percent = (sleeping * 100) / online
-    if (isNight && sleeping > 0 && percent >= (cfg.minSleepingPercent ?? 50)) {
-        if (!swNotified) {
-            swNotified = true
-            if (cfg.broadcastMessages !== false) {
-                server.runCommandSilent('tellraw @a {"text":"☾ Спящих достаточно — ночь ускоряется…","color":"aqua"}')
+    const minPlayers = cfg.minSleepingPlayers ?? 1
+    const minPercent = cfg.minSleepingPercent ?? 0
+    if (isNight && sleeping > 0) {
+        if (sleeping >= minPlayers && percent >= minPercent) {
+            if (!swNotified) {
+                swNotified = true
+                swReasonLogged = false
+                if (cfg.broadcastMessages !== false) {
+                    server.runCommandSilent('tellraw @a {"text":"☾ Спящих достаточно — ночь ускоряется…","color":"aqua"}')
+                }
+                console.info('[sleepwarp] warp: online=' + online + ' sleeping=' + sleeping +
+                             ' percent=' + percent.toFixed(0))
             }
+            level.time = level.time + (cfg.warpRatePerTick ?? 60)
+        } else if (!swReasonLogged) {
+            swReasonLogged = true
+            console.info('[sleepwarp] спят ' + sleeping + '/' + online + ' (' + percent.toFixed(0) +
+                         '%), нужно: >= ' + minPlayers + ' и >= ' + minPercent +
+                         '% — варп выключен конфигом config/starlight-sleepwarp.json')
         }
-        level.time = level.time + (cfg.warpRatePerTick ?? 60)
     } else if (!isNight) {
         if (swNotified) {
             swNotified = false
+            swReasonLogged = false
             if (cfg.clearWeatherOnWake !== false && (level.rainTime > 0 || level.thunderTime > 0)) {
                 server.runCommandSilent('weather clear')
             }
