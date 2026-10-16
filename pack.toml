@@ -1,13 +1,13 @@
 name = "My NeoForge Pack"
 author = "yungspiderq"
-version = "1.6.9"
+version = "1.6.10"
 description = "Приватный модпак с автосинхронизацией через GitHub Pages"
 pack-format = "packwiz:1.1.0"
 
 [index]
 file = "index.toml"
 hash-format = "sha256"
-hash = "b1f60cadecdbbaf10d972d3f09974b3d23d594e9e2bcdd9d15005040d6e241dc"
+hash = "3cd85435838b99c36a2f934d188c6f5067ac2b7f8e7a0c427885a2113fc86b86"
 
 [versions]
 minecraft = "1.21.1"

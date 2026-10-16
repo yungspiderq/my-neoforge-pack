@@ -1,0 +1,159 @@
+type = fancymenu_layout
+
+layout-meta {
+  identifier = net.minecraft.client.gui.screens.TitleScreen
+  is_enabled = true
+  randommode = false
+  randomgroup = 1
+  randomonlyfirsttime = false
+  layout_index = 0
+  render_custom_elements_behind_vanilla = false
+  last_edited_time = 1759536000000
+}
+
+menu_background {
+  background_type = image
+  image_path = [source:local]/config/fancymenu/assets/starlight_menu_bg.png
+  slide = false
+  repeat_texture = false
+  parallax = false
+  parallax_intensity = 0.02
+  invert_parallax = false
+  restart_animated_on_menu_load = false
+  instance_identifier = starlight-bg-1
+}
+
+customization {
+  action = backgroundoptions
+  keepaspectratio = true
+}
+
+element {
+  element_type = text_v2
+  source = ВЕЧНОЕ ЗВЕЗДОСВЕТЬЕ
+  source_mode = direct
+  scale = 2.5
+  shadow = true
+  case_mode = normal
+  line_spacing = 1
+  anchor_point = top-centered
+  x = 0
+  y = 10
+  width = 340
+  height = 30
+  instance_identifier = starlight-title-text
+}
+
+element {
+  element_type = text_v2
+  source = модпак • 71 мод • шейдеры Iris • голосовой чат • v1.6.8
+  source_mode = direct
+  scale = 1.0
+  shadow = true
+  case_mode = normal
+  line_spacing = 1
+  anchor_point = bottom-centered
+  x = 0
+  y = -16
+  width = 340
+  height = 12
+  instance_identifier = starlight-footer-text
+}
+
+element {
+  element_type = vanilla_button
+  button_identifier = %id=button_compatibility_id:mc_titlescreen_singleplayer_button%
+  anchor_point = mid-centered
+  x = -100
+  y = -70
+  width = 200
+  height = 22
+  instance_identifier = starlight-vb-singleplayer
+}
+
+element {
+  element_type = vanilla_button
+  button_identifier = %id=button_compatibility_id:mc_titlescreen_multiplayer_button%
+  anchor_point = mid-centered
+  x = -100
+  y = -46
+  width = 200
+  height = 22
+  instance_identifier = starlight-vb-multiplayer
+}
+
+element {
+  element_type = vanilla_button
+  button_identifier = %id=button_compatibility_id:mc_titlescreen_realms_button%
+  anchor_point = mid-centered
+  x = -100
+  y = -22
+  width = 200
+  height = 22
+  instance_identifier = starlight-vb-realms
+}
+
+element {
+  element_type = vanilla_button
+  button_identifier = %id=button_compatibility_id:mc_titlescreen_options_button%
+  anchor_point = mid-centered
+  x = -100
+  y = 2
+  width = 200
+  height = 22
+  instance_identifier = starlight-vb-options
+}
+
+element {
+  element_type = vanilla_button
+  button_identifier = %id=button_compatibility_id:mc_titlescreen_quit_button%
+  anchor_point = mid-centered
+  x = -100
+  y = 26
+  width = 200
+  height = 22
+  instance_identifier = starlight-vb-quit
+}
+
+element {
+  element_type = vanilla_button
+  button_identifier = %id=button_compatibility_id:forge_titlescreen_mods_button%
+  anchor_point = mid-centered
+  x = -100
+  y = 50
+  width = 200
+  height = 22
+  instance_identifier = starlight-vb-mods
+}
+
+element {
+  [executable_action_instance:starlight-act-repo][action_type:openlink] = https://github.com/yungspiderq/my-neoforge-pack
+  [executable_block:starlight-blk-repo][type:generic] = [executables:starlight-act-repo;]
+  actionid = starlight-blk-repo
+  backgroundnormal = [source:local]/config/fancymenu/assets/star_gray.png
+  backgroundhovered = [source:local]/config/fancymenu/assets/star_color.png
+  element_type = custom_button
+  instance_identifier = starlight-btn-repo
+  anchor_point = bottom-right
+  x = -56
+  y = -28
+  width = 24
+  height = 24
+  navigatable = true
+}
+
+element {
+  [executable_action_instance:starlight-act-shots][action_type:openfolder] = screenshots
+  [executable_block:starlight-blk-shots][type:generic] = [executables:starlight-act-shots;]
+  actionid = starlight-blk-shots
+  backgroundnormal = [source:local]/config/fancymenu/assets/folder_gray.png
+  backgroundhovered = [source:local]/config/fancymenu/assets/folder_color.png
+  element_type = custom_button
+  instance_identifier = starlight-btn-screenshots
+  anchor_point = bottom-right
+  x = -28
+  y = -28
+  width = 24
+  height = 24
+  navigatable = true
+}
