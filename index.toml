@@ -46,7 +46,7 @@ hash = "555858a51c7638b6e67444c22fe908a91e81c6e95dad037db4999807c9021c79"
 
 [[files]]
 file = "config/starlight-sleepwarp.json"
-hash = "e4809546a530314526aad477050d3d5c2311152e00d9a59243fbcddefe7349f4"
+hash = "fa8e98392f05ba8a4f3065791212b55a47adefde59915cf57bf711285a29054a"
 
 [[files]]
 file = "kubejs/assets/galosphere/lang/ru_ru.json"
@@ -118,7 +118,7 @@ hash = "f1b0a6d02645ab7233d8a3959c436684f4b4ae74e60aa58d1899771a4cc0b9ca"
 
 [[files]]
 file = "kubejs/server_scripts/sleep_warp.js"
-hash = "60edb5ca5f169faed809f36d7bf6e90f4f7c645915f56680f2d802c6fd54aa99"
+hash = "97a575b61b6ca6b7af63638c82e1981ec95e5c68ca4ca9b107c3a2a63d0f396c"
 
 [[files]]
 file = "kubejs/server_scripts/star_lantern.js"
@@ -134,7 +134,12 @@ hash = "77b92ab8342538119f3018c80fb6a0c99691422c858b4031bcbc7d74bb3de0bb"
 
 [[files]]
 file = "kubejs/startup_scripts/ffs_tag_bridge.js"
-hash = "5c4c4e75c69290fdf77a9b7b168f62913bd5e9dfc8877527dcb1e44f84140258"
+hash = "7bf559f1f101061a3a13f9f6ad9049ac0897859c56b45b8da55be4d522c1965f"
+
+[[files]]
+file = "mods/ambientsounds.pw.toml"
+hash = "ba9a2d480fa35a556e2fed45d68e6c1e00fa44f8e0d93a88229511228c2a0a69"
+metafile = true
 
 [[files]]
 file = "mods/appleskin.pw.toml"
@@ -159,6 +164,11 @@ metafile = true
 [[files]]
 file = "mods/better-clouds.pw.toml"
 hash = "cc1d6a25c5a64a25e747bb3f727373c26ef549814d3a0d1604caa3fab0a9d615"
+metafile = true
+
+[[files]]
+file = "mods/better-third-person.pw.toml"
+hash = "1047494bed2eade910806e16f1846c09d57261468c6f31d4d0de8a647fcd59b3"
 metafile = true
 
 [[files]]
@@ -197,8 +207,18 @@ hash = "243ad088dd08d8bcf620158910600990b3c46628ebcbd035d3202f276cd06c8c"
 metafile = true
 
 [[files]]
+file = "mods/creativecore.pw.toml"
+hash = "f180bc26a977c02f472519623b8d639cefca9e2de51cedcd28579cdecc79a26b"
+metafile = true
+
+[[files]]
 file = "mods/cubes-without-borders.pw.toml"
 hash = "9fd14fae5ded9b4d765beefbffbe4c8652f0b5e7afea5b9aeab4654a27cc2ac1"
+metafile = true
+
+[[files]]
+file = "mods/discord-presence.pw.toml"
+hash = "ebdb2c179ea8b26bbdd08d46d54df9de512526ba1682e08e77026259aff012fe"
 metafile = true
 
 [[files]]
@@ -234,6 +254,11 @@ metafile = true
 [[files]]
 file = "mods/etf-entity-texture-features.pw.toml"
 hash = "920dd8b3a517110f57e69274f4ca89041a86b329ae2396851dff5401ba697934"
+metafile = true
+
+[[files]]
+file = "mods/fancymenu.pw.toml"
+hash = "b03d40aef1f62faa00dd8c68cba20fd9c3a740189c163c9d23466d3df86ed05c"
 metafile = true
 
 [[files]]
@@ -307,6 +332,11 @@ hash = "a0173d81cb7230abe164228c0c43558284a3790925dbb8bd9c2324361744a067"
 metafile = true
 
 [[files]]
+file = "mods/konkrete.pw.toml"
+hash = "a0c4fa91e2be651301719e4d8eea16f753a55bb3b14282d151d215dc02ddfe50"
+metafile = true
+
+[[files]]
 file = "mods/kubejs.pw.toml"
 hash = "8d095248e97893ad12ee197b94bef44a843e1f3db6657f625e7dae85f62c50e1"
 metafile = true
@@ -314,6 +344,11 @@ metafile = true
 [[files]]
 file = "mods/legendary-tooltips.pw.toml"
 hash = "cc28ab269bc42207b69acfd7b1a2ebd2d8f6f1974c14bf9d9ebcec73c14eb7f8"
+metafile = true
+
+[[files]]
+file = "mods/melody.pw.toml"
+hash = "845302c4fb5364ebd119c753cb5a51e75f1b8a51eca700ad1eb985d8ee2cc508"
 metafile = true
 
 [[files]]
@@ -327,6 +362,11 @@ hash = "7bf459d780e378c5194a1562669db838b32709446a2b1d3962c4292397cb3cec"
 metafile = true
 
 [[files]]
+file = "mods/particle-rain.pw.toml"
+hash = "7519a0f32bb07308108f760b5c07592af0f963ed85270c6cbc2727b9cf03d9f9"
+metafile = true
+
+[[files]]
 file = "mods/prism.pw.toml"
 hash = "26b13924d071a30355ffb1ffe8957fd2b67a0b958b885054b3e5eab8703f0a5f"
 metafile = true
@@ -334,6 +374,11 @@ metafile = true
 [[files]]
 file = "mods/rhino.pw.toml"
 hash = "b555cd26a417ce4a74a960984e1706731a59d3f694c6c59192555db034eaf890"
+metafile = true
+
+[[files]]
+file = "mods/screenshot-viewer.pw.toml"
+hash = "28e5f636e49699894ababd9ad077f8ca1848b75f3575754891ee975fd216ecf7"
 metafile = true
 
 [[files]]
@@ -369,6 +414,11 @@ metafile = true
 [[files]]
 file = "mods/yetanotherconfiglib.pw.toml"
 hash = "a234bac3a9980073e51960be652b8c67c7cbe35755e26658ebaf78ea82c03645"
+metafile = true
+
+[[files]]
+file = "mods/zambielib.pw.toml"
+hash = "1aa6b02cb9021afab6d8ec83f7ea3882bd54b3fba949d3d2222c0ee5c6c8137f"
 metafile = true
 
 [[files]]

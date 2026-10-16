@@ -1,0 +1,13 @@
+name = "ZambieLib"
+filename = "zambielib-1.1.0+1.21.1-neoforge.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/ax5T2Swr/versions/ILtjKcXl/zambielib-1.1.0%2B1.21.1-neoforge.jar"
+hash-format = "sha1"
+hash = "15fd88fd6b1f4a19609b7ccba48db72fe883cf3d"
+
+[update]
+[update.modrinth]
+mod-id = "ax5T2Swr"
+version = "ILtjKcXl"

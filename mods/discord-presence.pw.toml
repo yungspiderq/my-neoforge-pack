@@ -1,0 +1,13 @@
+name = "Discord Presence"
+filename = "DiscordPresence-1.5.0+1.21.1-neoforge.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/A8WM17FM/versions/BN1wzpxb/DiscordPresence-1.5.0%2B1.21.1-neoforge.jar"
+hash-format = "sha1"
+hash = "b2d52102a814d13679b4e98afc085fc0ba6ce2fc"
+
+[update]
+[update.modrinth]
+mod-id = "A8WM17FM"
+version = "BN1wzpxb"
