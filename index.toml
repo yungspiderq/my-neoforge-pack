@@ -5,32 +5,8 @@ file = "config/distanthorizons-starlight-recommended.txt"
 hash = "14a83a36e1d4318b5b6ac713d576b70fb10c7e4cb1bce1f933dbeae255a15562"
 
 [[files]]
-file = "config/fancymenu/assets/folder_color.png"
-hash = "acdbb9788d81a3b2db336acf5f6b75043bfc9b3f97f0154b11e525e96668cc3f"
-
-[[files]]
-file = "config/fancymenu/assets/folder_gray.png"
-hash = "d28a1d4844aec3847b8f8112b6bebe52b9fcffb8325311ed8c78d1ee444e859a"
-
-[[files]]
-file = "config/fancymenu/assets/star_color.png"
-hash = "ddc1d51d202c699061ba8d77a1731199c0ea52f4365c10b4e9e8b3c401afbc8c"
-
-[[files]]
-file = "config/fancymenu/assets/star_gray.png"
-hash = "f87d0b5a2980056a402b4fa100066842cbf77110dcfbcd65a00e1c5dc48a5190"
-
-[[files]]
-file = "config/fancymenu/assets/starlight_menu_bg.png"
-hash = "afb17559cd7aa2b399c7c3cd8a09821c97d1a5c71da7b7e06fd42126d8673111"
-
-[[files]]
 file = "config/fancymenu/customizablemenus.txt"
-hash = "4c68ab99c906dd487952f61bf33c0635039a8bbff3f02099e3cd8272fe51b4aa"
-
-[[files]]
-file = "config/fancymenu/customization/starlight_title_layout.txt"
-hash = "59571e413d7cead246805e03e0b15c47c7f3720341bf094a3092fb3bc1277bd9"
+hash = "3717a8d07421c858287963e9fd616444bbb385c4b3de4114d8e05a54338d520c"
 
 [[files]]
 file = "config/ftbquests/quests/chapter_groups.snbt"
