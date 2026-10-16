@@ -29,6 +29,10 @@ file = "config/fancymenu/customizablemenus.txt"
 hash = "4c68ab99c906dd487952f61bf33c0635039a8bbff3f02099e3cd8272fe51b4aa"
 
 [[files]]
+file = "config/fancymenu/customization/starlight_title_layout.txt"
+hash = "8cbcc306b7bc527f62c477ee192194624430e4a7896f22ec6aa840e9ef45e0b2"
+
+[[files]]
 file = "config/ftbquests/quests/chapter_groups.snbt"
 hash = "e57d8311aec9f524911ed1313cabf138bb7fa5a2d3ba985a00a2a267ff35ef78"
 
