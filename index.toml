@@ -30,7 +30,7 @@ hash = "4c68ab99c906dd487952f61bf33c0635039a8bbff3f02099e3cd8272fe51b4aa"
 
 [[files]]
 file = "config/fancymenu/customization/starlight_title_layout.txt"
-hash = "8cbcc306b7bc527f62c477ee192194624430e4a7896f22ec6aa840e9ef45e0b2"
+hash = "59571e413d7cead246805e03e0b15c47c7f3720341bf094a3092fb3bc1277bd9"
 
 [[files]]
 file = "config/ftbquests/quests/chapter_groups.snbt"
