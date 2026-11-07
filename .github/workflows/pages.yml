@@ -135,10 +135,6 @@ jobs:
           python3 scripts/pw.py check
           python3 scripts/pw.py list
           python3 scripts/check_mods.py
-          python3 scripts/check_quests.py --registry
-          python3 scripts/gen_quests.py --check
-          python3 scripts/check_lang.py
-          python3 scripts/gen_resourcepack.py --check
 
       - name: Stage Pages payload
         run: python3 scripts/pw.py site --out site

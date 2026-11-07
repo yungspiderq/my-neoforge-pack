@@ -320,6 +320,22 @@
   `B:modpack_mode=false;` (панель появится сразу), либо временно
   `B:show_customization_overlay=true;` + CTRL+ALT+C в игре.
 
+## [2.0.0] — 2026-11-07
+
+### Changed
+- **Пак сведён к минимальному набору.** Оставлены только:
+  - FTB Quests (`ftb-quests`) и его обязательные зависимости — FTB Library (`ftb-library`) и FTB Teams (`ftb-teams`);
+  - Cubes Without Borders (`cubes-without-borders`) — клиентский полноэкранный режим без рамки.
+- Удалены все остальные моды, конфиги (`config/`), квесты FTB Quests, KubeJS-скрипты и ассеты, ресурспаки, шейдерпаки и `options/iris.properties`.
+- `scripts/check_mods.py`: список REQUIRED сокращён до FTB Quests и его зависимостей.
+- CI (`validate.yml`, `pages.yml`): убраны шаги генерации/проверки квестов, текстур, ленгов и ресурспака.
+- README: обновлена структура репозитория.
+
+### Removed
+- Генераторы и проверки, относящиеся к удалённому контенту: `scripts/gen_quests.py`,
+  `scripts/check_quests.py`, `scripts/gen_textures.py`, `scripts/gen_resourcepack.py`,
+  `scripts/check_lang.py`, `scripts/preview_book.py`, `scripts/quests/`, `scripts/lang/`.
+
 ## [1.3.4] — 2026-10-04
 
 ### Added

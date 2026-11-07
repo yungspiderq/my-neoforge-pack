@@ -246,10 +246,7 @@ python scripts/pw.py add-url "Мой приватный мод" \
 ├── index.toml                    ← генерируется: список файлов и sha256
 ├── .packwizignore                ← что НЕ входит в пак
 ├── mods/*.pw.toml                ← метаданные модов (ссылки, не jar-ы!)
-├── config/                       ← общие конфиги (в т.ч. ftbquests/quests/*.snbt)
-├── kubejs/                       ← кастомные предметы и рецепты
-├── scripts/quests/questline.py   ← квесты НА PYTHON (генератор -> .snbt)
-├── resourcepacks/ shaderpacks/   ← синхронизируемые файлы
+│   └── ftb-quests, ftb-library, ftb-teams, cubes-without-borders
 ├── packsync/                     ← механизм автосинхронизации (см. packsync/README.md)
 │   ├── packwiz-installer.jar
 │   ├── packwiz-installer-bootstrap.jar
@@ -265,7 +262,6 @@ python scripts/pw.py add-url "Мой приватный мод" \
 │   ├── pw.py                     ← ведение пака (моды, индекс, артефакты)
 │   ├── verify.py                 ← проверка, что автосинк реально работает
 │   ├── check_mods.py             ← совместимость модов между собой (оффлайн)
-│   ├── gen_quests.py check_quests.py gen_textures.py preview_book.py
 │   └── setup-github.py           ← публикация на GitHub одной командой
 ├── docs/                         ← подробные инструкции
 └── .github/workflows/
