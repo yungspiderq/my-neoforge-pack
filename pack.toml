@@ -1,13 +1,13 @@
 name = "My NeoForge Pack"
 author = "yungspiderq"
-version = "2.0.0"
-description = "Минимальный приватный модпак: FTB Quests и Cubes Without Borders, с автосинхронизацией через GitHub Pages"
+version = "2.1.0"
+description = "Сюжетный модпак «Погасшая звезда»: FTB Quests, Eternal Starlight, KubeJS и кастомное меню FancyMenu"
 pack-format = "packwiz:1.1.0"
 
 [index]
 file = "index.toml"
 hash-format = "sha256"
-hash = "28b7a877e682880ab7fa23fccab6fd06f25e041b35a6087c6a997aa88f4bd6ca"
+hash = "8a3fd7fafe2e6abc97ee0f65211d0017e4c81005d117d5f3c87de1125816ed20"
 
 [versions]
 minecraft = "1.21.1"

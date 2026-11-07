@@ -14,6 +14,20 @@
 
 ---
 
+## Сюжет: «Погасшая звезда»
+
+Солнце не всходило три дня. Над миром горит звезда, которой не должно быть,
+и её свет ведёт игрока через Земли Рассвета, Багровое Пекло и Грань Пустоты
+в Вечное Звездосветье — мир, где свет стал землёй.
+
+- Пролог и главы живут в книге FTB Quests; сюжетная библия — `docs/STORY.md`.
+- Контентный мод сейчас один: **Eternal Starlight**. Каждый следующий
+  контентный мод становится новым «созвездием» и новой главой.
+- Кастомные предметы (медали, фонарь звездочёта) регистрируются в KubeJS,
+  рецепты — там же.
+
+---
+
 ## Главная идея
 
 В git-репозитории **нет ни одного `.jar` файла модов**. Хранятся только:
@@ -22,7 +36,7 @@
 mods/jei.pw.toml          ← «ссылка» на мод: URL, sha1, id на Modrinth
 index.toml                ← список всех файлов пака с sha256-хэшами
 pack.toml                 ← имя пака, версия MC и загрузчика
-config/, resourcepacks/, shaderpacks/   ← ваши общие файлы (эти уже реально хранятся)
+config/, kubejs/                        ← ваши общие файлы (эти уже реально хранятся)
 ```
 
 Отсюда три приятных следствия:
@@ -246,7 +260,11 @@ python scripts/pw.py add-url "Мой приватный мод" \
 ├── index.toml                    ← генерируется: список файлов и sha256
 ├── .packwizignore                ← что НЕ входит в пак
 ├── mods/*.pw.toml                ← метаданные модов (ссылки, не jar-ы!)
-│   └── ftb-quests, ftb-library, ftb-teams, cubes-without-borders
+│   └── FTB Quests (+Library, Teams, Filter System), Eternal Starlight,
+│       KubeJS (+Rhino), FancyMenu (+Konkrete, Melody), Iris, Sodium, JEI,
+│       Architectury, Better Advanced Tooltips, MezzConfig, Cubes Without Borders
+├── config/                       ← конфиги пака (FTB Quests, FancyMenu, KubeJS)
+├── kubejs/                       ← кастомные предметы, рецепты и текстуры
 ├── packsync/                     ← механизм автосинхронизации (см. packsync/README.md)
 │   ├── packwiz-installer.jar
 │   ├── packwiz-installer-bootstrap.jar

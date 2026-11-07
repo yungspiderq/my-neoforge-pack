@@ -1,0 +1,561 @@
+{
+	default_hide_dependency_lines: 0b,
+	default_quest_shape: "hexagon",
+	filename: "prologue",
+	group: "",
+	icon: {
+		count: 1,
+		id: "eternal_starlight:orb_of_prophecy"
+	},
+	id: "000000000000C001",
+	images: [
+		{
+			alpha: 46,
+			color: 2832999,
+			height: 3.1d,
+			id: "0000000000401001",
+			image: "kubejs:textures/gui/panel_soft.png",
+			order: -200,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 7.3d,
+			x: 2.1d,
+			y: 0.0d
+		},
+		{
+			alpha: 225,
+			color: 2832999,
+			height: 0.9d,
+			id: "0000000000401002",
+			image: "kubejs:textures/gui/plate.png",
+			order: -40,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 7,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 6.4d,
+			x: 2.1d,
+			y: -1.75d
+		},
+		{
+			alpha: 46,
+			color: 6966419,
+			height: 3.1d,
+			id: "0000000000401003",
+			image: "kubejs:textures/gui/panel_soft.png",
+			order: -200,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 7.3d,
+			x: 10.8d,
+			y: 0.0d
+		},
+		{
+			alpha: 225,
+			color: 6966419,
+			height: 0.9d,
+			id: "0000000000401004",
+			image: "kubejs:textures/gui/plate.png",
+			order: -40,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 7,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 6.4d,
+			x: 10.8d,
+			y: -1.75d
+		},
+		{
+			alpha: 46,
+			color: 2062960,
+			height: 3.1d,
+			id: "0000000000401005",
+			image: "kubejs:textures/gui/panel_soft.png",
+			order: -200,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 7.3d,
+			x: 2.1d,
+			y: 6.5d
+		},
+		{
+			alpha: 225,
+			color: 2062960,
+			height: 0.9d,
+			id: "0000000000401006",
+			image: "kubejs:textures/gui/plate.png",
+			order: -40,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 7,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 6.4d,
+			x: 2.1d,
+			y: 4.75d
+		},
+		{
+			height: 3.25d,
+			id: "0000000000401007",
+			image: "kubejs:textures/gui/banner_starlight.png",
+			order: -100,
+			rotation: 0.0d,
+			width: 13.0d,
+			x: 6.45d,
+			y: -4.525d
+		},
+		{
+			alpha: 170,
+			color: 2832999,
+			height: 3.2d,
+			id: "0000000000401008",
+			image: "kubejs:textures/gui/halo.png",
+			order: -50,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 3.2d,
+			x: 0.0d,
+			y: 0.0d
+		},
+		{
+			alpha: 170,
+			color: 2062960,
+			height: 3.2d,
+			id: "0000000000401009",
+			image: "kubejs:textures/gui/halo.png",
+			order: -50,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 3.2d,
+			x: 12.9d,
+			y: 0.0d
+		},
+		{
+			alpha: 190,
+			color: 6966419,
+			height: 3.8d,
+			id: "000000000040100A",
+			image: "kubejs:textures/gui/halo.png",
+			order: -50,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 3.8d,
+			x: 4.2d,
+			y: 6.5d
+		},
+		{
+			alpha: 235,
+			color: 1973800,
+			height: 0.75d,
+			id: "000000000040100B",
+			image: "kubejs:textures/gui/plate.png",
+			order: -35,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 8,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 5.4d,
+			x: 0.0d,
+			y: -1.45d
+		},
+		{
+			click_action: "open_quest:0000000000102010",
+			color: 4094522,
+			height: 1.8d,
+			id: "000000000040100C",
+			image: "kubejs:textures/gui/portal.png",
+			order: -30,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 1.8d,
+			x: 15.4d,
+			y: 0.0d
+		},
+		{
+			click_action: "open_quest:0000000000103010",
+			color: 9846844,
+			height: 1.8d,
+			id: "000000000040100D",
+			image: "kubejs:textures/gui/portal.png",
+			order: -30,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 1.8d,
+			x: -2.5d,
+			y: 6.5d
+		},
+		{
+			click_action: "open_quest:0000000000104010",
+			color: 4930170,
+			height: 1.8d,
+			id: "000000000040100E",
+			image: "kubejs:textures/gui/portal.png",
+			order: -30,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 1.8d,
+			x: 4.6d,
+			y: 6.5d
+		},
+		{
+			click_action: "open_quest:0000000000105010",
+			color: 6966419,
+			height: 2.0d,
+			id: "000000000040100F",
+			image: "kubejs:textures/gui/portal.png",
+			order: -30,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 2.0d,
+			x: 4.2d,
+			y: 4.4d
+		}
+	],
+	order_index: 0,
+	quest_links: [ ],
+	quests: [
+		{
+			icon: {
+				count: 1,
+				id: "minecraft:amethyst_shard"
+			},
+			id: "0000000000101010",
+			rewards: [
+				{
+					id: "0000000000301010",
+					item: {
+						count: 1,
+						id: "kubejs:quest_token"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000301011",
+					type: "xp_levels",
+					xp_levels: 1
+				},
+				{
+					description: "Небо ждёт.",
+					id: "0000000000301012",
+					type: "toast"
+				}
+			],
+			shape: "hexagon",
+			size: 1.6d,
+			tasks: [
+				{
+					id: "0000000000201010",
+					type: "checkmark"
+				}
+			],
+			x: 0.0d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000101010"],
+			icon: {
+				count: 1,
+				id: "minecraft:amethyst_shard"
+			},
+			id: "0000000000101020",
+			rewards: [
+				{
+					id: "0000000000301020",
+					type: "xp",
+					xp: 50
+				},
+				{
+					id: "0000000000301021",
+					item: {
+						count: 1,
+						id: "kubejs:quest_token"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000201020",
+					item: {
+						count: 1,
+						id: "minecraft:amethyst_shard"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000101020"],
+			icon: {
+				count: 1,
+				id: "minecraft:spyglass"
+			},
+			id: "0000000000101030",
+			rewards: [
+				{
+					id: "0000000000301030",
+					type: "xp_levels",
+					xp_levels: 2
+				},
+				{
+					id: "0000000000301031",
+					item: {
+						count: 1,
+						id: "kubejs:quest_token"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000201030",
+					item: {
+						count: 1,
+						id: "minecraft:spyglass"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000201031",
+					type: "checkmark"
+				}
+			],
+			x: 4.2d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000101030"],
+			icon: {
+				count: 1,
+				id: "minecraft:map"
+			},
+			id: "0000000000101040",
+			rewards: [
+				{
+					id: "0000000000301040",
+					type: "xp",
+					xp: 80
+				},
+				{
+					id: "0000000000301041",
+					item: {
+						count: 1,
+						id: "minecraft:compass"
+					},
+					type: "item"
+				}
+			],
+			shape: "diamond",
+			size: 1.4d,
+			tasks: [
+				{
+					id: "0000000000201040",
+					item: {
+						count: 1,
+						id: "minecraft:map"
+					},
+					type: "item"
+				},
+				{
+					count: 8L,
+					id: "0000000000201041",
+					item: {
+						count: 1,
+						id: "minecraft:paper"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000101040"],
+			icon: {
+				count: 1,
+				id: "minecraft:lantern"
+			},
+			id: "0000000000101050",
+			rewards: [
+				{
+					count: 16,
+					id: "0000000000301050",
+					item: {
+						count: 1,
+						id: "minecraft:torch"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000301051",
+					type: "xp_levels",
+					xp_levels: 2
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000201050",
+					item: {
+						count: 1,
+						id: "minecraft:lantern"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000201051",
+					type: "checkmark"
+				}
+			],
+			x: 10.8d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000101050"],
+			icon: {
+				count: 1,
+				id: "minecraft:oak_sapling"
+			},
+			id: "0000000000101060",
+			rewards: [
+				{
+					id: "0000000000301060",
+					item: {
+						count: 1,
+						id: "kubejs:quest_token"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000301061",
+					type: "xp_levels",
+					xp_levels: 3
+				},
+				{
+					description: "Земли Рассвета ждут.",
+					id: "0000000000301062",
+					type: "toast"
+				}
+			],
+			shape: "hexagon",
+			size: 1.5d,
+			tasks: [
+				{
+					id: "0000000000201060",
+					type: "checkmark"
+				}
+			],
+			x: 12.9d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000101060"],
+			icon: {
+				count: 1,
+				id: "minecraft:netherrack"
+			},
+			id: "0000000000101070",
+			rewards: [
+				{
+					id: "0000000000301070",
+					type: "xp_levels",
+					xp_levels: 5
+				},
+				{
+					count: 8,
+					id: "0000000000301071",
+					item: {
+						count: 1,
+						id: "minecraft:golden_carrot"
+					},
+					type: "item"
+				}
+			],
+			shape: "gear",
+			size: 1.8d,
+			tasks: [
+				{
+					id: "0000000000201070",
+					type: "checkmark"
+				}
+			],
+			x: 0.0d,
+			y: 6.5d
+		},
+		{
+			dependencies: ["0000000000101070"],
+			icon: {
+				count: 1,
+				id: "minecraft:end_crystal"
+			},
+			id: "0000000000101080",
+			rewards: [
+				{
+					id: "0000000000301080",
+					type: "xp_levels",
+					xp_levels: 8
+				},
+				{
+					id: "0000000000301081",
+					item: {
+						count: 1,
+						id: "kubejs:quest_token_premium"
+					},
+					type: "item"
+				}
+			],
+			shape: "gear",
+			size: 1.8d,
+			tasks: [
+				{
+					id: "0000000000201080",
+					type: "checkmark"
+				}
+			],
+			x: 2.1d,
+			y: 6.5d
+		},
+		{
+			dependencies: ["0000000000101080"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:orb_of_prophecy"
+			},
+			id: "0000000000101090",
+			rewards: [
+				{
+					id: "0000000000301090",
+					type: "xp_levels",
+					xp_levels: 12
+				},
+				{
+					id: "0000000000301091",
+					item: {
+						count: 1,
+						id: "kubejs:quest_token_premium"
+					},
+					type: "item"
+				},
+				{
+					description: "Звезда зовёт по имени.",
+					id: "0000000000301092",
+					type: "toast"
+				}
+			],
+			shape: "hexagon",
+			size: 2.0d,
+			tasks: [
+				{
+					id: "0000000000201090",
+					type: "checkmark"
+				}
+			],
+			x: 4.2d,
+			y: 6.5d
+		}
+	]
+}

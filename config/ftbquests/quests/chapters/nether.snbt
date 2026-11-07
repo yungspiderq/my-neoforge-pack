@@ -1,0 +1,1857 @@
+{
+	default_hide_dependency_lines: 0b,
+	default_quest_shape: "pentagon",
+	filename: "nether",
+	group: "",
+	icon: {
+		count: 1,
+		id: "minecraft:netherrack"
+	},
+	id: "000000000000C003",
+	images: [
+		{
+			alpha: 46,
+			color: 11551519,
+			height: 6.0d,
+			id: "0000000000403001",
+			image: "kubejs:textures/gui/panel_soft.png",
+			order: -200,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 9.4d,
+			x: 3.15d,
+			y: 1.45d
+		},
+		{
+			alpha: 225,
+			color: 11551519,
+			height: 0.9d,
+			id: "0000000000403002",
+			image: "kubejs:textures/gui/plate.png",
+			order: -40,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 7,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 8.5d,
+			x: 3.15d,
+			y: -1.75d
+		},
+		{
+			alpha: 46,
+			color: 9317144,
+			height: 7.45d,
+			id: "0000000000403003",
+			image: "kubejs:textures/gui/panel_soft.png",
+			order: -200,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 5.2d,
+			x: 11.85d,
+			y: 2.175d
+		},
+		{
+			alpha: 225,
+			color: 9317144,
+			height: 0.9d,
+			id: "0000000000403004",
+			image: "kubejs:textures/gui/plate.png",
+			order: -40,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 7,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 4.3d,
+			x: 11.85d,
+			y: -1.75d
+		},
+		{
+			alpha: 46,
+			color: 13081134,
+			height: 4.55d,
+			id: "0000000000403005",
+			image: "kubejs:textures/gui/panel_soft.png",
+			order: -200,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 9.4d,
+			x: 3.15d,
+			y: 11.575d
+		},
+		{
+			alpha: 225,
+			color: 13081134,
+			height: 0.9d,
+			id: "0000000000403006",
+			image: "kubejs:textures/gui/plate.png",
+			order: -40,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 7,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 8.5d,
+			x: 3.15d,
+			y: 9.1d
+		},
+		{
+			alpha: 46,
+			color: 8022622,
+			height: 4.55d,
+			id: "0000000000403007",
+			image: "kubejs:textures/gui/panel_soft.png",
+			order: -200,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 11.5d,
+			x: 15.0d,
+			y: 11.575d
+		},
+		{
+			alpha: 225,
+			color: 8022622,
+			height: 0.9d,
+			id: "0000000000403008",
+			image: "kubejs:textures/gui/plate.png",
+			order: -40,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 7,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 9.5d,
+			x: 15.0d,
+			y: 9.1d
+		},
+		{
+			alpha: 46,
+			color: 7020330,
+			height: 6.0d,
+			id: "0000000000403009",
+			image: "kubejs:textures/gui/panel_soft.png",
+			order: -200,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 7.3d,
+			x: 2.1d,
+			y: 20.25d
+		},
+		{
+			alpha: 225,
+			color: 7020330,
+			height: 0.9d,
+			id: "000000000040300A",
+			image: "kubejs:textures/gui/plate.png",
+			order: -40,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 7,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 6.4d,
+			x: 2.1d,
+			y: 17.05d
+		},
+		{
+			alpha: 46,
+			color: 9060303,
+			height: 3.1d,
+			id: "000000000040300B",
+			image: "kubejs:textures/gui/panel_soft.png",
+			order: -200,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 7.3d,
+			x: 10.8d,
+			y: 18.8d
+		},
+		{
+			alpha: 225,
+			color: 9060303,
+			height: 0.9d,
+			id: "000000000040300C",
+			image: "kubejs:textures/gui/plate.png",
+			order: -40,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 7,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 6.4d,
+			x: 10.8d,
+			y: 17.05d
+		},
+		{
+			height: 3.25d,
+			id: "000000000040300D",
+			image: "kubejs:textures/gui/banner_nether.png",
+			order: -100,
+			rotation: 0.0d,
+			width: 13.0d,
+			x: 9.6d,
+			y: -4.525d
+		},
+		{
+			alpha: 210,
+			color: 16757575,
+			height: 4.0d,
+			id: "000000000040300E",
+			image: "kubejs:textures/gui/halo.png",
+			order: -50,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 4.0d,
+			x: 0.0d,
+			y: 1.45d
+		},
+		{
+			alpha: 210,
+			color: 16738876,
+			height: 4.4d,
+			id: "000000000040300F",
+			image: "kubejs:textures/gui/halo.png",
+			order: -50,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 4.4d,
+			x: 0.0d,
+			y: 18.8d
+		},
+		{
+			alpha: 190,
+			color: 16771496,
+			height: 3.6d,
+			id: "0000000000403010",
+			image: "kubejs:textures/gui/halo.png",
+			order: -50,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 3.6d,
+			x: 2.1d,
+			y: 20.25d
+		},
+		{
+			alpha: 200,
+			color: 9060303,
+			height: 3.6d,
+			id: "0000000000403011",
+			image: "kubejs:textures/gui/halo.png",
+			order: -50,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 3.6d,
+			x: 10.8d,
+			y: 18.8d
+		},
+		{
+			alpha: 240,
+			color: 2755339,
+			height: 0.8d,
+			id: "0000000000403012",
+			image: "kubejs:textures/gui/plate.png",
+			order: -35,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 8,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 5.2d,
+			x: 0.0d,
+			y: 20.4d
+		},
+		{
+			alpha: 235,
+			color: 1776418,
+			height: 0.75d,
+			id: "0000000000403013",
+			image: "kubejs:textures/gui/plate.png",
+			order: -35,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 8,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 4.4d,
+			x: 10.8d,
+			y: 9.5d
+		},
+		{
+			click_action: "open_quest:0000000000104010",
+			height: 1.9d,
+			id: "0000000000403014",
+			image: "kubejs:textures/gui/portal_end.png",
+			order: -30,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 1.9d,
+			x: 13.4d,
+			y: 18.8d
+		}
+	],
+	order_index: 2,
+	quest_links: [
+		{
+			id: "0000000000503001",
+			linked_quest: "0000000000102540",
+			x: -2.1d,
+			y: 1.45d
+		}
+	],
+	quests: [
+		{
+			dependencies: ["0000000000102540"],
+			icon: {
+				count: 1,
+				id: "minecraft:netherrack"
+			},
+			id: "0000000000103010",
+			rewards: [
+				{
+					id: "0000000000303010",
+					type: "xp_levels",
+					xp_levels: 5
+				},
+				{
+					count: 8,
+					id: "0000000000303011",
+					item: {
+						count: 1,
+						id: "minecraft:golden_carrot"
+					},
+					type: "item"
+				},
+				{
+					description: "Добро пожаловать в пекло.",
+					id: "0000000000303012",
+					type: "toast"
+				}
+			],
+			shape: "pentagon",
+			size: 1.7d,
+			tasks: [
+				{
+					dimension: "minecraft:the_nether",
+					id: "0000000000203010",
+					type: "dimension"
+				},
+				{
+					advancement: "minecraft:nether/root",
+					id: "0000000000203011",
+					type: "advancement"
+				}
+			],
+			x: 0.0d,
+			y: 1.45d
+		},
+		{
+			dependencies: ["0000000000103010"],
+			icon: {
+				count: 1,
+				id: "minecraft:netherrack"
+			},
+			id: "0000000000103020",
+			rewards: [
+				{
+					count: 32,
+					id: "0000000000303020",
+					item: {
+						count: 1,
+						id: "minecraft:netherrack"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 64L,
+					id: "0000000000203020",
+					item: {
+						count: 1,
+						id: "minecraft:netherrack"
+					},
+					type: "item"
+				},
+				{
+					count: 16L,
+					id: "0000000000203021",
+					item: {
+						count: 1,
+						id: "minecraft:nether_bricks"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000103020"],
+			icon: {
+				count: 1,
+				id: "minecraft:quartz"
+			},
+			id: "0000000000103030",
+			rewards: [
+				{
+					id: "0000000000303030",
+					type: "xp_levels",
+					xp_levels: 4
+				}
+			],
+			tasks: [
+				{
+					count: 24L,
+					id: "0000000000203030",
+					item: {
+						count: 1,
+						id: "minecraft:quartz"
+					},
+					type: "item"
+				},
+				{
+					count: 8L,
+					id: "0000000000203031",
+					item: {
+						count: 1,
+						id: "minecraft:quartz_block"
+					},
+					type: "item"
+				}
+			],
+			x: 4.2d,
+			y: 0.725d
+		},
+		{
+			dependencies: ["0000000000103030"],
+			icon: {
+				count: 1,
+				id: "minecraft:glowstone"
+			},
+			id: "0000000000103040",
+			rewards: [
+				{
+					count: 4,
+					id: "0000000000303040",
+					item: {
+						count: 1,
+						id: "minecraft:glowstone"
+					},
+					type: "item"
+				},
+				{
+					count: 2,
+					id: "0000000000303041",
+					item: {
+						count: 1,
+						id: "minecraft:sea_lantern"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 12L,
+					id: "0000000000203040",
+					item: {
+						count: 1,
+						id: "minecraft:glowstone"
+					},
+					type: "item"
+				},
+				{
+					count: 24L,
+					id: "0000000000203041",
+					item: {
+						count: 1,
+						id: "minecraft:glowstone_dust"
+					},
+					type: "item"
+				}
+			],
+			x: 6.3d,
+			y: 1.45d
+		},
+		{
+			dependencies: ["0000000000103010"],
+			icon: {
+				count: 1,
+				id: "minecraft:crimson_nylium"
+			},
+			id: "0000000000103050",
+			rewards: [
+				{
+					id: "0000000000303050",
+					type: "xp_levels",
+					xp_levels: 10
+				},
+				{
+					count: 8,
+					id: "0000000000303051",
+					item: {
+						count: 1,
+						id: "minecraft:golden_carrot"
+					},
+					type: "item"
+				}
+			],
+			shape: "octagon",
+			size: 1.5d,
+			tasks: [
+				{
+					biome: "minecraft:nether_wastes",
+					id: "0000000000203050",
+					type: "biome"
+				},
+				{
+					biome: "minecraft:crimson_forest",
+					id: "0000000000203051",
+					type: "biome"
+				},
+				{
+					biome: "minecraft:warped_forest",
+					id: "0000000000203052",
+					type: "biome"
+				},
+				{
+					biome: "minecraft:soul_sand_valley",
+					id: "0000000000203053",
+					type: "biome"
+				},
+				{
+					biome: "minecraft:basalt_deltas",
+					id: "0000000000203054",
+					type: "biome"
+				},
+				{
+					advancement: "minecraft:nether/explore_nether",
+					id: "0000000000203055",
+					type: "advancement"
+				}
+			],
+			x: 2.1d,
+			y: 1.45d
+		},
+		{
+			dependencies: ["0000000000103010"],
+			icon: {
+				count: 1,
+				id: "minecraft:nether_bricks"
+			},
+			id: "0000000000103060",
+			rewards: [
+				{
+					count: 32,
+					id: "0000000000303060",
+					item: {
+						count: 1,
+						id: "minecraft:nether_bricks"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000303061",
+					type: "xp_levels",
+					xp_levels: 6
+				}
+			],
+			shape: "rsquare",
+			size: 1.5d,
+			tasks: [
+				{
+					id: "0000000000203060",
+					structure: "minecraft:fortress",
+					type: "structure"
+				},
+				{
+					advancement: "minecraft:nether/find_fortress",
+					id: "0000000000203061",
+					type: "advancement"
+				}
+			],
+			x: 2.1d,
+			y: 2.9d
+		},
+		{
+			dependencies: ["0000000000103060"],
+			icon: {
+				count: 1,
+				id: "minecraft:ghast_tear"
+			},
+			id: "0000000000103070",
+			rewards: [
+				{
+					id: "0000000000303070",
+					type: "xp_levels",
+					xp_levels: 8
+				},
+				{
+					count: 8,
+					id: "0000000000303071",
+					item: {
+						count: 1,
+						id: "minecraft:fire_charge"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					entity: "minecraft:ghast",
+					id: "0000000000203070",
+					type: "kill",
+					value: 3L
+				},
+				{
+					count: 2L,
+					id: "0000000000203071",
+					item: {
+						count: 1,
+						id: "minecraft:ghast_tear"
+					},
+					type: "item"
+				},
+				{
+					advancement: "minecraft:nether/return_to_sender",
+					id: "0000000000203072",
+					type: "advancement"
+				}
+			],
+			x: 4.2d,
+			y: 2.175d
+		},
+		{
+			dependencies: ["0000000000103060"],
+			icon: {
+				count: 1,
+				id: "minecraft:blaze_rod"
+			},
+			id: "0000000000103080",
+			rewards: [
+				{
+					count: 4,
+					id: "0000000000303080",
+					item: {
+						count: 1,
+						id: "minecraft:blaze_powder"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000303081",
+					type: "xp_levels",
+					xp_levels: 8
+				}
+			],
+			shape: "pentagon",
+			size: 1.5d,
+			tasks: [
+				{
+					entity: "minecraft:blaze",
+					id: "0000000000203080",
+					type: "kill",
+					value: 8L
+				},
+				{
+					count: 10L,
+					id: "0000000000203081",
+					item: {
+						count: 1,
+						id: "minecraft:blaze_rod"
+					},
+					type: "item"
+				},
+				{
+					advancement: "minecraft:nether/obtain_blaze_rod",
+					id: "0000000000203082",
+					type: "advancement"
+				}
+			],
+			x: 10.8d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000103080"],
+			icon: {
+				count: 1,
+				id: "minecraft:wither_skeleton_skull"
+			},
+			id: "0000000000103090",
+			rewards: [
+				{
+					count: 8,
+					id: "0000000000303090",
+					item: {
+						count: 1,
+						id: "minecraft:coal_block"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000303091",
+					type: "xp_levels",
+					xp_levels: 6
+				}
+			],
+			shape: "diamond",
+			size: 1.4d,
+			tasks: [
+				{
+					entity: "minecraft:wither_skeleton",
+					id: "0000000000203090",
+					type: "kill",
+					value: 12L
+				},
+				{
+					count: 3L,
+					id: "0000000000203091",
+					item: {
+						count: 1,
+						id: "minecraft:wither_skeleton_skull"
+					},
+					type: "item"
+				},
+				{
+					advancement: "minecraft:nether/get_wither_skull",
+					id: "0000000000203092",
+					type: "advancement"
+				}
+			],
+			x: 12.9d,
+			y: 1.45d
+		},
+		{
+			dependencies: ["0000000000103060"],
+			icon: {
+				count: 1,
+				id: "minecraft:nether_wart"
+			},
+			id: "00000000001030A0",
+			rewards: [
+				{
+					count: 8,
+					id: "00000000003030A0",
+					item: {
+						count: 1,
+						id: "minecraft:soul_sand"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 8L,
+					id: "00000000002030A0",
+					item: {
+						count: 1,
+						id: "minecraft:nether_wart"
+					},
+					type: "item"
+				},
+				{
+					count: 16L,
+					id: "00000000002030A1",
+					item: {
+						count: 1,
+						id: "minecraft:soul_sand"
+					},
+					type: "item"
+				}
+			],
+			x: 10.8d,
+			y: 1.45d
+		},
+		{
+			dependencies: ["0000000000103080", "00000000001030A0"],
+			icon: {
+				count: 1,
+				id: "minecraft:potion"
+			},
+			id: "00000000001030B0",
+			rewards: [
+				{
+					count: 12,
+					id: "00000000003030B0",
+					item: {
+						count: 1,
+						id: "minecraft:glass_bottle"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000003030B1",
+					type: "xp_levels",
+					xp_levels: 6
+				}
+			],
+			shape: "heart",
+			size: 1.4d,
+			tasks: [
+				{
+					count: 4L,
+					id: "00000000002030B0",
+					item: {
+						count: 1,
+						id: "minecraft:blaze_powder"
+					},
+					type: "item"
+				},
+				{
+					count: 4L,
+					id: "00000000002030B1",
+					item: {
+						count: 1,
+						id: "minecraft:magma_cream"
+					},
+					type: "item"
+				},
+				{
+					advancement: "minecraft:nether/brew_potion",
+					id: "00000000002030B2",
+					type: "advancement"
+				}
+			],
+			x: 12.9d,
+			y: 2.9d
+		},
+		{
+			dependencies: ["0000000000103050"],
+			icon: {
+				count: 1,
+				id: "minecraft:shroomlight"
+			},
+			id: "00000000001030C0",
+			rewards: [
+				{
+					count: 4,
+					id: "00000000003030C0",
+					item: {
+						count: 1,
+						id: "minecraft:shroomlight"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 8L,
+					id: "00000000002030C0",
+					item: {
+						count: 1,
+						id: "minecraft:shroomlight"
+					},
+					type: "item"
+				},
+				{
+					count: 4L,
+					id: "00000000002030C1",
+					item: {
+						count: 1,
+						id: "minecraft:crimson_fungus"
+					},
+					type: "item"
+				},
+				{
+					count: 4L,
+					id: "00000000002030C2",
+					item: {
+						count: 1,
+						id: "minecraft:warped_fungus"
+					},
+					type: "item"
+				}
+			],
+			x: 10.8d,
+			y: 2.9d
+		},
+		{
+			dependencies: ["0000000000103050"],
+			icon: {
+				count: 1,
+				id: "minecraft:soul_lantern"
+			},
+			id: "00000000001030D0",
+			rewards: [
+				{
+					count: 8,
+					id: "00000000003030D0",
+					item: {
+						count: 1,
+						id: "minecraft:soul_lantern"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 16L,
+					id: "00000000002030D0",
+					item: {
+						count: 1,
+						id: "minecraft:soul_soil"
+					},
+					type: "item"
+				},
+				{
+					count: 4L,
+					id: "00000000002030D1",
+					item: {
+						count: 1,
+						id: "minecraft:soul_lantern"
+					},
+					type: "item"
+				},
+				{
+					entity: "minecraft:skeleton",
+					id: "00000000002030D2",
+					type: "kill",
+					value: 10L
+				}
+			],
+			x: 10.8d,
+			y: 4.35d
+		},
+		{
+			dependencies: ["0000000000103010"],
+			icon: {
+				count: 1,
+				id: "minecraft:gold_nugget"
+			},
+			id: "00000000001030E0",
+			rewards: [
+				{
+					count: 4,
+					id: "00000000003030E0",
+					item: {
+						count: 1,
+						id: "minecraft:gold_ingot"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 27L,
+					id: "00000000002030E0",
+					item: {
+						count: 1,
+						id: "minecraft:gold_nugget"
+					},
+					type: "item"
+				},
+				{
+					count: 6L,
+					id: "00000000002030E1",
+					item: {
+						count: 1,
+						id: "minecraft:gold_ingot"
+					},
+					type: "item"
+				}
+			],
+			x: 0.0d,
+			y: 10.85d
+		},
+		{
+			dependencies: ["00000000001030E0"],
+			icon: {
+				count: 1,
+				id: "minecraft:gold_ingot"
+			},
+			id: "00000000001030F0",
+			rewards: [
+				{
+					count: 2,
+					id: "00000000003030F0",
+					item: {
+						count: 1,
+						id: "minecraft:gold_block"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000003030F1",
+					type: "xp_levels",
+					xp_levels: 4
+				}
+			],
+			tasks: [
+				{
+					advancement: "minecraft:nether/distract_piglin",
+					id: "00000000002030F0",
+					type: "advancement"
+				},
+				{
+					count: 8L,
+					id: "00000000002030F1",
+					item: {
+						count: 1,
+						id: "minecraft:gold_ingot"
+					},
+					type: "item"
+				},
+				{
+					count: 8L,
+					id: "00000000002030F2",
+					item: {
+						count: 1,
+						id: "minecraft:ender_pearl"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 10.85d
+		},
+		{
+			dependencies: ["00000000001030F0"],
+			icon: {
+				count: 1,
+				id: "minecraft:gilded_blackstone"
+			},
+			id: "0000000000103100",
+			rewards: [
+				{
+					count: 4,
+					id: "0000000000303100",
+					item: {
+						count: 1,
+						id: "minecraft:gold_block"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000303101",
+					type: "xp_levels",
+					xp_levels: 10
+				}
+			],
+			shape: "hexagon",
+			size: 1.5d,
+			tasks: [
+				{
+					id: "0000000000203100",
+					structure: "minecraft:bastion_remnant",
+					type: "structure"
+				},
+				{
+					advancement: "minecraft:nether/find_bastion",
+					id: "0000000000203101",
+					type: "advancement"
+				},
+				{
+					advancement: "minecraft:nether/loot_bastion",
+					id: "0000000000203102",
+					type: "advancement"
+				}
+			],
+			x: 4.2d,
+			y: 11.575d
+		},
+		{
+			dependencies: ["0000000000103100"],
+			icon: {
+				count: 1,
+				id: "minecraft:leather"
+			},
+			id: "0000000000103110",
+			rewards: [
+				{
+					count: 8,
+					id: "0000000000303110",
+					item: {
+						count: 1,
+						id: "minecraft:cooked_porkchop"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					entity: "minecraft:hoglin",
+					id: "0000000000203110",
+					type: "kill",
+					value: 3L
+				},
+				{
+					count: 8L,
+					id: "0000000000203111",
+					item: {
+						count: 1,
+						id: "minecraft:leather"
+					},
+					type: "item"
+				}
+			],
+			x: 6.3d,
+			y: 11.575d
+		},
+		{
+			dependencies: ["0000000000103050"],
+			icon: {
+				count: 1,
+				id: "minecraft:warped_fungus_on_a_stick"
+			},
+			id: "0000000000103120",
+			rewards: [
+				{
+					count: 2,
+					id: "0000000000303120",
+					item: {
+						count: 1,
+						id: "minecraft:saddle"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					advancement: "minecraft:nether/ride_strider",
+					id: "0000000000203120",
+					type: "advancement"
+				},
+				{
+					id: "0000000000203121",
+					item: {
+						count: 1,
+						id: "minecraft:warped_fungus_on_a_stick"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000203122",
+					stat: "minecraft:strider_one_cm",
+					type: "stat",
+					value: 20000
+				}
+			],
+			x: 0.0d,
+			y: 12.3d
+		},
+		{
+			dependencies: ["00000000001030E0"],
+			icon: {
+				count: 1,
+				id: "minecraft:rotten_flesh"
+			},
+			id: "0000000000103130",
+			rewards: [
+				{
+					count: 6,
+					id: "0000000000303130",
+					item: {
+						count: 1,
+						id: "minecraft:gold_ingot"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					entity: "minecraft:zombified_piglin",
+					id: "0000000000203130",
+					type: "kill",
+					value: 12L
+				},
+				{
+					count: 36L,
+					id: "0000000000203131",
+					item: {
+						count: 1,
+						id: "minecraft:gold_nugget"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 12.3d
+		},
+		{
+			dependencies: ["0000000000103060"],
+			icon: {
+				count: 1,
+				id: "minecraft:ancient_debris"
+			},
+			id: "0000000000103140",
+			rewards: [
+				{
+					id: "0000000000303140",
+					type: "xp_levels",
+					xp_levels: 8
+				},
+				{
+					count: 4,
+					id: "0000000000303141",
+					item: {
+						count: 1,
+						id: "minecraft:diamond"
+					},
+					type: "item"
+				}
+			],
+			shape: "rsquare",
+			size: 1.5d,
+			tasks: [
+				{
+					count: 4L,
+					id: "0000000000203140",
+					item: {
+						count: 1,
+						id: "minecraft:ancient_debris"
+					},
+					type: "item"
+				},
+				{
+					advancement: "minecraft:nether/obtain_ancient_debris",
+					id: "0000000000203141",
+					type: "advancement"
+				}
+			],
+			x: 10.8d,
+			y: 10.85d
+		},
+		{
+			dependencies: ["0000000000103140"],
+			icon: {
+				count: 1,
+				id: "minecraft:netherite_scrap"
+			},
+			id: "0000000000103150",
+			rewards: [
+				{
+					count: 2,
+					id: "0000000000303150",
+					item: {
+						count: 1,
+						id: "minecraft:netherite_scrap"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 4L,
+					id: "0000000000203150",
+					item: {
+						count: 1,
+						id: "minecraft:netherite_scrap"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000203151",
+					item: {
+						count: 1,
+						id: "minecraft:netherite_ingot"
+					},
+					type: "item"
+				}
+			],
+			x: 12.9d,
+			y: 10.85d
+		},
+		{
+			dependencies: ["0000000000103100", "0000000000103150"],
+			icon: {
+				count: 1,
+				id: "minecraft:netherite_upgrade_smithing_template"
+			},
+			id: "0000000000103160",
+			rewards: [
+				{
+					count: 6,
+					id: "0000000000303160",
+					item: {
+						count: 1,
+						id: "minecraft:diamond"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000203160",
+					item: {
+						count: 1,
+						id: "minecraft:netherite_upgrade_smithing_template"
+					},
+					type: "item"
+				}
+			],
+			x: 15.0d,
+			y: 10.85d
+		},
+		{
+			dependencies: ["0000000000103160"],
+			icon: {
+				count: 1,
+				id: "minecraft:netherite_pickaxe"
+			},
+			id: "0000000000103170",
+			rewards: [
+				{
+					id: "0000000000303170",
+					type: "xp_levels",
+					xp_levels: 10
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000203170",
+					item: {
+						count: 1,
+						id: "minecraft:netherite_pickaxe"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000203171",
+					item: {
+						count: 1,
+						id: "minecraft:netherite_sword"
+					},
+					type: "item"
+				}
+			],
+			x: 17.1d,
+			y: 11.575d
+		},
+		{
+			dependencies: ["0000000000103170"],
+			icon: {
+				count: 1,
+				id: "minecraft:netherite_chestplate"
+			},
+			id: "0000000000103180",
+			rewards: [
+				{
+					id: "0000000000303180",
+					type: "xp_levels",
+					xp_levels: 15
+				},
+				{
+					count: 2,
+					id: "0000000000303181",
+					item: {
+						count: 1,
+						id: "minecraft:netherite_ingot"
+					},
+					type: "item"
+				}
+			],
+			shape: "diamond",
+			size: 1.6d,
+			tasks: [
+				{
+					id: "0000000000203180",
+					item: {
+						count: 1,
+						id: "minecraft:netherite_helmet"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000203181",
+					item: {
+						count: 1,
+						id: "minecraft:netherite_chestplate"
+					},
+					type: "item"
+				},
+				{
+					advancement: "minecraft:nether/netherite_armor",
+					id: "0000000000203182",
+					type: "advancement"
+				}
+			],
+			x: 19.2d,
+			y: 11.575d
+		},
+		{
+			dependencies: ["0000000000103140"],
+			icon: {
+				count: 1,
+				id: "minecraft:crying_obsidian"
+			},
+			id: "0000000000103190",
+			rewards: [
+				{
+					count: 8,
+					id: "0000000000303190",
+					item: {
+						count: 1,
+						id: "minecraft:obsidian"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 4L,
+					id: "0000000000203190",
+					item: {
+						count: 1,
+						id: "minecraft:crying_obsidian"
+					},
+					type: "item"
+				},
+				{
+					advancement: "minecraft:nether/obtain_crying_obsidian",
+					id: "0000000000203191",
+					type: "advancement"
+				}
+			],
+			x: 12.9d,
+			y: 12.3d
+		},
+		{
+			dependencies: ["0000000000103190"],
+			icon: {
+				count: 1,
+				id: "minecraft:respawn_anchor"
+			},
+			id: "00000000001031A0",
+			rewards: [
+				{
+					count: 6,
+					id: "00000000003031A0",
+					item: {
+						count: 1,
+						id: "minecraft:glowstone"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002031A0",
+					item: {
+						count: 1,
+						id: "minecraft:respawn_anchor"
+					},
+					type: "item"
+				},
+				{
+					advancement: "minecraft:nether/charge_respawn_anchor",
+					id: "00000000002031A1",
+					type: "advancement"
+				}
+			],
+			x: 15.0d,
+			y: 12.3d
+		},
+		{
+			dependencies: ["0000000000103030"],
+			icon: {
+				count: 1,
+				id: "minecraft:lodestone"
+			},
+			id: "00000000001031B0",
+			rewards: [
+				{
+					count: 2,
+					id: "00000000003031B0",
+					item: {
+						count: 1,
+						id: "minecraft:compass"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002031B0",
+					item: {
+						count: 1,
+						id: "minecraft:lodestone"
+					},
+					type: "item"
+				},
+				{
+					advancement: "minecraft:nether/use_lodestone",
+					id: "00000000002031B1",
+					type: "advancement"
+				}
+			],
+			x: 10.8d,
+			y: 12.3d
+		},
+		{
+			dependencies: ["0000000000103080", "0000000000103090"],
+			icon: {
+				count: 1,
+				id: "minecraft:nether_star"
+			},
+			id: "00000000001031C0",
+			rewards: [
+				{
+					id: "00000000003031C0",
+					type: "xp_levels",
+					xp_levels: 20
+				},
+				{
+					count: 4,
+					id: "00000000003031C1",
+					item: {
+						count: 1,
+						id: "minecraft:golden_apple"
+					},
+					type: "item"
+				},
+				{
+					command: "tellraw @s {\"text\":\"Звезда Незера твоя.\",\"color\":\"gold\"}",
+					id: "00000000003031C2",
+					permission_level: 2,
+					type: "command"
+				}
+			],
+			shape: "hexagon",
+			size: 1.9d,
+			tasks: [
+				{
+					entity: "minecraft:wither",
+					id: "00000000002031C0",
+					type: "kill",
+					value: 1L
+				},
+				{
+					id: "00000000002031C1",
+					item: {
+						count: 1,
+						id: "minecraft:nether_star"
+					},
+					type: "item"
+				},
+				{
+					advancement: "minecraft:nether/summon_wither",
+					id: "00000000002031C2",
+					type: "advancement"
+				}
+			],
+			x: 0.0d,
+			y: 18.8d
+		},
+		{
+			dependencies: ["00000000001031C0"],
+			icon: {
+				count: 1,
+				id: "minecraft:beacon"
+			},
+			id: "00000000001031D0",
+			rewards: [
+				{
+					id: "00000000003031D0",
+					type: "xp_levels",
+					xp_levels: 12
+				},
+				{
+					count: 16,
+					id: "00000000003031D1",
+					item: {
+						count: 1,
+						id: "minecraft:iron_block"
+					},
+					type: "item"
+				}
+			],
+			shape: "gear",
+			size: 1.6d,
+			tasks: [
+				{
+					id: "00000000002031D0",
+					item: {
+						count: 1,
+						id: "minecraft:beacon"
+					},
+					type: "item"
+				},
+				{
+					advancement: "minecraft:nether/create_beacon",
+					id: "00000000002031D1",
+					type: "advancement"
+				},
+				{
+					id: "00000000002031D2",
+					stat: "minecraft:interact_with_beacon",
+					type: "stat",
+					value: 1
+				}
+			],
+			x: 2.1d,
+			y: 20.25d
+		},
+		{
+			dependencies: ["00000000001031D0"],
+			icon: {
+				count: 1,
+				id: "minecraft:iron_block"
+			},
+			id: "00000000001031E0",
+			rewards: [
+				{
+					id: "00000000003031E0",
+					type: "xp_levels",
+					xp_levels: 20
+				},
+				{
+					id: "00000000003031E1",
+					item: {
+						count: 1,
+						id: "minecraft:netherite_block"
+					},
+					type: "item"
+				}
+			],
+			shape: "gear",
+			size: 1.7d,
+			tasks: [
+				{
+					advancement: "minecraft:nether/create_full_beacon",
+					id: "00000000002031E0",
+					type: "advancement"
+				},
+				{
+					count: 64L,
+					id: "00000000002031E1",
+					item: {
+						count: 1,
+						id: "minecraft:iron_block"
+					},
+					type: "item"
+				}
+			],
+			x: 4.2d,
+			y: 20.25d
+		},
+		{
+			dependencies: ["00000000001030B0"],
+			icon: {
+				count: 1,
+				id: "minecraft:potion"
+			},
+			id: "00000000001031F0",
+			optional: 1b,
+			rewards: [
+				{
+					id: "00000000003031F0",
+					type: "xp_levels",
+					xp_levels: 15
+				},
+				{
+					count: 2,
+					id: "00000000003031F1",
+					item: {
+						count: 1,
+						id: "minecraft:enchanted_golden_apple"
+					},
+					type: "item"
+				}
+			],
+			shape: "gear",
+			size: 1.4d,
+			tasks: [
+				{
+					advancement: "minecraft:nether/all_effects",
+					id: "00000000002031F0",
+					type: "advancement"
+				}
+			],
+			x: 0.0d,
+			y: 20.25d
+		},
+		{
+			dependencies: ["0000000000103180"],
+			icon: {
+				count: 1,
+				id: "kubejs:quest_token_premium"
+			},
+			id: "0000000000103200",
+			rewards: [
+				{
+					id: "0000000000303200",
+					type: "xp_levels",
+					xp_levels: 10
+				},
+				{
+					count: 2,
+					id: "0000000000303201",
+					item: {
+						count: 1,
+						id: "minecraft:netherite_scrap"
+					},
+					type: "item"
+				}
+			],
+			shape: "gear",
+			size: 1.5d,
+			tasks: [
+				{
+					id: "0000000000203200",
+					item: {
+						count: 1,
+						id: "kubejs:quest_token_premium"
+					},
+					type: "item"
+				},
+				{
+					count: 3L,
+					id: "0000000000203201",
+					item: {
+						count: 1,
+						id: "kubejs:quest_token"
+					},
+					type: "item"
+				}
+			],
+			x: 0.0d,
+			y: 21.7d
+		},
+		{
+			dependencies: ["0000000000103080"],
+			icon: {
+				count: 1,
+				id: "minecraft:ender_eye"
+			},
+			id: "0000000000103210",
+			rewards: [
+				{
+					count: 2,
+					id: "0000000000303210",
+					item: {
+						count: 1,
+						id: "minecraft:ender_eye"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000303211",
+					type: "xp_levels",
+					xp_levels: 6
+				}
+			],
+			shape: "hexagon",
+			size: 1.4d,
+			tasks: [
+				{
+					count: 12L,
+					id: "0000000000203210",
+					item: {
+						count: 1,
+						id: "minecraft:ender_eye"
+					},
+					type: "item"
+				},
+				{
+					count: 6L,
+					id: "0000000000203211",
+					item: {
+						count: 1,
+						id: "minecraft:blaze_powder"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 18.8d
+		},
+		{
+			dependencies: ["0000000000103210"],
+			icon: {
+				count: 1,
+				id: "minecraft:end_portal_frame"
+			},
+			id: "0000000000103220",
+			rewards: [
+				{
+					id: "0000000000303220",
+					type: "xp_levels",
+					xp_levels: 10
+				},
+				{
+					count: 4,
+					id: "0000000000303221",
+					item: {
+						count: 1,
+						id: "minecraft:ender_eye"
+					},
+					type: "item"
+				}
+			],
+			shape: "gear",
+			size: 1.7d,
+			tasks: [
+				{
+					id: "0000000000203220",
+					structure: "minecraft:stronghold",
+					type: "structure"
+				},
+				{
+					advancement: "minecraft:story/follow_ender_eye",
+					id: "0000000000203221",
+					type: "advancement"
+				},
+				{
+					id: "0000000000203222",
+					observation_type: "block",
+					observe_type: 0,
+					timer: 20L,
+					to_observe: "minecraft:end_portal_frame",
+					type: "observation"
+				}
+			],
+			x: 10.8d,
+			y: 18.8d
+		},
+		{
+			dependencies: ["0000000000103220"],
+			icon: {
+				count: 1,
+				id: "minecraft:golden_carrot"
+			},
+			id: "0000000000103230",
+			rewards: [
+				{
+					id: "0000000000303230",
+					type: "xp_levels",
+					xp_levels: 8
+				},
+				{
+					count: 16,
+					id: "0000000000303231",
+					item: {
+						count: 1,
+						id: "minecraft:firework_rocket"
+					},
+					type: "item"
+				}
+			],
+			tasks: [
+				{
+					count: 16L,
+					id: "0000000000203230",
+					item: {
+						count: 1,
+						id: "minecraft:golden_carrot"
+					},
+					type: "item"
+				},
+				{
+					count: 8L,
+					id: "0000000000203231",
+					item: {
+						count: 1,
+						id: "minecraft:ender_pearl"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000203232",
+					type: "checkmark"
+				}
+			],
+			x: 12.9d,
+			y: 18.8d
+		}
+	]
+}

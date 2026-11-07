@@ -1,8 +1,189 @@
 hash-format = "sha256"
 
 [[files]]
+file = "config/fancymenu/assets/folder_color.png"
+hash = "acdbb9788d81a3b2db336acf5f6b75043bfc9b3f97f0154b11e525e96668cc3f"
+
+[[files]]
+file = "config/fancymenu/assets/folder_gray.png"
+hash = "d28a1d4844aec3847b8f8112b6bebe52b9fcffb8325311ed8c78d1ee444e859a"
+
+[[files]]
+file = "config/fancymenu/assets/star_color.png"
+hash = "ddc1d51d202c699061ba8d77a1731199c0ea52f4365c10b4e9e8b3c401afbc8c"
+
+[[files]]
+file = "config/fancymenu/assets/star_gray.png"
+hash = "f87d0b5a2980056a402b4fa100066842cbf77110dcfbcd65a00e1c5dc48a5190"
+
+[[files]]
+file = "config/fancymenu/assets/starlight_menu_bg.png"
+hash = "afb17559cd7aa2b399c7c3cd8a09821c97d1a5c71da7b7e06fd42126d8673111"
+
+[[files]]
+file = "config/fancymenu/customizablemenus.txt"
+hash = "4c68ab99c906dd487952f61bf33c0635039a8bbff3f02099e3cd8272fe51b4aa"
+
+[[files]]
+file = "config/fancymenu/customization/starlight_title_layout.txt"
+hash = "f6060e0d25caf6c27e71b9b038bb64b779fe8d5b55fb52b502c11b2f26f31007"
+
+[[files]]
+file = "config/fancymenu/options.txt"
+hash = "293d7ee8d148af2bfd2dec9af88e36c0507ac6e36e6d0894bb89d9328e73c976"
+
+[[files]]
+file = "config/ftbquests/quests/chapter_groups.snbt"
+hash = "e57d8311aec9f524911ed1313cabf138bb7fa5a2d3ba985a00a2a267ff35ef78"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/end.snbt"
+hash = "02489ccb00c6b2f977e89f3bb75684c3c08bfff1ab97e455e8639707f2e95205"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/nether.snbt"
+hash = "24a0c60c27aa23547026e5159df242633905a0a80519b52d98b38d5dbe71b900"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/overworld.snbt"
+hash = "737377dfed9ea6a8e5d8a6db503252344f4557f7c5e7f230e54f56f80e2b41dd"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/prologue.snbt"
+hash = "5031a495f879ca953dc6245febc6cd722e4d9d7dd32c78c34517e78cb97a184c"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/starlight.snbt"
+hash = "94cc3b4e8ad0f58608cb326440bbc36009bc51fe8ceb41600800bd5bf382935e"
+
+[[files]]
+file = "config/ftbquests/quests/data.snbt"
+hash = "3247158905a839ee22728f98c8c57def95653b8ee1fc14cf554d1c7ed1641b43"
+
+[[files]]
+file = "config/ftbquests/quests/lang/en_us.snbt"
+hash = "21d5d13aae95bfdeb8975600cc505a4d7affc5189cf9869509d644bd7f0d05fb"
+
+[[files]]
+file = "config/ftbquests/quests/lang/ru_ru.snbt"
+hash = "90c95ffc98aaf0e60f39820562487cf0c042f9bcd9c0415cbb7db98d8ae828df"
+
+[[files]]
+file = "config/modpack-info.txt"
+hash = "4a760fc900b7187554c4dcaed467960d13b824562b60520ea360b60d279f4966"
+
+[[files]]
+file = "config/starlight-sleepwarp.json"
+hash = "fa8e98392f05ba8a4f3065791212b55a47adefde59915cf57bf711285a29054a"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/banner_end.png"
+hash = "d57b4849082b3244e95fb473017d7367fd0afd2f9940f4b396afc46ce45c892d"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/banner_nether.png"
+hash = "b37892870d40a5c57347c7efa9fcf6ee67524f1112fdfdac34073f44f4bb2078"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/banner_overworld.png"
+hash = "bf701f5845d7c015d1f103305d155d61600b99eae46afe99625edd484fe3ba4c"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/banner_starlight.png"
+hash = "d14fad929253055e3d06bb223766036d4c6df7ff48f4140e7c179521686e53b0"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/halo.png"
+hash = "f4f96edbdf758aa6171fd9330cb832759b05c544e4b1fe964b1b82334e2666fb"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/panel_soft.png"
+hash = "ca5674b4c50f24e7994d456f60f821adc99152aadfcd163b73cedc757aa1595f"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/plate.png"
+hash = "bf61ae89b14e1f7258e421dab1736585c0616484a939018c7d37815aaf431b8f"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/portal.png"
+hash = "444d8916fc5a4cc846c8932c254ed993e99a138abe27f7660c111d2ce6c86519"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/portal_end.png"
+hash = "ffbde6a2ed2df52b5af96682073973b2a2537d6106bf8447fe1154c41e3744c7"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/item/quest_medal.png"
+hash = "9c431a157e1b716049d87ac4deea5facde1cd7dd3d0026202e180bf75113e2ff"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/item/quest_token.png"
+hash = "2a0f66f65c21b7b80ea77139f10d6929bbd33044496a68cf10b47d6302d525d6"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/item/quest_token_premium.png"
+hash = "e558a8e0a6beae88f9da5ecb83f6ffb18dbd5981d4328f893c93ca7288e282a6"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/item/star_lantern.png"
+hash = "722b813690787773c5029264d67cdceb7c9ef2d58dbd935dbfc2ae8c3189af7d"
+
+[[files]]
+file = "kubejs/server_scripts/diagnostics.js"
+hash = "d611c676b374ed5a887291cb08fcc784c937eddf5c9cbbaa8827264501a3f612"
+
+[[files]]
+file = "kubejs/server_scripts/recipes.js"
+hash = "f1b0a6d02645ab7233d8a3959c436684f4b4ae74e60aa58d1899771a4cc0b9ca"
+
+[[files]]
+file = "kubejs/server_scripts/sleep_warp.js"
+hash = "97a575b61b6ca6b7af63638c82e1981ec95e5c68ca4ca9b107c3a2a63d0f396c"
+
+[[files]]
+file = "kubejs/server_scripts/star_lantern.js"
+hash = "1ac109cebb2e83c0a8cad8d8f218c739167e7d64ca4be1e1ef79ec377f33191b"
+
+[[files]]
+file = "kubejs/startup_scripts/custom_items.js"
+hash = "9192844b5862ca3bd4402e37d36cde010c96e855289a84a31c2e605282658e9e"
+
+[[files]]
+file = "kubejs/startup_scripts/diagnostics.js"
+hash = "77b92ab8342538119f3018c80fb6a0c99691422c858b4031bcbc7d74bb3de0bb"
+
+[[files]]
+file = "kubejs/startup_scripts/ffs_tag_bridge.js"
+hash = "7bf559f1f101061a3a13f9f6ad9049ac0897859c56b45b8da55be4d522c1965f"
+
+[[files]]
+file = "mods/architectury-api.pw.toml"
+hash = "e75b840972ed4812c65083a4c4736b89ae7991c35602da536d826d5da58819d2"
+metafile = true
+
+[[files]]
+file = "mods/better-advanced-tooltips.pw.toml"
+hash = "3125b09cbbcfdc46728e42744df30d180975396c1cff3eb140fa4341100c8af0"
+metafile = true
+
+[[files]]
 file = "mods/cubes-without-borders.pw.toml"
 hash = "9fd14fae5ded9b4d765beefbffbe4c8652f0b5e7afea5b9aeab4654a27cc2ac1"
+metafile = true
+
+[[files]]
+file = "mods/eternal-starlight.pw.toml"
+hash = "af65e87dcbb16d8e9a05f22492952cc357e8c2b4220e6ac5744bbafcb5e8b867"
+metafile = true
+
+[[files]]
+file = "mods/fancymenu.pw.toml"
+hash = "b03d40aef1f62faa00dd8c68cba20fd9c3a740189c163c9d23466d3df86ed05c"
+metafile = true
+
+[[files]]
+file = "mods/ftb-filter-system.pw.toml"
+hash = "5399bec79ff5e17080a55d317bf919c3dc2237e7e8f9e90b3e53fc7e7078febc"
 metafile = true
 
 [[files]]
@@ -18,4 +199,44 @@ metafile = true
 [[files]]
 file = "mods/ftb-teams.pw.toml"
 hash = "17ed96ff5d865091d09afb300aee4343ad6bdea604ae5e235bea990ff539b26e"
+metafile = true
+
+[[files]]
+file = "mods/iris-shaders.pw.toml"
+hash = "5dd7bc1d1fa636ab4b208e06d32efdb4b6c7ffecc02baa20cf6fbec85f0208a5"
+metafile = true
+
+[[files]]
+file = "mods/just-enough-items.pw.toml"
+hash = "e09a19ef1ed4807366a9936742a0c1119ed4d196afaa7cd41eae9321245eadf0"
+metafile = true
+
+[[files]]
+file = "mods/konkrete.pw.toml"
+hash = "a0c4fa91e2be651301719e4d8eea16f753a55bb3b14282d151d215dc02ddfe50"
+metafile = true
+
+[[files]]
+file = "mods/kubejs.pw.toml"
+hash = "fc60bcc537cb68719991d55042399e0caf905e29bad53162e263b32cfaced3f5"
+metafile = true
+
+[[files]]
+file = "mods/melody.pw.toml"
+hash = "845302c4fb5364ebd119c753cb5a51e75f1b8a51eca700ad1eb985d8ee2cc508"
+metafile = true
+
+[[files]]
+file = "mods/mezzconfig.pw.toml"
+hash = "cb37f6ca37c7e95f1c58e9de1133cb0a2d1383cb1a54183d1bb45610820c8e88"
+metafile = true
+
+[[files]]
+file = "mods/rhino.pw.toml"
+hash = "b555cd26a417ce4a74a960984e1706731a59d3f694c6c59192555db034eaf890"
+metafile = true
+
+[[files]]
+file = "mods/sodium.pw.toml"
+hash = "f5f890cb378cb7f47b156f95b467ffa07091c2468ae6b3d9d15fb417b0b845c7"
 metafile = true

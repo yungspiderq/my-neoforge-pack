@@ -56,6 +56,31 @@ jobs:
       - name: Mod compatibility (оффлайн)
         run: python3 scripts/check_mods.py
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Pillow
+        run: pip install --quiet Pillow
+
+      - name: Textures must be up to date
+        run: |
+          python3 scripts/gen_textures.py --check
+
+      - name: Quest files must be up to date
+        run: |
+          python3 scripts/gen_quests.py --out /tmp/quests-regen
+          if ! diff -r --brief config/ftbquests/quests /tmp/quests-regen; then
+            echo "::error::Файлы в config/ftbquests/quests не соответствуют scripts/quests/."
+            echo "Запустите локально: python3 scripts/gen_quests.py — и закоммитьте результат."
+            exit 1
+          fi
+          echo "SNBT актуальны генератору"
+
+      - name: Validate quests
+        run: |
+          python3 scripts/check_quests.py --registry
+
       - name: Dry-run export
         run: |
           python3 scripts/pw.py site --out /tmp/site

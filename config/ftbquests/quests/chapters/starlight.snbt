@@ -1,0 +1,5771 @@
+{
+	default_hide_dependency_lines: 0b,
+	default_quest_shape: "hexagon",
+	filename: "starlight",
+	group: "",
+	icon: {
+		count: 1,
+		id: "eternal_starlight:orb_of_prophecy"
+	},
+	id: "000000000000C005",
+	images: [
+		{
+			alpha: 46,
+			color: 2837630,
+			height: 11.85d,
+			id: "0000000000405001",
+			image: "kubejs:textures/gui/panel_soft.png",
+			order: -200,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 8.8d,
+			x: 2.1d,
+			y: 3.625d
+		},
+		{
+			alpha: 225,
+			color: 2837630,
+			height: 0.9d,
+			id: "0000000000405002",
+			image: "kubejs:textures/gui/plate.png",
+			order: -40,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 7,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 6.4d,
+			x: 2.1d,
+			y: -2.5d
+		},
+		{
+			alpha: 46,
+			color: 6966419,
+			height: 17.65d,
+			id: "0000000000405003",
+			image: "kubejs:textures/gui/panel_soft.png",
+			order: -200,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 8.8d,
+			x: 10.8d,
+			y: 6.525d
+		},
+		{
+			alpha: 225,
+			color: 6966419,
+			height: 0.9d,
+			id: "0000000000405004",
+			image: "kubejs:textures/gui/plate.png",
+			order: -40,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 7,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 6.4d,
+			x: 10.8d,
+			y: -2.5d
+		},
+		{
+			alpha: 46,
+			color: 2062960,
+			height: 8.95d,
+			id: "0000000000405005",
+			image: "kubejs:textures/gui/panel_soft.png",
+			order: -200,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 6.7d,
+			x: 1.05d,
+			y: 21.725d
+		},
+		{
+			alpha: 225,
+			color: 2062960,
+			height: 0.9d,
+			id: "0000000000405006",
+			image: "kubejs:textures/gui/plate.png",
+			order: -40,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 7,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 4.3d,
+			x: 1.05d,
+			y: 17.05d
+		},
+		{
+			alpha: 46,
+			color: 9198123,
+			height: 32.15d,
+			id: "0000000000405007",
+			image: "kubejs:textures/gui/panel_soft.png",
+			order: -200,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 8.8d,
+			x: 8.7d,
+			y: 33.325d
+		},
+		{
+			alpha: 225,
+			color: 9198123,
+			height: 0.9d,
+			id: "0000000000405008",
+			image: "kubejs:textures/gui/plate.png",
+			order: -40,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 7,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 6.4d,
+			x: 8.7d,
+			y: 17.05d
+		},
+		{
+			alpha: 46,
+			color: 10893882,
+			height: 33.6d,
+			id: "0000000000405009",
+			image: "kubejs:textures/gui/panel_soft.png",
+			order: -200,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 8.8d,
+			x: 2.1d,
+			y: 68.1d
+		},
+		{
+			alpha: 225,
+			color: 10893882,
+			height: 0.9d,
+			id: "000000000040500A",
+			image: "kubejs:textures/gui/plate.png",
+			order: -40,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 7,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 6.4d,
+			x: 2.1d,
+			y: 51.1d
+		},
+		{
+			alpha: 46,
+			color: 3828390,
+			height: 11.85d,
+			id: "000000000040500B",
+			image: "kubejs:textures/gui/panel_soft.png",
+			order: -200,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 8.8d,
+			x: 10.8d,
+			y: 57.225d
+		},
+		{
+			alpha: 225,
+			color: 3828390,
+			height: 0.9d,
+			id: "000000000040500C",
+			image: "kubejs:textures/gui/plate.png",
+			order: -40,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 7,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 6.4d,
+			x: 10.8d,
+			y: 51.1d
+		},
+		{
+			alpha: 46,
+			color: 8014995,
+			height: 6.05d,
+			id: "000000000040500D",
+			image: "kubejs:textures/gui/panel_soft.png",
+			order: -200,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 6.7d,
+			x: 1.05d,
+			y: 89.825d
+		},
+		{
+			alpha: 225,
+			color: 8014995,
+			height: 0.9d,
+			id: "000000000040500E",
+			image: "kubejs:textures/gui/plate.png",
+			order: -40,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 7,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 4.3d,
+			x: 1.05d,
+			y: 86.6d
+		},
+		{
+			alpha: 46,
+			color: 8003404,
+			height: 22.0d,
+			id: "000000000040500F",
+			image: "kubejs:textures/gui/panel_soft.png",
+			order: -200,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 8.8d,
+			x: 8.7d,
+			y: 97.8d
+		},
+		{
+			alpha: 225,
+			color: 8003404,
+			height: 0.9d,
+			id: "0000000000405010",
+			image: "kubejs:textures/gui/plate.png",
+			order: -40,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 7,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 6.4d,
+			x: 8.7d,
+			y: 86.6d
+		},
+		{
+			alpha: 46,
+			color: 13214247,
+			height: 24.9d,
+			id: "0000000000405011",
+			image: "kubejs:textures/gui/panel_soft.png",
+			order: -200,
+			position_locked: 1b,
+			rotation: 0.0d,
+			width: 8.8d,
+			x: 2.1d,
+			y: 123.15d
+		},
+		{
+			alpha: 225,
+			color: 13214247,
+			height: 0.9d,
+			id: "0000000000405012",
+			image: "kubejs:textures/gui/plate.png",
+			order: -40,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 7,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 6.4d,
+			x: 2.1d,
+			y: 110.5d
+		},
+		{
+			height: 3.25d,
+			id: "0000000000405013",
+			image: "kubejs:textures/gui/banner_starlight.png",
+			order: -100,
+			rotation: 0.0d,
+			width: 13.0d,
+			x: 6.45d,
+			y: -4.525d
+		},
+		{
+			alpha: 225,
+			color: 2837630,
+			height: 0.8d,
+			id: "0000000000405014",
+			image: "kubejs:textures/gui/plate.png",
+			order: -35,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 8,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 6.4d,
+			x: 0.0d,
+			y: 2.125d
+		},
+		{
+			alpha: 225,
+			color: 6966419,
+			height: 0.8d,
+			id: "0000000000405015",
+			image: "kubejs:textures/gui/plate.png",
+			order: -35,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 8,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 5.6d,
+			x: 2.1d,
+			y: 5.85d
+		},
+		{
+			alpha: 120,
+			color: 16766814,
+			height: 2.6d,
+			id: "0000000000405016",
+			image: "kubejs:textures/gui/halo.png",
+			order: -30,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 8,
+			text_on_image: 0b,
+			text_shadow: 1b,
+			width: 2.6d,
+			x: 8.7d,
+			y: 6.525d
+		},
+		{
+			alpha: 225,
+			color: 2756116,
+			height: 0.8d,
+			id: "0000000000405017",
+			image: "kubejs:textures/gui/plate.png",
+			order: -35,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 8,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 5.2d,
+			x: 8.7d,
+			y: 4.925d
+		},
+		{
+			alpha: 120,
+			color: 10115783,
+			height: 2.6d,
+			id: "0000000000405018",
+			image: "kubejs:textures/gui/halo.png",
+			order: -30,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 8,
+			text_on_image: 0b,
+			text_shadow: 1b,
+			width: 2.6d,
+			x: 10.8d,
+			y: 0.0d
+		},
+		{
+			alpha: 225,
+			color: 2756116,
+			height: 0.8d,
+			id: "0000000000405019",
+			image: "kubejs:textures/gui/plate.png",
+			order: -35,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 8,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 5.2d,
+			x: 10.8d,
+			y: -1.6d
+		},
+		{
+			alpha: 225,
+			color: 2062960,
+			height: 0.8d,
+			id: "000000000040501A",
+			image: "kubejs:textures/gui/plate.png",
+			order: -35,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 8,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			width: 5.6d,
+			x: 10.8d,
+			y: 1.4d
+		},
+		{
+			alpha: 120,
+			color: 16766814,
+			height: 2.6d,
+			id: "000000000040501B",
+			image: "kubejs:textures/gui/halo.png",
+			order: -30,
+			position_locked: 1b,
+			rotation: 0.0d,
+			text_inset: 8,
+			text_on_image: 0b,
+			text_shadow: 1b,
+			width: 2.6d,
+			x: 2.1d,
+			y: 133.3d
+		}
+	],
+	order_index: 4,
+	quest_links: [ ],
+	quests: [
+		{
+			icon: {
+				count: 1,
+				id: "eternal_starlight:orb_of_prophecy"
+			},
+			id: "0000000000105010",
+			rewards: [
+				{
+					id: "0000000000305010",
+					type: "xp_levels",
+					xp_levels: 4
+				},
+				{
+					description: "Ты в Вечном Звездосветье. Небо здесь не кончается.",
+					id: "0000000000305011",
+					type: "toast"
+				}
+			],
+			size: 1.6d,
+			tasks: [
+				{
+					id: "0000000000205010",
+					item: {
+						count: 1,
+						id: "eternal_starlight:orb_of_prophecy"
+					},
+					type: "item"
+				},
+				{
+					dimension: "eternal_starlight:starlight",
+					id: "0000000000205011",
+					type: "dimension"
+				}
+			],
+			x: 0.0d,
+			y: 3.625d
+		},
+		{
+			dependencies: ["0000000000105010"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:dusted_shard"
+			},
+			id: "0000000000105020",
+			rewards: [
+				{
+					id: "0000000000305020",
+					type: "xp",
+					xp: 120
+				},
+				{
+					count: 8,
+					id: "0000000000305021",
+					item: {
+						count: 1,
+						id: "eternal_starlight:dusted_shard"
+					},
+					type: "item"
+				}
+			],
+			size: 1.2d,
+			tasks: [
+				{
+					id: "0000000000205020",
+					structure: "eternal_starlight:portal_ruins_common",
+					type: "structure"
+				},
+				{
+					id: "0000000000205021",
+					structure: "eternal_starlight:portal_ruins_cold",
+					type: "structure"
+				},
+				{
+					id: "0000000000205022",
+					structure: "eternal_starlight:portal_ruins_desert",
+					type: "structure"
+				},
+				{
+					id: "0000000000205023",
+					structure: "eternal_starlight:portal_ruins_forest",
+					type: "structure"
+				},
+				{
+					id: "0000000000205024",
+					structure: "eternal_starlight:portal_ruins_jungle",
+					type: "structure"
+				}
+			],
+			x: 2.1d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000105010"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:starlit_lily_pad"
+			},
+			id: "0000000000105030",
+			rewards: [
+				{
+					id: "0000000000305030",
+					type: "xp",
+					xp: 110
+				}
+			],
+			tasks: [
+				{
+					biome: "eternal_starlight:starlight_forest",
+					id: "0000000000205030",
+					type: "biome"
+				},
+				{
+					biome: "eternal_starlight:starlight_dense_forest",
+					id: "0000000000205031",
+					type: "biome"
+				},
+				{
+					biome: "eternal_starlight:umbral_plains",
+					id: "0000000000205032",
+					type: "biome"
+				},
+				{
+					biome: "eternal_starlight:glimmer_scrubland",
+					id: "0000000000205033",
+					type: "biome"
+				},
+				{
+					biome: "eternal_starlight:starlight_permafrost_forest",
+					id: "0000000000205034",
+					type: "biome"
+				},
+				{
+					biome: "eternal_starlight:permafrost_peaks",
+					id: "0000000000205035",
+					type: "biome"
+				}
+			],
+			x: 2.1d,
+			y: 2.9d
+		},
+		{
+			dependencies: ["0000000000105010"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:starlit_lily_pad"
+			},
+			id: "0000000000105040",
+			rewards: [
+				{
+					id: "0000000000305040",
+					type: "xp",
+					xp: 110
+				}
+			],
+			tasks: [
+				{
+					biome: "eternal_starlight:starlight_taiga",
+					id: "0000000000205040",
+					type: "biome"
+				},
+				{
+					biome: "eternal_starlight:dark_swamp",
+					id: "0000000000205041",
+					type: "biome"
+				},
+				{
+					biome: "eternal_starlight:scarlet_forest",
+					id: "0000000000205042",
+					type: "biome"
+				},
+				{
+					biome: "eternal_starlight:torreya_forest",
+					id: "0000000000205043",
+					type: "biome"
+				},
+				{
+					biome: "eternal_starlight:crystallized_desert",
+					id: "0000000000205044",
+					type: "biome"
+				},
+				{
+					biome: "eternal_starlight:lucent_mycelium_isle",
+					id: "0000000000205045",
+					type: "biome"
+				}
+			],
+			x: 2.1d,
+			y: 4.35d
+		},
+		{
+			dependencies: ["0000000000105010"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:starlit_lily_pad"
+			},
+			id: "0000000000105050",
+			rewards: [
+				{
+					id: "0000000000305050",
+					type: "xp",
+					xp: 110
+				}
+			],
+			tasks: [
+				{
+					biome: "eternal_starlight:solaris_isles",
+					id: "0000000000205050",
+					type: "biome"
+				},
+				{
+					biome: "eternal_starlight:starlit_sky",
+					id: "0000000000205051",
+					type: "biome"
+				},
+				{
+					biome: "eternal_starlight:shimmer_river",
+					id: "0000000000205052",
+					type: "biome"
+				},
+				{
+					biome: "eternal_starlight:ether_river",
+					id: "0000000000205053",
+					type: "biome"
+				},
+				{
+					biome: "eternal_starlight:starlit_sea",
+					id: "0000000000205054",
+					type: "biome"
+				},
+				{
+					biome: "eternal_starlight:icy_sea",
+					id: "0000000000205055",
+					type: "biome"
+				}
+			],
+			x: 2.1d,
+			y: 5.8d
+		},
+		{
+			dependencies: ["0000000000105010"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:starlit_lily_pad"
+			},
+			id: "0000000000105060",
+			rewards: [
+				{
+					id: "0000000000305060",
+					type: "xp",
+					xp: 130
+				}
+			],
+			tasks: [
+				{
+					biome: "eternal_starlight:spiral_kelp_forest",
+					id: "0000000000205060",
+					type: "biome"
+				},
+				{
+					biome: "eternal_starlight:lush_shallow_sea",
+					id: "0000000000205061",
+					type: "biome"
+				},
+				{
+					biome: "eternal_starlight:the_abyss",
+					id: "0000000000205062",
+					type: "biome"
+				},
+				{
+					biome: "eternal_starlight:warm_shore",
+					id: "0000000000205063",
+					type: "biome"
+				},
+				{
+					biome: "eternal_starlight:grim_shore",
+					id: "0000000000205064",
+					type: "biome"
+				}
+			],
+			x: 2.1d,
+			y: 1.45d
+		},
+		{
+			dependencies: ["0000000000105060"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:golem_steel_ingot"
+			},
+			id: "0000000000105070",
+			rewards: [
+				{
+					id: "0000000000305070",
+					type: "xp",
+					xp: 100
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205070",
+					structure: "eternal_starlight:golem_forge",
+					type: "structure"
+				},
+				{
+					id: "0000000000205071",
+					structure: "eternal_starlight:cursed_garden",
+					type: "structure"
+				}
+			],
+			x: 4.2d,
+			y: 3.625d
+		},
+		{
+			dependencies: ["0000000000105010"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:tenacious_vine"
+			},
+			id: "0000000000105080",
+			rewards: [
+				{
+					id: "0000000000305080",
+					type: "xp",
+					xp: 60
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205080",
+					structure: "eternal_starlight:stranghoul_den",
+					type: "structure"
+				}
+			],
+			x: 2.1d,
+			y: 7.25d
+		},
+		{
+			dependencies: ["0000000000105080"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:gleech_egg"
+			},
+			id: "0000000000105090",
+			rewards: [
+				{
+					id: "0000000000305090",
+					type: "xp",
+					xp: 60
+				}
+			],
+			tasks: [
+				{
+					entity: "eternal_starlight:ratlin",
+					id: "0000000000205090",
+					type: "kill",
+					value: 1L
+				},
+				{
+					entity: "eternal_starlight:gleech",
+					id: "0000000000205091",
+					type: "kill",
+					value: 1L
+				},
+				{
+					entity: "eternal_starlight:shadow_snail",
+					id: "0000000000205092",
+					type: "kill",
+					value: 1L
+				}
+			],
+			x: 8.7d,
+			y: 6.525d
+		},
+		{
+			dependencies: ["0000000000105090"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:starlit_diamond"
+			},
+			id: "00000000001050A0",
+			rewards: [
+				{
+					id: "00000000003050A0",
+					type: "xp",
+					xp: 70
+				}
+			],
+			tasks: [
+				{
+					entity: "eternal_starlight:aurora_deer",
+					id: "00000000002050A0",
+					type: "kill",
+					value: 1L
+				},
+				{
+					entity: "eternal_starlight:shimmer_lacewing",
+					id: "00000000002050A1",
+					type: "kill",
+					value: 1L
+				},
+				{
+					entity: "eternal_starlight:crystallized_moth",
+					id: "00000000002050A2",
+					type: "kill",
+					value: 1L
+				}
+			],
+			x: 10.8d,
+			y: 0.0d
+		},
+		{
+			dependencies: ["0000000000105090"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:luminofish"
+			},
+			id: "00000000001050B0",
+			rewards: [
+				{
+					id: "00000000003050B0",
+					type: "xp",
+					xp: 50
+				}
+			],
+			tasks: [
+				{
+					entity: "eternal_starlight:luminofish",
+					id: "00000000002050B0",
+					type: "kill",
+					value: 1L
+				},
+				{
+					entity: "eternal_starlight:rookfish",
+					id: "00000000002050B1",
+					type: "kill",
+					value: 1L
+				}
+			],
+			x: 10.8d,
+			y: 2.9d
+		},
+		{
+			dependencies: ["0000000000105090"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:starfire_bird_egg"
+			},
+			id: "00000000001050C0",
+			rewards: [
+				{
+					id: "00000000003050C0",
+					type: "xp",
+					xp: 70
+				}
+			],
+			tasks: [
+				{
+					entity: "eternal_starlight:starfire_bird",
+					id: "00000000002050C0",
+					type: "kill",
+					value: 1L
+				},
+				{
+					entity: "eternal_starlight:ent",
+					id: "00000000002050C1",
+					type: "kill",
+					value: 1L
+				}
+			],
+			x: 10.8d,
+			y: 4.35d
+		},
+		{
+			dependencies: ["0000000000105090"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:tentacle_spike"
+			},
+			id: "00000000001050D0",
+			rewards: [
+				{
+					id: "00000000003050D0",
+					type: "xp",
+					xp: 80
+				}
+			],
+			tasks: [
+				{
+					entity: "eternal_starlight:nightfall_spider",
+					id: "00000000002050D0",
+					type: "kill",
+					value: 1L
+				},
+				{
+					entity: "eternal_starlight:lonestar_skeleton",
+					id: "00000000002050D1",
+					type: "kill",
+					value: 1L
+				},
+				{
+					entity: "eternal_starlight:thirst_walker",
+					id: "00000000002050D2",
+					type: "kill",
+					value: 1L
+				}
+			],
+			x: 10.8d,
+			y: 5.8d
+		},
+		{
+			dependencies: ["0000000000105090"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:tentacle_spike"
+			},
+			id: "00000000001050E0",
+			rewards: [
+				{
+					id: "00000000003050E0",
+					type: "xp",
+					xp: 90
+				}
+			],
+			tasks: [
+				{
+					entity: "eternal_starlight:seeker",
+					id: "00000000002050E0",
+					type: "kill",
+					value: 1L
+				},
+				{
+					entity: "eternal_starlight:creteor",
+					id: "00000000002050E1",
+					type: "kill",
+					value: 1L
+				},
+				{
+					entity: "eternal_starlight:yeti",
+					id: "00000000002050E2",
+					type: "kill",
+					value: 1L
+				}
+			],
+			x: 10.8d,
+			y: 1.45d
+		},
+		{
+			dependencies: ["00000000001050E0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:tenacious_vine"
+			},
+			id: "00000000001050F0",
+			rewards: [
+				{
+					id: "00000000003050F0",
+					type: "xp",
+					xp: 90
+				}
+			],
+			tasks: [
+				{
+					entity: "eternal_starlight:permafrost",
+					id: "00000000002050F0",
+					type: "kill",
+					value: 1L
+				},
+				{
+					entity: "eternal_starlight:stranghoul",
+					id: "00000000002050F1",
+					type: "kill",
+					value: 1L
+				}
+			],
+			x: 12.9d,
+			y: 6.525d
+		},
+		{
+			dependencies: ["0000000000105090"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:tenacious_vine"
+			},
+			id: "0000000000105100",
+			rewards: [
+				{
+					id: "0000000000305100",
+					type: "xp",
+					xp: 80
+				}
+			],
+			tasks: [
+				{
+					entity: "eternal_starlight:tangled",
+					id: "0000000000205100",
+					type: "kill",
+					value: 1L
+				},
+				{
+					entity: "eternal_starlight:tangled_husk",
+					id: "0000000000205101",
+					type: "kill",
+					value: 1L
+				},
+				{
+					entity: "eternal_starlight:tangled_skull",
+					id: "0000000000205102",
+					type: "kill",
+					value: 1L
+				}
+			],
+			x: 10.8d,
+			y: 7.25d
+		},
+		{
+			dependencies: ["0000000000105090"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:starfire"
+			},
+			id: "0000000000105110",
+			rewards: [
+				{
+					id: "0000000000305110",
+					type: "xp_levels",
+					xp_levels: 10
+				},
+				{
+					description: "Привратник пал. Врата открыты.",
+					id: "0000000000305111",
+					type: "toast"
+				}
+			],
+			size: 1.7d,
+			tasks: [
+				{
+					entity: "eternal_starlight:the_gatekeeper",
+					id: "0000000000205110",
+					type: "kill",
+					value: 1L
+				}
+			],
+			x: 10.8d,
+			y: 8.7d
+		},
+		{
+			dependencies: ["0000000000105090"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:orb_of_prophecy"
+			},
+			id: "0000000000105120",
+			rewards: [
+				{
+					id: "0000000000305120",
+					type: "xp_levels",
+					xp_levels: 12
+				},
+				{
+					description: "Лунное чудовище одолено. Через терни — к звёздам.",
+					id: "0000000000305121",
+					type: "toast"
+				}
+			],
+			size: 1.7d,
+			tasks: [
+				{
+					biome: "eternal_starlight:the_abyss",
+					id: "0000000000205120",
+					type: "biome"
+				},
+				{
+					entity: "eternal_starlight:lunar_monstrosity",
+					id: "0000000000205121",
+					type: "kill",
+					value: 1L
+				}
+			],
+			x: 10.8d,
+			y: 10.15d
+		},
+		{
+			dependencies: ["0000000000105090"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:golem_steel_ingot"
+			},
+			id: "0000000000105130",
+			rewards: [
+				{
+					id: "0000000000305130",
+					type: "xp",
+					xp: 110
+				}
+			],
+			size: 1.3d,
+			tasks: [
+				{
+					entity: "eternal_starlight:grimstone_golem",
+					id: "0000000000205130",
+					type: "kill",
+					value: 1L
+				},
+				{
+					entity: "eternal_starlight:starlight_golem",
+					id: "0000000000205131",
+					type: "kill",
+					value: 1L
+				}
+			],
+			x: 10.8d,
+			y: 11.6d
+		},
+		{
+			dependencies: ["0000000000105090"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:golem_steel_ingot"
+			},
+			id: "0000000000105140",
+			rewards: [
+				{
+					id: "0000000000305140",
+					type: "xp",
+					xp: 110
+				}
+			],
+			size: 1.3d,
+			tasks: [
+				{
+					entity: "eternal_starlight:astral_golem",
+					id: "0000000000205140",
+					type: "kill",
+					value: 1L
+				},
+				{
+					entity: "eternal_starlight:aethersent_golem",
+					id: "0000000000205141",
+					type: "kill",
+					value: 1L
+				}
+			],
+			x: 10.8d,
+			y: 13.05d
+		},
+		{
+			dependencies: ["0000000000105140"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:glacite_shard"
+			},
+			id: "0000000000105150",
+			rewards: [
+				{
+					id: "0000000000305150",
+					type: "xp",
+					xp: 90
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205150",
+					item: {
+						count: 1,
+						id: "eternal_starlight:glacite_shard"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205151",
+					item: {
+						count: 1,
+						id: "eternal_starlight:thioquartz_shard"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205152",
+					item: {
+						count: 1,
+						id: "eternal_starlight:dusted_shard"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205153",
+					item: {
+						count: 1,
+						id: "eternal_starlight:malarite"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205154",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starlit_diamond"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205155",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starfire"
+					},
+					type: "item"
+				}
+			],
+			x: 0.0d,
+			y: 21.725d
+		},
+		{
+			dependencies: ["0000000000105150"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:shivering_gel"
+			},
+			id: "0000000000105160",
+			rewards: [
+				{
+					id: "0000000000305160",
+					type: "xp",
+					xp: 80
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205160",
+					item: {
+						count: 1,
+						id: "eternal_starlight:saltpeter_powder"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205161",
+					item: {
+						count: 1,
+						id: "eternal_starlight:shivering_gel"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205162",
+					item: {
+						count: 1,
+						id: "eternal_starlight:soul_dew"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205163",
+					item: {
+						count: 1,
+						id: "eternal_starlight:crinoa_ball"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205164",
+					item: {
+						count: 1,
+						id: "eternal_starlight:lunaris_cactus_gel"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205165",
+					item: {
+						count: 1,
+						id: "eternal_starlight:velvetumoss_ball"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 19.55d
+		},
+		{
+			dependencies: ["0000000000105150"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:alloy_furnace"
+			},
+			id: "0000000000105170",
+			rewards: [
+				{
+					id: "0000000000305170",
+					type: "xp",
+					xp: 100
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205170",
+					item: {
+						count: 1,
+						id: "eternal_starlight:deepsilver_ingot"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205171",
+					item: {
+						count: 1,
+						id: "eternal_starlight:unrealium_ingot"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205172",
+					item: {
+						count: 1,
+						id: "eternal_starlight:aethersent_ingot"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205173",
+					item: {
+						count: 1,
+						id: "eternal_starlight:golem_steel_ingot"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 21.0d
+		},
+		{
+			dependencies: ["0000000000105150"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:flowglaze"
+			},
+			id: "0000000000105180",
+			rewards: [
+				{
+					id: "0000000000305180",
+					type: "xp",
+					xp: 90
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205180",
+					item: {
+						count: 1,
+						id: "eternal_starlight:flowglaze"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205181",
+					item: {
+						count: 1,
+						id: "eternal_starlight:raw_amaramber"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205182",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starcore"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205183",
+					item: {
+						count: 1,
+						id: "eternal_starlight:crystalborn_catalyst"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 22.45d
+		},
+		{
+			dependencies: ["0000000000105150"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:voidstone_starlit_diamond_ore"
+			},
+			id: "0000000000105190",
+			rewards: [
+				{
+					id: "0000000000305190",
+					type: "xp",
+					xp: 90
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205190",
+					item: {
+						count: 1,
+						id: "eternal_starlight:voidstone_starlit_diamond_ore"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205191",
+					item: {
+						count: 1,
+						id: "eternal_starlight:voidstone_malarite_ore"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205192",
+					item: {
+						count: 1,
+						id: "eternal_starlight:voidstone_deepsilver_ore"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205193",
+					item: {
+						count: 1,
+						id: "eternal_starlight:voidstone_starcore_ore"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205194",
+					item: {
+						count: 1,
+						id: "eternal_starlight:voidstone_saltpeter_ore"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205195",
+					item: {
+						count: 1,
+						id: "eternal_starlight:voidstone_redstone_ore"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205196",
+					item: {
+						count: 1,
+						id: "eternal_starlight:packed_nightfall_mud_malarite_ore"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205197",
+					item: {
+						count: 1,
+						id: "eternal_starlight:packed_nightfall_mud_deepsilver_ore"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 23.9d
+		},
+		{
+			dependencies: ["0000000000105190"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:thermal_springstone_sword"
+			},
+			id: "00000000001051A0",
+			rewards: [
+				{
+					id: "00000000003051A0",
+					type: "xp",
+					xp: 60
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002051A0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:thermal_springstone_sword"
+					},
+					type: "item"
+				}
+			],
+			x: 6.6d,
+			y: 33.325d
+		},
+		{
+			dependencies: ["00000000001051A0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:thermal_springstone_pickaxe"
+			},
+			id: "00000000001051B0",
+			rewards: [
+				{
+					id: "00000000003051B0",
+					type: "xp",
+					xp: 60
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002051B0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:thermal_springstone_pickaxe"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002051B1",
+					item: {
+						count: 1,
+						id: "eternal_starlight:thermal_springstone_axe"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002051B2",
+					item: {
+						count: 1,
+						id: "eternal_starlight:thermal_springstone_scythe"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 19.55d
+		},
+		{
+			dependencies: ["00000000001051A0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:thermal_springstone_helmet"
+			},
+			id: "00000000001051C0",
+			rewards: [
+				{
+					id: "00000000003051C0",
+					type: "xp",
+					xp: 70
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002051C0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:thermal_springstone_helmet"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002051C1",
+					item: {
+						count: 1,
+						id: "eternal_starlight:thermal_springstone_chestplate"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002051C2",
+					item: {
+						count: 1,
+						id: "eternal_starlight:thermal_springstone_leggings"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002051C3",
+					item: {
+						count: 1,
+						id: "eternal_starlight:thermal_springstone_boots"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 22.45d
+		},
+		{
+			dependencies: ["00000000001051A0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:glacite_sword"
+			},
+			id: "00000000001051D0",
+			rewards: [
+				{
+					id: "00000000003051D0",
+					type: "xp",
+					xp: 60
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002051D0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:glacite_sword"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002051D1",
+					item: {
+						count: 1,
+						id: "eternal_starlight:glacite_shield"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 25.35d
+		},
+		{
+			dependencies: ["00000000001051A0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:glacite_pickaxe"
+			},
+			id: "00000000001051E0",
+			rewards: [
+				{
+					id: "00000000003051E0",
+					type: "xp",
+					xp: 60
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002051E0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:glacite_pickaxe"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002051E1",
+					item: {
+						count: 1,
+						id: "eternal_starlight:glacite_axe"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002051E2",
+					item: {
+						count: 1,
+						id: "eternal_starlight:glacite_scythe"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 28.25d
+		},
+		{
+			dependencies: ["00000000001051A0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:glacite_helmet"
+			},
+			id: "00000000001051F0",
+			rewards: [
+				{
+					id: "00000000003051F0",
+					type: "xp",
+					xp: 70
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002051F0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:glacite_helmet"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002051F1",
+					item: {
+						count: 1,
+						id: "eternal_starlight:glacite_chestplate"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002051F2",
+					item: {
+						count: 1,
+						id: "eternal_starlight:glacite_leggings"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002051F3",
+					item: {
+						count: 1,
+						id: "eternal_starlight:glacite_boots"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 21.0d
+		},
+		{
+			dependencies: ["00000000001051F0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:malarite_sword"
+			},
+			id: "0000000000105200",
+			rewards: [
+				{
+					id: "0000000000305200",
+					type: "xp",
+					xp: 60
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205200",
+					item: {
+						count: 1,
+						id: "eternal_starlight:malarite_sword"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205201",
+					item: {
+						count: 1,
+						id: "eternal_starlight:malarite_spear"
+					},
+					type: "item"
+				}
+			],
+			x: 10.8d,
+			y: 31.15d
+		},
+		{
+			dependencies: ["00000000001051A0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:malarite_pickaxe"
+			},
+			id: "0000000000105210",
+			rewards: [
+				{
+					id: "0000000000305210",
+					type: "xp",
+					xp: 60
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205210",
+					item: {
+						count: 1,
+						id: "eternal_starlight:malarite_pickaxe"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205211",
+					item: {
+						count: 1,
+						id: "eternal_starlight:malarite_axe"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205212",
+					item: {
+						count: 1,
+						id: "eternal_starlight:malarite_sickle"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 31.15d
+		},
+		{
+			dependencies: ["00000000001051A0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:deepsilver_sword"
+			},
+			id: "0000000000105220",
+			rewards: [
+				{
+					id: "0000000000305220",
+					type: "xp",
+					xp: 60
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205220",
+					item: {
+						count: 1,
+						id: "eternal_starlight:deepsilver_sword"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 32.6d
+		},
+		{
+			dependencies: ["00000000001051A0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:deepsilver_pickaxe"
+			},
+			id: "0000000000105230",
+			rewards: [
+				{
+					id: "0000000000305230",
+					type: "xp",
+					xp: 60
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205230",
+					item: {
+						count: 1,
+						id: "eternal_starlight:deepsilver_pickaxe"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205231",
+					item: {
+						count: 1,
+						id: "eternal_starlight:deepsilver_axe"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205232",
+					item: {
+						count: 1,
+						id: "eternal_starlight:deepsilver_sickle"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205233",
+					item: {
+						count: 1,
+						id: "eternal_starlight:deepsilver_brush"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 34.05d
+		},
+		{
+			dependencies: ["00000000001051A0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:deepsilver_helmet"
+			},
+			id: "0000000000105240",
+			rewards: [
+				{
+					id: "0000000000305240",
+					type: "xp",
+					xp: 70
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205240",
+					item: {
+						count: 1,
+						id: "eternal_starlight:deepsilver_helmet"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205241",
+					item: {
+						count: 1,
+						id: "eternal_starlight:deepsilver_chestplate"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205242",
+					item: {
+						count: 1,
+						id: "eternal_starlight:deepsilver_leggings"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205243",
+					item: {
+						count: 1,
+						id: "eternal_starlight:deepsilver_boots"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 35.5d
+		},
+		{
+			dependencies: ["00000000001051A0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:starlit_diamond_sword"
+			},
+			id: "0000000000105250",
+			rewards: [
+				{
+					id: "0000000000305250",
+					type: "xp",
+					xp: 60
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205250",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starlit_diamond_sword"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 23.9d
+		},
+		{
+			dependencies: ["0000000000105250"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:starlit_diamond_pickaxe"
+			},
+			id: "0000000000105260",
+			rewards: [
+				{
+					id: "0000000000305260",
+					type: "xp",
+					xp: 60
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205260",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starlit_diamond_pickaxe"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205261",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starlit_diamond_axe"
+					},
+					type: "item"
+				}
+			],
+			x: 10.8d,
+			y: 32.6d
+		},
+		{
+			dependencies: ["00000000001051A0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:starlit_diamond_helmet"
+			},
+			id: "0000000000105270",
+			rewards: [
+				{
+					id: "0000000000305270",
+					type: "xp",
+					xp: 70
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205270",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starlit_diamond_helmet"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205271",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starlit_diamond_chestplate"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205272",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starlit_diamond_leggings"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205273",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starlit_diamond_boots"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 36.95d
+		},
+		{
+			dependencies: ["00000000001051A0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:unrealium_sword"
+			},
+			id: "0000000000105280",
+			rewards: [
+				{
+					id: "0000000000305280",
+					type: "xp",
+					xp: 60
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205280",
+					item: {
+						count: 1,
+						id: "eternal_starlight:unrealium_sword"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205281",
+					item: {
+						count: 1,
+						id: "eternal_starlight:unrealium_crossbow"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 38.4d
+		},
+		{
+			dependencies: ["00000000001051A0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:unrealium_pickaxe"
+			},
+			id: "0000000000105290",
+			rewards: [
+				{
+					id: "0000000000305290",
+					type: "xp",
+					xp: 60
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205290",
+					item: {
+						count: 1,
+						id: "eternal_starlight:unrealium_pickaxe"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205291",
+					item: {
+						count: 1,
+						id: "eternal_starlight:unrealium_axe"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205292",
+					item: {
+						count: 1,
+						id: "eternal_starlight:unrealium_sickle"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 39.85d
+		},
+		{
+			dependencies: ["00000000001051A0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:unrealium_helmet"
+			},
+			id: "00000000001052A0",
+			rewards: [
+				{
+					id: "00000000003052A0",
+					type: "xp",
+					xp: 70
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002052A0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:unrealium_helmet"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002052A1",
+					item: {
+						count: 1,
+						id: "eternal_starlight:unrealium_chestplate"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002052A2",
+					item: {
+						count: 1,
+						id: "eternal_starlight:unrealium_leggings"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002052A3",
+					item: {
+						count: 1,
+						id: "eternal_starlight:unrealium_boots"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 41.3d
+		},
+		{
+			dependencies: ["00000000001051A0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:starfire_sword"
+			},
+			id: "00000000001052B0",
+			rewards: [
+				{
+					id: "00000000003052B0",
+					type: "xp",
+					xp: 60
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002052B0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starfire_sword"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002052B1",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starfire_crossbow"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 26.8d
+		},
+		{
+			dependencies: ["00000000001052B0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:starfire_pickaxe"
+			},
+			id: "00000000001052C0",
+			rewards: [
+				{
+					id: "00000000003052C0",
+					type: "xp",
+					xp: 60
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002052C0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starfire_pickaxe"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002052C1",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starfire_axe"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002052C2",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starfire_scythe"
+					},
+					type: "item"
+				}
+			],
+			x: 10.8d,
+			y: 34.05d
+		},
+		{
+			dependencies: ["00000000001051A0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:flowglaze_sword"
+			},
+			id: "00000000001052D0",
+			rewards: [
+				{
+					id: "00000000003052D0",
+					type: "xp",
+					xp: 60
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002052D0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:flowglaze_sword"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002052D1",
+					item: {
+						count: 1,
+						id: "eternal_starlight:flowglaze_bow"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002052D2",
+					item: {
+						count: 1,
+						id: "eternal_starlight:flowglaze_shield"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 42.75d
+		},
+		{
+			dependencies: ["00000000001051A0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:flowglaze_pickaxe"
+			},
+			id: "00000000001052E0",
+			rewards: [
+				{
+					id: "00000000003052E0",
+					type: "xp",
+					xp: 60
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002052E0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:flowglaze_pickaxe"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002052E1",
+					item: {
+						count: 1,
+						id: "eternal_starlight:flowglaze_axe"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002052E2",
+					item: {
+						count: 1,
+						id: "eternal_starlight:flowglaze_scythe"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 44.2d
+		},
+		{
+			dependencies: ["00000000001051A0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:amaramber_sword"
+			},
+			id: "00000000001052F0",
+			rewards: [
+				{
+					id: "00000000003052F0",
+					type: "xp",
+					xp: 60
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002052F0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:amaramber_sword"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 45.65d
+		},
+		{
+			dependencies: ["00000000001051A0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:amaramber_pickaxe"
+			},
+			id: "0000000000105300",
+			rewards: [
+				{
+					id: "0000000000305300",
+					type: "xp",
+					xp: 60
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205300",
+					item: {
+						count: 1,
+						id: "eternal_starlight:amaramber_pickaxe"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205301",
+					item: {
+						count: 1,
+						id: "eternal_starlight:amaramber_axe"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205302",
+					item: {
+						count: 1,
+						id: "eternal_starlight:amaramber_sickle"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 47.1d
+		},
+		{
+			dependencies: ["00000000001051A0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:starlit_diamond"
+			},
+			id: "0000000000105310",
+			rewards: [
+				{
+					id: "0000000000305310",
+					type: "xp",
+					xp: 70
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205310",
+					item: {
+						count: 1,
+						id: "eternal_starlight:amaramber_chestplate"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 29.7d
+		},
+		{
+			dependencies: ["0000000000105310"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:starfire_upgrade_smithing_template"
+			},
+			id: "0000000000105320",
+			rewards: [
+				{
+					id: "0000000000305320",
+					type: "xp",
+					xp: 60
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205320",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starfire_upgrade_smithing_template"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205321",
+					item: {
+						count: 1,
+						id: "eternal_starlight:flowglaze_upgrade_smithing_template"
+					},
+					type: "item"
+				}
+			],
+			x: 10.8d,
+			y: 35.5d
+		},
+		{
+			dependencies: ["0000000000105320"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:dagger_of_hunger"
+			},
+			id: "0000000000105330",
+			rewards: [
+				{
+					id: "0000000000305330",
+					type: "xp",
+					xp: 35
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205330",
+					item: {
+						count: 1,
+						id: "eternal_starlight:dagger_of_hunger"
+					},
+					type: "item"
+				}
+			],
+			x: 0.0d,
+			y: 68.1d
+		},
+		{
+			dependencies: ["0000000000105330"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:shattered_sword"
+			},
+			id: "0000000000105340",
+			rewards: [
+				{
+					id: "0000000000305340",
+					type: "xp",
+					xp: 35
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205340",
+					item: {
+						count: 1,
+						id: "eternal_starlight:shattered_sword"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 53.6d
+		},
+		{
+			dependencies: ["0000000000105330"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:glistering_sword"
+			},
+			id: "0000000000105350",
+			rewards: [
+				{
+					id: "0000000000305350",
+					type: "xp",
+					xp: 35
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205350",
+					item: {
+						count: 1,
+						id: "eternal_starlight:glistering_sword"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 56.5d
+		},
+		{
+			dependencies: ["0000000000105330"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:glistering_greatsword"
+			},
+			id: "0000000000105360",
+			rewards: [
+				{
+					id: "0000000000305360",
+					type: "xp",
+					xp: 35
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205360",
+					item: {
+						count: 1,
+						id: "eternal_starlight:glistering_greatsword"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 59.4d
+		},
+		{
+			dependencies: ["0000000000105330"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:glistering_bow"
+			},
+			id: "0000000000105370",
+			rewards: [
+				{
+					id: "0000000000305370",
+					type: "xp",
+					xp: 35
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205370",
+					item: {
+						count: 1,
+						id: "eternal_starlight:glistering_bow"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 62.3d
+		},
+		{
+			dependencies: ["0000000000105330"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:glistering_morning_star"
+			},
+			id: "0000000000105380",
+			rewards: [
+				{
+					id: "0000000000305380",
+					type: "xp",
+					xp: 35
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205380",
+					item: {
+						count: 1,
+						id: "eternal_starlight:glistering_morning_star"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 55.05d
+		},
+		{
+			dependencies: ["0000000000105380"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:energy_sword"
+			},
+			id: "0000000000105390",
+			rewards: [
+				{
+					id: "0000000000305390",
+					type: "xp",
+					xp: 35
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205390",
+					item: {
+						count: 1,
+						id: "eternal_starlight:energy_sword"
+					},
+					type: "item"
+				}
+			],
+			x: 4.2d,
+			y: 65.925d
+		},
+		{
+			dependencies: ["0000000000105330"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:energy_boomerang"
+			},
+			id: "00000000001053A0",
+			rewards: [
+				{
+					id: "00000000003053A0",
+					type: "xp",
+					xp: 35
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002053A0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:energy_boomerang"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 65.2d
+		},
+		{
+			dependencies: ["0000000000105330"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:golem_steel_greatsword"
+			},
+			id: "00000000001053B0",
+			rewards: [
+				{
+					id: "00000000003053B0",
+					type: "xp",
+					xp: 35
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002053B0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:golem_steel_greatsword"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 66.65d
+		},
+		{
+			dependencies: ["0000000000105330"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:mechanical_crossbow"
+			},
+			id: "00000000001053C0",
+			rewards: [
+				{
+					id: "00000000003053C0",
+					type: "xp",
+					xp: 35
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002053C0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:mechanical_crossbow"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 68.1d
+		},
+		{
+			dependencies: ["0000000000105330"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:crystal_greatsword"
+			},
+			id: "00000000001053D0",
+			rewards: [
+				{
+					id: "00000000003053D0",
+					type: "xp",
+					xp: 35
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002053D0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:crystal_greatsword"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 69.55d
+		},
+		{
+			dependencies: ["0000000000105330"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:crystal_crossbow"
+			},
+			id: "00000000001053E0",
+			rewards: [
+				{
+					id: "00000000003053E0",
+					type: "xp",
+					xp: 35
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002053E0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:crystal_crossbow"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 57.95d
+		},
+		{
+			dependencies: ["00000000001053E0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:wilted_crossbow"
+			},
+			id: "00000000001053F0",
+			rewards: [
+				{
+					id: "00000000003053F0",
+					type: "xp",
+					xp: 35
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002053F0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:wilted_crossbow"
+					},
+					type: "item"
+				}
+			],
+			x: 4.2d,
+			y: 67.375d
+		},
+		{
+			dependencies: ["0000000000105330"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:moonring_bow"
+			},
+			id: "0000000000105400",
+			rewards: [
+				{
+					id: "0000000000305400",
+					type: "xp",
+					xp: 35
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205400",
+					item: {
+						count: 1,
+						id: "eternal_starlight:moonring_bow"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 71.0d
+		},
+		{
+			dependencies: ["0000000000105330"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:moonring_greatsword"
+			},
+			id: "0000000000105410",
+			rewards: [
+				{
+					id: "0000000000305410",
+					type: "xp",
+					xp: 35
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205410",
+					item: {
+						count: 1,
+						id: "eternal_starlight:moonring_greatsword"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 72.45d
+		},
+		{
+			dependencies: ["0000000000105330"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:crescent_spear"
+			},
+			id: "0000000000105420",
+			rewards: [
+				{
+					id: "0000000000305420",
+					type: "xp",
+					xp: 35
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205420",
+					item: {
+						count: 1,
+						id: "eternal_starlight:crescent_spear"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 73.9d
+		},
+		{
+			dependencies: ["0000000000105330"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:gravity_pickaxe"
+			},
+			id: "0000000000105430",
+			rewards: [
+				{
+					id: "0000000000305430",
+					type: "xp",
+					xp: 35
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205430",
+					item: {
+						count: 1,
+						id: "eternal_starlight:gravity_pickaxe"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 75.35d
+		},
+		{
+			dependencies: ["0000000000105330"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:bow_of_blood"
+			},
+			id: "0000000000105440",
+			rewards: [
+				{
+					id: "0000000000305440",
+					type: "xp",
+					xp: 35
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205440",
+					item: {
+						count: 1,
+						id: "eternal_starlight:bow_of_blood"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 60.85d
+		},
+		{
+			dependencies: ["0000000000105440"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:coldsnap"
+			},
+			id: "0000000000105450",
+			rewards: [
+				{
+					id: "0000000000305450",
+					type: "xp",
+					xp: 35
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205450",
+					item: {
+						count: 1,
+						id: "eternal_starlight:coldsnap"
+					},
+					type: "item"
+				}
+			],
+			x: 4.2d,
+			y: 68.825d
+		},
+		{
+			dependencies: ["0000000000105330"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:candlash"
+			},
+			id: "0000000000105460",
+			rewards: [
+				{
+					id: "0000000000305460",
+					type: "xp",
+					xp: 35
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205460",
+					item: {
+						count: 1,
+						id: "eternal_starlight:candlash"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 76.8d
+		},
+		{
+			dependencies: ["0000000000105330"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:underminer"
+			},
+			id: "0000000000105470",
+			rewards: [
+				{
+					id: "0000000000305470",
+					type: "xp",
+					xp: 35
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205470",
+					item: {
+						count: 1,
+						id: "eternal_starlight:underminer"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 78.25d
+		},
+		{
+			dependencies: ["0000000000105330"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:flesh_grinder"
+			},
+			id: "0000000000105480",
+			rewards: [
+				{
+					id: "0000000000305480",
+					type: "xp",
+					xp: 35
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205480",
+					item: {
+						count: 1,
+						id: "eternal_starlight:flesh_grinder"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 79.7d
+		},
+		{
+			dependencies: ["0000000000105330"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:bonemore"
+			},
+			id: "0000000000105490",
+			rewards: [
+				{
+					id: "0000000000305490",
+					type: "xp",
+					xp: 35
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205490",
+					item: {
+						count: 1,
+						id: "eternal_starlight:bonemore"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 81.15d
+		},
+		{
+			dependencies: ["0000000000105330"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:living_arm"
+			},
+			id: "00000000001054A0",
+			rewards: [
+				{
+					id: "00000000003054A0",
+					type: "xp",
+					xp: 35
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002054A0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:living_arm"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 63.75d
+		},
+		{
+			dependencies: ["00000000001054A0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:pungency_fruit_spear"
+			},
+			id: "00000000001054B0",
+			rewards: [
+				{
+					id: "00000000003054B0",
+					type: "xp",
+					xp: 35
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002054B0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:pungency_fruit_spear"
+					},
+					type: "item"
+				}
+			],
+			x: 4.2d,
+			y: 70.275d
+		},
+		{
+			dependencies: ["0000000000105330"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:pungency_fruit_axe"
+			},
+			id: "00000000001054C0",
+			rewards: [
+				{
+					id: "00000000003054C0",
+					type: "xp",
+					xp: 35
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002054C0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:pungency_fruit_axe"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 82.6d
+		},
+		{
+			dependencies: ["00000000001054C0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:glacite_arrow"
+			},
+			id: "00000000001054D0",
+			rewards: [
+				{
+					id: "00000000003054D0",
+					type: "xp",
+					xp: 25
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002054D0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:glacite_arrow"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 57.225d
+		},
+		{
+			dependencies: ["00000000001054D0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:malarite_arrow"
+			},
+			id: "00000000001054E0",
+			rewards: [
+				{
+					id: "00000000003054E0",
+					type: "xp",
+					xp: 25
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002054E0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:malarite_arrow"
+					},
+					type: "item"
+				}
+			],
+			x: 10.8d,
+			y: 53.6d
+		},
+		{
+			dependencies: ["00000000001054D0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:amaramber_arrow"
+			},
+			id: "00000000001054F0",
+			rewards: [
+				{
+					id: "00000000003054F0",
+					type: "xp",
+					xp: 25
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002054F0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:amaramber_arrow"
+					},
+					type: "item"
+				}
+			],
+			x: 10.8d,
+			y: 56.5d
+		},
+		{
+			dependencies: ["00000000001054D0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:thioquartz_arrow"
+			},
+			id: "0000000000105500",
+			rewards: [
+				{
+					id: "0000000000305500",
+					type: "xp",
+					xp: 25
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205500",
+					item: {
+						count: 1,
+						id: "eternal_starlight:thioquartz_arrow"
+					},
+					type: "item"
+				}
+			],
+			x: 10.8d,
+			y: 57.95d
+		},
+		{
+			dependencies: ["00000000001054D0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:air_sac_arrow"
+			},
+			id: "0000000000105510",
+			rewards: [
+				{
+					id: "0000000000305510",
+					type: "xp",
+					xp: 25
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205510",
+					item: {
+						count: 1,
+						id: "eternal_starlight:air_sac_arrow"
+					},
+					type: "item"
+				}
+			],
+			x: 10.8d,
+			y: 59.4d
+		},
+		{
+			dependencies: ["00000000001054D0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:voracious_arrow"
+			},
+			id: "0000000000105520",
+			rewards: [
+				{
+					id: "0000000000305520",
+					type: "xp",
+					xp: 25
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205520",
+					item: {
+						count: 1,
+						id: "eternal_starlight:voracious_arrow"
+					},
+					type: "item"
+				}
+			],
+			x: 10.8d,
+			y: 55.05d
+		},
+		{
+			dependencies: ["0000000000105520"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:aethersent_arrow"
+			},
+			id: "0000000000105530",
+			rewards: [
+				{
+					id: "0000000000305530",
+					type: "xp",
+					xp: 25
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205530",
+					item: {
+						count: 1,
+						id: "eternal_starlight:aethersent_arrow"
+					},
+					type: "item"
+				}
+			],
+			x: 12.9d,
+			y: 57.225d
+		},
+		{
+			dependencies: ["00000000001054D0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:galactic_quiver"
+			},
+			id: "0000000000105540",
+			rewards: [
+				{
+					id: "0000000000305540",
+					type: "xp",
+					xp: 120
+				},
+				{
+					description: "Колчан полон: все семь стрел Звездосветья.",
+					id: "0000000000305541",
+					type: "toast"
+				}
+			],
+			size: 1.4d,
+			tasks: [
+				{
+					id: "0000000000205540",
+					item: {
+						count: 1,
+						id: "eternal_starlight:galactic_quiver"
+					},
+					type: "item"
+				},
+				{
+					count: 4L,
+					id: "0000000000205541",
+					item: {
+						count: 1,
+						id: "eternal_starlight:glacite_arrow"
+					},
+					type: "item"
+				},
+				{
+					count: 4L,
+					id: "0000000000205542",
+					item: {
+						count: 1,
+						id: "eternal_starlight:malarite_arrow"
+					},
+					type: "item"
+				},
+				{
+					count: 4L,
+					id: "0000000000205543",
+					item: {
+						count: 1,
+						id: "eternal_starlight:amaramber_arrow"
+					},
+					type: "item"
+				},
+				{
+					count: 4L,
+					id: "0000000000205544",
+					item: {
+						count: 1,
+						id: "eternal_starlight:thioquartz_arrow"
+					},
+					type: "item"
+				},
+				{
+					count: 4L,
+					id: "0000000000205545",
+					item: {
+						count: 1,
+						id: "eternal_starlight:air_sac_arrow"
+					},
+					type: "item"
+				},
+				{
+					count: 4L,
+					id: "0000000000205546",
+					item: {
+						count: 1,
+						id: "eternal_starlight:voracious_arrow"
+					},
+					type: "item"
+				},
+				{
+					count: 4L,
+					id: "0000000000205547",
+					item: {
+						count: 1,
+						id: "eternal_starlight:aethersent_arrow"
+					},
+					type: "item"
+				}
+			],
+			x: 10.8d,
+			y: 60.85d
+		},
+		{
+			dependencies: ["0000000000105540"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:aethersent_hood"
+			},
+			id: "0000000000105550",
+			rewards: [
+				{
+					id: "0000000000305550",
+					type: "xp",
+					xp: 80
+				}
+			],
+			size: 1.2d,
+			tasks: [
+				{
+					id: "0000000000205550",
+					item: {
+						count: 1,
+						id: "eternal_starlight:aethersent_hood"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205551",
+					item: {
+						count: 1,
+						id: "eternal_starlight:aethersent_cape"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205552",
+					item: {
+						count: 1,
+						id: "eternal_starlight:aethersent_bottoms"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205553",
+					item: {
+						count: 1,
+						id: "eternal_starlight:aethersent_boots"
+					},
+					type: "item"
+				}
+			],
+			x: 0.0d,
+			y: 89.825d
+		},
+		{
+			dependencies: ["0000000000105550"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:alchemist_mask"
+			},
+			id: "0000000000105560",
+			rewards: [
+				{
+					id: "0000000000305560",
+					type: "xp",
+					xp: 70
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205560",
+					item: {
+						count: 1,
+						id: "eternal_starlight:alchemist_mask"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205561",
+					item: {
+						count: 1,
+						id: "eternal_starlight:alchemist_robe"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205562",
+					item: {
+						count: 1,
+						id: "eternal_starlight:air_sac_boots"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 89.1d
+		},
+		{
+			dependencies: ["0000000000105550"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:keeper_armor_trim_smithing_template"
+			},
+			id: "0000000000105570",
+			rewards: [
+				{
+					id: "0000000000305570",
+					type: "xp",
+					xp: 60
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205570",
+					item: {
+						count: 1,
+						id: "eternal_starlight:keeper_armor_trim_smithing_template"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205571",
+					item: {
+						count: 1,
+						id: "eternal_starlight:forge_armor_trim_smithing_template"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205572",
+					item: {
+						count: 1,
+						id: "eternal_starlight:blooming_armor_trim_smithing_template"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205573",
+					item: {
+						count: 1,
+						id: "eternal_starlight:twining_armor_trim_smithing_template"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 90.55d
+		},
+		{
+			dependencies: ["0000000000105570"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:lunar_berries"
+			},
+			id: "0000000000105580",
+			rewards: [
+				{
+					id: "0000000000305580",
+					type: "xp",
+					xp: 50
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205580",
+					item: {
+						count: 1,
+						id: "eternal_starlight:lunar_berries"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205581",
+					item: {
+						count: 1,
+						id: "eternal_starlight:pungency_fruit"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205582",
+					item: {
+						count: 1,
+						id: "eternal_starlight:silver_pungency_fruit"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205583",
+					item: {
+						count: 1,
+						id: "eternal_starlight:crinoa"
+					},
+					type: "item"
+				}
+			],
+			x: 6.6d,
+			y: 97.8d
+		},
+		{
+			dependencies: ["0000000000105580"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:nocturnal_millet"
+			},
+			id: "0000000000105590",
+			rewards: [
+				{
+					id: "0000000000305590",
+					type: "xp",
+					xp: 50
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205590",
+					item: {
+						count: 1,
+						id: "eternal_starlight:nocturnal_millet"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205591",
+					item: {
+						count: 1,
+						id: "eternal_starlight:forgotten_nocturnal_millet"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205592",
+					item: {
+						count: 1,
+						id: "eternal_starlight:roasted_forgotten_nocturnal_millet"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205593",
+					item: {
+						count: 1,
+						id: "eternal_starlight:crinoa_porridge"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 89.1d
+		},
+		{
+			dependencies: ["0000000000105580"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:rookfish"
+			},
+			id: "00000000001055A0",
+			rewards: [
+				{
+					id: "00000000003055A0",
+					type: "xp",
+					xp: 50
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002055A0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:rookfish"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002055A1",
+					item: {
+						count: 1,
+						id: "eternal_starlight:rookfish_skewer"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002055A2",
+					item: {
+						count: 1,
+						id: "eternal_starlight:rotten_flesh_jerky"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002055A3",
+					item: {
+						count: 1,
+						id: "eternal_starlight:rotten_ham"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002055A4",
+					item: {
+						count: 1,
+						id: "eternal_starlight:shadow_escargot"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002055A5",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starfire_bird_egg"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 92.0d
+		},
+		{
+			dependencies: ["0000000000105580"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:bouldershroom_stew"
+			},
+			id: "00000000001055B0",
+			rewards: [
+				{
+					id: "00000000003055B0",
+					type: "xp",
+					xp: 50
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002055B0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:bouldershroom_stew"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002055B1",
+					item: {
+						count: 1,
+						id: "eternal_starlight:jinglestem_sandwich"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002055B2",
+					item: {
+						count: 1,
+						id: "eternal_starlight:jinglestem_crisp"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 94.9d
+		},
+		{
+			dependencies: ["0000000000105580"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:butterfly_wings_amulet"
+			},
+			id: "00000000001055C0",
+			rewards: [
+				{
+					id: "00000000003055C0",
+					type: "xp",
+					xp: 50
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002055C0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:butterfly_wings_amulet"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002055C1",
+					item: {
+						count: 1,
+						id: "eternal_starlight:fungus_amulet"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002055C2",
+					item: {
+						count: 1,
+						id: "eternal_starlight:crescent_pendant"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 96.35d
+		},
+		{
+			dependencies: ["0000000000105580"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:battleaxe_pendant"
+			},
+			id: "00000000001055D0",
+			rewards: [
+				{
+					id: "00000000003055D0",
+					type: "xp",
+					xp: 50
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002055D0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:battleaxe_pendant"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002055D1",
+					item: {
+						count: 1,
+						id: "eternal_starlight:warhammer_pendant"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 90.55d
+		},
+		{
+			dependencies: ["00000000001055D0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:chain_of_souls"
+			},
+			id: "00000000001055E0",
+			rewards: [
+				{
+					id: "00000000003055E0",
+					type: "xp",
+					xp: 50
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002055E0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:chain_of_souls"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002055E1",
+					item: {
+						count: 1,
+						id: "eternal_starlight:soulit_spectator"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002055E2",
+					item: {
+						count: 1,
+						id: "eternal_starlight:orb_of_prophecy"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002055E3",
+					item: {
+						count: 1,
+						id: "eternal_starlight:blossom_of_stars"
+					},
+					type: "item"
+				}
+			],
+			x: 10.8d,
+			y: 97.075d
+		},
+		{
+			dependencies: ["0000000000105580"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:book"
+			},
+			id: "00000000001055F0",
+			rewards: [
+				{
+					id: "00000000003055F0",
+					type: "xp",
+					xp: 50
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002055F0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:book"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002055F1",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starlit_painting"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002055F2",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starlight_silver_coin"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002055F3",
+					item: {
+						count: 1,
+						id: "eternal_starlight:seeking_eye"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 97.8d
+		},
+		{
+			dependencies: ["0000000000105580"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:sonar_bomb"
+			},
+			id: "0000000000105600",
+			rewards: [
+				{
+					id: "0000000000305600",
+					type: "xp",
+					xp: 50
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205600",
+					item: {
+						count: 1,
+						id: "eternal_starlight:sonar_bomb"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205601",
+					item: {
+						count: 1,
+						id: "eternal_starlight:tear_bomb"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205602",
+					item: {
+						count: 1,
+						id: "eternal_starlight:frozen_bomb"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205603",
+					item: {
+						count: 1,
+						id: "eternal_starlight:frozen_tube"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205604",
+					item: {
+						count: 1,
+						id: "eternal_starlight:ashen_snowball"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205605",
+					item: {
+						count: 1,
+						id: "eternal_starlight:aetherstrike_rocket"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 99.25d
+		},
+		{
+			dependencies: ["0000000000105580"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:saltpeter_matchbox"
+			},
+			id: "0000000000105610",
+			rewards: [
+				{
+					id: "0000000000305610",
+					type: "xp",
+					xp: 50
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205610",
+					item: {
+						count: 1,
+						id: "eternal_starlight:saltpeter_matchbox"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205611",
+					item: {
+						count: 1,
+						id: "eternal_starlight:tenacious_vine"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205612",
+					item: {
+						count: 1,
+						id: "eternal_starlight:shadow_snail_shell"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205613",
+					item: {
+						count: 1,
+						id: "eternal_starlight:shadow_snail_shell_powder"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 100.7d
+		},
+		{
+			dependencies: ["0000000000105580"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:music_disc_deep_blue"
+			},
+			id: "0000000000105620",
+			rewards: [
+				{
+					id: "0000000000305620",
+					type: "xp",
+					xp: 110
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205620",
+					item: {
+						count: 1,
+						id: "eternal_starlight:music_disc_deep_blue"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205621",
+					item: {
+						count: 1,
+						id: "eternal_starlight:music_disc_fake_light"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205622",
+					item: {
+						count: 1,
+						id: "eternal_starlight:music_disc_les_iles_du_ciel"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205623",
+					item: {
+						count: 1,
+						id: "eternal_starlight:music_disc_nest_ii"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205624",
+					item: {
+						count: 1,
+						id: "eternal_starlight:music_disc_optimized_option"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205625",
+					item: {
+						count: 1,
+						id: "eternal_starlight:music_disc_solaris"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205626",
+					item: {
+						count: 1,
+						id: "eternal_starlight:music_disc_the_dark_side"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205627",
+					item: {
+						count: 1,
+						id: "eternal_starlight:music_disc_viridescent"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 102.15d
+		},
+		{
+			dependencies: ["0000000000105580"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:music_disc_stars_shining_upon_the_sea"
+			},
+			id: "0000000000105630",
+			rewards: [
+				{
+					id: "0000000000305630",
+					type: "xp",
+					xp: 40
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205630",
+					item: {
+						count: 1,
+						id: "eternal_starlight:music_disc_stars_shining_upon_the_sea"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 93.45d
+		},
+		{
+			dependencies: ["0000000000105630"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:music_disc_ether_rain"
+			},
+			id: "0000000000105640",
+			rewards: [
+				{
+					id: "0000000000305640",
+					type: "xp",
+					xp: 60
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205640",
+					item: {
+						count: 1,
+						id: "eternal_starlight:music_disc_ether_rain"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205641",
+					item: {
+						count: 1,
+						id: "eternal_starlight:music_disc_tranquility"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205642",
+					item: {
+						count: 1,
+						id: "eternal_starlight:music_disc_tranquility_ii"
+					},
+					type: "item"
+				}
+			],
+			x: 10.8d,
+			y: 98.525d
+		},
+		{
+			dependencies: ["0000000000105580"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:music_disc_brisk"
+			},
+			id: "0000000000105650",
+			rewards: [
+				{
+					id: "0000000000305650",
+					type: "xp",
+					xp: 90
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205650",
+					item: {
+						count: 1,
+						id: "eternal_starlight:music_disc_brisk"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205651",
+					item: {
+						count: 1,
+						id: "eternal_starlight:music_disc_moonlight"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205652",
+					item: {
+						count: 1,
+						id: "eternal_starlight:music_disc_nest"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205653",
+					item: {
+						count: 1,
+						id: "eternal_starlight:music_disc_profundity"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205654",
+					item: {
+						count: 1,
+						id: "eternal_starlight:music_disc_sacred_desert"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205655",
+					item: {
+						count: 1,
+						id: "eternal_starlight:music_disc_spirit"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 103.6d
+		},
+		{
+			dependencies: ["0000000000105580"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:music_disc_mechanical_fossil"
+			},
+			id: "0000000000105660",
+			rewards: [
+				{
+					id: "0000000000305660",
+					type: "xp",
+					xp: 50
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205660",
+					item: {
+						count: 1,
+						id: "eternal_starlight:music_disc_mechanical_fossil"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205661",
+					item: {
+						count: 1,
+						id: "eternal_starlight:music_disc_wailing_well"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 105.05d
+		},
+		{
+			dependencies: ["0000000000105580"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:music_disc_dusk_o_ereyesterday"
+			},
+			id: "0000000000105670",
+			rewards: [
+				{
+					id: "0000000000305670",
+					type: "xp",
+					xp: 70
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205670",
+					item: {
+						count: 1,
+						id: "eternal_starlight:music_disc_dusk_o_ereyesterday"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205671",
+					item: {
+						count: 1,
+						id: "eternal_starlight:music_disc_posterity"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205672",
+					item: {
+						count: 1,
+						id: "eternal_starlight:music_disc_the_thorny_reign"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205673",
+					item: {
+						count: 1,
+						id: "eternal_starlight:music_disc_whisper_of_the_stars"
+					},
+					type: "item"
+				}
+			],
+			x: 8.7d,
+			y: 106.5d
+		},
+		{
+			dependencies: ["0000000000105140", "0000000000105320", "0000000000105540", "0000000000105670"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:red_starlight_crystal_lantern"
+			},
+			id: "0000000000105680",
+			rewards: [
+				{
+					id: "0000000000305680",
+					type: "xp",
+					xp: 70
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205680",
+					item: {
+						count: 1,
+						id: "eternal_starlight:red_starlight_crystal_lantern"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205681",
+					item: {
+						count: 1,
+						id: "eternal_starlight:blue_starlight_crystal_lantern"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205682",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starcore_light"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205683",
+					item: {
+						count: 1,
+						id: "eternal_starlight:orbflora_light"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205684",
+					item: {
+						count: 1,
+						id: "eternal_starlight:reinforced_dusk_light"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205685",
+					item: {
+						count: 1,
+						id: "eternal_starlight:dusk_light"
+					},
+					type: "item"
+				}
+			],
+			x: 0.0d,
+			y: 123.15d
+		},
+		{
+			dependencies: ["0000000000105680"],
+			icon: {
+				count: 1,
+				id: "kubejs:star_lantern"
+			},
+			id: "0000000000105690",
+			rewards: [
+				{
+					id: "0000000000305690",
+					type: "xp",
+					xp: 80
+				},
+				{
+					description: "Фонарь зажжён: ночь больше не темнее тебя.",
+					id: "0000000000305691",
+					type: "toast"
+				}
+			],
+			size: 1.3d,
+			tasks: [
+				{
+					id: "0000000000205690",
+					item: {
+						count: 1,
+						id: "kubejs:star_lantern"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 113.0d
+		},
+		{
+			dependencies: ["0000000000105680"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:sacred_starlight_flower"
+			},
+			id: "00000000001056A0",
+			rewards: [
+				{
+					id: "00000000003056A0",
+					type: "xp",
+					xp: 70
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002056A0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:sacred_starlight_flower"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056A1",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starlight_flower"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056A2",
+					item: {
+						count: 1,
+						id: "eternal_starlight:whisperbloom"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056A3",
+					item: {
+						count: 1,
+						id: "eternal_starlight:fire_orchid"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056A4",
+					item: {
+						count: 1,
+						id: "eternal_starlight:sea_rosa"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056A5",
+					item: {
+						count: 1,
+						id: "eternal_starlight:orbflora"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056A6",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starlight_torchflower"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056A7",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starlit_lily_pad"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 115.9d
+		},
+		{
+			dependencies: ["0000000000105680"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:white_yeti_fur"
+			},
+			id: "00000000001056B0",
+			rewards: [
+				{
+					id: "00000000003056B0",
+					type: "xp",
+					xp: 70
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002056B0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:white_yeti_fur"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056B1",
+					item: {
+						count: 1,
+						id: "eternal_starlight:orange_yeti_fur"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056B2",
+					item: {
+						count: 1,
+						id: "eternal_starlight:pink_yeti_fur"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056B3",
+					item: {
+						count: 1,
+						id: "eternal_starlight:purple_yeti_fur"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056B4",
+					item: {
+						count: 1,
+						id: "eternal_starlight:red_yeti_fur"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056B5",
+					item: {
+						count: 1,
+						id: "eternal_starlight:yellow_yeti_fur"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056B6",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starfire_bird_nest"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056B7",
+					item: {
+						count: 1,
+						id: "eternal_starlight:oak_starfire_bird_aviary"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 118.8d
+		},
+		{
+			dependencies: ["0000000000105680"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:lunar_boat"
+			},
+			id: "00000000001056C0",
+			rewards: [
+				{
+					id: "00000000003056C0",
+					type: "xp",
+					xp: 60
+				}
+			],
+			size: 1.2d,
+			tasks: [
+				{
+					id: "00000000002056C0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:lunar_boat"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056C1",
+					item: {
+						count: 1,
+						id: "eternal_starlight:lunar_chest_boat"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056C2",
+					item: {
+						count: 1,
+						id: "eternal_starlight:northland_boat"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056C3",
+					item: {
+						count: 1,
+						id: "eternal_starlight:northland_chest_boat"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056C4",
+					item: {
+						count: 1,
+						id: "eternal_starlight:banyin_boat"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056C5",
+					item: {
+						count: 1,
+						id: "eternal_starlight:banyin_chest_boat"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 120.25d
+		},
+		{
+			dependencies: ["0000000000105680"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:scarlet_boat"
+			},
+			id: "00000000001056D0",
+			rewards: [
+				{
+					id: "00000000003056D0",
+					type: "xp",
+					xp: 60
+				}
+			],
+			size: 1.2d,
+			tasks: [
+				{
+					id: "00000000002056D0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:scarlet_boat"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056D1",
+					item: {
+						count: 1,
+						id: "eternal_starlight:scarlet_chest_boat"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056D2",
+					item: {
+						count: 1,
+						id: "eternal_starlight:torreya_boat"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056D3",
+					item: {
+						count: 1,
+						id: "eternal_starlight:torreya_chest_boat"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056D4",
+					item: {
+						count: 1,
+						id: "eternal_starlight:jinglestem_raft"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056D5",
+					item: {
+						count: 1,
+						id: "eternal_starlight:jinglestem_chest_raft"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056D6",
+					item: {
+						count: 1,
+						id: "eternal_starlight:cradlewood_boat"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056D7",
+					item: {
+						count: 1,
+						id: "eternal_starlight:cradlewood_chest_boat"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 114.45d
+		},
+		{
+			dependencies: ["00000000001056D0"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:abyssal_fruit"
+			},
+			id: "00000000001056E0",
+			rewards: [
+				{
+					id: "00000000003056E0",
+					type: "xp",
+					xp: 45
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002056E0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:abyssal_fruit"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056E1",
+					item: {
+						count: 1,
+						id: "eternal_starlight:aethersent_nugget"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056E2",
+					item: {
+						count: 1,
+						id: "eternal_starlight:air_sac_mask"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056E3",
+					item: {
+						count: 1,
+						id: "eternal_starlight:amaramber_hoe"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056E4",
+					item: {
+						count: 1,
+						id: "eternal_starlight:amaramber_ingot"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056E5",
+					item: {
+						count: 1,
+						id: "eternal_starlight:amaramber_mask"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056E6",
+					item: {
+						count: 1,
+						id: "eternal_starlight:amaramber_nugget"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056E7",
+					item: {
+						count: 1,
+						id: "eternal_starlight:amaramber_shovel"
+					},
+					type: "item"
+				}
+			],
+			x: 4.2d,
+			y: 122.425d
+		},
+		{
+			dependencies: ["0000000000105680"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:aurora_deer_antler"
+			},
+			id: "00000000001056F0",
+			rewards: [
+				{
+					id: "00000000003056F0",
+					type: "xp",
+					xp: 45
+				}
+			],
+			tasks: [
+				{
+					id: "00000000002056F0",
+					item: {
+						count: 1,
+						id: "eternal_starlight:aurora_deer_antler"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056F1",
+					item: {
+						count: 1,
+						id: "eternal_starlight:aurora_deer_steak"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056F2",
+					item: {
+						count: 1,
+						id: "eternal_starlight:blue_starlight_crystal_shard"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056F3",
+					item: {
+						count: 1,
+						id: "eternal_starlight:broken_doomeden_bone"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056F4",
+					item: {
+						count: 1,
+						id: "eternal_starlight:cinder_brick"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056F5",
+					item: {
+						count: 1,
+						id: "eternal_starlight:cooked_aurora_deer_steak"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056F6",
+					item: {
+						count: 1,
+						id: "eternal_starlight:cooked_luminaris"
+					},
+					type: "item"
+				},
+				{
+					id: "00000000002056F7",
+					item: {
+						count: 1,
+						id: "eternal_starlight:cooked_luminofish"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 121.7d
+		},
+		{
+			dependencies: ["0000000000105680"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:cooked_ratlin_meat"
+			},
+			id: "0000000000105700",
+			rewards: [
+				{
+					id: "0000000000305700",
+					type: "xp",
+					xp: 45
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205700",
+					item: {
+						count: 1,
+						id: "eternal_starlight:cooked_ratlin_meat"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205701",
+					item: {
+						count: 1,
+						id: "eternal_starlight:cooked_rookfish"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205702",
+					item: {
+						count: 1,
+						id: "eternal_starlight:cooked_shadow_snail_meat"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205703",
+					item: {
+						count: 1,
+						id: "eternal_starlight:creteor_hide"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205704",
+					item: {
+						count: 1,
+						id: "eternal_starlight:crinoa_seeds"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205705",
+					item: {
+						count: 1,
+						id: "eternal_starlight:deepsilver_hoe"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205706",
+					item: {
+						count: 1,
+						id: "eternal_starlight:deepsilver_nugget"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205707",
+					item: {
+						count: 1,
+						id: "eternal_starlight:deepsilver_shovel"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 123.15d
+		},
+		{
+			dependencies: ["0000000000105680"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:doomeden_carrion"
+			},
+			id: "0000000000105710",
+			rewards: [
+				{
+					id: "0000000000305710",
+					type: "xp",
+					xp: 45
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205710",
+					item: {
+						count: 1,
+						id: "eternal_starlight:doomeden_carrion"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205711",
+					item: {
+						count: 1,
+						id: "eternal_starlight:doomeden_rag"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205712",
+					item: {
+						count: 1,
+						id: "eternal_starlight:doomeden_rapier"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205713",
+					item: {
+						count: 1,
+						id: "eternal_starlight:ether_bucket"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205714",
+					item: {
+						count: 1,
+						id: "eternal_starlight:etheric_eye"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205715",
+					item: {
+						count: 1,
+						id: "eternal_starlight:eye_of_doom"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205716",
+					item: {
+						count: 1,
+						id: "eternal_starlight:flare_brick"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205717",
+					item: {
+						count: 1,
+						id: "eternal_starlight:flowglaze_hoe"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 124.6d
+		},
+		{
+			dependencies: ["0000000000105680"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:flowglaze_shovel"
+			},
+			id: "0000000000105720",
+			rewards: [
+				{
+					id: "0000000000305720",
+					type: "xp",
+					xp: 45
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205720",
+					item: {
+						count: 1,
+						id: "eternal_starlight:flowglaze_shovel"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205721",
+					item: {
+						count: 1,
+						id: "eternal_starlight:glacite_hoe"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205722",
+					item: {
+						count: 1,
+						id: "eternal_starlight:glacite_shovel"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205723",
+					item: {
+						count: 1,
+						id: "eternal_starlight:gleech_egg"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205724",
+					item: {
+						count: 1,
+						id: "eternal_starlight:golem_steel_nugget"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205725",
+					item: {
+						count: 1,
+						id: "eternal_starlight:loot_bag"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205726",
+					item: {
+						count: 1,
+						id: "eternal_starlight:luminaris"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205727",
+					item: {
+						count: 1,
+						id: "eternal_starlight:luminaris_bucket"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 126.05d
+		},
+		{
+			dependencies: ["0000000000105680"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:luminofish"
+			},
+			id: "0000000000105730",
+			rewards: [
+				{
+					id: "0000000000305730",
+					type: "xp",
+					xp: 45
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205730",
+					item: {
+						count: 1,
+						id: "eternal_starlight:luminofish"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205731",
+					item: {
+						count: 1,
+						id: "eternal_starlight:luminofish_bucket"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205732",
+					item: {
+						count: 1,
+						id: "eternal_starlight:lunaris_cactus_fruit"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205733",
+					item: {
+						count: 1,
+						id: "eternal_starlight:malarite_hoe"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205734",
+					item: {
+						count: 1,
+						id: "eternal_starlight:malarite_shovel"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205735",
+					item: {
+						count: 1,
+						id: "eternal_starlight:nightfall_spider_eye"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205736",
+					item: {
+						count: 1,
+						id: "eternal_starlight:nocturnal_millet_seeds"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205737",
+					item: {
+						count: 1,
+						id: "eternal_starlight:oxidized_golem_steel_ingot"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 117.35d
+		},
+		{
+			dependencies: ["0000000000105730"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:oxidized_golem_steel_nugget"
+			},
+			id: "0000000000105740",
+			rewards: [
+				{
+					id: "0000000000305740",
+					type: "xp",
+					xp: 45
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205740",
+					item: {
+						count: 1,
+						id: "eternal_starlight:oxidized_golem_steel_nugget"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205741",
+					item: {
+						count: 1,
+						id: "eternal_starlight:pearl_necklace"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205742",
+					item: {
+						count: 1,
+						id: "eternal_starlight:petal_scythe"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205743",
+					item: {
+						count: 1,
+						id: "eternal_starlight:popped_nocturnal_millet_bucket"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205744",
+					item: {
+						count: 1,
+						id: "eternal_starlight:pungency_fruit_seeds"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205745",
+					item: {
+						count: 1,
+						id: "eternal_starlight:pungency_fruit_upgrade_smithing_template"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205746",
+					item: {
+						count: 1,
+						id: "eternal_starlight:pungency_stew"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205747",
+					item: {
+						count: 1,
+						id: "eternal_starlight:rage_of_stars"
+					},
+					type: "item"
+				}
+			],
+			x: 4.2d,
+			y: 123.875d
+		},
+		{
+			dependencies: ["0000000000105680"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:ratlin_meat"
+			},
+			id: "0000000000105750",
+			rewards: [
+				{
+					id: "0000000000305750",
+					type: "xp",
+					xp: 45
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205750",
+					item: {
+						count: 1,
+						id: "eternal_starlight:ratlin_meat"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205751",
+					item: {
+						count: 1,
+						id: "eternal_starlight:raw_aethersent"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205752",
+					item: {
+						count: 1,
+						id: "eternal_starlight:raw_deepsilver"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205753",
+					item: {
+						count: 1,
+						id: "eternal_starlight:red_starlight_crystal_shard"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205754",
+					item: {
+						count: 1,
+						id: "eternal_starlight:rookfish_air_sac"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205755",
+					item: {
+						count: 1,
+						id: "eternal_starlight:rookfish_bucket"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205756",
+					item: {
+						count: 1,
+						id: "eternal_starlight:seeds_launcher"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205757",
+					item: {
+						count: 1,
+						id: "eternal_starlight:seeker_tentacle"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 127.5d
+		},
+		{
+			dependencies: ["0000000000105680"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:shadow_snail_meat"
+			},
+			id: "0000000000105760",
+			rewards: [
+				{
+					id: "0000000000305760",
+					type: "xp",
+					xp: 45
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205760",
+					item: {
+						count: 1,
+						id: "eternal_starlight:shadow_snail_meat"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205761",
+					item: {
+						count: 1,
+						id: "eternal_starlight:shadow_snail_pie"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205762",
+					item: {
+						count: 1,
+						id: "eternal_starlight:shattered_sword_blade"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205763",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starfall_longbow"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205764",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starfire_hammer"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205765",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starfire_hoe"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205766",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starfire_shovel"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205767",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starlit_diamond_hoe"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 128.95d
+		},
+		{
+			dependencies: ["0000000000105680"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:starlit_diamond_shovel"
+			},
+			id: "0000000000105770",
+			rewards: [
+				{
+					id: "0000000000305770",
+					type: "xp",
+					xp: 45
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205770",
+					item: {
+						count: 1,
+						id: "eternal_starlight:starlit_diamond_shovel"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205771",
+					item: {
+						count: 1,
+						id: "eternal_starlight:tear_bomb_minecart"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205772",
+					item: {
+						count: 1,
+						id: "eternal_starlight:tenacious_petal"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205773",
+					item: {
+						count: 1,
+						id: "eternal_starlight:tentacle_spike"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205774",
+					item: {
+						count: 1,
+						id: "eternal_starlight:thermal_springstone_hammer"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205775",
+					item: {
+						count: 1,
+						id: "eternal_starlight:thermal_springstone_hoe"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205776",
+					item: {
+						count: 1,
+						id: "eternal_starlight:thermal_springstone_ingot"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205777",
+					item: {
+						count: 1,
+						id: "eternal_starlight:thermal_springstone_shovel"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 130.4d
+		},
+		{
+			dependencies: ["0000000000105680"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:tooth_of_hunger"
+			},
+			id: "0000000000105780",
+			rewards: [
+				{
+					id: "0000000000305780",
+					type: "xp",
+					xp: 45
+				}
+			],
+			tasks: [
+				{
+					id: "0000000000205780",
+					item: {
+						count: 1,
+						id: "eternal_starlight:tooth_of_hunger"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205781",
+					item: {
+						count: 1,
+						id: "eternal_starlight:unrealium_hoe"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205782",
+					item: {
+						count: 1,
+						id: "eternal_starlight:unrealium_nugget"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205783",
+					item: {
+						count: 1,
+						id: "eternal_starlight:unrealium_shovel"
+					},
+					type: "item"
+				},
+				{
+					id: "0000000000205784",
+					item: {
+						count: 1,
+						id: "eternal_starlight:wand_of_teleportation"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 131.85d
+		},
+		{
+			dependencies: ["0000000000105680"],
+			icon: {
+				count: 1,
+				id: "eternal_starlight:blossom_of_stars"
+			},
+			id: "0000000000105790",
+			rewards: [
+				{
+					id: "0000000000305790",
+					type: "xp_levels",
+					xp_levels: 30
+				},
+				{
+					id: "0000000000305791",
+					item: {
+						count: 1,
+						id: "kubejs:quest_token_premium"
+					},
+					type: "item"
+				},
+				{
+					description: "Вечное Звездосветье познано: оружие, звери, биомы и боссы — всё твоё.",
+					id: "0000000000305792",
+					type: "toast"
+				}
+			],
+			size: 1.8d,
+			tasks: [
+				{
+					id: "0000000000205790",
+					item: {
+						count: 1,
+						id: "eternal_starlight:blossom_of_stars"
+					},
+					type: "item"
+				}
+			],
+			x: 2.1d,
+			y: 133.3d
+		}
+	]
+}

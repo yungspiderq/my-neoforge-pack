@@ -1,0 +1,8 @@
+##[general]
+B:play_vanilla_menu_music=true;
+I:default_gui_scale=-1;
+B:force_fullscreen=false;
+##[customization]
+B:advanced_customization_mode=false;
+B:show_customization_overlay=true;
+B:modpack_mode=true;
