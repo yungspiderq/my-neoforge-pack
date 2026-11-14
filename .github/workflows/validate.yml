@@ -24,6 +24,7 @@ jobs:
           python scripts/resolve_modrinth.py
           python scripts/pin_ftb_xmod.py
           python scripts/gen_quests.py
+          python scripts/gen_menu.py
           python scripts/check_questbook.py
           python scripts/pack.py refresh
           python scripts/pack.py validate

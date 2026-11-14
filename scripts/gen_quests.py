@@ -1,263 +1,500 @@
 #!/usr/bin/env python3
-"""Deterministic FTB Quests 1.21.1 SNBT + original art + KubeJS integration.
+"""Chronicles 0.4: 24 non-linear FTB Quests chapters, localized & illustrated.
 
-14 connected chapters, 18 quests each + optional sidequest, RU/EN.
-FTB Quests data version 13. Python 3.11+, Pillow for drawing.
+Preserves all existing 14 chapter IDs and the first 18 quest IDs in each.
+Adds unique branch maps, custom tasks, milestone rewards and 10 new chapters.
 """
-import argparse
+from __future__ import annotations
+
 import json
 import math
+import random
 import re
 from pathlib import Path
-
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parent.parent
-BASE = ROOT / "config/ftbquests/quests"
+QROOT = ROOT / "config/ftbquests/quests"
 ART = ROOT / "kubejs/assets/kubejs/textures/gui/quests"
 ITEM_ART = ROOT / "kubejs/assets/kubejs/textures/item"
-SCRIPTS = ROOT / "kubejs/server_scripts"
-CHAPTERS = json.loads((ROOT / "scripts/quest_chapters.json").read_text(encoding="utf-8"))
-CUSTOM_CHAPTERS = {"wilderness": "storm"}
+SERVER_SCRIPTS = ROOT / "kubejs/server_scripts"
+BASE = json.loads((ROOT/"scripts/quest_chapters.json").read_text(encoding="utf-8"))
+EXP = json.loads((ROOT/"scripts/quest_expansion.json").read_text(encoding="utf-8"))
 
-class Byte(int):
-    pass
-class Long(int):
-    pass
-class Double(float):
-    pass
+class Byte(int): pass
+class Long(int): pass
+class Double(float): pass
 
-def quote(s):
-    return json.dumps(s, ensure_ascii=False)
+def val(x):
+    return json.dumps(x, ensure_ascii=False)
 
-def snbt(data, level=0):
-    tab = "\t" * level
-    if isinstance(data, dict):
-        if not data:
-            return "{ }"
-        rows = [tab + "\t" + (k if re.fullmatch(r"[A-Za-z_][a-zA-Z0-9_]*", k) else quote(k))
-                + ": " + snbt(v, level+1) for k,v in data.items()]
-        return "{\n" + ",\n".join(rows) + "\n" + tab + "}"
-    if isinstance(data, list):
-        if not data: return "[ ]"
-        return "[\n" + ",\n".join(tab + "\t" + snbt(x, level+1) for x in data) + "\n" + tab + "]"
-    if isinstance(data, Byte): return f"{int(data)}b"
-    if isinstance(data, Long): return f"{int(data)}L"
-    if isinstance(data, Double): return f"{float(data):.3f}d"
-    if isinstance(data, bool): return "1b" if data else "0b"
-    if isinstance(data, int): return str(data)
-    if isinstance(data, float): return f"{data:.3f}d"
-    return quote(str(data))
+def snbt(x, depth=0):
+    t = "\t" * depth
+    if isinstance(x, dict):
+        if not x: return "{ }"
+        bits = []
+        for k,v in x.items():
+            tag = k if re.fullmatch(r"[A-Za-z_][A-Za-z_0-9]*",k) else val(k)
+            bits.append(t+"\t"+tag+": "+snbt(v,depth+1))
+        return "{\n"+",\n".join(bits)+"\n"+t+"}"
+    if isinstance(x,list):
+        if not x:return "[ ]"
+        return "[\n"+",\n".join(t+"\t"+snbt(v,depth+1) for v in x)+"\n"+t+"]"
+    if isinstance(x,Byte):return f"{int(x)}b"
+    if isinstance(x,Long):return f"{int(x)}L"
+    if isinstance(x,Double):return f"{float(x):.3f}d"
+    if isinstance(x,bool):return "1b" if x else "0b"
+    if isinstance(x,int):return str(x)
+    if isinstance(x,float):return f"{x:.3f}d"
+    return val(str(x))
 
-def uid(kind, ci, seq=0):
-    """All FTB IDs: unique 16-char uppercase signed-positive hex."""
-    assert 0 <= ci < 255 and 0 <= seq < 4096
-    return f"{((0x71+kind) << 56) | ((ci+1) << 32) | seq:016X}"
+def uid(kind, chapter, seq=0):
+    assert 0<=chapter<255 and 0<=seq<4096
+    return f"{((0x71+kind)<<56)|((chapter+1)<<32)|seq:016X}"
 
-def stack(item, count=1):
-    return {"count": 1, "id": item}
+def itemstack(item):return {"count":1,"id":item}
 
-def objective(raw, task_id):
-    if raw.startswith("dim:"):
-        item = raw[4:]
-        return {"id": task_id, "type": "dimension", "dimension": item}
-    if raw.startswith("kill:"):
-        item = raw[5:]
-        return {"id": task_id, "type": "kill", "entity": item, "value": Long(1)}
-    if raw.startswith("xp:"):
-        return {"id": task_id, "type": "xp", "value": Long(int(raw[3:]))}
-    item = raw
-    return {"id": task_id, "type": "item", "item": stack(item)}
+def title_en(obj):
+    if obj.startswith("biome:"):
+        return "Explore "+obj.split(":")[-1].replace("_"," ").title()
+    if obj.startswith("structure:"):
+        return "Discover "+obj.split(":")[-1].replace("_"," ").title()
+    if obj.startswith("adv:"):
+        return "Advancement: "+obj.split("/")[-1].replace("_"," ").title()
+    if obj.startswith("dim:"):
+        return "Enter "+obj.split(":")[-1].replace("_"," ").title()
+    if obj.startswith("xp:"):
+        return "Reach level "+obj.split(":")[-1]
+    if obj=="check":return "Milestone"
+    return obj.split(":")[-1].replace("_"," ").title()
 
-def english(raw):
-    if raw.startswith("dim:"): return "Enter " + raw[4:].split(":")[-1].replace("_"," ").title()
-    if raw.startswith("kill:"): return "Defeat " + raw[5:].split(":")[-1].replace("_"," ").title()
-    if raw.startswith("xp:"): return "Reach level " + raw[3:]
-    return raw.split(":")[-1].replace("_", " ").title()
+def parse_entry(text):
+    parts=text.split("|",2)
+    if len(parts)<2:raise ValueError("Expected id|Russian title: "+text)
+    raw,ru=parts[:2]
+    en=parts[2] if len(parts)>2 else title_en(raw)
+    return {"raw":raw,"ru":ru,"en":en}
 
-def png_for_chapter(key, title, rgb, ordinal):
-    from PIL import ImageColor
-    main = ImageColor.getrgb(rgb)
-    w,h = 768,184
-    img = Image.new("RGBA",(w,h),(0,0,0,0))
-    pixels = img.load()
-    for y in range(h):
-        for x in range(w):
-            glow = max(0, 1-abs(x-0.73*w)/(0.85*w))
-            wave = 0.07*math.sin((x+y)*0.033+ordinal)
-            t=0.13 + 0.34*(x/w)+0.22*(1-y/h)+0.24*glow + wave
-            pixels[x,y] = tuple(int(min(255,max(0,c*t))) for c in main)+(247,)
-    dr=ImageDraw.Draw(img,"RGBA")
-    dr.rectangle((4,4,w-5,h-5),outline=(*main,225),width=4)
-    dr.line((16,h-26,w-16,h-26),fill=(*main,190),width=3)
-    # Mechanical diagram motifs: planetary ring, travel lines and schematic grid.
-    for x in range(18,w,48):
-        dr.line((x,12,x,h-13),fill=(240,235,209,18),width=1)
-    for y in range(22,h,38):
-        dr.line((12,y,w-13,y),fill=(240,235,209,18),width=1)
-    cx,cy=w-145,84
-    for radius,alpha in [(65,70),(48,115),(23,175)]:
-        dr.ellipse((cx-radius,cy-radius,cx+radius,cy+radius),outline=(*main,alpha),width=4)
-    for a in range(12):
-        angle=2*math.pi*a/12+ordinal*0.05
-        x0=cx+52*math.cos(angle); y0=cy+52*math.sin(angle)
-        x1=cx+73*math.cos(angle); y1=cy+73*math.sin(angle)
-        dr.line((x0,y0,x1,y1),fill=(247,219,158,165),width=5)
-    for i in range(8):
-        x=32+i*64; y=118+10*math.sin(ordinal+i)
-        dr.line((x,y,x+38,y-15),fill=(247,219,158,65),width=3)
-    # A symbol, not baked text: localization is supplied by image.<id>.title.
-    img.save(ART/(key+".png"))
-    # Matching strip underneath the three lanes.
-    strip=img.crop((0,0,w,96)); strip.save(ART/(key+"_stripe.png"))
+def rgb(hexstr):
+    h=hexstr.lstrip("#")
+    return tuple(int(h[i:i+2],16) for i in (0,2,4))
 
-def token_png():
-    img=Image.new("RGBA",(32,32),(0,0,0,0))
+def font(size,bold=False):
+    paths=[
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans"+("-Bold" if bold else "")+".ttf",
+        "/usr/share/fonts/truetype/liberation2/LiberationSans"+("-Bold" if bold else "-Regular")+".ttf"
+    ]
+    for path in paths:
+        try:return ImageFont.truetype(path,size)
+        except OSError:pass
+    return ImageFont.load_default()
+
+LAYOUTS=["constellation","city","mountain","islands","spiral","gear","metro","wave","orbit","factory","rail","staircase"]
+
+def make_badge(color,key,index):
+    # Distinct graphic per chapter, not reused generic stripes.
+    rng=random.Random(index*131+42)
+    col=rgb(color)
+    img=Image.new("RGBA",(660,144),(0,0,0,0))
     d=ImageDraw.Draw(img,"RGBA")
-    d.polygon([(16,1),(30,9),(27,27),(16,31),(5,27),(2,9)],fill=(219,172,85,255),outline=(99,67,44,255))
-    d.polygon([(16,4),(26,11),(23,24),(16,28),(9,24),(6,11)],fill=(62,93,106,255))
-    d.line([(9,16),(23,16)],fill=(239,222,158,255),width=2)
-    d.line([(16,8),(16,24)],fill=(239,222,158,255),width=2)
-    img.save(ITEM_ART/"chronicle_page.png")
+    for y in range(img.height):
+        k=0.30+0.32*(1-y/img.height)
+        d.line((0,y,img.width,y),fill=tuple(int(c*k) for c in col)+(241,),width=1)
+    d.rectangle((6,6,653,137),outline=(*col,225),width=3)
+    for x in range(24,636,45):
+        d.line((x,0,x+55,144),fill=(255,239,213,15),width=2)
+    # Vary the central motif by chapter: star chart, train path, gear or landscape.
+    motif=index%6
+    ox,oy=545,71
+    if motif in (0,4):
+        for r in (19,37,57):
+            d.ellipse((ox-r,oy-r,ox+r,oy+r),outline=(*col,150),width=3)
+        for k in range(12):
+            a=2*math.pi*k/12
+            d.line((ox+38*math.cos(a),oy+38*math.sin(a),
+                    ox+61*math.cos(a),oy+61*math.sin(a)),fill=(245,217,155,170),width=4)
+    elif motif in (1,5):
+        for i in range(7):
+            a=ox-95+i*30
+            d.line((a,46,a+50,108),fill=(*col,135),width=5)
+            d.ellipse((a+43,101,a+56,114),fill=(249,215,155,180))
+    elif motif==2:
+        for k in range(5):
+            y=88-k*17
+            d.line((430+k*22,y,645,y),fill=(*col,155),width=3)
+        d.polygon([(495,103),(546,29),(598,103)],outline=(241,212,158,190))
+    else:
+        for j in range(5):
+            r=12+12*j
+            d.arc((ox-r,oy-r,ox+r,oy+r),30,330,fill=(*col,145),width=3)
+    d.text((29,17),"C H R O N I C L E S",font=font(18,True),fill=(226,221,199,190))
+    # The localized chapter name is rendered by FTB Quests from image.<id>.title.
+    d.line((28,111,340,111),fill=(*col,185),width=3)
+    img.save(ART/(key+"_banner.png"))
+    # Chapter-specific badge for the quest map.
+    medal=Image.new("RGBA",(160,160),(0,0,0,0))
+    m=ImageDraw.Draw(medal,"RGBA")
+    m.ellipse((7,7,153,153),fill=(*col,34),outline=(*col,188),width=5)
+    m.ellipse((30,30,130,130),outline=(255,226,167,191),width=3)
+    for k in range(8):
+        a=math.pi*k/4+(index/18)
+        xx=80+63*math.cos(a);yy=80+63*math.sin(a)
+        m.ellipse((xx-3,yy-3,xx+3,yy+3),fill=(248,220,162,230))
+    m.polygon([(80,30),(94,71),(128,80),(94,90),(80,128),(65,90),(32,80),(65,70)],
+              fill=(*col,180),outline=(255,223,168,240))
+    medal.save(ART/(key+"_seal.png"))
+    # Stylized divider motif.
+    line=Image.new("RGBA",(640,40),(0,0,0,0))
+    ld=ImageDraw.Draw(line,"RGBA")
+    ld.line((12,20,628,20),fill=(*col,160),width=3)
+    for k in range(11):
+        x=35+k*57
+        ld.polygon([(x,13),(x+8,20),(x,27),(x-8,20)],fill=(247,216,153,160))
+    line.save(ART/(key+"_divider.png"))
 
-def locales(out):
-    return (snbt(dict(sorted(out.items()))) + "\n")
+def positions(pattern):
+    """Distinct geometric placement models, 24 nodes each."""
+    cfg={
+       "constellation":(6,4),"city":(4,6),"mountain":(3,8),
+       "islands":(4,6),"spiral":(2,12),"gear":(6,4),
+       "metro":(3,8),"wave":(2,12),"orbit":(4,6),
+       "factory":(4,6),"rail":(3,8),"staircase":(4,6)}
+    lanes, steps=cfg[pattern]
+    coords=[]
+    for lane in range(lanes):
+        for step in range(steps):
+            if pattern in ("constellation","gear"):
+                angle=2*math.pi*(lane/lanes)+(0.12 if pattern=="gear" else -0.2)
+                r=4.4+step*3.5
+                x,y=r*math.cos(angle),r*math.sin(angle)
+            elif pattern=="orbit":
+                a=2*math.pi*step/steps+lane*0.16
+                r=4.2+lane*3.4
+                x,y=r*math.cos(a),r*math.sin(a)
+            elif pattern=="spiral":
+                a=step*0.43+lane*math.pi
+                r=3.1+step*0.9
+                x,y=r*math.cos(a),r*math.sin(a)
+            elif pattern=="mountain":
+                x=step*3.1
+                y=(lane-1)*5.8-1.15*step+1.15*math.sin(step*1.15)
+            elif pattern=="wave":
+                x=step*2.9
+                y=(lane-.5)*9+2.15*math.sin(step*0.8+lane)
+            elif pattern=="islands":
+                ox=(lane%2)*19;oy=(lane//2)*14
+                x=ox+(step%3)*3.1
+                y=oy+(step//3)*3.4
+            elif pattern=="city":
+                x=step*3.7+(lane%2)*1.1
+                y=(lane-1.5)*5.2
+            elif pattern=="staircase":
+                x=(step if lane%2==0 else steps-1-step)*3.5
+                y=lane*4.5-7
+            elif pattern=="factory":
+                x=step*3.7+(0.6 if step%2 else 0)
+                y=(lane-1.5)*4.7
+            elif pattern=="metro":
+                x=step*3.15
+                y=(lane-1)*7.2
+            elif pattern=="rail":
+                x=step*3.2
+                y=(lane-1)*7.0 + math.sin(step*0.8+lane)*0.8
+            else:raise ValueError(pattern)
+            coords.append((round(x,3),round(y,3),lane,step))
+    # root and final positions may be outside the rails or above/below an orbit.
+    radial=pattern in ("constellation","gear","orbit","spiral")
+    if radial:return coords,(-19.5,0),(0,18.5),lanes,steps
+    if pattern=="islands":return coords,(-5,7),(29,7),lanes,steps
+    if pattern=="staircase":return coords,(-5,0),(25,1),lanes,steps
+    return coords,(-5,0),(steps*3.8+3,0),lanes,steps
 
-def run():
+def graph_for(pattern, root, goal_ids):
+    coords,root_xy,final_xy,lanes,steps=positions(pattern)
+    assert len(coords)==len(goal_ids)==24
+    deps={}
+    # Independent workstreams anchored at the chapter's briefing.
+    for lane in range(lanes):
+        for step in range(steps):
+            i=lane*steps+step
+            deps[goal_ids[i]]=[root] if step==0 else [goal_ids[i-1]]
+            # Sparse cross-links add a discoverable workshop network without cycles.
+            if step==steps-1 and lane>0 and pattern in ("factory","city","rail"):
+                deps[goal_ids[i]].append(goal_ids[(lane-1)*steps+steps-2])
+    finish=[goal_ids[(lane+1)*steps-1] for lane in range(lanes)]
+    return coords,root_xy,final_xy,deps,finish
+
+def task(raw,taskid):
+    result={"id":taskid}
+    if raw=="check":
+        result["type"]="checkmark"
+    elif raw.startswith("custom:"):
+        result["type"]="custom"
+    elif raw.startswith("dim:"):
+        result.update(type="dimension",dimension=raw.removeprefix("dim:"))
+    elif raw.startswith("xp:"):
+        result.update(type="xp",value=Long(int(raw.split(":",1)[1])))
+    elif raw.startswith("adv:"):
+        result.update(type="advancement",advancement=raw.removeprefix("adv:"))
+    elif raw.startswith("biome:"):
+        result.update(type="biome",biome=raw.removeprefix("biome:"))
+    elif raw.startswith("structure:"):
+        result.update(type="structure",structure=raw.removeprefix("structure:"))
+    else:
+        if not re.fullmatch(r"[a-z0-9_]+:[a-z0-9_]+",raw):
+            raise ValueError("Invalid exact item identifier: "+raw)
+        result.update(type="item",item=itemstack(raw))
+    return result
+
+def objective_text(entry,story_en,story_ru,chapter,idx):
+    raw=entry["raw"]
+    k=(chapter*11+idx*7)%9
+    flavour_en=[
+      "Trace the next discovery on your workshop map.",
+      "A small mechanism can change the whole expedition.",
+      "Check the resources before moving to the next workshop.",
+      "Take a different route through the chapter.",
+      "Put this discovery to use in a real build.",
+      "Keep an example in your expedition archive.",
+      "This step opens a new part of the network.",
+      "Turn what you have learned into a practical experiment.",
+      "Your logbook needs one more recorded milestone."
+    ]
+    flavour_ru=[
+      "Отметь находку на карте мастерской.",
+      "Даже небольшая находка может изменить целую экспедицию.",
+      "Подготовь ресурсы перед следующим испытанием.",
+      "Исследуй ещё одну ветку этой главы.",
+      "Используй открытие в собственном проекте.",
+      "Сохрани результат для коллекции исследователя.",
+      "Этот этап открывает следующий маршрут.",
+      "Преврати знание в небольшой практический опыт.",
+      "В летописи не хватает ещё одной важной отметки."
+    ]
+    if raw=="check":
+        note_en="A creative milestone: confirm when your own project is ready."
+        note_ru="Творческая цель: отметь выполнение вручную, когда собственный проект готов."
+    elif raw.startswith("xp:"):
+        note_en="Gain experience through any activities you enjoy."
+        note_ru="Накопи опыт любым удобным способом."
+    elif raw.startswith(("biome:","dim:","structure:")):
+        note_en="Exploration objective. Visit this location to complete the task."
+        note_ru="Задание на исследование. Посети нужное место."
+    elif raw.startswith("adv:"):
+        note_en="Complete the corresponding vanilla Minecraft advancement."
+        note_ru="Получи указанное ванильное достижение Minecraft."
+    else:
+        note_en="Obtain this item at least once; FTB Quests will not consume it."
+        note_ru="Получи указанный предмет; FTB Quests не будет его расходовать."
+    return [story_en,note_en,flavour_en[k]],[story_ru,note_ru,flavour_ru[k]]
+
+def generate():
     ART.mkdir(parents=True,exist_ok=True)
     ITEM_ART.mkdir(parents=True,exist_ok=True)
-    (BASE/"chapters").mkdir(parents=True,exist_ok=True)
-    (BASE/"lang").mkdir(parents=True,exist_ok=True)
-    SCRIPTS.mkdir(parents=True,exist_ok=True)
-    (BASE/"data.snbt").write_text(snbt({"default_consume_items":Byte(0),"default_quest_shape":"circle","fallback_locale":"en_us","version":13})+"\n",encoding="utf-8")
-    (BASE/"chapter_groups.snbt").write_text(snbt({"chapter_groups":[]})+"\n",encoding="utf-8")
-    token_png()
-    en,ru,completion=[],[],[]
-    en_lang,ru_lang={},{}
-    js=[]
-    count=0
-    generated=[]
-    for ci,(key,english_name,russian_name,english_story,russian_story,icon,color,entries) in enumerate(CHAPTERS):
-        assert len(entries)==16, (key,len(entries))
-        chapter_id=uid(0,ci)
-        png_for_chapter(key,english_name,color,ci)
-        chapter={"filename":key,"group":"","icon":stack(icon),"id":chapter_id,
-                 "order_index":ci, "default_hide_dependency_lines":Byte(0),
-                 "default_quest_shape":"circle","images":[],"quest_links":[],"quests":[]}
-        en_lang[f"chapter.{chapter_id}.title"]=english_name
-        ru_lang[f"chapter.{chapter_id}.title"]=russian_name
-        en_lang[f"chapter.{chapter_id}.chapter_subtitle"]=[english_story,"Three routes. Complete all three to unlock the final seal. No item consumption."]
-        ru_lang[f"chapter.{chapter_id}.chapter_subtitle"]=[russian_story,"Три ветки. Пройди каждую, чтобы открыть финальную печать. Предметы не расходуются."]
-        images=chapter["images"]
-        banner_id=uid(4,ci,1)
-        images.append({"id":banner_id,"image":f"kubejs:textures/gui/quests/{key}.png",
-                       "x":Double(10),"y":Double(-4),"width":Double(21),
-                       "height":Double(3.2),"rotation":Double(0),"order":-150,
-                       "position_locked":Byte(1),"text_on_image":Byte(1),
-                       "text_shadow":Byte(1),"text_inset":8})
-        en_lang[f"image.{banner_id}.title"]=english_name
-        ru_lang[f"image.{banner_id}.title"]=russian_name
-        for ix,y in enumerate([3.75,10.5,17.25]):
-            iid=uid(4,ci,ix+2)
-            images.append({"id":iid,"image":f"kubejs:textures/gui/quests/{key}_stripe.png",
-                           "x":Double(9.5),"y":Double(y),"width":Double(17.8),
-                           "height":Double(2.25),"rotation":Double(0),"order":-200,
-                           "alpha":105,"position_locked":Byte(1)})
-        def make_quest(j, obj, title_en,title_ru, dep, x,y, special=False, extra=False):
-            nonlocal count
-            qid=uid(1,ci,j+1)
-            tid=uid(2,ci,j+1)
-            rid=uid(3,ci,j+1)
-            reward=[{"id":rid,"type":"xp","xp":40+(ci//3)*20+(j//3)*10}]
-            if j==0:
-                reward.append({"id":uid(3,ci,512+j),"type":"item","item":stack("minecraft:bread"),"count":3})
-            elif j%5==0:
-                reward.append({"id":uid(3,ci,512+j),"type":"item","item":stack("minecraft:torch"),"count":4})
-            if special:
-                reward.append({"id":uid(3,ci,800+j),"type":"item","item":stack("kubejs:chronicle_page"),"count":1})
-                reward.append({"id":uid(3,ci,900+j),"type":"custom"})
-            tasks=[{"id":tid,"type":"checkmark"}] if obj=="check" else [objective(obj,tid)]
-            if obj=="custom:storm":
-                tasks=[{"id":tid,"type":"custom"}]
-            q={"id":qid,"icon":stack(icon if obj in ("check","custom:storm") or obj.startswith(("xp:","dim:","kill:")) else obj),
-               "x":Double(x),"y":Double(y),"tasks":tasks,"rewards":reward}
-            if dep:q["dependencies"]=dep
-            if special:q["shape"]="hexagon";q["size"]=Double(1.6)
-            if extra:q["shape"]="diamond"
-            chapter["quests"].append(q)
-            en_lang[f"quest.{qid}.title"]=title_en
-            ru_lang[f"quest.{qid}.title"]=title_ru
-            en_lang[f"quest.{qid}.quest_desc"]=[english_story,
-                "You only need to obtain or achieve the objective. Items are not consumed.",
-                "Complete the related nodes to open new routes."]
-            ru_lang[f"quest.{qid}.quest_desc"]=[russian_story,
-                "Достаточно получить предмет или выполнить условие. Предметы не расходуются.",
-                "Выполняй связанные задания, чтобы открыть новые направления."]
-            count+=1
-            return qid,tid
-        prev_final = uid(1,ci-1,18) if ci>0 else None
-        if key.startswith("create_"):
-            prev_final=uid(1,2,18) if key=="create_first" else uid(1,ci-1,18)
-        root,_=make_quest(0,"check","Chapter briefing","Начало экспедиции",[prev_final] if prev_final else [],0,10.5)
-        ends=[]
-        for lane,(start,end,y) in enumerate([(0,5,3.75),(5,10,10.5),(10,16,17.25)]):
-            parent=root
-            for offset,i in enumerate(range(start,end)):
-                raw,title_ru=entries[i].split("|",1)
-                # Each lane progresses independently; finale joins all three.
-                qid,_=make_quest(i+1,raw,english(raw),title_ru,[parent],2.7+2.9*offset,y)
-                parent=qid
-            ends.append(parent)
-        finale,ftid=make_quest(17,"check","The chapter seal","Печать главы",ends,21,10.5,special=True)
-        # Sidequest: sample of event-driven custom progression, without blocking the chapter.
-        if key=="wilderness":
-            side,task=make_quest(18,"custom:storm","Stormwatch","Дозор под грозой",[root],0,22.5,extra=True)
-            en_lang[f"quest.{side}.quest_desc"]=["Optional: spend three observation cycles in a thunderstorm.", "KubeJS monitors weather and advances the custom FTB task."]
-            ru_lang[f"quest.{side}.quest_desc"]=["Необязательно: дождись грозы и проведи три цикла наблюдения.", "KubeJS сам отслеживает погоду и выполняет особое задание."]
-            js.append(f"FTBQuestsEvents.customTask('{task}', event => {{\n  event.maxProgress = 3\n  event.setCheckTimer(100)\n  event.setCheck((task, player) => {{ if (player.level.thundering) task.progress++ }})\n}})\n")
-        # Biome-themed cache, an optional extra custom reward on each grand finale.
-        gift=["4x minecraft:iron_ingot","2x minecraft:emerald","4x minecraft:golden_carrot","8x minecraft:redstone"][ci%4]
-        rid=uid(3,ci,917)
-        # Match the custom reward actually written by make_quest (j=17).
-        rid=uid(3,ci,900+17)
-        js.append(f"FTBQuestsEvents.customReward('{rid}', event => {{\n  const p = event.player\n  p.give('{gift}')\n  p.persistentData.putBoolean('myneoforge_{key}', true)\n  p.tell('§6[Chronicles] §f{english_name} — complete!')\n}})\n")
-        out=BASE/"chapters"/f"{key}.snbt"
-        out.write_text(snbt(chapter)+"\n",encoding="utf-8")
-        generated.append(out)
-    (BASE/"lang/en_us.snbt").write_text(locales(en_lang),encoding="utf-8")
-    (BASE/"lang/ru_ru.snbt").write_text(locales(ru_lang),encoding="utf-8")
-    (SCRIPTS/"chronicles.js").write_text("// Generated by questgen.py. Requires FTB XMod Compat.\\n\\n".replace("\\n","\n")+"\n".join(js),encoding="utf-8")
+    SERVER_SCRIPTS.mkdir(parents=True,exist_ok=True)
     (ROOT/"kubejs/startup_scripts").mkdir(parents=True,exist_ok=True)
+    (QROOT/"chapters").mkdir(parents=True,exist_ok=True)
+    (QROOT/"lang").mkdir(parents=True,exist_ok=True)
+    # Clean only generated files, so removed chapters don't linger in the index.
+    for path in (QROOT/"chapters").glob("*.snbt"):path.unlink()
+    for path in ART.glob("*.png"):path.unlink()
+    (QROOT/"data.snbt").write_text(snbt({
+        "default_consume_items":Byte(0),"default_quest_shape":"circle",
+        "fallback_locale":"en_us","version":13})+"\n",encoding="utf-8")
+    (QROOT/"chapter_groups.snbt").write_text(snbt({"chapter_groups":[]})+"\n",encoding="utf-8")
+    old_keys={c[0] for c in BASE}
+    extended=[]
+    for b in BASE:
+        key,en,ru,desc_en,desc_ru,icon,color,goals=b
+        extras=EXP["extras"].get(key)
+        if extras is None or len(extras)!=8:raise ValueError("8 additional objectives required for "+key)
+        extended.append(dict(key=key,en=en,ru=ru,introEn=desc_en,introRu=desc_ru,
+            icon=icon,color=color,layout=LAYOUTS[len(extended)%len(LAYOUTS)],
+            goals=[parse_entry(v) for v in goals+extras],base=True))
+    for obj in EXP["new_chapters"]:
+        if obj["key"] in old_keys:raise ValueError("Duplicate key "+obj["key"])
+        extended.append({**obj,"goals":[parse_entry(v) for v in obj["goals"]],"base":False})
+    chapter_index={v["key"]:i for i,v in enumerate(extended)}
+    assert len(extended)==24,(len(extended))
+    en_lang={};ru_lang={};events=[]
+    allids=set();custom_rewards=0;custom_tasks=0
+    with (ROOT/"docs/QUEST_MAP.md").open("w",encoding="utf-8") as report:
+        report.write("# Chronicles — interactive quest maps\n\n")
+        report.write("A unique graph layout for each book chapter, not identical three lanes.\n\n")
+        for ci,obj in enumerate(extended):
+            key=obj["key"];rootid=uid(1,ci,1)
+            basename=obj["en"];ru_name=obj["ru"];motive=obj["layout"]
+            make_badge(obj["color"],key,ci)
+            cid=uid(0,ci)
+            chapter={"filename":key,"group":"","icon":itemstack(obj["icon"]),
+                     "id":cid,"order_index":ci,"default_hide_dependency_lines":Byte(0),
+                     "default_quest_shape":"circle","images":[],"quest_links":[],"quests":[]}
+            en_lang["chapter."+cid+".title"]=basename
+            ru_lang["chapter."+cid+".title"]=ru_name
+            en_lang["chapter."+cid+".chapter_subtitle"]=[
+                obj["introEn"],f"{motive.title()} layout: explore multiple routes, then claim the chapter seal."]
+            ru_lang["chapter."+cid+".chapter_subtitle"]=[
+                obj["introRu"],"Разветвлённая карта заданий: изучай маршруты в любом порядке и открывай финальную печать."]
+            goals=obj["goals"]
+            if len(goals)!=24:raise ValueError("Exactly 24 goals required: "+key)
+            # Preserve 14 original chapter IDs, original first 16 goals, original finale ID.
+            goal_js=list(range(1,17))+list(range(19,27)) if obj["base"] else list(range(1,25))
+            finale_j=17 if obj["base"] else 25
+            assert len(goal_js)==24
+            goalids=[uid(1,ci,j+1) for j in goal_js]
+            coords,rxy,fxy,deps,ends=graph_for(motive,rootid,goalids)
+            # For all existing chapters use thematic early unlocks, never force endgame to start Create.
+            unlocks={
+               "awakening":None,"homestead":"awakening","mines":"awakening",
+               "fields":"homestead","builder":"homestead","wilderness":"awakening",
+               "redstone":"mines","ocean":"wilderness","alchemy":"nether",
+               "nether":"mines","end":"nether","create_first":"mines",
+               "create_motion":"create_first","create_factory":"create_motion"
+            }
+            unlock=obj.get("unlock") if not obj["base"] else unlocks.get(key)
+            if unlock and unlock not in chapter_index:raise ValueError("Bad unlock: "+key)
+            entrydep=[uid(1,chapter_index[unlock],
+                       18 if extended[chapter_index[unlock]]["base"] else 26)] if unlock else []
+            decorated=[
+              (key+"_banner.png",(0,-21), (22.0,4.8),True),
+              (key+"_seal.png",(fxy[0]+2.4,fxy[1]-2.4),(2.6,2.6),False),
+              (key+"_divider.png",(0,-14), (22.0,1.1),False),
+              (key+"_divider.png",(0,24), (22.0,1.1),False)]
+            for n,(name,xy,wh,with_title) in enumerate(decorated):
+                iid=uid(4,ci,n+1)
+                # Decorative art must not obscure the quest icons. Render behind.
+                chapter["images"].append({
+                    "id":iid,"image":f"kubejs:textures/gui/quests/{name}",
+                    "x":Double(xy[0]),"y":Double(xy[1]),
+                    "width":Double(wh[0]),"height":Double(wh[1]),
+                    "rotation":Double(0),"order":-150 if n==0 else -200,
+                    "position_locked":Byte(1), **({"text_on_image":Byte(1),
+                        "text_shadow":Byte(1),"text_inset":8} if with_title else {})})
+                if with_title:
+                    en_lang[f"image.{iid}.title"]=basename
+                    ru_lang[f"image.{iid}.title"]=ru_name
+            def put(j,raw,ru_title,en_title,parents,xy,kind="regular"):
+                nonlocal custom_rewards,custom_tasks
+                qid=uid(1,ci,j+1);tid=uid(2,ci,j+1)
+                reward_id=uid(3,ci,j+1)
+                rewards=[{"id":reward_id,"type":"xp","xp":30+ci*7+(j%7)*12}]
+                if j%7==0 and kind=="regular":
+                    gift=["minecraft:bread","minecraft:torch","minecraft:paper","minecraft:cooked_porkchop"][ci%4]
+                    rewards.append({"id":uid(3,ci,512+j),"type":"item",
+                                    "item":itemstack(gift),"count":3+(ci%4)})
+                if j>0 and j%9==0:
+                    rewards.append({"id":uid(3,ci,640+j),"type":"xp_levels","xp_levels":1+(ci//8)})
+                if kind=="final":
+                    rewards.append({"id":uid(3,ci,800+j),"type":"item",
+                                    "item":itemstack("kubejs:chronicle_page")})
+                    custom_id=uid(3,ci,900+j)
+                    rewards.append({"id":custom_id,"type":"custom"})
+                    gifts=["4x minecraft:iron_ingot","2x minecraft:emerald",
+                           "6x minecraft:golden_carrot","8x minecraft:redstone"]
+                    gift=gifts[ci%4]
+                    events.append(
+                        f"FTBQuestsEvents.customReward('{custom_id}', event => {{\n"
+                        "  const p = event.player\n"
+                        f"  p.give('{gift}')\n"
+                        f"  p.persistentData.putBoolean('myneoforge_{key}', true)\n"
+                        f"  p.tell('§6[Chronicles] §f{basename} — complete!')\n"
+                        "})\n")
+                    custom_rewards+=1
+                obj_id=(raw if re.fullmatch(r"[a-z0-9_]+:[a-z0-9_]+",raw) else chapter["icon"]["id"])
+                node={"id":qid,"icon":itemstack(obj_id),
+                      "x":Double(xy[0]),"y":Double(xy[1]),
+                      "tasks":[task(raw,tid)],"rewards":rewards}
+                if parents:node["dependencies"]=parents
+                if kind in ("final","root"):node["shape"]="hexagon";node["size"]=Double(1.5)
+                elif raw=="check":node["shape"]="diamond";node["size"]=Double(1.2)
+                elif raw.startswith(("biome:","adv:","dim:","structure:")):
+                    node["shape"]="pentagon";node["size"]=Double(1.25)
+                elif ci>=11 and raw.startswith("create:"):
+                    node["shape"]="gear";node["size"]=Double(1.2)
+                elif j%5==0:node["shape"]="square"
+                elif j%3==0:node["shape"]="octagon"
+                else:node["shape"]="circle"
+                chapter["quests"].append(node)
+                desc_en,desc_ru=objective_text({"raw":raw},obj["introEn"],obj["introRu"],ci,j)
+                en_lang["quest."+qid+".title"]=en_title
+                ru_lang["quest."+qid+".title"]=ru_title
+                en_lang["quest."+qid+".quest_desc"]=desc_en
+                ru_lang["quest."+qid+".quest_desc"]=desc_ru
+                if qid in allids:raise ValueError("Quest ID collision "+qid)
+                allids.add(qid)
+                return qid,tid
+            put(0,"check","Начало главы","Chapter briefing",entrydep,rxy,kind="root")
+            for n,(entry,j,coord,qid) in enumerate(zip(goals,goal_js,coords,goalids)):
+                put(j,entry["raw"],entry["ru"],entry["en"],deps[qid],coord[:2])
+            put(finale_j,"check","Финальная печать","The chapter seal",
+                ends,fxy,kind="final")
+            if key=="wilderness":
+                extra,taskid=put(18,"custom:storm","Дозор под грозой","Stormwatch",
+                                  [rootid],(rxy[0],rxy[1]+4.5))
+                en_lang["quest."+extra+".quest_desc"]=[
+                    "Optional: stay near your base during three thunderstorm observation checks.",
+                    "KubeJS advances this task automatically while thunder is active."]
+                ru_lang["quest."+extra+".quest_desc"]=[
+                    "Дополнительно: проведи три цикла наблюдения во время грозы.",
+                    "KubeJS автоматически засчитывает время во время грозы."]
+                events.append(f"FTBQuestsEvents.customTask('{taskid}', event => {{\n"
+                    "  event.maxProgress = 3\n"
+                    "  event.setCheckTimer(100)\n"
+                    "  event.setCheck((task, player) => {\n"
+                    "    if (player.level.thundering) task.progress++\n"
+                    "  })\n"
+                    "})\n")
+                custom_tasks+=1
+            if key=="create_mastery":
+                extra,tid=put(26,"custom:archive","Архив мастерства",
+                      "The Master Archivist",[rootid],(rxy[0],rxy[1]+4.8))
+                en_lang["quest."+extra+".quest_desc"]=[
+                    "Bonus: claim the chapter seal rewards in three Create chapters.",
+                    "KubeJS reads your persistent achievement flags from the rewards."]
+                ru_lang["quest."+extra+".quest_desc"]=[
+                    "Бонус: забери награды за три главы Create.",
+                    "KubeJS проверит сохранённые отметки о прохождении."]
+                events.append(f"FTBQuestsEvents.customTask('{tid}', event => {{\n"
+                    "  event.maxProgress = 1\n"
+                    "  event.setCheckTimer(40)\n"
+                    "  event.setCheck((task, player) => {\n"
+                    "    const d = player.persistentData\n"
+                    "    if (d.getBoolean('myneoforge_create_first') &&\n"
+                    "        d.getBoolean('myneoforge_create_motion') &&\n"
+                    "        d.getBoolean('myneoforge_create_factory')) task.progress = 1\n"
+                    "  })\n"
+                    "})\n")
+                custom_tasks+=1
+            out=QROOT/"chapters"/(key+".snbt")
+            out.write_text(snbt(chapter)+"\n",encoding="utf-8")
+            report.write(f"- **{obj['ru']}** / {basename}: {len(chapter['quests'])} quests; "
+                         f"topology {motive}; unlocked by {unlock or 'start'}\n")
+    (QROOT/"lang/en_us.snbt").write_text(snbt(dict(sorted(en_lang.items())))+"\n",encoding="utf-8")
+    (QROOT/"lang/ru_ru.snbt").write_text(snbt(dict(sorted(ru_lang.items())))+"\n",encoding="utf-8")
+    (SERVER_SCRIPTS/"chronicles.js").write_text(
+        "// Generated, requires FTB XMod Compat 21.1.11 and KubeJS.\n\n"+
+        "\n".join(events),encoding="utf-8")
     (ROOT/"kubejs/startup_scripts/chronicle_items.js").write_text(
         "StartupEvents.registry('item', event => {\n"
         "  event.create('chronicle_page').displayName('Chronicle Page').texture('kubejs:item/chronicle_page')\n"
         "})\n",encoding="utf-8")
-    (SCRIPTS/"player_welcome.js").write_text(
+    img=Image.new("RGBA",(32,32),(0,0,0,0));dr=ImageDraw.Draw(img,"RGBA")
+    dr.polygon([(16,1),(29,9),(27,25),(16,31),(5,25),(3,9)],
+               fill=(207,173,111,255),outline=(95,75,57,255))
+    dr.ellipse((8,9,24,25),fill=(40,84,100,255),outline=(239,222,163,255),width=2)
+    dr.line((16,8,16,26),fill=(242,219,150,255),width=2)
+    img.save(ITEM_ART/"chronicle_page.png")
+    # Update welcome message without flooding returning players.
+    (SERVER_SCRIPTS/"player_welcome.js").write_text(
         "PlayerEvents.loggedIn(event => {\n"
-        "  const data = event.player.persistentData\n"
-        "  if (!data.getBoolean('myneoforge_welcome')) {\n"
-        "    data.putBoolean('myneoforge_welcome', true)\n"
-        "    event.player.tell('§6[Chronicles] §fOpen FTB Quests in your inventory. 14 chapters await!')\n"
+        "  const d = event.player.persistentData\n"
+        "  if (!d.getBoolean('myneoforge_chronicles_04')) {\n"
+        "    d.putBoolean('myneoforge_chronicles_04', true)\n"
+        "    event.player.tell('§6[Chronicles] §f24 illustrated chapters are available in FTB Quests!')\n"
         "  }\n"
         "})\n",encoding="utf-8")
-    # Verify semantics before handing any book to FTB: unique hex IDs, all dependencies resolvable,
-    # no small/invalid item tag filters, every custom event backed by handler.
-    ids=set();deps=[];rewards=[];custom=[]
-    assert 14 <= len(generated) <= 30
-    for ci,chapter in enumerate(CHAPTERS):
-        key=chapter[0]
-        expected = 19 if key=="wilderness" else 18
-        # The generated chapter is a single file: no extra question files.
-        data=(BASE/"chapters"/f"{key}.snbt").read_text(encoding="utf-8")
-        seen=len(re.findall(r'\btype: "checkmark"|\btype: "item"|\btype: "dimension"|\btype: "custom"',data))
-        assert seen >= expected, (key,seen,expected)
-        for j in range(expected):
-            qid=uid(1,ci,j+1)
-            assert qid not in ids; ids.add(qid)
-            assert f'quest.{qid}.title' in en_lang and f'quest.{qid}.title' in ru_lang
-    assert count==14*18+1,(count)
-    print(f"Generated {len(generated)} chapters, {count} quests and {len(CHAPTERS)*4} chapter images.")
-    print("Includes RU/EN, dependency graphs, item/XP/custom rewards, optional storm task, and KubeJS collectible.")
+    print(f"Chronicles v0.4: {len(extended)} chapters, {len(allids)} quests, "
+          f"{custom_rewards} custom rewards, {custom_tasks} custom tasks, {len(list(ART.glob('*.png')))} artworks")
 
 if __name__=="__main__":
-    run()
+    generate()

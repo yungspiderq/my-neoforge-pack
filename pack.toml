@@ -1,7 +1,7 @@
 name = "My NeoForge Pack"
 author = "yungspiderq"
-version = "0.3.0"
-description = "Create + 14 illustrated FTB Quest chapters, KubeJS story rewards and auto-update"
+version = "0.4.0"
+description = "Chronicles v0.4: 24 illustrated quest chapters, unique routes, custom FancyMenu and Create"
 pack-format = "packwiz:1.1.0"
 
 [index]

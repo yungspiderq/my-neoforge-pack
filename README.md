@@ -36,3 +36,7 @@ Prior pack backup: backup/pre-rebuild-2026-11-14. Back up worlds; this rebuild i
 
 14 illustrated chapters and 253 quests in Russian and English, including Create progression, 3 interconnected quest lanes per chapter, KubeJS custom rewards and an optional stormwatch custom task. See [QUESTS.md](docs/QUESTS.md). KubeJS content is included in this same pack; no separate content mod is added.
 
+
+## Chronicles 0.4 redesign
+
+The questbook has been rebuilt to **24 chapters / 626 quests** (16 vanilla, 8 Create) with 12 distinctive visual layouts, individual chapter art and expanded objectives, including custom KubeJS challenges and rewards. The old title screen was replaced with a clockwork-atlas FancyMenu with styled action buttons. See [Quest Atlas](docs/QUESTS.md) and [FancyMenu](docs/MENU.md).

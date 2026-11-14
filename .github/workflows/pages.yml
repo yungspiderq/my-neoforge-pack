@@ -32,6 +32,7 @@ jobs:
           python scripts/resolve_modrinth.py
           python scripts/pin_ftb_xmod.py
           python scripts/gen_quests.py
+          python scripts/gen_menu.py
           python scripts/check_questbook.py
           python scripts/pack.py refresh
           python scripts/pack.py validate
@@ -39,7 +40,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add mods resourcepacks shaderpacks config/ftbquests kubejs pack.toml index.toml
+          git add -A mods resourcepacks shaderpacks config/ftbquests config/fancymenu kubejs pack.toml index.toml
           if ! git diff --cached --quiet; then
             git commit -m "chore: refresh Modrinth pins and pack hashes [skip ci]"
             git push origin HEAD:main
