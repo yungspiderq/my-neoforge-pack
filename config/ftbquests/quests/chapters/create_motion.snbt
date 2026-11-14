@@ -1,0 +1,634 @@
+{
+	filename: "create_motion",
+	group: "",
+	icon: {
+		count: 1,
+		id: "create:mechanical_bearing"
+	},
+	id: "7100000D00000000",
+	order_index: 12,
+	default_hide_dependency_lines: 0b,
+	default_quest_shape: "circle",
+	images: [
+		{
+			id: "7500000D00000001",
+			image: "kubejs:textures/gui/quests/create_motion.png",
+			x: 10.000d,
+			y: -4.000d,
+			width: 21.000d,
+			height: 3.200d,
+			rotation: 0.000d,
+			order: -150,
+			position_locked: 1b,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			text_inset: 8
+		},
+		{
+			id: "7500000D00000002",
+			image: "kubejs:textures/gui/quests/create_motion_stripe.png",
+			x: 9.500d,
+			y: 3.750d,
+			width: 17.800d,
+			height: 2.250d,
+			rotation: 0.000d,
+			order: -200,
+			alpha: 105,
+			position_locked: 1b
+		},
+		{
+			id: "7500000D00000003",
+			image: "kubejs:textures/gui/quests/create_motion_stripe.png",
+			x: 9.500d,
+			y: 10.500d,
+			width: 17.800d,
+			height: 2.250d,
+			rotation: 0.000d,
+			order: -200,
+			alpha: 105,
+			position_locked: 1b
+		},
+		{
+			id: "7500000D00000004",
+			image: "kubejs:textures/gui/quests/create_motion_stripe.png",
+			x: 9.500d,
+			y: 17.250d,
+			width: 17.800d,
+			height: 2.250d,
+			rotation: 0.000d,
+			order: -200,
+			alpha: 105,
+			position_locked: 1b
+		}
+	],
+	quest_links: [ ],
+	quests: [
+		{
+			id: "7200000D00000001",
+			icon: {
+				count: 1,
+				id: "create:mechanical_bearing"
+			},
+			x: 0.000d,
+			y: 10.500d,
+			tasks: [
+				{
+					id: "7300000D00000001",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "7400000D00000001",
+					type: "xp",
+					xp: 120
+				},
+				{
+					id: "7400000D00000200",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:bread"
+					},
+					count: 3
+				}
+			],
+			dependencies: [
+				"7200000C00000012"
+			]
+		},
+		{
+			id: "7200000D00000002",
+			icon: {
+				count: 1,
+				id: "create:mechanical_bearing"
+			},
+			x: 2.700d,
+			y: 3.750d,
+			tasks: [
+				{
+					id: "7300000D00000002",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:mechanical_bearing"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000D00000002",
+					type: "xp",
+					xp: 120
+				}
+			],
+			dependencies: [
+				"7200000D00000001"
+			]
+		},
+		{
+			id: "7200000D00000003",
+			icon: {
+				count: 1,
+				id: "create:windmill_bearing"
+			},
+			x: 5.600d,
+			y: 3.750d,
+			tasks: [
+				{
+					id: "7300000D00000003",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:windmill_bearing"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000D00000003",
+					type: "xp",
+					xp: 120
+				}
+			],
+			dependencies: [
+				"7200000D00000002"
+			]
+		},
+		{
+			id: "7200000D00000004",
+			icon: {
+				count: 1,
+				id: "create:sail_frame"
+			},
+			x: 8.500d,
+			y: 3.750d,
+			tasks: [
+				{
+					id: "7300000D00000004",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:sail_frame"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000D00000004",
+					type: "xp",
+					xp: 130
+				}
+			],
+			dependencies: [
+				"7200000D00000003"
+			]
+		},
+		{
+			id: "7200000D00000005",
+			icon: {
+				count: 1,
+				id: "create:gantry_shaft"
+			},
+			x: 11.400d,
+			y: 3.750d,
+			tasks: [
+				{
+					id: "7300000D00000005",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:gantry_shaft"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000D00000005",
+					type: "xp",
+					xp: 130
+				}
+			],
+			dependencies: [
+				"7200000D00000004"
+			]
+		},
+		{
+			id: "7200000D00000006",
+			icon: {
+				count: 1,
+				id: "create:mechanical_piston"
+			},
+			x: 14.300d,
+			y: 3.750d,
+			tasks: [
+				{
+					id: "7300000D00000006",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:mechanical_piston"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000D00000006",
+					type: "xp",
+					xp: 130
+				},
+				{
+					id: "7400000D00000205",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:torch"
+					},
+					count: 4
+				}
+			],
+			dependencies: [
+				"7200000D00000005"
+			]
+		},
+		{
+			id: "7200000D00000007",
+			icon: {
+				count: 1,
+				id: "create:piston_extension_pole"
+			},
+			x: 2.700d,
+			y: 10.500d,
+			tasks: [
+				{
+					id: "7300000D00000007",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:piston_extension_pole"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000D00000007",
+					type: "xp",
+					xp: 140
+				}
+			],
+			dependencies: [
+				"7200000D00000001"
+			]
+		},
+		{
+			id: "7200000D00000008",
+			icon: {
+				count: 1,
+				id: "create:rope_pulley"
+			},
+			x: 5.600d,
+			y: 10.500d,
+			tasks: [
+				{
+					id: "7300000D00000008",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:rope_pulley"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000D00000008",
+					type: "xp",
+					xp: 140
+				}
+			],
+			dependencies: [
+				"7200000D00000007"
+			]
+		},
+		{
+			id: "7200000D00000009",
+			icon: {
+				count: 1,
+				id: "create:portable_storage_interface"
+			},
+			x: 8.500d,
+			y: 10.500d,
+			tasks: [
+				{
+					id: "7300000D00000009",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:portable_storage_interface"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000D00000009",
+					type: "xp",
+					xp: 140
+				}
+			],
+			dependencies: [
+				"7200000D00000008"
+			]
+		},
+		{
+			id: "7200000D0000000A",
+			icon: {
+				count: 1,
+				id: "create:portable_fluid_interface"
+			},
+			x: 11.400d,
+			y: 10.500d,
+			tasks: [
+				{
+					id: "7300000D0000000A",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:portable_fluid_interface"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000D0000000A",
+					type: "xp",
+					xp: 150
+				}
+			],
+			dependencies: [
+				"7200000D00000009"
+			]
+		},
+		{
+			id: "7200000D0000000B",
+			icon: {
+				count: 1,
+				id: "create:deployer"
+			},
+			x: 14.300d,
+			y: 10.500d,
+			tasks: [
+				{
+					id: "7300000D0000000B",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:deployer"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000D0000000B",
+					type: "xp",
+					xp: 150
+				},
+				{
+					id: "7400000D0000020A",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:torch"
+					},
+					count: 4
+				}
+			],
+			dependencies: [
+				"7200000D0000000A"
+			]
+		},
+		{
+			id: "7200000D0000000C",
+			icon: {
+				count: 1,
+				id: "create:schematic_and_quill"
+			},
+			x: 2.700d,
+			y: 17.250d,
+			tasks: [
+				{
+					id: "7300000D0000000C",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:schematic_and_quill"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000D0000000C",
+					type: "xp",
+					xp: 150
+				}
+			],
+			dependencies: [
+				"7200000D00000001"
+			]
+		},
+		{
+			id: "7200000D0000000D",
+			icon: {
+				count: 1,
+				id: "create:schematic_table"
+			},
+			x: 5.600d,
+			y: 17.250d,
+			tasks: [
+				{
+					id: "7300000D0000000D",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:schematic_table"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000D0000000D",
+					type: "xp",
+					xp: 160
+				}
+			],
+			dependencies: [
+				"7200000D0000000C"
+			]
+		},
+		{
+			id: "7200000D0000000E",
+			icon: {
+				count: 1,
+				id: "create:schematicannon"
+			},
+			x: 8.500d,
+			y: 17.250d,
+			tasks: [
+				{
+					id: "7300000D0000000E",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:schematicannon"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000D0000000E",
+					type: "xp",
+					xp: 160
+				}
+			],
+			dependencies: [
+				"7200000D0000000D"
+			]
+		},
+		{
+			id: "7200000D0000000F",
+			icon: {
+				count: 1,
+				id: "create:rotation_speed_controller"
+			},
+			x: 11.400d,
+			y: 17.250d,
+			tasks: [
+				{
+					id: "7300000D0000000F",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:rotation_speed_controller"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000D0000000F",
+					type: "xp",
+					xp: 160
+				}
+			],
+			dependencies: [
+				"7200000D0000000E"
+			]
+		},
+		{
+			id: "7200000D00000010",
+			icon: {
+				count: 1,
+				id: "create:clutch"
+			},
+			x: 14.300d,
+			y: 17.250d,
+			tasks: [
+				{
+					id: "7300000D00000010",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:clutch"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000D00000010",
+					type: "xp",
+					xp: 170
+				},
+				{
+					id: "7400000D0000020F",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:torch"
+					},
+					count: 4
+				}
+			],
+			dependencies: [
+				"7200000D0000000F"
+			]
+		},
+		{
+			id: "7200000D00000011",
+			icon: {
+				count: 1,
+				id: "create:gearshift"
+			},
+			x: 17.200d,
+			y: 17.250d,
+			tasks: [
+				{
+					id: "7300000D00000011",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:gearshift"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000D00000011",
+					type: "xp",
+					xp: 170
+				}
+			],
+			dependencies: [
+				"7200000D00000010"
+			]
+		},
+		{
+			id: "7200000D00000012",
+			icon: {
+				count: 1,
+				id: "create:mechanical_bearing"
+			},
+			x: 21.000d,
+			y: 10.500d,
+			tasks: [
+				{
+					id: "7300000D00000012",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "7400000D00000012",
+					type: "xp",
+					xp: 170
+				},
+				{
+					id: "7400000D00000331",
+					type: "item",
+					item: {
+						count: 1,
+						id: "kubejs:chronicle_page"
+					},
+					count: 1
+				},
+				{
+					id: "7400000D00000395",
+					type: "custom"
+				}
+			],
+			dependencies: [
+				"7200000D00000006",
+				"7200000D0000000B",
+				"7200000D00000011"
+			],
+			shape: "hexagon",
+			size: 1.600d
+		}
+	]
+}

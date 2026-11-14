@@ -1,0 +1,1603 @@
+{
+	"chapter.7100000100000000.chapter_subtitle": [
+		"Every world begins with a small decision. Gather, adapt, build.",
+		"Three routes. Complete all three to unlock the final seal. No item consumption."
+	],
+	"chapter.7100000100000000.title": "The First Spark",
+	"chapter.7100000200000000.chapter_subtitle": [
+		"Turn survival into a home. Craft workstations and make a place worth returning to.",
+		"Three routes. Complete all three to unlock the final seal. No item consumption."
+	],
+	"chapter.7100000200000000.title": "The Living Homestead",
+	"chapter.7100000300000000.chapter_subtitle": [
+		"Go deeper. The ground hides everything your future factories need.",
+		"Three routes. Complete all three to unlock the final seal. No item consumption."
+	],
+	"chapter.7100000300000000.title": "Beneath the Stone",
+	"chapter.7100000400000000.chapter_subtitle": [
+		"You cannot build great machines on an empty stomach.",
+		"Three routes. Complete all three to unlock the final seal. No item consumption."
+	],
+	"chapter.7100000400000000.title": "Harvest and Hearth",
+	"chapter.7100000500000000.chapter_subtitle": [
+		"Build with care. Every material is a new design language.",
+		"Three routes. Complete all three to unlock the final seal. No item consumption."
+	],
+	"chapter.7100000500000000.title": "City of One",
+	"chapter.7100000600000000.chapter_subtitle": [
+		"Let nature become your guide. Explore the living world.",
+		"Three routes. Complete all three to unlock the final seal. No item consumption."
+	],
+	"chapter.7100000600000000.title": "The Wild Compass",
+	"chapter.7100000700000000.chapter_subtitle": [
+		"Before industry comes logic. Route power with dust, pulses and pistons.",
+		"Three routes. Complete all three to unlock the final seal. No item consumption."
+	],
+	"chapter.7100000700000000.title": "Redstone Awakening",
+	"chapter.7100000800000000.chapter_subtitle": [
+		"The seas conceal rare treasures and ancient technology.",
+		"Three routes. Complete all three to unlock the final seal. No item consumption."
+	],
+	"chapter.7100000800000000.title": "The Deep Atlas",
+	"chapter.7100000900000000.chapter_subtitle": [
+		"Learn what glows, brews, enchants and transforms.",
+		"Three routes. Complete all three to unlock the final seal. No item consumption."
+	],
+	"chapter.7100000900000000.title": "The Arcane Workshop",
+	"chapter.7100000A00000000.chapter_subtitle": [
+		"Behind the portal, heat becomes a resource.",
+		"Three routes. Complete all three to unlock the final seal. No item consumption."
+	],
+	"chapter.7100000A00000000.title": "Through the Fire",
+	"chapter.7100000B00000000.chapter_subtitle": [
+		"Reach the quiet dimension and bring its stories home.",
+		"Three routes. Complete all three to unlock the final seal. No item consumption."
+	],
+	"chapter.7100000B00000000.title": "Beyond the Horizon",
+	"chapter.7100000C00000000.chapter_subtitle": [
+		"Power has shape: shafts, gears and rotations. Build your first workshop.",
+		"Three routes. Complete all three to unlock the final seal. No item consumption."
+	],
+	"chapter.7100000C00000000.title": "Create: Foundations",
+	"chapter.7100000D00000000.chapter_subtitle": [
+		"Make motion meaningful. Turn simple gears into moving structures.",
+		"Three routes. Complete all three to unlock the final seal. No item consumption."
+	],
+	"chapter.7100000D00000000.title": "Create: Moving Cities",
+	"chapter.7100000E00000000.chapter_subtitle": [
+		"From brass to automation. Design a factory with a mind of its own.",
+		"Three routes. Complete all three to unlock the final seal. No item consumption."
+	],
+	"chapter.7100000E00000000.title": "Create: The Grand Factory",
+	"image.7500000100000001.title": "The First Spark",
+	"image.7500000200000001.title": "The Living Homestead",
+	"image.7500000300000001.title": "Beneath the Stone",
+	"image.7500000400000001.title": "Harvest and Hearth",
+	"image.7500000500000001.title": "City of One",
+	"image.7500000600000001.title": "The Wild Compass",
+	"image.7500000700000001.title": "Redstone Awakening",
+	"image.7500000800000001.title": "The Deep Atlas",
+	"image.7500000900000001.title": "The Arcane Workshop",
+	"image.7500000A00000001.title": "Through the Fire",
+	"image.7500000B00000001.title": "Beyond the Horizon",
+	"image.7500000C00000001.title": "Create: Foundations",
+	"image.7500000D00000001.title": "Create: Moving Cities",
+	"image.7500000E00000001.title": "Create: The Grand Factory",
+	"quest.7200000100000001.quest_desc": [
+		"Every world begins with a small decision. Gather, adapt, build.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000100000001.title": "Chapter briefing",
+	"quest.7200000100000002.quest_desc": [
+		"Every world begins with a small decision. Gather, adapt, build.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000100000002.title": "Oak Log",
+	"quest.7200000100000003.quest_desc": [
+		"Every world begins with a small decision. Gather, adapt, build.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000100000003.title": "Crafting Table",
+	"quest.7200000100000004.quest_desc": [
+		"Every world begins with a small decision. Gather, adapt, build.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000100000004.title": "Wooden Pickaxe",
+	"quest.7200000100000005.quest_desc": [
+		"Every world begins with a small decision. Gather, adapt, build.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000100000005.title": "Cobblestone",
+	"quest.7200000100000006.quest_desc": [
+		"Every world begins with a small decision. Gather, adapt, build.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000100000006.title": "Furnace",
+	"quest.7200000100000007.quest_desc": [
+		"Every world begins with a small decision. Gather, adapt, build.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000100000007.title": "Charcoal",
+	"quest.7200000100000008.quest_desc": [
+		"Every world begins with a small decision. Gather, adapt, build.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000100000008.title": "Torch",
+	"quest.7200000100000009.quest_desc": [
+		"Every world begins with a small decision. Gather, adapt, build.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000100000009.title": "Chest",
+	"quest.720000010000000A.quest_desc": [
+		"Every world begins with a small decision. Gather, adapt, build.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000010000000A.title": "White Bed",
+	"quest.720000010000000B.quest_desc": [
+		"Every world begins with a small decision. Gather, adapt, build.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000010000000B.title": "Stone Pickaxe",
+	"quest.720000010000000C.quest_desc": [
+		"Every world begins with a small decision. Gather, adapt, build.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000010000000C.title": "Iron Ingot",
+	"quest.720000010000000D.quest_desc": [
+		"Every world begins with a small decision. Gather, adapt, build.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000010000000D.title": "Shield",
+	"quest.720000010000000E.quest_desc": [
+		"Every world begins with a small decision. Gather, adapt, build.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000010000000E.title": "Bucket",
+	"quest.720000010000000F.quest_desc": [
+		"Every world begins with a small decision. Gather, adapt, build.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000010000000F.title": "Cooked Beef",
+	"quest.7200000100000010.quest_desc": [
+		"Every world begins with a small decision. Gather, adapt, build.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000100000010.title": "Spruce Log",
+	"quest.7200000100000011.quest_desc": [
+		"Every world begins with a small decision. Gather, adapt, build.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000100000011.title": "Compass",
+	"quest.7200000100000012.quest_desc": [
+		"Every world begins with a small decision. Gather, adapt, build.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000100000012.title": "The chapter seal",
+	"quest.7200000200000001.quest_desc": [
+		"Turn survival into a home. Craft workstations and make a place worth returning to.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000200000001.title": "Chapter briefing",
+	"quest.7200000200000002.quest_desc": [
+		"Turn survival into a home. Craft workstations and make a place worth returning to.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000200000002.title": "Barrel",
+	"quest.7200000200000003.quest_desc": [
+		"Turn survival into a home. Craft workstations and make a place worth returning to.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000200000003.title": "Smoker",
+	"quest.7200000200000004.quest_desc": [
+		"Turn survival into a home. Craft workstations and make a place worth returning to.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000200000004.title": "Blast Furnace",
+	"quest.7200000200000005.quest_desc": [
+		"Turn survival into a home. Craft workstations and make a place worth returning to.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000200000005.title": "Lectern",
+	"quest.7200000200000006.quest_desc": [
+		"Turn survival into a home. Craft workstations and make a place worth returning to.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000200000006.title": "Anvil",
+	"quest.7200000200000007.quest_desc": [
+		"Turn survival into a home. Craft workstations and make a place worth returning to.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000200000007.title": "Grindstone",
+	"quest.7200000200000008.quest_desc": [
+		"Turn survival into a home. Craft workstations and make a place worth returning to.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000200000008.title": "Stonecutter",
+	"quest.7200000200000009.quest_desc": [
+		"Turn survival into a home. Craft workstations and make a place worth returning to.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000200000009.title": "Loom",
+	"quest.720000020000000A.quest_desc": [
+		"Turn survival into a home. Craft workstations and make a place worth returning to.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000020000000A.title": "Cartography Table",
+	"quest.720000020000000B.quest_desc": [
+		"Turn survival into a home. Craft workstations and make a place worth returning to.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000020000000B.title": "Scaffolding",
+	"quest.720000020000000C.quest_desc": [
+		"Turn survival into a home. Craft workstations and make a place worth returning to.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000020000000C.title": "Lantern",
+	"quest.720000020000000D.quest_desc": [
+		"Turn survival into a home. Craft workstations and make a place worth returning to.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000020000000D.title": "Campfire",
+	"quest.720000020000000E.quest_desc": [
+		"Turn survival into a home. Craft workstations and make a place worth returning to.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000020000000E.title": "Minecart",
+	"quest.720000020000000F.quest_desc": [
+		"Turn survival into a home. Craft workstations and make a place worth returning to.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000020000000F.title": "Hopper",
+	"quest.7200000200000010.quest_desc": [
+		"Turn survival into a home. Craft workstations and make a place worth returning to.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000200000010.title": "Flower Pot",
+	"quest.7200000200000011.quest_desc": [
+		"Turn survival into a home. Craft workstations and make a place worth returning to.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000200000011.title": "Item Frame",
+	"quest.7200000200000012.quest_desc": [
+		"Turn survival into a home. Craft workstations and make a place worth returning to.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000200000012.title": "The chapter seal",
+	"quest.7200000300000001.quest_desc": [
+		"Go deeper. The ground hides everything your future factories need.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000300000001.title": "Chapter briefing",
+	"quest.7200000300000002.quest_desc": [
+		"Go deeper. The ground hides everything your future factories need.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000300000002.title": "Stone Pickaxe",
+	"quest.7200000300000003.quest_desc": [
+		"Go deeper. The ground hides everything your future factories need.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000300000003.title": "Copper Ingot",
+	"quest.7200000300000004.quest_desc": [
+		"Go deeper. The ground hides everything your future factories need.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000300000004.title": "Raw Iron",
+	"quest.7200000300000005.quest_desc": [
+		"Go deeper. The ground hides everything your future factories need.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000300000005.title": "Iron Ingot",
+	"quest.7200000300000006.quest_desc": [
+		"Go deeper. The ground hides everything your future factories need.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000300000006.title": "Coal",
+	"quest.7200000300000007.quest_desc": [
+		"Go deeper. The ground hides everything your future factories need.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000300000007.title": "Raw Gold",
+	"quest.7200000300000008.quest_desc": [
+		"Go deeper. The ground hides everything your future factories need.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000300000008.title": "Gold Ingot",
+	"quest.7200000300000009.quest_desc": [
+		"Go deeper. The ground hides everything your future factories need.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000300000009.title": "Redstone",
+	"quest.720000030000000A.quest_desc": [
+		"Go deeper. The ground hides everything your future factories need.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000030000000A.title": "Lapis Lazuli",
+	"quest.720000030000000B.quest_desc": [
+		"Go deeper. The ground hides everything your future factories need.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000030000000B.title": "Diamond",
+	"quest.720000030000000C.quest_desc": [
+		"Go deeper. The ground hides everything your future factories need.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000030000000C.title": "Emerald",
+	"quest.720000030000000D.quest_desc": [
+		"Go deeper. The ground hides everything your future factories need.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000030000000D.title": "Deepslate",
+	"quest.720000030000000E.quest_desc": [
+		"Go deeper. The ground hides everything your future factories need.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000030000000E.title": "Tuff",
+	"quest.720000030000000F.quest_desc": [
+		"Go deeper. The ground hides everything your future factories need.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000030000000F.title": "Obsidian",
+	"quest.7200000300000010.quest_desc": [
+		"Go deeper. The ground hides everything your future factories need.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000300000010.title": "Amethyst Shard",
+	"quest.7200000300000011.quest_desc": [
+		"Go deeper. The ground hides everything your future factories need.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000300000011.title": "Diamond Pickaxe",
+	"quest.7200000300000012.quest_desc": [
+		"Go deeper. The ground hides everything your future factories need.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000300000012.title": "The chapter seal",
+	"quest.7200000400000001.quest_desc": [
+		"You cannot build great machines on an empty stomach.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000400000001.title": "Chapter briefing",
+	"quest.7200000400000002.quest_desc": [
+		"You cannot build great machines on an empty stomach.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000400000002.title": "Wheat Seeds",
+	"quest.7200000400000003.quest_desc": [
+		"You cannot build great machines on an empty stomach.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000400000003.title": "Wheat",
+	"quest.7200000400000004.quest_desc": [
+		"You cannot build great machines on an empty stomach.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000400000004.title": "Bread",
+	"quest.7200000400000005.quest_desc": [
+		"You cannot build great machines on an empty stomach.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000400000005.title": "Carrot",
+	"quest.7200000400000006.quest_desc": [
+		"You cannot build great machines on an empty stomach.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000400000006.title": "Potato",
+	"quest.7200000400000007.quest_desc": [
+		"You cannot build great machines on an empty stomach.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000400000007.title": "Pumpkin",
+	"quest.7200000400000008.quest_desc": [
+		"You cannot build great machines on an empty stomach.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000400000008.title": "Melon Slice",
+	"quest.7200000400000009.quest_desc": [
+		"You cannot build great machines on an empty stomach.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000400000009.title": "Beetroot",
+	"quest.720000040000000A.quest_desc": [
+		"You cannot build great machines on an empty stomach.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000040000000A.title": "Sugar Cane",
+	"quest.720000040000000B.quest_desc": [
+		"You cannot build great machines on an empty stomach.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000040000000B.title": "Paper",
+	"quest.720000040000000C.quest_desc": [
+		"You cannot build great machines on an empty stomach.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000040000000C.title": "Leather",
+	"quest.720000040000000D.quest_desc": [
+		"You cannot build great machines on an empty stomach.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000040000000D.title": "Book",
+	"quest.720000040000000E.quest_desc": [
+		"You cannot build great machines on an empty stomach.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000040000000E.title": "Hay Block",
+	"quest.720000040000000F.quest_desc": [
+		"You cannot build great machines on an empty stomach.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000040000000F.title": "Honey Bottle",
+	"quest.7200000400000010.quest_desc": [
+		"You cannot build great machines on an empty stomach.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000400000010.title": "Cake",
+	"quest.7200000400000011.quest_desc": [
+		"You cannot build great machines on an empty stomach.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000400000011.title": "Golden Carrot",
+	"quest.7200000400000012.quest_desc": [
+		"You cannot build great machines on an empty stomach.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000400000012.title": "The chapter seal",
+	"quest.7200000500000001.quest_desc": [
+		"Build with care. Every material is a new design language.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000500000001.title": "Chapter briefing",
+	"quest.7200000500000002.quest_desc": [
+		"Build with care. Every material is a new design language.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000500000002.title": "Oak Planks",
+	"quest.7200000500000003.quest_desc": [
+		"Build with care. Every material is a new design language.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000500000003.title": "Stone Bricks",
+	"quest.7200000500000004.quest_desc": [
+		"Build with care. Every material is a new design language.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000500000004.title": "Glass",
+	"quest.7200000500000005.quest_desc": [
+		"Build with care. Every material is a new design language.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000500000005.title": "White Wool",
+	"quest.7200000500000006.quest_desc": [
+		"Build with care. Every material is a new design language.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000500000006.title": "Terracotta",
+	"quest.7200000500000007.quest_desc": [
+		"Build with care. Every material is a new design language.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000500000007.title": "Bricks",
+	"quest.7200000500000008.quest_desc": [
+		"Build with care. Every material is a new design language.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000500000008.title": "Polished Andesite",
+	"quest.7200000500000009.quest_desc": [
+		"Build with care. Every material is a new design language.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000500000009.title": "Copper Block",
+	"quest.720000050000000A.quest_desc": [
+		"Build with care. Every material is a new design language.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000050000000A.title": "Chain",
+	"quest.720000050000000B.quest_desc": [
+		"Build with care. Every material is a new design language.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000050000000B.title": "Lantern",
+	"quest.720000050000000C.quest_desc": [
+		"Build with care. Every material is a new design language.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000050000000C.title": "Painting",
+	"quest.720000050000000D.quest_desc": [
+		"Build with care. Every material is a new design language.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000050000000D.title": "Armor Stand",
+	"quest.720000050000000E.quest_desc": [
+		"Build with care. Every material is a new design language.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000050000000E.title": "Bookshelf",
+	"quest.720000050000000F.quest_desc": [
+		"Build with care. Every material is a new design language.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000050000000F.title": "Quartz Block",
+	"quest.7200000500000010.quest_desc": [
+		"Build with care. Every material is a new design language.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000500000010.title": "Moss Block",
+	"quest.7200000500000011.quest_desc": [
+		"Build with care. Every material is a new design language.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000500000011.title": "Chiseled Bookshelf",
+	"quest.7200000500000012.quest_desc": [
+		"Build with care. Every material is a new design language.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000500000012.title": "The chapter seal",
+	"quest.7200000600000001.quest_desc": [
+		"Let nature become your guide. Explore the living world.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000600000001.title": "Chapter briefing",
+	"quest.7200000600000002.quest_desc": [
+		"Let nature become your guide. Explore the living world.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000600000002.title": "Oak Sapling",
+	"quest.7200000600000003.quest_desc": [
+		"Let nature become your guide. Explore the living world.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000600000003.title": "Bone Meal",
+	"quest.7200000600000004.quest_desc": [
+		"Let nature become your guide. Explore the living world.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000600000004.title": "Lead",
+	"quest.7200000600000005.quest_desc": [
+		"Let nature become your guide. Explore the living world.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000600000005.title": "Shears",
+	"quest.7200000600000006.quest_desc": [
+		"Let nature become your guide. Explore the living world.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000600000006.title": "Bee Nest",
+	"quest.7200000600000007.quest_desc": [
+		"Let nature become your guide. Explore the living world.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000600000007.title": "Honeycomb",
+	"quest.7200000600000008.quest_desc": [
+		"Let nature become your guide. Explore the living world.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000600000008.title": "Flower Pot",
+	"quest.7200000600000009.quest_desc": [
+		"Let nature become your guide. Explore the living world.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000600000009.title": "Item Frame",
+	"quest.720000060000000A.quest_desc": [
+		"Let nature become your guide. Explore the living world.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000060000000A.title": "Moss Block",
+	"quest.720000060000000B.quest_desc": [
+		"Let nature become your guide. Explore the living world.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000060000000B.title": "Glow Berries",
+	"quest.720000060000000C.quest_desc": [
+		"Let nature become your guide. Explore the living world.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000060000000C.title": "Kelp",
+	"quest.720000060000000D.quest_desc": [
+		"Let nature become your guide. Explore the living world.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000060000000D.title": "Sea Pickle",
+	"quest.720000060000000E.quest_desc": [
+		"Let nature become your guide. Explore the living world.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000060000000E.title": "Slime Ball",
+	"quest.720000060000000F.quest_desc": [
+		"Let nature become your guide. Explore the living world.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000060000000F.title": "Feather",
+	"quest.7200000600000010.quest_desc": [
+		"Let nature become your guide. Explore the living world.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000600000010.title": "Spyglass",
+	"quest.7200000600000011.quest_desc": [
+		"Let nature become your guide. Explore the living world.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000600000011.title": "Map",
+	"quest.7200000600000012.quest_desc": [
+		"Let nature become your guide. Explore the living world.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000600000012.title": "The chapter seal",
+	"quest.7200000600000013.quest_desc": [
+		"Optional: spend three observation cycles in a thunderstorm.",
+		"KubeJS monitors weather and advances the custom FTB task."
+	],
+	"quest.7200000600000013.title": "Stormwatch",
+	"quest.7200000700000001.quest_desc": [
+		"Before industry comes logic. Route power with dust, pulses and pistons.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000700000001.title": "Chapter briefing",
+	"quest.7200000700000002.quest_desc": [
+		"Before industry comes logic. Route power with dust, pulses and pistons.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000700000002.title": "Redstone",
+	"quest.7200000700000003.quest_desc": [
+		"Before industry comes logic. Route power with dust, pulses and pistons.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000700000003.title": "Lever",
+	"quest.7200000700000004.quest_desc": [
+		"Before industry comes logic. Route power with dust, pulses and pistons.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000700000004.title": "Stone Button",
+	"quest.7200000700000005.quest_desc": [
+		"Before industry comes logic. Route power with dust, pulses and pistons.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000700000005.title": "Redstone Torch",
+	"quest.7200000700000006.quest_desc": [
+		"Before industry comes logic. Route power with dust, pulses and pistons.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000700000006.title": "Repeater",
+	"quest.7200000700000007.quest_desc": [
+		"Before industry comes logic. Route power with dust, pulses and pistons.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000700000007.title": "Comparator",
+	"quest.7200000700000008.quest_desc": [
+		"Before industry comes logic. Route power with dust, pulses and pistons.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000700000008.title": "Piston",
+	"quest.7200000700000009.quest_desc": [
+		"Before industry comes logic. Route power with dust, pulses and pistons.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000700000009.title": "Sticky Piston",
+	"quest.720000070000000A.quest_desc": [
+		"Before industry comes logic. Route power with dust, pulses and pistons.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000070000000A.title": "Observer",
+	"quest.720000070000000B.quest_desc": [
+		"Before industry comes logic. Route power with dust, pulses and pistons.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000070000000B.title": "Hopper",
+	"quest.720000070000000C.quest_desc": [
+		"Before industry comes logic. Route power with dust, pulses and pistons.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000070000000C.title": "Dropper",
+	"quest.720000070000000D.quest_desc": [
+		"Before industry comes logic. Route power with dust, pulses and pistons.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000070000000D.title": "Dispenser",
+	"quest.720000070000000E.quest_desc": [
+		"Before industry comes logic. Route power with dust, pulses and pistons.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000070000000E.title": "Daylight Detector",
+	"quest.720000070000000F.quest_desc": [
+		"Before industry comes logic. Route power with dust, pulses and pistons.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000070000000F.title": "Target",
+	"quest.7200000700000010.quest_desc": [
+		"Before industry comes logic. Route power with dust, pulses and pistons.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000700000010.title": "Note Block",
+	"quest.7200000700000011.quest_desc": [
+		"Before industry comes logic. Route power with dust, pulses and pistons.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000700000011.title": "Redstone Lamp",
+	"quest.7200000700000012.quest_desc": [
+		"Before industry comes logic. Route power with dust, pulses and pistons.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000700000012.title": "The chapter seal",
+	"quest.7200000800000001.quest_desc": [
+		"The seas conceal rare treasures and ancient technology.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000800000001.title": "Chapter briefing",
+	"quest.7200000800000002.quest_desc": [
+		"The seas conceal rare treasures and ancient technology.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000800000002.title": "Oak Boat",
+	"quest.7200000800000003.quest_desc": [
+		"The seas conceal rare treasures and ancient technology.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000800000003.title": "Fishing Rod",
+	"quest.7200000800000004.quest_desc": [
+		"The seas conceal rare treasures and ancient technology.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000800000004.title": "Cod",
+	"quest.7200000800000005.quest_desc": [
+		"The seas conceal rare treasures and ancient technology.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000800000005.title": "Salmon",
+	"quest.7200000800000006.quest_desc": [
+		"The seas conceal rare treasures and ancient technology.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000800000006.title": "Kelp",
+	"quest.7200000800000007.quest_desc": [
+		"The seas conceal rare treasures and ancient technology.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000800000007.title": "Prismarine",
+	"quest.7200000800000008.quest_desc": [
+		"The seas conceal rare treasures and ancient technology.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000800000008.title": "Prismarine Shard",
+	"quest.7200000800000009.quest_desc": [
+		"The seas conceal rare treasures and ancient technology.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000800000009.title": "Sea Lantern",
+	"quest.720000080000000A.quest_desc": [
+		"The seas conceal rare treasures and ancient technology.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000080000000A.title": "Nautilus Shell",
+	"quest.720000080000000B.quest_desc": [
+		"The seas conceal rare treasures and ancient technology.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000080000000B.title": "Heart Of The Sea",
+	"quest.720000080000000C.quest_desc": [
+		"The seas conceal rare treasures and ancient technology.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000080000000C.title": "Conduit",
+	"quest.720000080000000D.quest_desc": [
+		"The seas conceal rare treasures and ancient technology.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000080000000D.title": "Sponge",
+	"quest.720000080000000E.quest_desc": [
+		"The seas conceal rare treasures and ancient technology.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000080000000E.title": "Turtle Helmet",
+	"quest.720000080000000F.quest_desc": [
+		"The seas conceal rare treasures and ancient technology.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000080000000F.title": "Map",
+	"quest.7200000800000010.quest_desc": [
+		"The seas conceal rare treasures and ancient technology.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000800000010.title": "Spyglass",
+	"quest.7200000800000011.quest_desc": [
+		"The seas conceal rare treasures and ancient technology.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000800000011.title": "Water Bucket",
+	"quest.7200000800000012.quest_desc": [
+		"The seas conceal rare treasures and ancient technology.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000800000012.title": "The chapter seal",
+	"quest.7200000900000001.quest_desc": [
+		"Learn what glows, brews, enchants and transforms.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000900000001.title": "Chapter briefing",
+	"quest.7200000900000002.quest_desc": [
+		"Learn what glows, brews, enchants and transforms.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000900000002.title": "Brewing Stand",
+	"quest.7200000900000003.quest_desc": [
+		"Learn what glows, brews, enchants and transforms.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000900000003.title": "Glass Bottle",
+	"quest.7200000900000004.quest_desc": [
+		"Learn what glows, brews, enchants and transforms.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000900000004.title": "Blaze Powder",
+	"quest.7200000900000005.quest_desc": [
+		"Learn what glows, brews, enchants and transforms.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000900000005.title": "Nether Wart",
+	"quest.7200000900000006.quest_desc": [
+		"Learn what glows, brews, enchants and transforms.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000900000006.title": "Ghast Tear",
+	"quest.7200000900000007.quest_desc": [
+		"Learn what glows, brews, enchants and transforms.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000900000007.title": "Magma Cream",
+	"quest.7200000900000008.quest_desc": [
+		"Learn what glows, brews, enchants and transforms.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000900000008.title": "Glistering Melon Slice",
+	"quest.7200000900000009.quest_desc": [
+		"Learn what glows, brews, enchants and transforms.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000900000009.title": "Fermented Spider Eye",
+	"quest.720000090000000A.quest_desc": [
+		"Learn what glows, brews, enchants and transforms.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000090000000A.title": "Gunpowder",
+	"quest.720000090000000B.quest_desc": [
+		"Learn what glows, brews, enchants and transforms.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000090000000B.title": "Redstone",
+	"quest.720000090000000C.quest_desc": [
+		"Learn what glows, brews, enchants and transforms.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000090000000C.title": "Glowstone Dust",
+	"quest.720000090000000D.quest_desc": [
+		"Learn what glows, brews, enchants and transforms.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000090000000D.title": "Golden Carrot",
+	"quest.720000090000000E.quest_desc": [
+		"Learn what glows, brews, enchants and transforms.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000090000000E.title": "Cauldron",
+	"quest.720000090000000F.quest_desc": [
+		"Learn what glows, brews, enchants and transforms.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.720000090000000F.title": "Enchanting Table",
+	"quest.7200000900000010.quest_desc": [
+		"Learn what glows, brews, enchants and transforms.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000900000010.title": "Lapis Lazuli",
+	"quest.7200000900000011.quest_desc": [
+		"Learn what glows, brews, enchants and transforms.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000900000011.title": "Ender Pearl",
+	"quest.7200000900000012.quest_desc": [
+		"Learn what glows, brews, enchants and transforms.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000900000012.title": "The chapter seal",
+	"quest.7200000A00000001.quest_desc": [
+		"Behind the portal, heat becomes a resource.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000A00000001.title": "Chapter briefing",
+	"quest.7200000A00000002.quest_desc": [
+		"Behind the portal, heat becomes a resource.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000A00000002.title": "Obsidian",
+	"quest.7200000A00000003.quest_desc": [
+		"Behind the portal, heat becomes a resource.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000A00000003.title": "Flint And Steel",
+	"quest.7200000A00000004.quest_desc": [
+		"Behind the portal, heat becomes a resource.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000A00000004.title": "Enter The Nether",
+	"quest.7200000A00000005.quest_desc": [
+		"Behind the portal, heat becomes a resource.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000A00000005.title": "Netherrack",
+	"quest.7200000A00000006.quest_desc": [
+		"Behind the portal, heat becomes a resource.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000A00000006.title": "Quartz",
+	"quest.7200000A00000007.quest_desc": [
+		"Behind the portal, heat becomes a resource.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000A00000007.title": "Glowstone Dust",
+	"quest.7200000A00000008.quest_desc": [
+		"Behind the portal, heat becomes a resource.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000A00000008.title": "Soul Sand",
+	"quest.7200000A00000009.quest_desc": [
+		"Behind the portal, heat becomes a resource.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000A00000009.title": "Nether Wart",
+	"quest.7200000A0000000A.quest_desc": [
+		"Behind the portal, heat becomes a resource.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000A0000000A.title": "Blaze Rod",
+	"quest.7200000A0000000B.quest_desc": [
+		"Behind the portal, heat becomes a resource.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000A0000000B.title": "Ghast Tear",
+	"quest.7200000A0000000C.quest_desc": [
+		"Behind the portal, heat becomes a resource.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000A0000000C.title": "Magma Cream",
+	"quest.7200000A0000000D.quest_desc": [
+		"Behind the portal, heat becomes a resource.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000A0000000D.title": "Nether Brick",
+	"quest.7200000A0000000E.quest_desc": [
+		"Behind the portal, heat becomes a resource.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000A0000000E.title": "Ancient Debris",
+	"quest.7200000A0000000F.quest_desc": [
+		"Behind the portal, heat becomes a resource.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000A0000000F.title": "Netherite Scrap",
+	"quest.7200000A00000010.quest_desc": [
+		"Behind the portal, heat becomes a resource.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000A00000010.title": "Warped Fungus",
+	"quest.7200000A00000011.quest_desc": [
+		"Behind the portal, heat becomes a resource.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000A00000011.title": "Crying Obsidian",
+	"quest.7200000A00000012.quest_desc": [
+		"Behind the portal, heat becomes a resource.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000A00000012.title": "The chapter seal",
+	"quest.7200000B00000001.quest_desc": [
+		"Reach the quiet dimension and bring its stories home.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000B00000001.title": "Chapter briefing",
+	"quest.7200000B00000002.quest_desc": [
+		"Reach the quiet dimension and bring its stories home.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000B00000002.title": "Ender Pearl",
+	"quest.7200000B00000003.quest_desc": [
+		"Reach the quiet dimension and bring its stories home.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000B00000003.title": "Blaze Powder",
+	"quest.7200000B00000004.quest_desc": [
+		"Reach the quiet dimension and bring its stories home.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000B00000004.title": "Ender Eye",
+	"quest.7200000B00000005.quest_desc": [
+		"Reach the quiet dimension and bring its stories home.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000B00000005.title": "End Stone",
+	"quest.7200000B00000006.quest_desc": [
+		"Reach the quiet dimension and bring its stories home.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000B00000006.title": "Enter The End",
+	"quest.7200000B00000007.quest_desc": [
+		"Reach the quiet dimension and bring its stories home.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000B00000007.title": "Chorus Fruit",
+	"quest.7200000B00000008.quest_desc": [
+		"Reach the quiet dimension and bring its stories home.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000B00000008.title": "Purpur Block",
+	"quest.7200000B00000009.quest_desc": [
+		"Reach the quiet dimension and bring its stories home.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000B00000009.title": "End Rod",
+	"quest.7200000B0000000A.quest_desc": [
+		"Reach the quiet dimension and bring its stories home.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000B0000000A.title": "Dragon Breath",
+	"quest.7200000B0000000B.quest_desc": [
+		"Reach the quiet dimension and bring its stories home.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000B0000000B.title": "Shulker Shell",
+	"quest.7200000B0000000C.quest_desc": [
+		"Reach the quiet dimension and bring its stories home.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000B0000000C.title": "Elytra",
+	"quest.7200000B0000000D.quest_desc": [
+		"Reach the quiet dimension and bring its stories home.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000B0000000D.title": "Ender Chest",
+	"quest.7200000B0000000E.quest_desc": [
+		"Reach the quiet dimension and bring its stories home.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000B0000000E.title": "End Crystal",
+	"quest.7200000B0000000F.quest_desc": [
+		"Reach the quiet dimension and bring its stories home.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000B0000000F.title": "Obsidian",
+	"quest.7200000B00000010.quest_desc": [
+		"Reach the quiet dimension and bring its stories home.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000B00000010.title": "Dragon Head",
+	"quest.7200000B00000011.quest_desc": [
+		"Reach the quiet dimension and bring its stories home.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000B00000011.title": "Beacon",
+	"quest.7200000B00000012.quest_desc": [
+		"Reach the quiet dimension and bring its stories home.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000B00000012.title": "The chapter seal",
+	"quest.7200000C00000001.quest_desc": [
+		"Power has shape: shafts, gears and rotations. Build your first workshop.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000C00000001.title": "Chapter briefing",
+	"quest.7200000C00000002.quest_desc": [
+		"Power has shape: shafts, gears and rotations. Build your first workshop.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000C00000002.title": "Andesite Alloy",
+	"quest.7200000C00000003.quest_desc": [
+		"Power has shape: shafts, gears and rotations. Build your first workshop.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000C00000003.title": "Shaft",
+	"quest.7200000C00000004.quest_desc": [
+		"Power has shape: shafts, gears and rotations. Build your first workshop.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000C00000004.title": "Cogwheel",
+	"quest.7200000C00000005.quest_desc": [
+		"Power has shape: shafts, gears and rotations. Build your first workshop.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000C00000005.title": "Large Cogwheel",
+	"quest.7200000C00000006.quest_desc": [
+		"Power has shape: shafts, gears and rotations. Build your first workshop.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000C00000006.title": "Gearbox",
+	"quest.7200000C00000007.quest_desc": [
+		"Power has shape: shafts, gears and rotations. Build your first workshop.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000C00000007.title": "Encased Chain Drive",
+	"quest.7200000C00000008.quest_desc": [
+		"Power has shape: shafts, gears and rotations. Build your first workshop.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000C00000008.title": "Water Wheel",
+	"quest.7200000C00000009.quest_desc": [
+		"Power has shape: shafts, gears and rotations. Build your first workshop.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000C00000009.title": "Mechanical Press",
+	"quest.7200000C0000000A.quest_desc": [
+		"Power has shape: shafts, gears and rotations. Build your first workshop.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000C0000000A.title": "Depot",
+	"quest.7200000C0000000B.quest_desc": [
+		"Power has shape: shafts, gears and rotations. Build your first workshop.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000C0000000B.title": "Mechanical Mixer",
+	"quest.7200000C0000000C.quest_desc": [
+		"Power has shape: shafts, gears and rotations. Build your first workshop.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000C0000000C.title": "Basin",
+	"quest.7200000C0000000D.quest_desc": [
+		"Power has shape: shafts, gears and rotations. Build your first workshop.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000C0000000D.title": "Mechanical Saw",
+	"quest.7200000C0000000E.quest_desc": [
+		"Power has shape: shafts, gears and rotations. Build your first workshop.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000C0000000E.title": "Mechanical Drill",
+	"quest.7200000C0000000F.quest_desc": [
+		"Power has shape: shafts, gears and rotations. Build your first workshop.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000C0000000F.title": "Millstone",
+	"quest.7200000C00000010.quest_desc": [
+		"Power has shape: shafts, gears and rotations. Build your first workshop.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000C00000010.title": "Encased Fan",
+	"quest.7200000C00000011.quest_desc": [
+		"Power has shape: shafts, gears and rotations. Build your first workshop.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000C00000011.title": "Belt Connector",
+	"quest.7200000C00000012.quest_desc": [
+		"Power has shape: shafts, gears and rotations. Build your first workshop.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000C00000012.title": "The chapter seal",
+	"quest.7200000D00000001.quest_desc": [
+		"Make motion meaningful. Turn simple gears into moving structures.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000D00000001.title": "Chapter briefing",
+	"quest.7200000D00000002.quest_desc": [
+		"Make motion meaningful. Turn simple gears into moving structures.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000D00000002.title": "Mechanical Bearing",
+	"quest.7200000D00000003.quest_desc": [
+		"Make motion meaningful. Turn simple gears into moving structures.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000D00000003.title": "Windmill Bearing",
+	"quest.7200000D00000004.quest_desc": [
+		"Make motion meaningful. Turn simple gears into moving structures.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000D00000004.title": "Sail Frame",
+	"quest.7200000D00000005.quest_desc": [
+		"Make motion meaningful. Turn simple gears into moving structures.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000D00000005.title": "Gantry Shaft",
+	"quest.7200000D00000006.quest_desc": [
+		"Make motion meaningful. Turn simple gears into moving structures.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000D00000006.title": "Mechanical Piston",
+	"quest.7200000D00000007.quest_desc": [
+		"Make motion meaningful. Turn simple gears into moving structures.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000D00000007.title": "Piston Extension Pole",
+	"quest.7200000D00000008.quest_desc": [
+		"Make motion meaningful. Turn simple gears into moving structures.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000D00000008.title": "Rope Pulley",
+	"quest.7200000D00000009.quest_desc": [
+		"Make motion meaningful. Turn simple gears into moving structures.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000D00000009.title": "Portable Storage Interface",
+	"quest.7200000D0000000A.quest_desc": [
+		"Make motion meaningful. Turn simple gears into moving structures.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000D0000000A.title": "Portable Fluid Interface",
+	"quest.7200000D0000000B.quest_desc": [
+		"Make motion meaningful. Turn simple gears into moving structures.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000D0000000B.title": "Deployer",
+	"quest.7200000D0000000C.quest_desc": [
+		"Make motion meaningful. Turn simple gears into moving structures.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000D0000000C.title": "Schematic And Quill",
+	"quest.7200000D0000000D.quest_desc": [
+		"Make motion meaningful. Turn simple gears into moving structures.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000D0000000D.title": "Schematic Table",
+	"quest.7200000D0000000E.quest_desc": [
+		"Make motion meaningful. Turn simple gears into moving structures.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000D0000000E.title": "Schematicannon",
+	"quest.7200000D0000000F.quest_desc": [
+		"Make motion meaningful. Turn simple gears into moving structures.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000D0000000F.title": "Rotation Speed Controller",
+	"quest.7200000D00000010.quest_desc": [
+		"Make motion meaningful. Turn simple gears into moving structures.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000D00000010.title": "Clutch",
+	"quest.7200000D00000011.quest_desc": [
+		"Make motion meaningful. Turn simple gears into moving structures.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000D00000011.title": "Gearshift",
+	"quest.7200000D00000012.quest_desc": [
+		"Make motion meaningful. Turn simple gears into moving structures.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000D00000012.title": "The chapter seal",
+	"quest.7200000E00000001.quest_desc": [
+		"From brass to automation. Design a factory with a mind of its own.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000E00000001.title": "Chapter briefing",
+	"quest.7200000E00000002.quest_desc": [
+		"From brass to automation. Design a factory with a mind of its own.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000E00000002.title": "Brass Ingot",
+	"quest.7200000E00000003.quest_desc": [
+		"From brass to automation. Design a factory with a mind of its own.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000E00000003.title": "Electron Tube",
+	"quest.7200000E00000004.quest_desc": [
+		"From brass to automation. Design a factory with a mind of its own.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000E00000004.title": "Precision Mechanism",
+	"quest.7200000E00000005.quest_desc": [
+		"From brass to automation. Design a factory with a mind of its own.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000E00000005.title": "Blaze Burner",
+	"quest.7200000E00000006.quest_desc": [
+		"From brass to automation. Design a factory with a mind of its own.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000E00000006.title": "Steam Engine",
+	"quest.7200000E00000007.quest_desc": [
+		"From brass to automation. Design a factory with a mind of its own.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000E00000007.title": "Fluid Tank",
+	"quest.7200000E00000008.quest_desc": [
+		"From brass to automation. Design a factory with a mind of its own.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000E00000008.title": "Fluid Pipe",
+	"quest.7200000E00000009.quest_desc": [
+		"From brass to automation. Design a factory with a mind of its own.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000E00000009.title": "Mechanical Pump",
+	"quest.7200000E0000000A.quest_desc": [
+		"From brass to automation. Design a factory with a mind of its own.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000E0000000A.title": "Spout",
+	"quest.7200000E0000000B.quest_desc": [
+		"From brass to automation. Design a factory with a mind of its own.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000E0000000B.title": "Crushing Wheel",
+	"quest.7200000E0000000C.quest_desc": [
+		"From brass to automation. Design a factory with a mind of its own.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000E0000000C.title": "Mechanical Crafter",
+	"quest.7200000E0000000D.quest_desc": [
+		"From brass to automation. Design a factory with a mind of its own.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000E0000000D.title": "Weighted Ejector",
+	"quest.7200000E0000000E.quest_desc": [
+		"From brass to automation. Design a factory with a mind of its own.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000E0000000E.title": "Stockpile Switch",
+	"quest.7200000E0000000F.quest_desc": [
+		"From brass to automation. Design a factory with a mind of its own.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000E0000000F.title": "Content Observer",
+	"quest.7200000E00000010.quest_desc": [
+		"From brass to automation. Design a factory with a mind of its own.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000E00000010.title": "Redstone Link",
+	"quest.7200000E00000011.quest_desc": [
+		"From brass to automation. Design a factory with a mind of its own.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000E00000011.title": "Smart Chute",
+	"quest.7200000E00000012.quest_desc": [
+		"From brass to automation. Design a factory with a mind of its own.",
+		"You only need to obtain or achieve the objective. Items are not consumed.",
+		"Complete the related nodes to open new routes."
+	],
+	"quest.7200000E00000012.title": "The chapter seal"
+}

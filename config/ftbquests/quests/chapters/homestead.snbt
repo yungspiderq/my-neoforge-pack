@@ -1,0 +1,634 @@
+{
+	filename: "homestead",
+	group: "",
+	icon: {
+		count: 1,
+		id: "minecraft:crafting_table"
+	},
+	id: "7100000200000000",
+	order_index: 1,
+	default_hide_dependency_lines: 0b,
+	default_quest_shape: "circle",
+	images: [
+		{
+			id: "7500000200000001",
+			image: "kubejs:textures/gui/quests/homestead.png",
+			x: 10.000d,
+			y: -4.000d,
+			width: 21.000d,
+			height: 3.200d,
+			rotation: 0.000d,
+			order: -150,
+			position_locked: 1b,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			text_inset: 8
+		},
+		{
+			id: "7500000200000002",
+			image: "kubejs:textures/gui/quests/homestead_stripe.png",
+			x: 9.500d,
+			y: 3.750d,
+			width: 17.800d,
+			height: 2.250d,
+			rotation: 0.000d,
+			order: -200,
+			alpha: 105,
+			position_locked: 1b
+		},
+		{
+			id: "7500000200000003",
+			image: "kubejs:textures/gui/quests/homestead_stripe.png",
+			x: 9.500d,
+			y: 10.500d,
+			width: 17.800d,
+			height: 2.250d,
+			rotation: 0.000d,
+			order: -200,
+			alpha: 105,
+			position_locked: 1b
+		},
+		{
+			id: "7500000200000004",
+			image: "kubejs:textures/gui/quests/homestead_stripe.png",
+			x: 9.500d,
+			y: 17.250d,
+			width: 17.800d,
+			height: 2.250d,
+			rotation: 0.000d,
+			order: -200,
+			alpha: 105,
+			position_locked: 1b
+		}
+	],
+	quest_links: [ ],
+	quests: [
+		{
+			id: "7200000200000001",
+			icon: {
+				count: 1,
+				id: "minecraft:crafting_table"
+			},
+			x: 0.000d,
+			y: 10.500d,
+			tasks: [
+				{
+					id: "7300000200000001",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "7400000200000001",
+					type: "xp",
+					xp: 40
+				},
+				{
+					id: "7400000200000200",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:bread"
+					},
+					count: 3
+				}
+			],
+			dependencies: [
+				"7200000100000012"
+			]
+		},
+		{
+			id: "7200000200000002",
+			icon: {
+				count: 1,
+				id: "minecraft:barrel"
+			},
+			x: 2.700d,
+			y: 3.750d,
+			tasks: [
+				{
+					id: "7300000200000002",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:barrel"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000200000002",
+					type: "xp",
+					xp: 40
+				}
+			],
+			dependencies: [
+				"7200000200000001"
+			]
+		},
+		{
+			id: "7200000200000003",
+			icon: {
+				count: 1,
+				id: "minecraft:smoker"
+			},
+			x: 5.600d,
+			y: 3.750d,
+			tasks: [
+				{
+					id: "7300000200000003",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:smoker"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000200000003",
+					type: "xp",
+					xp: 40
+				}
+			],
+			dependencies: [
+				"7200000200000002"
+			]
+		},
+		{
+			id: "7200000200000004",
+			icon: {
+				count: 1,
+				id: "minecraft:blast_furnace"
+			},
+			x: 8.500d,
+			y: 3.750d,
+			tasks: [
+				{
+					id: "7300000200000004",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:blast_furnace"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000200000004",
+					type: "xp",
+					xp: 50
+				}
+			],
+			dependencies: [
+				"7200000200000003"
+			]
+		},
+		{
+			id: "7200000200000005",
+			icon: {
+				count: 1,
+				id: "minecraft:lectern"
+			},
+			x: 11.400d,
+			y: 3.750d,
+			tasks: [
+				{
+					id: "7300000200000005",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:lectern"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000200000005",
+					type: "xp",
+					xp: 50
+				}
+			],
+			dependencies: [
+				"7200000200000004"
+			]
+		},
+		{
+			id: "7200000200000006",
+			icon: {
+				count: 1,
+				id: "minecraft:anvil"
+			},
+			x: 14.300d,
+			y: 3.750d,
+			tasks: [
+				{
+					id: "7300000200000006",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:anvil"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000200000006",
+					type: "xp",
+					xp: 50
+				},
+				{
+					id: "7400000200000205",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:torch"
+					},
+					count: 4
+				}
+			],
+			dependencies: [
+				"7200000200000005"
+			]
+		},
+		{
+			id: "7200000200000007",
+			icon: {
+				count: 1,
+				id: "minecraft:grindstone"
+			},
+			x: 2.700d,
+			y: 10.500d,
+			tasks: [
+				{
+					id: "7300000200000007",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:grindstone"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000200000007",
+					type: "xp",
+					xp: 60
+				}
+			],
+			dependencies: [
+				"7200000200000001"
+			]
+		},
+		{
+			id: "7200000200000008",
+			icon: {
+				count: 1,
+				id: "minecraft:stonecutter"
+			},
+			x: 5.600d,
+			y: 10.500d,
+			tasks: [
+				{
+					id: "7300000200000008",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:stonecutter"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000200000008",
+					type: "xp",
+					xp: 60
+				}
+			],
+			dependencies: [
+				"7200000200000007"
+			]
+		},
+		{
+			id: "7200000200000009",
+			icon: {
+				count: 1,
+				id: "minecraft:loom"
+			},
+			x: 8.500d,
+			y: 10.500d,
+			tasks: [
+				{
+					id: "7300000200000009",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:loom"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000200000009",
+					type: "xp",
+					xp: 60
+				}
+			],
+			dependencies: [
+				"7200000200000008"
+			]
+		},
+		{
+			id: "720000020000000A",
+			icon: {
+				count: 1,
+				id: "minecraft:cartography_table"
+			},
+			x: 11.400d,
+			y: 10.500d,
+			tasks: [
+				{
+					id: "730000020000000A",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:cartography_table"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000020000000A",
+					type: "xp",
+					xp: 70
+				}
+			],
+			dependencies: [
+				"7200000200000009"
+			]
+		},
+		{
+			id: "720000020000000B",
+			icon: {
+				count: 1,
+				id: "minecraft:scaffolding"
+			},
+			x: 14.300d,
+			y: 10.500d,
+			tasks: [
+				{
+					id: "730000020000000B",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:scaffolding"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000020000000B",
+					type: "xp",
+					xp: 70
+				},
+				{
+					id: "740000020000020A",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:torch"
+					},
+					count: 4
+				}
+			],
+			dependencies: [
+				"720000020000000A"
+			]
+		},
+		{
+			id: "720000020000000C",
+			icon: {
+				count: 1,
+				id: "minecraft:lantern"
+			},
+			x: 2.700d,
+			y: 17.250d,
+			tasks: [
+				{
+					id: "730000020000000C",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:lantern"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000020000000C",
+					type: "xp",
+					xp: 70
+				}
+			],
+			dependencies: [
+				"7200000200000001"
+			]
+		},
+		{
+			id: "720000020000000D",
+			icon: {
+				count: 1,
+				id: "minecraft:campfire"
+			},
+			x: 5.600d,
+			y: 17.250d,
+			tasks: [
+				{
+					id: "730000020000000D",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:campfire"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000020000000D",
+					type: "xp",
+					xp: 80
+				}
+			],
+			dependencies: [
+				"720000020000000C"
+			]
+		},
+		{
+			id: "720000020000000E",
+			icon: {
+				count: 1,
+				id: "minecraft:minecart"
+			},
+			x: 8.500d,
+			y: 17.250d,
+			tasks: [
+				{
+					id: "730000020000000E",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:minecart"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000020000000E",
+					type: "xp",
+					xp: 80
+				}
+			],
+			dependencies: [
+				"720000020000000D"
+			]
+		},
+		{
+			id: "720000020000000F",
+			icon: {
+				count: 1,
+				id: "minecraft:hopper"
+			},
+			x: 11.400d,
+			y: 17.250d,
+			tasks: [
+				{
+					id: "730000020000000F",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:hopper"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000020000000F",
+					type: "xp",
+					xp: 80
+				}
+			],
+			dependencies: [
+				"720000020000000E"
+			]
+		},
+		{
+			id: "7200000200000010",
+			icon: {
+				count: 1,
+				id: "minecraft:flower_pot"
+			},
+			x: 14.300d,
+			y: 17.250d,
+			tasks: [
+				{
+					id: "7300000200000010",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:flower_pot"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000200000010",
+					type: "xp",
+					xp: 90
+				},
+				{
+					id: "740000020000020F",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:torch"
+					},
+					count: 4
+				}
+			],
+			dependencies: [
+				"720000020000000F"
+			]
+		},
+		{
+			id: "7200000200000011",
+			icon: {
+				count: 1,
+				id: "minecraft:item_frame"
+			},
+			x: 17.200d,
+			y: 17.250d,
+			tasks: [
+				{
+					id: "7300000200000011",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:item_frame"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000200000011",
+					type: "xp",
+					xp: 90
+				}
+			],
+			dependencies: [
+				"7200000200000010"
+			]
+		},
+		{
+			id: "7200000200000012",
+			icon: {
+				count: 1,
+				id: "minecraft:crafting_table"
+			},
+			x: 21.000d,
+			y: 10.500d,
+			tasks: [
+				{
+					id: "7300000200000012",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "7400000200000012",
+					type: "xp",
+					xp: 90
+				},
+				{
+					id: "7400000200000331",
+					type: "item",
+					item: {
+						count: 1,
+						id: "kubejs:chronicle_page"
+					},
+					count: 1
+				},
+				{
+					id: "7400000200000395",
+					type: "custom"
+				}
+			],
+			dependencies: [
+				"7200000200000006",
+				"720000020000000B",
+				"7200000200000011"
+			],
+			shape: "hexagon",
+			size: 1.600d
+		}
+	]
+}

@@ -1,0 +1,634 @@
+{
+	filename: "redstone",
+	group: "",
+	icon: {
+		count: 1,
+		id: "minecraft:redstone"
+	},
+	id: "7100000700000000",
+	order_index: 6,
+	default_hide_dependency_lines: 0b,
+	default_quest_shape: "circle",
+	images: [
+		{
+			id: "7500000700000001",
+			image: "kubejs:textures/gui/quests/redstone.png",
+			x: 10.000d,
+			y: -4.000d,
+			width: 21.000d,
+			height: 3.200d,
+			rotation: 0.000d,
+			order: -150,
+			position_locked: 1b,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			text_inset: 8
+		},
+		{
+			id: "7500000700000002",
+			image: "kubejs:textures/gui/quests/redstone_stripe.png",
+			x: 9.500d,
+			y: 3.750d,
+			width: 17.800d,
+			height: 2.250d,
+			rotation: 0.000d,
+			order: -200,
+			alpha: 105,
+			position_locked: 1b
+		},
+		{
+			id: "7500000700000003",
+			image: "kubejs:textures/gui/quests/redstone_stripe.png",
+			x: 9.500d,
+			y: 10.500d,
+			width: 17.800d,
+			height: 2.250d,
+			rotation: 0.000d,
+			order: -200,
+			alpha: 105,
+			position_locked: 1b
+		},
+		{
+			id: "7500000700000004",
+			image: "kubejs:textures/gui/quests/redstone_stripe.png",
+			x: 9.500d,
+			y: 17.250d,
+			width: 17.800d,
+			height: 2.250d,
+			rotation: 0.000d,
+			order: -200,
+			alpha: 105,
+			position_locked: 1b
+		}
+	],
+	quest_links: [ ],
+	quests: [
+		{
+			id: "7200000700000001",
+			icon: {
+				count: 1,
+				id: "minecraft:redstone"
+			},
+			x: 0.000d,
+			y: 10.500d,
+			tasks: [
+				{
+					id: "7300000700000001",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "7400000700000001",
+					type: "xp",
+					xp: 80
+				},
+				{
+					id: "7400000700000200",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:bread"
+					},
+					count: 3
+				}
+			],
+			dependencies: [
+				"7200000600000012"
+			]
+		},
+		{
+			id: "7200000700000002",
+			icon: {
+				count: 1,
+				id: "minecraft:redstone"
+			},
+			x: 2.700d,
+			y: 3.750d,
+			tasks: [
+				{
+					id: "7300000700000002",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:redstone"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000700000002",
+					type: "xp",
+					xp: 80
+				}
+			],
+			dependencies: [
+				"7200000700000001"
+			]
+		},
+		{
+			id: "7200000700000003",
+			icon: {
+				count: 1,
+				id: "minecraft:lever"
+			},
+			x: 5.600d,
+			y: 3.750d,
+			tasks: [
+				{
+					id: "7300000700000003",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:lever"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000700000003",
+					type: "xp",
+					xp: 80
+				}
+			],
+			dependencies: [
+				"7200000700000002"
+			]
+		},
+		{
+			id: "7200000700000004",
+			icon: {
+				count: 1,
+				id: "minecraft:stone_button"
+			},
+			x: 8.500d,
+			y: 3.750d,
+			tasks: [
+				{
+					id: "7300000700000004",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:stone_button"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000700000004",
+					type: "xp",
+					xp: 90
+				}
+			],
+			dependencies: [
+				"7200000700000003"
+			]
+		},
+		{
+			id: "7200000700000005",
+			icon: {
+				count: 1,
+				id: "minecraft:redstone_torch"
+			},
+			x: 11.400d,
+			y: 3.750d,
+			tasks: [
+				{
+					id: "7300000700000005",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:redstone_torch"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000700000005",
+					type: "xp",
+					xp: 90
+				}
+			],
+			dependencies: [
+				"7200000700000004"
+			]
+		},
+		{
+			id: "7200000700000006",
+			icon: {
+				count: 1,
+				id: "minecraft:repeater"
+			},
+			x: 14.300d,
+			y: 3.750d,
+			tasks: [
+				{
+					id: "7300000700000006",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:repeater"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000700000006",
+					type: "xp",
+					xp: 90
+				},
+				{
+					id: "7400000700000205",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:torch"
+					},
+					count: 4
+				}
+			],
+			dependencies: [
+				"7200000700000005"
+			]
+		},
+		{
+			id: "7200000700000007",
+			icon: {
+				count: 1,
+				id: "minecraft:comparator"
+			},
+			x: 2.700d,
+			y: 10.500d,
+			tasks: [
+				{
+					id: "7300000700000007",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:comparator"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000700000007",
+					type: "xp",
+					xp: 100
+				}
+			],
+			dependencies: [
+				"7200000700000001"
+			]
+		},
+		{
+			id: "7200000700000008",
+			icon: {
+				count: 1,
+				id: "minecraft:piston"
+			},
+			x: 5.600d,
+			y: 10.500d,
+			tasks: [
+				{
+					id: "7300000700000008",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:piston"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000700000008",
+					type: "xp",
+					xp: 100
+				}
+			],
+			dependencies: [
+				"7200000700000007"
+			]
+		},
+		{
+			id: "7200000700000009",
+			icon: {
+				count: 1,
+				id: "minecraft:sticky_piston"
+			},
+			x: 8.500d,
+			y: 10.500d,
+			tasks: [
+				{
+					id: "7300000700000009",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:sticky_piston"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000700000009",
+					type: "xp",
+					xp: 100
+				}
+			],
+			dependencies: [
+				"7200000700000008"
+			]
+		},
+		{
+			id: "720000070000000A",
+			icon: {
+				count: 1,
+				id: "minecraft:observer"
+			},
+			x: 11.400d,
+			y: 10.500d,
+			tasks: [
+				{
+					id: "730000070000000A",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:observer"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000070000000A",
+					type: "xp",
+					xp: 110
+				}
+			],
+			dependencies: [
+				"7200000700000009"
+			]
+		},
+		{
+			id: "720000070000000B",
+			icon: {
+				count: 1,
+				id: "minecraft:hopper"
+			},
+			x: 14.300d,
+			y: 10.500d,
+			tasks: [
+				{
+					id: "730000070000000B",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:hopper"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000070000000B",
+					type: "xp",
+					xp: 110
+				},
+				{
+					id: "740000070000020A",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:torch"
+					},
+					count: 4
+				}
+			],
+			dependencies: [
+				"720000070000000A"
+			]
+		},
+		{
+			id: "720000070000000C",
+			icon: {
+				count: 1,
+				id: "minecraft:dropper"
+			},
+			x: 2.700d,
+			y: 17.250d,
+			tasks: [
+				{
+					id: "730000070000000C",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:dropper"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000070000000C",
+					type: "xp",
+					xp: 110
+				}
+			],
+			dependencies: [
+				"7200000700000001"
+			]
+		},
+		{
+			id: "720000070000000D",
+			icon: {
+				count: 1,
+				id: "minecraft:dispenser"
+			},
+			x: 5.600d,
+			y: 17.250d,
+			tasks: [
+				{
+					id: "730000070000000D",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:dispenser"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000070000000D",
+					type: "xp",
+					xp: 120
+				}
+			],
+			dependencies: [
+				"720000070000000C"
+			]
+		},
+		{
+			id: "720000070000000E",
+			icon: {
+				count: 1,
+				id: "minecraft:daylight_detector"
+			},
+			x: 8.500d,
+			y: 17.250d,
+			tasks: [
+				{
+					id: "730000070000000E",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:daylight_detector"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000070000000E",
+					type: "xp",
+					xp: 120
+				}
+			],
+			dependencies: [
+				"720000070000000D"
+			]
+		},
+		{
+			id: "720000070000000F",
+			icon: {
+				count: 1,
+				id: "minecraft:target"
+			},
+			x: 11.400d,
+			y: 17.250d,
+			tasks: [
+				{
+					id: "730000070000000F",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:target"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000070000000F",
+					type: "xp",
+					xp: 120
+				}
+			],
+			dependencies: [
+				"720000070000000E"
+			]
+		},
+		{
+			id: "7200000700000010",
+			icon: {
+				count: 1,
+				id: "minecraft:note_block"
+			},
+			x: 14.300d,
+			y: 17.250d,
+			tasks: [
+				{
+					id: "7300000700000010",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:note_block"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000700000010",
+					type: "xp",
+					xp: 130
+				},
+				{
+					id: "740000070000020F",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:torch"
+					},
+					count: 4
+				}
+			],
+			dependencies: [
+				"720000070000000F"
+			]
+		},
+		{
+			id: "7200000700000011",
+			icon: {
+				count: 1,
+				id: "minecraft:redstone_lamp"
+			},
+			x: 17.200d,
+			y: 17.250d,
+			tasks: [
+				{
+					id: "7300000700000011",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:redstone_lamp"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000700000011",
+					type: "xp",
+					xp: 130
+				}
+			],
+			dependencies: [
+				"7200000700000010"
+			]
+		},
+		{
+			id: "7200000700000012",
+			icon: {
+				count: 1,
+				id: "minecraft:redstone"
+			},
+			x: 21.000d,
+			y: 10.500d,
+			tasks: [
+				{
+					id: "7300000700000012",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "7400000700000012",
+					type: "xp",
+					xp: 130
+				},
+				{
+					id: "7400000700000331",
+					type: "item",
+					item: {
+						count: 1,
+						id: "kubejs:chronicle_page"
+					},
+					count: 1
+				},
+				{
+					id: "7400000700000395",
+					type: "custom"
+				}
+			],
+			dependencies: [
+				"7200000700000006",
+				"720000070000000B",
+				"7200000700000011"
+			],
+			shape: "hexagon",
+			size: 1.600d
+		}
+	]
+}
