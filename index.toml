@@ -1,5 +1,182 @@
 hash-format = "sha256"
 
 [[files]]
+file = "config/fancymenu/assets/folder_color.png"
+hash = "acdbb9788d81a3b2db336acf5f6b75043bfc9b3f97f0154b11e525e96668cc3f"
+
+[[files]]
+file = "config/fancymenu/assets/folder_gray.png"
+hash = "d28a1d4844aec3847b8f8112b6bebe52b9fcffb8325311ed8c78d1ee444e859a"
+
+[[files]]
+file = "config/fancymenu/assets/star_color.png"
+hash = "ddc1d51d202c699061ba8d77a1731199c0ea52f4365c10b4e9e8b3c401afbc8c"
+
+[[files]]
+file = "config/fancymenu/assets/star_gray.png"
+hash = "f87d0b5a2980056a402b4fa100066842cbf77110dcfbcd65a00e1c5dc48a5190"
+
+[[files]]
+file = "config/fancymenu/assets/starlight_menu_bg.png"
+hash = "afb17559cd7aa2b399c7c3cd8a09821c97d1a5c71da7b7e06fd42126d8673111"
+
+[[files]]
+file = "config/fancymenu/customizablemenus.txt"
+hash = "4c68ab99c906dd487952f61bf33c0635039a8bbff3f02099e3cd8272fe51b4aa"
+
+[[files]]
+file = "config/fancymenu/customization/neoforge_title_layout.txt"
+hash = "02baefb4942cc71207fffdb29f23ff385f70376fb7df7df28f3e2f0239c7ff8e"
+
+[[files]]
+file = "config/fancymenu/options.txt"
+hash = "293d7ee8d148af2bfd2dec9af88e36c0507ac6e36e6d0894bb89d9328e73c976"
+
+[[files]]
 file = "config/pack-info.txt"
-hash = "4b3e29afba580b4316b7a2491b9ba0c8f17d256af0f917f5bb83a30560e6456e"
+hash = "c18e1eb3323858c3cdbbd66c106e9c5ddb73c178e0d6c6481d93b52520febd38"
+
+[[files]]
+file = "mods/appleskin.pw.toml"
+hash = "43e2d4365fb5e804dbed3488005273e814a32e990f04d31d871d3d2ddf6d9d8d"
+metafile = true
+
+[[files]]
+file = "mods/better-advanced-tooltips.pw.toml"
+hash = "4c1a0e9cc671e3f4e5c29922ced59f8f791e52e927eaa2526a01ba6e1cba303b"
+metafile = true
+
+[[files]]
+file = "mods/create.pw.toml"
+hash = "067a87c37ba756516d5461b9c356130bbfa91a69b835f8e3738e218f9a5ed707"
+metafile = true
+
+[[files]]
+file = "mods/cubes-without-borders.pw.toml"
+hash = "4f83041256b9aba1a1b290640510f724637069faeebae2e388b0d6353e458aec"
+metafile = true
+
+[[files]]
+file = "mods/entityculling.pw.toml"
+hash = "696e1094e8b5320338ddf533c90474750b850ddf64bcc79a4529101efad07088"
+metafile = true
+
+[[files]]
+file = "mods/fancymenu.pw.toml"
+hash = "fc88b5fb1536964b416be2b65bb2e3206eb9c33520e236cb5c0770988d52f014"
+metafile = true
+
+[[files]]
+file = "mods/ferrite-core.pw.toml"
+hash = "9eb90b689acf910b85ed636870deef8589aa00c002d29919918ffe2918c2443c"
+metafile = true
+
+[[files]]
+file = "mods/ftb-filter-system.pw.toml"
+hash = "5399bec79ff5e17080a55d317bf919c3dc2237e7e8f9e90b3e53fc7e7078febc"
+metafile = true
+
+[[files]]
+file = "mods/ftb-library.pw.toml"
+hash = "d58406f6e6585a0d0ddd3fa459dafd24e73d124c842f70562b23a7aa01fbb8e7"
+metafile = true
+
+[[files]]
+file = "mods/ftb-quests.pw.toml"
+hash = "4580b29e2ca04da0131dac8f8af7696a143079b7c55a9cfbf2076206dad4b71c"
+metafile = true
+
+[[files]]
+file = "mods/ftb-teams.pw.toml"
+hash = "17ed96ff5d865091d09afb300aee4343ad6bdea604ae5e235bea990ff539b26e"
+metafile = true
+
+[[files]]
+file = "mods/immediatelyfast.pw.toml"
+hash = "e0b6dcd277c36c1b24917f69d6c8bdc12029cc14451c279ff623d78ce38ef284"
+metafile = true
+
+[[files]]
+file = "mods/iris.pw.toml"
+hash = "7a8146b9e25966b5172fb584f6d6fdf2fde99588021020735abe461e6392522e"
+metafile = true
+
+[[files]]
+file = "mods/jade.pw.toml"
+hash = "5e5949e5d206854e3e40c6c4f3e27db0534df7eeb7c7a64ab177408e7a34fd63"
+metafile = true
+
+[[files]]
+file = "mods/jei.pw.toml"
+hash = "492fca2e4352c5950e9083f0b027aa2abc8bf8bd3f1e52f5c2b2cb73d828fa0b"
+metafile = true
+
+[[files]]
+file = "mods/konkrete.pw.toml"
+hash = "e83e25327def2a57040c78ff0f7871474a5a9e751fad96c8eb44230f68b5cc5d"
+metafile = true
+
+[[files]]
+file = "mods/kubejs.pw.toml"
+hash = "4afde45f2c8e5f281f6631255e1124239d0b473998cec9c37d60d5069efbeac4"
+metafile = true
+
+[[files]]
+file = "mods/lithium.pw.toml"
+hash = "e7c9483821dda4813a830a2c05b36730dfc7bfaf0d6fe0df78e33621b117b47b"
+metafile = true
+
+[[files]]
+file = "mods/melody.pw.toml"
+hash = "9b142447dd04b67ae7b47b85e03774d7f496dfdd3a6420b977412fa28667495b"
+metafile = true
+
+[[files]]
+file = "mods/mezzconfig.pw.toml"
+hash = "e9ec005ec8251aadbdc7377d4e754423da0cea80f2553a7ad738a7503b66cc0a"
+metafile = true
+
+[[files]]
+file = "mods/modernfix.pw.toml"
+hash = "3685f381d87a90af1b482492a3222af051b3b43c40bab29887165188e342fb0b"
+metafile = true
+
+[[files]]
+file = "mods/mouse-tweaks.pw.toml"
+hash = "4e6b7fdd2fed48727870a04d70370968b9c6a578d302d1e11b2b641ccb48648b"
+metafile = true
+
+[[files]]
+file = "mods/reeses-sodium-options.pw.toml"
+hash = "278abd05da196c9048f75695f7ff07a107e57e1a62d54138c4754ead01789d50"
+metafile = true
+
+[[files]]
+file = "mods/rhino.pw.toml"
+hash = "1a5d3971c793daf3f3d5b62eaf95575eadc640331187f695f5deff2944990d24"
+metafile = true
+
+[[files]]
+file = "mods/sodium-extra.pw.toml"
+hash = "fabc18bf3ea03b203419ce4c23881481d9500ad958e57d01b6ae628d3d8213ab"
+metafile = true
+
+[[files]]
+file = "mods/sodium.pw.toml"
+hash = "a8c458ebb9a371759c12bb2117414e21cf8c6aeeca84d2a59670476c50c4347a"
+metafile = true
+
+[[files]]
+file = "resourcepacks/bare-bones.pw.toml"
+hash = "5adb8f2cd791a41d62e0a222523a2aa92dd0d303430ab41befa4b6fd9a2be26c"
+metafile = true
+
+[[files]]
+file = "shaderpacks/bsl-shaders.pw.toml"
+hash = "a38246f459977ac83ce4cc08b45d024d1e95836b00e9a2754120324d9ad5c49c"
+metafile = true
+
+[[files]]
+file = "shaderpacks/complementary-reimagined.pw.toml"
+hash = "c780215edaba86893a2c436148e19da269e2a855069b91452424402733a93a31"
+metafile = true
