@@ -1,0 +1,192 @@
+type = fancymenu_layout
+
+layout-meta {
+  identifier = net.minecraft.client.gui.screens.TitleScreen
+  is_enabled = true
+  randommode = false
+  randomgroup = 1
+  randomonlyfirsttime = false
+  layout_index = 0
+  render_custom_elements_behind_vanilla = false
+  last_edited_time = 1794590000000
+}
+
+menu_background {
+  background_type = image
+  image_path = [source:local]/config/fancymenu/assets/chronicles_background.png
+  slide = false
+  repeat_texture = false
+  parallax = false
+  keepaspectratio = true
+  instance_identifier = chronicles-background-v4
+}
+
+customization {
+  action = backgroundoptions
+  keepaspectratio = true
+}
+
+vanilla_button {
+  instance_identifier = mc_titlescreen_singleplayer_button
+  is_hidden = true
+}
+
+vanilla_button {
+  instance_identifier = mc_titlescreen_multiplayer_button
+  is_hidden = true
+}
+
+vanilla_button {
+  instance_identifier = mc_titlescreen_options_button
+  is_hidden = true
+}
+
+vanilla_button {
+  instance_identifier = forge_titlescreen_mods_button
+  is_hidden = true
+}
+
+vanilla_button {
+  instance_identifier = mc_titlescreen_quit_button
+  is_hidden = true
+}
+
+element {
+  button_element_executable_block_identifier = chronicles-exec-singleplayer
+  [executable_action_instance:chronicles-action-singleplayer][action_type:mimicbutton] = title_screen:mc_titlescreen_singleplayer_button
+  [executable_block:chronicles-exec-singleplayer][type:generic] = [executables:chronicles-action-singleplayer;]
+  actionid = chronicles-exec-singleplayer
+  backgroundnormal = [source:local]/config/fancymenu/assets/chronicles_button.png
+  backgroundhovered = [source:local]/config/fancymenu/assets/chronicles_button_hover.png
+  restartbackgroundanimations = false
+  nine_slice_custom_background = false
+  label = ОДИНОЧНАЯ ИГРА
+  description = ОДИНОЧНАЯ ИГРА
+  navigatable = true
+  element_type = custom_button
+  instance_identifier = chronicles-btn-singleplayer
+  anchor_point = mid-centered
+  x = -205
+  y = -60
+  width = 248
+  height = 39
+}
+
+element {
+  button_element_executable_block_identifier = chronicles-exec-multiplayer
+  [executable_action_instance:chronicles-action-multiplayer][action_type:mimicbutton] = title_screen:mc_titlescreen_multiplayer_button
+  [executable_block:chronicles-exec-multiplayer][type:generic] = [executables:chronicles-action-multiplayer;]
+  actionid = chronicles-exec-multiplayer
+  backgroundnormal = [source:local]/config/fancymenu/assets/chronicles_button.png
+  backgroundhovered = [source:local]/config/fancymenu/assets/chronicles_button_hover.png
+  restartbackgroundanimations = false
+  nine_slice_custom_background = false
+  label = СЕТЕВАЯ ИГРА
+  description = СЕТЕВАЯ ИГРА
+  navigatable = true
+  element_type = custom_button
+  instance_identifier = chronicles-btn-multiplayer
+  anchor_point = mid-centered
+  x = -205
+  y = -11
+  width = 248
+  height = 39
+}
+
+element {
+  button_element_executable_block_identifier = chronicles-exec-options
+  [executable_action_instance:chronicles-action-options][action_type:mimicbutton] = title_screen:mc_titlescreen_options_button
+  [executable_block:chronicles-exec-options][type:generic] = [executables:chronicles-action-options;]
+  actionid = chronicles-exec-options
+  backgroundnormal = [source:local]/config/fancymenu/assets/chronicles_button.png
+  backgroundhovered = [source:local]/config/fancymenu/assets/chronicles_button_hover.png
+  restartbackgroundanimations = false
+  nine_slice_custom_background = false
+  label = НАСТРОЙКИ
+  description = НАСТРОЙКИ
+  navigatable = true
+  element_type = custom_button
+  instance_identifier = chronicles-btn-options
+  anchor_point = mid-centered
+  x = -205
+  y = 38
+  width = 248
+  height = 39
+}
+
+element {
+  button_element_executable_block_identifier = chronicles-exec-mods
+  [executable_action_instance:chronicles-action-mods][action_type:mimicbutton] = title_screen:forge_titlescreen_mods_button
+  [executable_block:chronicles-exec-mods][type:generic] = [executables:chronicles-action-mods;]
+  actionid = chronicles-exec-mods
+  backgroundnormal = [source:local]/config/fancymenu/assets/chronicles_button.png
+  backgroundhovered = [source:local]/config/fancymenu/assets/chronicles_button_hover.png
+  restartbackgroundanimations = false
+  nine_slice_custom_background = false
+  label = МОДЫ
+  description = МОДЫ
+  navigatable = true
+  element_type = custom_button
+  instance_identifier = chronicles-btn-mods
+  anchor_point = mid-centered
+  x = -205
+  y = 87
+  width = 248
+  height = 39
+}
+
+element {
+  button_element_executable_block_identifier = chronicles-exec-quit
+  [executable_action_instance:chronicles-action-quit][action_type:mimicbutton] = title_screen:mc_titlescreen_quit_button
+  [executable_block:chronicles-exec-quit][type:generic] = [executables:chronicles-action-quit;]
+  actionid = chronicles-exec-quit
+  backgroundnormal = [source:local]/config/fancymenu/assets/chronicles_button.png
+  backgroundhovered = [source:local]/config/fancymenu/assets/chronicles_button_hover.png
+  restartbackgroundanimations = false
+  nine_slice_custom_background = false
+  label = ВЫХОД
+  description = ВЫХОД
+  navigatable = true
+  element_type = custom_button
+  instance_identifier = chronicles-btn-quit
+  anchor_point = mid-centered
+  x = -205
+  y = 136
+  width = 248
+  height = 39
+}
+
+element {
+  element_type = text_v2
+  source = NEOFORGE 1.21.1  /  CREATE  /  CHRONICLES 0.4
+  source_mode = direct
+  scale = 0.9
+  shadow = true
+  case_mode = normal
+  line_spacing = 1
+  anchor_point = bottom-centered
+  x = 0
+  y = -23
+  width = 510
+  height = 18
+  instance_identifier = chronicles-build-label
+}
+
+element {
+  button_element_executable_block_identifier = chronicles-exec-repo
+  [executable_action_instance:chronicles-action-repo][action_type:openlink] = https://github.com/yungspiderq/my-neoforge-pack
+  [executable_block:chronicles-exec-repo][type:generic] = [executables:chronicles-action-repo;]
+  actionid = chronicles-exec-repo
+  backgroundnormal = [source:local]/config/fancymenu/assets/chronicles_button.png
+  backgroundhovered = [source:local]/config/fancymenu/assets/chronicles_button_hover.png
+  label = САЙТ СБОРКИ
+  description = Репозиторий и обновления
+  element_type = custom_button
+  instance_identifier = chronicles-btn-repo
+  navigatable = true
+  anchor_point = bottom-right
+  x = -164
+  y = -54
+  width = 140
+  height = 32
+}

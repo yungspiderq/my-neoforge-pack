@@ -12,11 +12,11 @@
 	images: [
 		{
 			id: "7500000800000001",
-			image: "kubejs:textures/gui/quests/ocean.png",
-			x: 10.000d,
-			y: -4.000d,
-			width: 21.000d,
-			height: 3.200d,
+			image: "kubejs:textures/gui/quests/ocean_banner.png",
+			x: 0.000d,
+			y: -21.000d,
+			width: 22.000d,
+			height: 4.800d,
 			rotation: 0.000d,
 			order: -150,
 			position_locked: 1b,
@@ -26,38 +26,35 @@
 		},
 		{
 			id: "7500000800000002",
-			image: "kubejs:textures/gui/quests/ocean_stripe.png",
-			x: 9.500d,
-			y: 3.750d,
-			width: 17.800d,
-			height: 2.250d,
+			image: "kubejs:textures/gui/quests/ocean_seal.png",
+			x: 51.000d,
+			y: -2.400d,
+			width: 2.600d,
+			height: 2.600d,
 			rotation: 0.000d,
 			order: -200,
-			alpha: 105,
 			position_locked: 1b
 		},
 		{
 			id: "7500000800000003",
-			image: "kubejs:textures/gui/quests/ocean_stripe.png",
-			x: 9.500d,
-			y: 10.500d,
-			width: 17.800d,
-			height: 2.250d,
+			image: "kubejs:textures/gui/quests/ocean_divider.png",
+			x: 0.000d,
+			y: -14.000d,
+			width: 22.000d,
+			height: 1.100d,
 			rotation: 0.000d,
 			order: -200,
-			alpha: 105,
 			position_locked: 1b
 		},
 		{
 			id: "7500000800000004",
-			image: "kubejs:textures/gui/quests/ocean_stripe.png",
-			x: 9.500d,
-			y: 17.250d,
-			width: 17.800d,
-			height: 2.250d,
+			image: "kubejs:textures/gui/quests/ocean_divider.png",
+			x: 0.000d,
+			y: 24.000d,
+			width: 22.000d,
+			height: 1.100d,
 			rotation: 0.000d,
 			order: -200,
-			alpha: 105,
 			position_locked: 1b
 		}
 	],
@@ -69,8 +66,8 @@
 				count: 1,
 				id: "minecraft:heart_of_the_sea"
 			},
-			x: 0.000d,
-			y: 10.500d,
+			x: -5.000d,
+			y: 0.000d,
 			tasks: [
 				{
 					id: "7300000800000001",
@@ -81,21 +78,14 @@
 				{
 					id: "7400000800000001",
 					type: "xp",
-					xp: 80
-				},
-				{
-					id: "7400000800000200",
-					type: "item",
-					item: {
-						count: 1,
-						id: "minecraft:bread"
-					},
-					count: 3
+					xp: 79
 				}
 			],
 			dependencies: [
-				"7200000700000012"
-			]
+				"7200000600000012"
+			],
+			shape: "hexagon",
+			size: 1.500d
 		},
 		{
 			id: "7200000800000002",
@@ -103,8 +93,8 @@
 				count: 1,
 				id: "minecraft:oak_boat"
 			},
-			x: 2.700d,
-			y: 3.750d,
+			x: 0.000d,
+			y: -4.500d,
 			tasks: [
 				{
 					id: "7300000800000002",
@@ -119,12 +109,13 @@
 				{
 					id: "7400000800000002",
 					type: "xp",
-					xp: 80
+					xp: 91
 				}
 			],
 			dependencies: [
 				"7200000800000001"
-			]
+			],
+			shape: "circle"
 		},
 		{
 			id: "7200000800000003",
@@ -132,8 +123,8 @@
 				count: 1,
 				id: "minecraft:fishing_rod"
 			},
-			x: 5.600d,
-			y: 3.750d,
+			x: 2.900d,
+			y: -2.958d,
 			tasks: [
 				{
 					id: "7300000800000003",
@@ -148,12 +139,13 @@
 				{
 					id: "7400000800000003",
 					type: "xp",
-					xp: 80
+					xp: 103
 				}
 			],
 			dependencies: [
 				"7200000800000002"
-			]
+			],
+			shape: "circle"
 		},
 		{
 			id: "7200000800000004",
@@ -161,8 +153,8 @@
 				count: 1,
 				id: "minecraft:cod"
 			},
-			x: 8.500d,
-			y: 3.750d,
+			x: 5.800d,
+			y: -2.351d,
 			tasks: [
 				{
 					id: "7300000800000004",
@@ -177,12 +169,13 @@
 				{
 					id: "7400000800000004",
 					type: "xp",
-					xp: 90
+					xp: 115
 				}
 			],
 			dependencies: [
 				"7200000800000003"
-			]
+			],
+			shape: "octagon"
 		},
 		{
 			id: "7200000800000005",
@@ -190,8 +183,8 @@
 				count: 1,
 				id: "minecraft:salmon"
 			},
-			x: 11.400d,
-			y: 3.750d,
+			x: 8.700d,
+			y: -3.048d,
 			tasks: [
 				{
 					id: "7300000800000005",
@@ -206,12 +199,13 @@
 				{
 					id: "7400000800000005",
 					type: "xp",
-					xp: 90
+					xp: 127
 				}
 			],
 			dependencies: [
 				"7200000800000004"
-			]
+			],
+			shape: "circle"
 		},
 		{
 			id: "7200000800000006",
@@ -219,8 +213,8 @@
 				count: 1,
 				id: "minecraft:kelp"
 			},
-			x: 14.300d,
-			y: 3.750d,
+			x: 11.600d,
+			y: -4.626d,
 			tasks: [
 				{
 					id: "7300000800000006",
@@ -235,21 +229,13 @@
 				{
 					id: "7400000800000006",
 					type: "xp",
-					xp: 90
-				},
-				{
-					id: "7400000800000205",
-					type: "item",
-					item: {
-						count: 1,
-						id: "minecraft:torch"
-					},
-					count: 4
+					xp: 139
 				}
 			],
 			dependencies: [
 				"7200000800000005"
-			]
+			],
+			shape: "square"
 		},
 		{
 			id: "7200000800000007",
@@ -257,8 +243,8 @@
 				count: 1,
 				id: "minecraft:prismarine"
 			},
-			x: 2.700d,
-			y: 10.500d,
+			x: 14.500d,
+			y: -6.127d,
 			tasks: [
 				{
 					id: "7300000800000007",
@@ -273,12 +259,13 @@
 				{
 					id: "7400000800000007",
 					type: "xp",
-					xp: 100
+					xp: 151
 				}
 			],
 			dependencies: [
-				"7200000800000001"
-			]
+				"7200000800000006"
+			],
+			shape: "octagon"
 		},
 		{
 			id: "7200000800000008",
@@ -286,8 +273,8 @@
 				count: 1,
 				id: "minecraft:prismarine_shard"
 			},
-			x: 5.600d,
-			y: 10.500d,
+			x: 17.400d,
+			y: -6.642d,
 			tasks: [
 				{
 					id: "7300000800000008",
@@ -302,12 +289,22 @@
 				{
 					id: "7400000800000008",
 					type: "xp",
-					xp: 100
+					xp: 79
+				},
+				{
+					id: "7400000800000207",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:cooked_porkchop"
+					},
+					count: 6
 				}
 			],
 			dependencies: [
 				"7200000800000007"
-			]
+			],
+			shape: "circle"
 		},
 		{
 			id: "7200000800000009",
@@ -315,8 +312,8 @@
 				count: 1,
 				id: "minecraft:sea_lantern"
 			},
-			x: 8.500d,
-			y: 10.500d,
+			x: 20.300d,
+			y: -5.857d,
 			tasks: [
 				{
 					id: "7300000800000009",
@@ -331,12 +328,13 @@
 				{
 					id: "7400000800000009",
 					type: "xp",
-					xp: 100
+					xp: 91
 				}
 			],
 			dependencies: [
 				"7200000800000008"
-			]
+			],
+			shape: "circle"
 		},
 		{
 			id: "720000080000000A",
@@ -344,8 +342,8 @@
 				count: 1,
 				id: "minecraft:nautilus_shell"
 			},
-			x: 11.400d,
-			y: 10.500d,
+			x: 23.200d,
+			y: -4.249d,
 			tasks: [
 				{
 					id: "730000080000000A",
@@ -360,12 +358,18 @@
 				{
 					id: "740000080000000A",
 					type: "xp",
-					xp: 110
+					xp: 103
+				},
+				{
+					id: "7400000800000289",
+					type: "xp_levels",
+					xp_levels: 1
 				}
 			],
 			dependencies: [
 				"7200000800000009"
-			]
+			],
+			shape: "octagon"
 		},
 		{
 			id: "720000080000000B",
@@ -373,8 +377,8 @@
 				count: 1,
 				id: "minecraft:heart_of_the_sea"
 			},
-			x: 14.300d,
-			y: 10.500d,
+			x: 26.100d,
+			y: -2.794d,
 			tasks: [
 				{
 					id: "730000080000000B",
@@ -389,21 +393,13 @@
 				{
 					id: "740000080000000B",
 					type: "xp",
-					xp: 110
-				},
-				{
-					id: "740000080000020A",
-					type: "item",
-					item: {
-						count: 1,
-						id: "minecraft:torch"
-					},
-					count: 4
+					xp: 115
 				}
 			],
 			dependencies: [
 				"720000080000000A"
-			]
+			],
+			shape: "square"
 		},
 		{
 			id: "720000080000000C",
@@ -411,8 +407,8 @@
 				count: 1,
 				id: "minecraft:conduit"
 			},
-			x: 2.700d,
-			y: 17.250d,
+			x: 29.000d,
+			y: -2.373d,
 			tasks: [
 				{
 					id: "730000080000000C",
@@ -427,12 +423,13 @@
 				{
 					id: "740000080000000C",
 					type: "xp",
-					xp: 110
+					xp: 127
 				}
 			],
 			dependencies: [
-				"7200000800000001"
-			]
+				"720000080000000B"
+			],
+			shape: "circle"
 		},
 		{
 			id: "720000080000000D",
@@ -440,8 +437,8 @@
 				count: 1,
 				id: "minecraft:sponge"
 			},
-			x: 5.600d,
-			y: 17.250d,
+			x: 31.900d,
+			y: -3.242d,
 			tasks: [
 				{
 					id: "730000080000000D",
@@ -456,12 +453,13 @@
 				{
 					id: "740000080000000D",
 					type: "xp",
-					xp: 120
+					xp: 139
 				}
 			],
 			dependencies: [
 				"720000080000000C"
-			]
+			],
+			shape: "octagon"
 		},
 		{
 			id: "720000080000000E",
@@ -469,8 +467,8 @@
 				count: 1,
 				id: "minecraft:turtle_helmet"
 			},
-			x: 8.500d,
-			y: 17.250d,
+			x: 0.000d,
+			y: 6.309d,
 			tasks: [
 				{
 					id: "730000080000000E",
@@ -485,12 +483,13 @@
 				{
 					id: "740000080000000E",
 					type: "xp",
-					xp: 120
+					xp: 151
 				}
 			],
 			dependencies: [
-				"720000080000000D"
-			]
+				"7200000800000001"
+			],
+			shape: "circle"
 		},
 		{
 			id: "720000080000000F",
@@ -498,8 +497,8 @@
 				count: 1,
 				id: "minecraft:map"
 			},
-			x: 11.400d,
-			y: 17.250d,
+			x: 2.900d,
+			y: 6.594d,
 			tasks: [
 				{
 					id: "730000080000000F",
@@ -514,12 +513,22 @@
 				{
 					id: "740000080000000F",
 					type: "xp",
-					xp: 120
+					xp: 79
+				},
+				{
+					id: "740000080000020E",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:cooked_porkchop"
+					},
+					count: 6
 				}
 			],
 			dependencies: [
 				"720000080000000E"
-			]
+			],
+			shape: "circle"
 		},
 		{
 			id: "7200000800000010",
@@ -527,8 +536,8 @@
 				count: 1,
 				id: "minecraft:spyglass"
 			},
-			x: 14.300d,
-			y: 17.250d,
+			x: 5.800d,
+			y: 5.608d,
 			tasks: [
 				{
 					id: "7300000800000010",
@@ -543,21 +552,13 @@
 				{
 					id: "7400000800000010",
 					type: "xp",
-					xp: 130
-				},
-				{
-					id: "740000080000020F",
-					type: "item",
-					item: {
-						count: 1,
-						id: "minecraft:torch"
-					},
-					count: 4
+					xp: 91
 				}
 			],
 			dependencies: [
 				"720000080000000F"
-			]
+			],
+			shape: "square"
 		},
 		{
 			id: "7200000800000011",
@@ -565,8 +566,8 @@
 				count: 1,
 				id: "minecraft:water_bucket"
 			},
-			x: 17.200d,
-			y: 17.250d,
+			x: 8.700d,
+			y: 3.951d,
 			tasks: [
 				{
 					id: "7300000800000011",
@@ -581,12 +582,260 @@
 				{
 					id: "7400000800000011",
 					type: "xp",
-					xp: 130
+					xp: 103
 				}
 			],
 			dependencies: [
 				"7200000800000010"
-			]
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200000800000014",
+			icon: {
+				count: 1,
+				id: "minecraft:blue_ice"
+			},
+			x: 11.600d,
+			y: 2.626d,
+			tasks: [
+				{
+					id: "7300000800000014",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:blue_ice"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000800000014",
+					type: "xp",
+					xp: 139
+				}
+			],
+			dependencies: [
+				"7200000800000011"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200000800000015",
+			icon: {
+				count: 1,
+				id: "minecraft:ice"
+			},
+			x: 14.500d,
+			y: 2.438d,
+			tasks: [
+				{
+					id: "7300000800000015",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:ice"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000800000015",
+					type: "xp",
+					xp: 151
+				}
+			],
+			dependencies: [
+				"7200000800000014"
+			],
+			shape: "square"
+		},
+		{
+			id: "7200000800000016",
+			icon: {
+				count: 1,
+				id: "minecraft:dried_kelp_block"
+			},
+			x: 17.400d,
+			y: 3.501d,
+			tasks: [
+				{
+					id: "7300000800000016",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:dried_kelp_block"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000800000016",
+					type: "xp",
+					xp: 79
+				},
+				{
+					id: "7400000800000215",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:cooked_porkchop"
+					},
+					count: 6
+				}
+			],
+			dependencies: [
+				"7200000800000015"
+			],
+			shape: "octagon"
+		},
+		{
+			id: "7200000800000017",
+			icon: {
+				count: 1,
+				id: "minecraft:tropical_fish_bucket"
+			},
+			x: 20.300d,
+			y: 5.170d,
+			tasks: [
+				{
+					id: "7300000800000017",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:tropical_fish_bucket"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000800000017",
+					type: "xp",
+					xp: 91
+				}
+			],
+			dependencies: [
+				"7200000800000016"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200000800000018",
+			icon: {
+				count: 1,
+				id: "minecraft:turtle_egg"
+			},
+			x: 23.200d,
+			y: 6.432d,
+			tasks: [
+				{
+					id: "7300000800000018",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:turtle_egg"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000800000018",
+					type: "xp",
+					xp: 103
+				}
+			],
+			dependencies: [
+				"7200000800000017"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200000800000019",
+			icon: {
+				count: 1,
+				id: "minecraft:sea_lantern"
+			},
+			x: 26.100d,
+			y: 6.523d,
+			tasks: [
+				{
+					id: "7300000800000019",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:sea_lantern"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000800000019",
+					type: "xp",
+					xp: 115
+				}
+			],
+			dependencies: [
+				"7200000800000018"
+			],
+			shape: "octagon"
+		},
+		{
+			id: "720000080000001A",
+			icon: {
+				count: 1,
+				id: "minecraft:conduit"
+			},
+			x: 29.000d,
+			y: 5.386d,
+			tasks: [
+				{
+					id: "730000080000001A",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:conduit"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000080000001A",
+					type: "xp",
+					xp: 127
+				}
+			],
+			dependencies: [
+				"7200000800000019"
+			],
+			shape: "square"
+		},
+		{
+			id: "720000080000001B",
+			icon: {
+				count: 1,
+				id: "minecraft:heart_of_the_sea"
+			},
+			x: 31.900d,
+			y: 3.712d,
+			tasks: [
+				{
+					id: "730000080000001B",
+					type: "structure",
+					structure: "minecraft:shipwreck"
+				}
+			],
+			rewards: [
+				{
+					id: "740000080000001B",
+					type: "xp",
+					xp: 139
+				}
+			],
+			dependencies: [
+				"720000080000001A"
+			],
+			shape: "pentagon",
+			size: 1.250d
 		},
 		{
 			id: "7200000800000012",
@@ -594,8 +843,8 @@
 				count: 1,
 				id: "minecraft:heart_of_the_sea"
 			},
-			x: 21.000d,
-			y: 10.500d,
+			x: 48.600d,
+			y: 0.000d,
 			tasks: [
 				{
 					id: "7300000800000012",
@@ -606,7 +855,7 @@
 				{
 					id: "7400000800000012",
 					type: "xp",
-					xp: 130
+					xp: 115
 				},
 				{
 					id: "7400000800000331",
@@ -614,8 +863,7 @@
 					item: {
 						count: 1,
 						id: "kubejs:chronicle_page"
-					},
-					count: 1
+					}
 				},
 				{
 					id: "7400000800000395",
@@ -623,12 +871,11 @@
 				}
 			],
 			dependencies: [
-				"7200000800000006",
-				"720000080000000B",
-				"7200000800000011"
+				"720000080000000D",
+				"720000080000001B"
 			],
 			shape: "hexagon",
-			size: 1.600d
+			size: 1.500d
 		}
 	]
 }

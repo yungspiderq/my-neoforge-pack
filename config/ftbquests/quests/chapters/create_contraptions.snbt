@@ -1,0 +1,898 @@
+{
+	filename: "create_contraptions",
+	group: "",
+	icon: {
+		count: 1,
+		id: "create:mechanical_bearing"
+	},
+	id: "7100001700000000",
+	order_index: 22,
+	default_hide_dependency_lines: 0b,
+	default_quest_shape: "circle",
+	images: [
+		{
+			id: "7500001700000001",
+			image: "kubejs:textures/gui/quests/create_contraptions_banner.png",
+			x: 0.000d,
+			y: -21.000d,
+			width: 22.000d,
+			height: 4.800d,
+			rotation: 0.000d,
+			order: -150,
+			position_locked: 1b,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			text_inset: 8
+		},
+		{
+			id: "7500001700000002",
+			image: "kubejs:textures/gui/quests/create_contraptions_seal.png",
+			x: 31.400d,
+			y: 4.600d,
+			width: 2.600d,
+			height: 2.600d,
+			rotation: 0.000d,
+			order: -200,
+			position_locked: 1b
+		},
+		{
+			id: "7500001700000003",
+			image: "kubejs:textures/gui/quests/create_contraptions_divider.png",
+			x: 0.000d,
+			y: -14.000d,
+			width: 22.000d,
+			height: 1.100d,
+			rotation: 0.000d,
+			order: -200,
+			position_locked: 1b
+		},
+		{
+			id: "7500001700000004",
+			image: "kubejs:textures/gui/quests/create_contraptions_divider.png",
+			x: 0.000d,
+			y: 24.000d,
+			width: 22.000d,
+			height: 1.100d,
+			rotation: 0.000d,
+			order: -200,
+			position_locked: 1b
+		}
+	],
+	quest_links: [ ],
+	quests: [
+		{
+			id: "7200001700000001",
+			icon: {
+				count: 1,
+				id: "create:mechanical_bearing"
+			},
+			x: -5.000d,
+			y: 7.000d,
+			tasks: [
+				{
+					id: "7300001700000001",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "7400001700000001",
+					type: "xp",
+					xp: 184
+				}
+			],
+			dependencies: [
+				"7200000D00000012"
+			],
+			shape: "hexagon",
+			size: 1.500d
+		},
+		{
+			id: "7200001700000002",
+			icon: {
+				count: 1,
+				id: "create:mechanical_bearing"
+			},
+			x: 0.000d,
+			y: 0.000d,
+			tasks: [
+				{
+					id: "7300001700000002",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:mechanical_bearing"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001700000002",
+					type: "xp",
+					xp: 196
+				}
+			],
+			dependencies: [
+				"7200001700000001"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001700000003",
+			icon: {
+				count: 1,
+				id: "create:windmill_bearing"
+			},
+			x: 3.100d,
+			y: 0.000d,
+			tasks: [
+				{
+					id: "7300001700000003",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:windmill_bearing"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001700000003",
+					type: "xp",
+					xp: 208
+				}
+			],
+			dependencies: [
+				"7200001700000002"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001700000004",
+			icon: {
+				count: 1,
+				id: "create:gantry_shaft"
+			},
+			x: 6.200d,
+			y: 0.000d,
+			tasks: [
+				{
+					id: "7300001700000004",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:gantry_shaft"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001700000004",
+					type: "xp",
+					xp: 220
+				}
+			],
+			dependencies: [
+				"7200001700000003"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001700000005",
+			icon: {
+				count: 1,
+				id: "create:mechanical_piston"
+			},
+			x: 0.000d,
+			y: 3.400d,
+			tasks: [
+				{
+					id: "7300001700000005",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:mechanical_piston"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001700000005",
+					type: "xp",
+					xp: 232
+				}
+			],
+			dependencies: [
+				"7200001700000004"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001700000006",
+			icon: {
+				count: 1,
+				id: "create:piston_extension_pole"
+			},
+			x: 3.100d,
+			y: 3.400d,
+			tasks: [
+				{
+					id: "7300001700000006",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:piston_extension_pole"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001700000006",
+					type: "xp",
+					xp: 244
+				}
+			],
+			dependencies: [
+				"7200001700000005"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001700000007",
+			icon: {
+				count: 1,
+				id: "create:rope_pulley"
+			},
+			x: 6.200d,
+			y: 3.400d,
+			tasks: [
+				{
+					id: "7300001700000007",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:rope_pulley"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001700000007",
+					type: "xp",
+					xp: 256
+				}
+			],
+			dependencies: [
+				"7200001700000006"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001700000008",
+			icon: {
+				count: 1,
+				id: "create:linear_chassis"
+			},
+			x: 19.000d,
+			y: 0.000d,
+			tasks: [
+				{
+					id: "7300001700000008",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:linear_chassis"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001700000008",
+					type: "xp",
+					xp: 184
+				},
+				{
+					id: "7400001700000207",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:paper"
+					},
+					count: 5
+				}
+			],
+			dependencies: [
+				"7200001700000001"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001700000009",
+			icon: {
+				count: 1,
+				id: "create:radial_chassis"
+			},
+			x: 22.100d,
+			y: 0.000d,
+			tasks: [
+				{
+					id: "7300001700000009",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:radial_chassis"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001700000009",
+					type: "xp",
+					xp: 196
+				}
+			],
+			dependencies: [
+				"7200001700000008"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "720000170000000A",
+			icon: {
+				count: 1,
+				id: "create:sticker"
+			},
+			x: 25.200d,
+			y: 0.000d,
+			tasks: [
+				{
+					id: "730000170000000A",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:sticker"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000170000000A",
+					type: "xp",
+					xp: 208
+				},
+				{
+					id: "7400001700000289",
+					type: "xp_levels",
+					xp_levels: 3
+				}
+			],
+			dependencies: [
+				"7200001700000009"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "720000170000000B",
+			icon: {
+				count: 1,
+				id: "create:super_glue"
+			},
+			x: 19.000d,
+			y: 3.400d,
+			tasks: [
+				{
+					id: "730000170000000B",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:super_glue"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000170000000B",
+					type: "xp",
+					xp: 220
+				}
+			],
+			dependencies: [
+				"720000170000000A"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "720000170000000C",
+			icon: {
+				count: 1,
+				id: "create:mechanical_roller"
+			},
+			x: 22.100d,
+			y: 3.400d,
+			tasks: [
+				{
+					id: "730000170000000C",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:mechanical_roller"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000170000000C",
+					type: "xp",
+					xp: 232
+				}
+			],
+			dependencies: [
+				"720000170000000B"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "720000170000000D",
+			icon: {
+				count: 1,
+				id: "create:mechanical_saw"
+			},
+			x: 25.200d,
+			y: 3.400d,
+			tasks: [
+				{
+					id: "730000170000000D",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:mechanical_saw"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000170000000D",
+					type: "xp",
+					xp: 244
+				}
+			],
+			dependencies: [
+				"720000170000000C"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "720000170000000E",
+			icon: {
+				count: 1,
+				id: "create:mechanical_drill"
+			},
+			x: 0.000d,
+			y: 14.000d,
+			tasks: [
+				{
+					id: "730000170000000E",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:mechanical_drill"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000170000000E",
+					type: "xp",
+					xp: 256
+				}
+			],
+			dependencies: [
+				"7200001700000001"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "720000170000000F",
+			icon: {
+				count: 1,
+				id: "create:mechanical_harvester"
+			},
+			x: 3.100d,
+			y: 14.000d,
+			tasks: [
+				{
+					id: "730000170000000F",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:mechanical_harvester"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000170000000F",
+					type: "xp",
+					xp: 184
+				},
+				{
+					id: "740000170000020E",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:paper"
+					},
+					count: 5
+				}
+			],
+			dependencies: [
+				"720000170000000E"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001700000010",
+			icon: {
+				count: 1,
+				id: "create:mechanical_plough"
+			},
+			x: 6.200d,
+			y: 14.000d,
+			tasks: [
+				{
+					id: "7300001700000010",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:mechanical_plough"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001700000010",
+					type: "xp",
+					xp: 196
+				}
+			],
+			dependencies: [
+				"720000170000000F"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001700000011",
+			icon: {
+				count: 1,
+				id: "create:deployer"
+			},
+			x: 0.000d,
+			y: 17.400d,
+			tasks: [
+				{
+					id: "7300001700000011",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:deployer"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001700000011",
+					type: "xp",
+					xp: 208
+				}
+			],
+			dependencies: [
+				"7200001700000010"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001700000012",
+			icon: {
+				count: 1,
+				id: "create:mechanical_arm"
+			},
+			x: 3.100d,
+			y: 17.400d,
+			tasks: [
+				{
+					id: "7300001700000012",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:mechanical_arm"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001700000012",
+					type: "xp",
+					xp: 220
+				}
+			],
+			dependencies: [
+				"7200001700000011"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001700000013",
+			icon: {
+				count: 1,
+				id: "create:clutch"
+			},
+			x: 6.200d,
+			y: 17.400d,
+			tasks: [
+				{
+					id: "7300001700000013",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:clutch"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001700000013",
+					type: "xp",
+					xp: 232
+				},
+				{
+					id: "7400001700000292",
+					type: "xp_levels",
+					xp_levels: 3
+				}
+			],
+			dependencies: [
+				"7200001700000012"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001700000014",
+			icon: {
+				count: 1,
+				id: "create:gearshift"
+			},
+			x: 19.000d,
+			y: 14.000d,
+			tasks: [
+				{
+					id: "7300001700000014",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:gearshift"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001700000014",
+					type: "xp",
+					xp: 244
+				}
+			],
+			dependencies: [
+				"7200001700000001"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001700000015",
+			icon: {
+				count: 1,
+				id: "create:rotation_speed_controller"
+			},
+			x: 22.100d,
+			y: 14.000d,
+			tasks: [
+				{
+					id: "7300001700000015",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:rotation_speed_controller"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001700000015",
+					type: "xp",
+					xp: 256
+				}
+			],
+			dependencies: [
+				"7200001700000014"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001700000016",
+			icon: {
+				count: 1,
+				id: "create:mechanical_bearing"
+			},
+			x: 25.200d,
+			y: 14.000d,
+			tasks: [
+				{
+					id: "7300001700000016",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "7400001700000016",
+					type: "xp",
+					xp: 184
+				},
+				{
+					id: "7400001700000215",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:paper"
+					},
+					count: 5
+				}
+			],
+			dependencies: [
+				"7200001700000015"
+			],
+			shape: "diamond",
+			size: 1.200d
+		},
+		{
+			id: "7200001700000017",
+			icon: {
+				count: 1,
+				id: "create:mechanical_bearing"
+			},
+			x: 19.000d,
+			y: 17.400d,
+			tasks: [
+				{
+					id: "7300001700000017",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "7400001700000017",
+					type: "xp",
+					xp: 196
+				}
+			],
+			dependencies: [
+				"7200001700000016"
+			],
+			shape: "diamond",
+			size: 1.200d
+		},
+		{
+			id: "7200001700000018",
+			icon: {
+				count: 1,
+				id: "create:mechanical_bearing"
+			},
+			x: 22.100d,
+			y: 17.400d,
+			tasks: [
+				{
+					id: "7300001700000018",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "7400001700000018",
+					type: "xp",
+					xp: 208
+				}
+			],
+			dependencies: [
+				"7200001700000017"
+			],
+			shape: "diamond",
+			size: 1.200d
+		},
+		{
+			id: "7200001700000019",
+			icon: {
+				count: 1,
+				id: "create:mechanical_bearing"
+			},
+			x: 25.200d,
+			y: 17.400d,
+			tasks: [
+				{
+					id: "7300001700000019",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "7400001700000019",
+					type: "xp",
+					xp: 220
+				}
+			],
+			dependencies: [
+				"7200001700000018"
+			],
+			shape: "diamond",
+			size: 1.200d
+		},
+		{
+			id: "720000170000001A",
+			icon: {
+				count: 1,
+				id: "create:mechanical_bearing"
+			},
+			x: 29.000d,
+			y: 7.000d,
+			tasks: [
+				{
+					id: "730000170000001A",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "740000170000001A",
+					type: "xp",
+					xp: 232
+				},
+				{
+					id: "7400001700000339",
+					type: "item",
+					item: {
+						count: 1,
+						id: "kubejs:chronicle_page"
+					}
+				},
+				{
+					id: "740000170000039D",
+					type: "custom"
+				}
+			],
+			dependencies: [
+				"7200001700000007",
+				"720000170000000D",
+				"7200001700000013",
+				"7200001700000019"
+			],
+			shape: "hexagon",
+			size: 1.500d
+		}
+	]
+}

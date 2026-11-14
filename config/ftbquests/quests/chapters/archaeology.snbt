@@ -1,0 +1,885 @@
+{
+	filename: "archaeology",
+	group: "",
+	icon: {
+		count: 1,
+		id: "minecraft:brush"
+	},
+	id: "7100001000000000",
+	order_index: 15,
+	default_hide_dependency_lines: 0b,
+	default_quest_shape: "circle",
+	images: [
+		{
+			id: "7500001000000001",
+			image: "kubejs:textures/gui/quests/archaeology_banner.png",
+			x: 0.000d,
+			y: -21.000d,
+			width: 22.000d,
+			height: 4.800d,
+			rotation: 0.000d,
+			order: -150,
+			position_locked: 1b,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			text_inset: 8
+		},
+		{
+			id: "7500001000000002",
+			image: "kubejs:textures/gui/quests/archaeology_seal.png",
+			x: 2.400d,
+			y: 16.100d,
+			width: 2.600d,
+			height: 2.600d,
+			rotation: 0.000d,
+			order: -200,
+			position_locked: 1b
+		},
+		{
+			id: "7500001000000003",
+			image: "kubejs:textures/gui/quests/archaeology_divider.png",
+			x: 0.000d,
+			y: -14.000d,
+			width: 22.000d,
+			height: 1.100d,
+			rotation: 0.000d,
+			order: -200,
+			position_locked: 1b
+		},
+		{
+			id: "7500001000000004",
+			image: "kubejs:textures/gui/quests/archaeology_divider.png",
+			x: 0.000d,
+			y: 24.000d,
+			width: 22.000d,
+			height: 1.100d,
+			rotation: 0.000d,
+			order: -200,
+			position_locked: 1b
+		}
+	],
+	quest_links: [ ],
+	quests: [
+		{
+			id: "7200001000000001",
+			icon: {
+				count: 1,
+				id: "minecraft:brush"
+			},
+			x: -19.500d,
+			y: 0.000d,
+			tasks: [
+				{
+					id: "7300001000000001",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "7400001000000001",
+					type: "xp",
+					xp: 135
+				}
+			],
+			dependencies: [
+				"7200000300000012"
+			],
+			shape: "hexagon",
+			size: 1.500d
+		},
+		{
+			id: "7200001000000002",
+			icon: {
+				count: 1,
+				id: "minecraft:brush"
+			},
+			x: 3.100d,
+			y: 0.000d,
+			tasks: [
+				{
+					id: "7300001000000002",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:brush"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001000000002",
+					type: "xp",
+					xp: 147
+				}
+			],
+			dependencies: [
+				"7200001000000001"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200001000000003",
+			icon: {
+				count: 1,
+				id: "minecraft:sand"
+			},
+			x: 3.636d,
+			y: 1.667d,
+			tasks: [
+				{
+					id: "7300001000000003",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:sand"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001000000003",
+					type: "xp",
+					xp: 159
+				}
+			],
+			dependencies: [
+				"7200001000000002"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200001000000004",
+			icon: {
+				count: 1,
+				id: "minecraft:gravel"
+			},
+			x: 3.197d,
+			y: 3.713d,
+			tasks: [
+				{
+					id: "7300001000000004",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:gravel"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001000000004",
+					type: "xp",
+					xp: 171
+				}
+			],
+			dependencies: [
+				"7200001000000003"
+			],
+			shape: "octagon"
+		},
+		{
+			id: "7200001000000005",
+			icon: {
+				count: 1,
+				id: "minecraft:clay_ball"
+			},
+			x: 1.607d,
+			y: 5.573d,
+			tasks: [
+				{
+					id: "7300001000000005",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:clay_ball"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001000000005",
+					type: "xp",
+					xp: 183
+				}
+			],
+			dependencies: [
+				"7200001000000004"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200001000000006",
+			icon: {
+				count: 1,
+				id: "minecraft:brick"
+			},
+			x: -0.996d,
+			y: 6.626d,
+			tasks: [
+				{
+					id: "7300001000000006",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:brick"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001000000006",
+					type: "xp",
+					xp: 195
+				}
+			],
+			dependencies: [
+				"7200001000000005"
+			],
+			shape: "square"
+		},
+		{
+			id: "7200001000000007",
+			icon: {
+				count: 1,
+				id: "minecraft:decorated_pot"
+			},
+			x: -4.160d,
+			y: 6.360d,
+			tasks: [
+				{
+					id: "7300001000000007",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:decorated_pot"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001000000007",
+					type: "xp",
+					xp: 207
+				}
+			],
+			dependencies: [
+				"7200001000000006"
+			],
+			shape: "octagon"
+		},
+		{
+			id: "7200001000000008",
+			icon: {
+				count: 1,
+				id: "minecraft:angler_pottery_sherd"
+			},
+			x: -7.194d,
+			y: 4.527d,
+			tasks: [
+				{
+					id: "7300001000000008",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:angler_pottery_sherd"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001000000008",
+					type: "xp",
+					xp: 135
+				},
+				{
+					id: "7400001000000207",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:cooked_porkchop"
+					},
+					count: 6
+				}
+			],
+			dependencies: [
+				"7200001000000007"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200001000000009",
+			icon: {
+				count: 1,
+				id: "minecraft:archer_pottery_sherd"
+			},
+			x: -9.319d,
+			y: 1.233d,
+			tasks: [
+				{
+					id: "7300001000000009",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:archer_pottery_sherd"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001000000009",
+					type: "xp",
+					xp: 147
+				}
+			],
+			dependencies: [
+				"7200001000000008"
+			],
+			shape: "circle"
+		},
+		{
+			id: "720000100000000A",
+			icon: {
+				count: 1,
+				id: "minecraft:blade_pottery_sherd"
+			},
+			x: -9.845d,
+			y: -3.028d,
+			tasks: [
+				{
+					id: "730000100000000A",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:blade_pottery_sherd"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000100000000A",
+					type: "xp",
+					xp: 159
+				},
+				{
+					id: "7400001000000289",
+					type: "xp_levels",
+					xp_levels: 2
+				}
+			],
+			dependencies: [
+				"7200001000000009"
+			],
+			shape: "octagon"
+		},
+		{
+			id: "720000100000000B",
+			icon: {
+				count: 1,
+				id: "minecraft:brewer_pottery_sherd"
+			},
+			x: -8.358d,
+			y: -7.456d,
+			tasks: [
+				{
+					id: "730000100000000B",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:brewer_pottery_sherd"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000100000000B",
+					type: "xp",
+					xp: 171
+				}
+			],
+			dependencies: [
+				"720000100000000A"
+			],
+			shape: "square"
+		},
+		{
+			id: "720000100000000C",
+			icon: {
+				count: 1,
+				id: "minecraft:miner_pottery_sherd"
+			},
+			x: -4.850d,
+			y: -11.086d,
+			tasks: [
+				{
+					id: "730000100000000C",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:miner_pottery_sherd"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000100000000C",
+					type: "xp",
+					xp: 183
+				}
+			],
+			dependencies: [
+				"720000100000000B"
+			],
+			shape: "circle"
+		},
+		{
+			id: "720000100000000D",
+			icon: {
+				count: 1,
+				id: "minecraft:skull_pottery_sherd"
+			},
+			x: 0.229d,
+			y: -12.998d,
+			tasks: [
+				{
+					id: "730000100000000D",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:skull_pottery_sherd"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000100000000D",
+					type: "xp",
+					xp: 195
+				}
+			],
+			dependencies: [
+				"720000100000000C"
+			],
+			shape: "octagon"
+		},
+		{
+			id: "720000100000000E",
+			icon: {
+				count: 1,
+				id: "minecraft:heart_pottery_sherd"
+			},
+			x: -3.100d,
+			y: 0.000d,
+			tasks: [
+				{
+					id: "730000100000000E",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:heart_pottery_sherd"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000100000000E",
+					type: "xp",
+					xp: 207
+				}
+			],
+			dependencies: [
+				"7200001000000001"
+			],
+			shape: "circle"
+		},
+		{
+			id: "720000100000000F",
+			icon: {
+				count: 1,
+				id: "minecraft:snort_pottery_sherd"
+			},
+			x: -3.636d,
+			y: -1.667d,
+			tasks: [
+				{
+					id: "730000100000000F",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:snort_pottery_sherd"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000100000000F",
+					type: "xp",
+					xp: 135
+				},
+				{
+					id: "740000100000020E",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:cooked_porkchop"
+					},
+					count: 6
+				}
+			],
+			dependencies: [
+				"720000100000000E"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200001000000010",
+			icon: {
+				count: 1,
+				id: "minecraft:tuff"
+			},
+			x: -3.197d,
+			y: -3.713d,
+			tasks: [
+				{
+					id: "7300001000000010",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:tuff"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001000000010",
+					type: "xp",
+					xp: 147
+				}
+			],
+			dependencies: [
+				"720000100000000F"
+			],
+			shape: "square"
+		},
+		{
+			id: "7200001000000011",
+			icon: {
+				count: 1,
+				id: "minecraft:calcite"
+			},
+			x: -1.607d,
+			y: -5.573d,
+			tasks: [
+				{
+					id: "7300001000000011",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:calcite"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001000000011",
+					type: "xp",
+					xp: 159
+				}
+			],
+			dependencies: [
+				"7200001000000010"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200001000000012",
+			icon: {
+				count: 1,
+				id: "minecraft:terracotta"
+			},
+			x: 0.996d,
+			y: -6.626d,
+			tasks: [
+				{
+					id: "7300001000000012",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:terracotta"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001000000012",
+					type: "xp",
+					xp: 171
+				}
+			],
+			dependencies: [
+				"7200001000000011"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200001000000013",
+			icon: {
+				count: 1,
+				id: "minecraft:flower_pot"
+			},
+			x: 4.160d,
+			y: -6.360d,
+			tasks: [
+				{
+					id: "7300001000000013",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:flower_pot"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001000000013",
+					type: "xp",
+					xp: 183
+				},
+				{
+					id: "7400001000000292",
+					type: "xp_levels",
+					xp_levels: 2
+				}
+			],
+			dependencies: [
+				"7200001000000012"
+			],
+			shape: "octagon"
+		},
+		{
+			id: "7200001000000014",
+			icon: {
+				count: 1,
+				id: "minecraft:painting"
+			},
+			x: 7.194d,
+			y: -4.527d,
+			tasks: [
+				{
+					id: "7300001000000014",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:painting"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001000000014",
+					type: "xp",
+					xp: 195
+				}
+			],
+			dependencies: [
+				"7200001000000013"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200001000000015",
+			icon: {
+				count: 1,
+				id: "minecraft:item_frame"
+			},
+			x: 9.319d,
+			y: -1.233d,
+			tasks: [
+				{
+					id: "7300001000000015",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:item_frame"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001000000015",
+					type: "xp",
+					xp: 207
+				}
+			],
+			dependencies: [
+				"7200001000000014"
+			],
+			shape: "square"
+		},
+		{
+			id: "7200001000000016",
+			icon: {
+				count: 1,
+				id: "minecraft:chiseled_bookshelf"
+			},
+			x: 9.845d,
+			y: 3.028d,
+			tasks: [
+				{
+					id: "7300001000000016",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:chiseled_bookshelf"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001000000016",
+					type: "xp",
+					xp: 135
+				},
+				{
+					id: "7400001000000215",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:cooked_porkchop"
+					},
+					count: 6
+				}
+			],
+			dependencies: [
+				"7200001000000015"
+			],
+			shape: "octagon"
+		},
+		{
+			id: "7200001000000017",
+			icon: {
+				count: 1,
+				id: "minecraft:book"
+			},
+			x: 8.358d,
+			y: 7.456d,
+			tasks: [
+				{
+					id: "7300001000000017",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:book"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001000000017",
+					type: "xp",
+					xp: 147
+				}
+			],
+			dependencies: [
+				"7200001000000016"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200001000000018",
+			icon: {
+				count: 1,
+				id: "minecraft:lectern"
+			},
+			x: 4.850d,
+			y: 11.086d,
+			tasks: [
+				{
+					id: "7300001000000018",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:lectern"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001000000018",
+					type: "xp",
+					xp: 159
+				}
+			],
+			dependencies: [
+				"7200001000000017"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200001000000019",
+			icon: {
+				count: 1,
+				id: "minecraft:brush"
+			},
+			x: -0.229d,
+			y: 12.998d,
+			tasks: [
+				{
+					id: "7300001000000019",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "7400001000000019",
+					type: "xp",
+					xp: 171
+				}
+			],
+			dependencies: [
+				"7200001000000018"
+			],
+			shape: "diamond",
+			size: 1.200d
+		},
+		{
+			id: "720000100000001A",
+			icon: {
+				count: 1,
+				id: "minecraft:brush"
+			},
+			x: 0.000d,
+			y: 18.500d,
+			tasks: [
+				{
+					id: "730000100000001A",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "740000100000001A",
+					type: "xp",
+					xp: 183
+				},
+				{
+					id: "7400001000000339",
+					type: "item",
+					item: {
+						count: 1,
+						id: "kubejs:chronicle_page"
+					}
+				},
+				{
+					id: "740000100000039D",
+					type: "custom"
+				}
+			],
+			dependencies: [
+				"720000100000000D",
+				"7200001000000019"
+			],
+			shape: "hexagon",
+			size: 1.500d
+		}
+	]
+}

@@ -1,0 +1,883 @@
+{
+	filename: "skyward",
+	group: "",
+	icon: {
+		count: 1,
+		id: "minecraft:elytra"
+	},
+	id: "7100001300000000",
+	order_index: 18,
+	default_hide_dependency_lines: 0b,
+	default_quest_shape: "circle",
+	images: [
+		{
+			id: "7500001300000001",
+			image: "kubejs:textures/gui/quests/skyward_banner.png",
+			x: 0.000d,
+			y: -21.000d,
+			width: 22.000d,
+			height: 4.800d,
+			rotation: 0.000d,
+			order: -150,
+			position_locked: 1b,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			text_inset: 8
+		},
+		{
+			id: "7500001300000002",
+			image: "kubejs:textures/gui/quests/skyward_seal.png",
+			x: 35.800d,
+			y: -2.400d,
+			width: 2.600d,
+			height: 2.600d,
+			rotation: 0.000d,
+			order: -200,
+			position_locked: 1b
+		},
+		{
+			id: "7500001300000003",
+			image: "kubejs:textures/gui/quests/skyward_divider.png",
+			x: 0.000d,
+			y: -14.000d,
+			width: 22.000d,
+			height: 1.100d,
+			rotation: 0.000d,
+			order: -200,
+			position_locked: 1b
+		},
+		{
+			id: "7500001300000004",
+			image: "kubejs:textures/gui/quests/skyward_divider.png",
+			x: 0.000d,
+			y: 24.000d,
+			width: 22.000d,
+			height: 1.100d,
+			rotation: 0.000d,
+			order: -200,
+			position_locked: 1b
+		}
+	],
+	quest_links: [ ],
+	quests: [
+		{
+			id: "7200001300000001",
+			icon: {
+				count: 1,
+				id: "minecraft:elytra"
+			},
+			x: -5.000d,
+			y: 0.000d,
+			tasks: [
+				{
+					id: "7300001300000001",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "7400001300000001",
+					type: "xp",
+					xp: 156
+				}
+			],
+			dependencies: [
+				"7200000B00000012"
+			],
+			shape: "hexagon",
+			size: 1.500d
+		},
+		{
+			id: "7200001300000002",
+			icon: {
+				count: 1,
+				id: "minecraft:scaffolding"
+			},
+			x: 0.000d,
+			y: -5.800d,
+			tasks: [
+				{
+					id: "7300001300000002",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:scaffolding"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001300000002",
+					type: "xp",
+					xp: 168
+				}
+			],
+			dependencies: [
+				"7200001300000001"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200001300000003",
+			icon: {
+				count: 1,
+				id: "minecraft:ladder"
+			},
+			x: 3.100d,
+			y: -5.900d,
+			tasks: [
+				{
+					id: "7300001300000003",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:ladder"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001300000003",
+					type: "xp",
+					xp: 180
+				}
+			],
+			dependencies: [
+				"7200001300000002"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200001300000004",
+			icon: {
+				count: 1,
+				id: "minecraft:water_bucket"
+			},
+			x: 6.200d,
+			y: -7.242d,
+			tasks: [
+				{
+					id: "7300001300000004",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:water_bucket"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001300000004",
+					type: "xp",
+					xp: 192
+				}
+			],
+			dependencies: [
+				"7200001300000003"
+			],
+			shape: "octagon"
+		},
+		{
+			id: "7200001300000005",
+			icon: {
+				count: 1,
+				id: "minecraft:feather"
+			},
+			x: 9.300d,
+			y: -9.599d,
+			tasks: [
+				{
+					id: "7300001300000005",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:feather"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001300000005",
+					type: "xp",
+					xp: 204
+				}
+			],
+			dependencies: [
+				"7200001300000004"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200001300000006",
+			icon: {
+				count: 1,
+				id: "minecraft:phantom_membrane"
+			},
+			x: 12.400d,
+			y: -11.543d,
+			tasks: [
+				{
+					id: "7300001300000006",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:phantom_membrane"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001300000006",
+					type: "xp",
+					xp: 216
+				}
+			],
+			dependencies: [
+				"7200001300000005"
+			],
+			shape: "square"
+		},
+		{
+			id: "7200001300000007",
+			icon: {
+				count: 1,
+				id: "minecraft:firework_rocket"
+			},
+			x: 15.500d,
+			y: -12.135d,
+			tasks: [
+				{
+					id: "7300001300000007",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:firework_rocket"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001300000007",
+					type: "xp",
+					xp: 228
+				}
+			],
+			dependencies: [
+				"7200001300000006"
+			],
+			shape: "octagon"
+		},
+		{
+			id: "7200001300000008",
+			icon: {
+				count: 1,
+				id: "minecraft:paper"
+			},
+			x: 18.600d,
+			y: -12.035d,
+			tasks: [
+				{
+					id: "7300001300000008",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:paper"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001300000008",
+					type: "xp",
+					xp: 156
+				},
+				{
+					id: "7400001300000207",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:paper"
+					},
+					count: 5
+				}
+			],
+			dependencies: [
+				"7200001300000007"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200001300000009",
+			icon: {
+				count: 1,
+				id: "minecraft:gunpowder"
+			},
+			x: 21.700d,
+			y: -12.722d,
+			tasks: [
+				{
+					id: "7300001300000009",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:gunpowder"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001300000009",
+					type: "xp",
+					xp: 168
+				}
+			],
+			dependencies: [
+				"7200001300000008"
+			],
+			shape: "circle"
+		},
+		{
+			id: "720000130000000A",
+			icon: {
+				count: 1,
+				id: "minecraft:elytra"
+			},
+			x: 0.000d,
+			y: 0.000d,
+			tasks: [
+				{
+					id: "730000130000000A",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:elytra"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000130000000A",
+					type: "xp",
+					xp: 180
+				},
+				{
+					id: "7400001300000289",
+					type: "xp_levels",
+					xp_levels: 3
+				}
+			],
+			dependencies: [
+				"7200001300000001"
+			],
+			shape: "octagon"
+		},
+		{
+			id: "720000130000000B",
+			icon: {
+				count: 1,
+				id: "minecraft:spyglass"
+			},
+			x: 3.100d,
+			y: -0.100d,
+			tasks: [
+				{
+					id: "730000130000000B",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:spyglass"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000130000000B",
+					type: "xp",
+					xp: 192
+				}
+			],
+			dependencies: [
+				"720000130000000A"
+			],
+			shape: "square"
+		},
+		{
+			id: "720000130000000C",
+			icon: {
+				count: 1,
+				id: "minecraft:glass"
+			},
+			x: 6.200d,
+			y: -1.442d,
+			tasks: [
+				{
+					id: "730000130000000C",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:glass"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000130000000C",
+					type: "xp",
+					xp: 204
+				}
+			],
+			dependencies: [
+				"720000130000000B"
+			],
+			shape: "circle"
+		},
+		{
+			id: "720000130000000D",
+			icon: {
+				count: 1,
+				id: "minecraft:lightning_rod"
+			},
+			x: 9.300d,
+			y: -3.799d,
+			tasks: [
+				{
+					id: "730000130000000D",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:lightning_rod"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000130000000D",
+					type: "xp",
+					xp: 216
+				}
+			],
+			dependencies: [
+				"720000130000000C"
+			],
+			shape: "octagon"
+		},
+		{
+			id: "720000130000000E",
+			icon: {
+				count: 1,
+				id: "minecraft:chain"
+			},
+			x: 12.400d,
+			y: -5.743d,
+			tasks: [
+				{
+					id: "730000130000000E",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:chain"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000130000000E",
+					type: "xp",
+					xp: 228
+				}
+			],
+			dependencies: [
+				"720000130000000D"
+			],
+			shape: "circle"
+		},
+		{
+			id: "720000130000000F",
+			icon: {
+				count: 1,
+				id: "minecraft:lantern"
+			},
+			x: 15.500d,
+			y: -6.335d,
+			tasks: [
+				{
+					id: "730000130000000F",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:lantern"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000130000000F",
+					type: "xp",
+					xp: 156
+				},
+				{
+					id: "740000130000020E",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:paper"
+					},
+					count: 5
+				}
+			],
+			dependencies: [
+				"720000130000000E"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200001300000010",
+			icon: {
+				count: 1,
+				id: "minecraft:bell"
+			},
+			x: 18.600d,
+			y: -6.235d,
+			tasks: [
+				{
+					id: "7300001300000010",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:bell"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001300000010",
+					type: "xp",
+					xp: 168
+				}
+			],
+			dependencies: [
+				"720000130000000F"
+			],
+			shape: "square"
+		},
+		{
+			id: "7200001300000011",
+			icon: {
+				count: 1,
+				id: "minecraft:copper_block"
+			},
+			x: 21.700d,
+			y: -6.922d,
+			tasks: [
+				{
+					id: "7300001300000011",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:copper_block"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001300000011",
+					type: "xp",
+					xp: 180
+				}
+			],
+			dependencies: [
+				"7200001300000010"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200001300000012",
+			icon: {
+				count: 1,
+				id: "minecraft:amethyst_block"
+			},
+			x: 0.000d,
+			y: 5.800d,
+			tasks: [
+				{
+					id: "7300001300000012",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:amethyst_block"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001300000012",
+					type: "xp",
+					xp: 192
+				}
+			],
+			dependencies: [
+				"7200001300000001"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200001300000013",
+			icon: {
+				count: 1,
+				id: "minecraft:beacon"
+			},
+			x: 3.100d,
+			y: 5.700d,
+			tasks: [
+				{
+					id: "7300001300000013",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:beacon"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001300000013",
+					type: "xp",
+					xp: 204
+				},
+				{
+					id: "7400001300000292",
+					type: "xp_levels",
+					xp_levels: 3
+				}
+			],
+			dependencies: [
+				"7200001300000012"
+			],
+			shape: "octagon"
+		},
+		{
+			id: "7200001300000014",
+			icon: {
+				count: 1,
+				id: "minecraft:gold_block"
+			},
+			x: 6.200d,
+			y: 4.358d,
+			tasks: [
+				{
+					id: "7300001300000014",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:gold_block"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001300000014",
+					type: "xp",
+					xp: 216
+				}
+			],
+			dependencies: [
+				"7200001300000013"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200001300000015",
+			icon: {
+				count: 1,
+				id: "minecraft:iron_block"
+			},
+			x: 9.300d,
+			y: 2.001d,
+			tasks: [
+				{
+					id: "7300001300000015",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:iron_block"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001300000015",
+					type: "xp",
+					xp: 228
+				}
+			],
+			dependencies: [
+				"7200001300000014"
+			],
+			shape: "square"
+		},
+		{
+			id: "7200001300000016",
+			icon: {
+				count: 1,
+				id: "minecraft:ender_pearl"
+			},
+			x: 12.400d,
+			y: 0.057d,
+			tasks: [
+				{
+					id: "7300001300000016",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:ender_pearl"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001300000016",
+					type: "xp",
+					xp: 156
+				},
+				{
+					id: "7400001300000215",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:paper"
+					},
+					count: 5
+				}
+			],
+			dependencies: [
+				"7200001300000015"
+			],
+			shape: "octagon"
+		},
+		{
+			id: "7200001300000017",
+			icon: {
+				count: 1,
+				id: "minecraft:ender_chest"
+			},
+			x: 15.500d,
+			y: -0.535d,
+			tasks: [
+				{
+					id: "7300001300000017",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:ender_chest"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001300000017",
+					type: "xp",
+					xp: 168
+				}
+			],
+			dependencies: [
+				"7200001300000016"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200001300000018",
+			icon: {
+				count: 1,
+				id: "minecraft:elytra"
+			},
+			x: 18.600d,
+			y: -0.435d,
+			tasks: [
+				{
+					id: "7300001300000018",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "7400001300000018",
+					type: "xp",
+					xp: 180
+				}
+			],
+			dependencies: [
+				"7200001300000017"
+			],
+			shape: "diamond",
+			size: 1.200d
+		},
+		{
+			id: "7200001300000019",
+			icon: {
+				count: 1,
+				id: "minecraft:elytra"
+			},
+			x: 21.700d,
+			y: -1.122d,
+			tasks: [
+				{
+					id: "7300001300000019",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "7400001300000019",
+					type: "xp",
+					xp: 192
+				}
+			],
+			dependencies: [
+				"7200001300000018"
+			],
+			shape: "diamond",
+			size: 1.200d
+		},
+		{
+			id: "720000130000001A",
+			icon: {
+				count: 1,
+				id: "minecraft:elytra"
+			},
+			x: 33.400d,
+			y: 0.000d,
+			tasks: [
+				{
+					id: "730000130000001A",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "740000130000001A",
+					type: "xp",
+					xp: 204
+				},
+				{
+					id: "7400001300000339",
+					type: "item",
+					item: {
+						count: 1,
+						id: "kubejs:chronicle_page"
+					}
+				},
+				{
+					id: "740000130000039D",
+					type: "custom"
+				}
+			],
+			dependencies: [
+				"7200001300000009",
+				"7200001300000011",
+				"7200001300000019"
+			],
+			shape: "hexagon",
+			size: 1.500d
+		}
+	]
+}

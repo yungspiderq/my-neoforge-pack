@@ -12,11 +12,11 @@
 	images: [
 		{
 			id: "7500000C00000001",
-			image: "kubejs:textures/gui/quests/create_first.png",
-			x: 10.000d,
-			y: -4.000d,
-			width: 21.000d,
-			height: 3.200d,
+			image: "kubejs:textures/gui/quests/create_first_banner.png",
+			x: 0.000d,
+			y: -21.000d,
+			width: 22.000d,
+			height: 4.800d,
 			rotation: 0.000d,
 			order: -150,
 			position_locked: 1b,
@@ -26,38 +26,35 @@
 		},
 		{
 			id: "7500000C00000002",
-			image: "kubejs:textures/gui/quests/create_first_stripe.png",
-			x: 9.500d,
-			y: 3.750d,
-			width: 17.800d,
-			height: 2.250d,
+			image: "kubejs:textures/gui/quests/create_first_seal.png",
+			x: 27.400d,
+			y: -1.400d,
+			width: 2.600d,
+			height: 2.600d,
 			rotation: 0.000d,
 			order: -200,
-			alpha: 105,
 			position_locked: 1b
 		},
 		{
 			id: "7500000C00000003",
-			image: "kubejs:textures/gui/quests/create_first_stripe.png",
-			x: 9.500d,
-			y: 10.500d,
-			width: 17.800d,
-			height: 2.250d,
+			image: "kubejs:textures/gui/quests/create_first_divider.png",
+			x: 0.000d,
+			y: -14.000d,
+			width: 22.000d,
+			height: 1.100d,
 			rotation: 0.000d,
 			order: -200,
-			alpha: 105,
 			position_locked: 1b
 		},
 		{
 			id: "7500000C00000004",
-			image: "kubejs:textures/gui/quests/create_first_stripe.png",
-			x: 9.500d,
-			y: 17.250d,
-			width: 17.800d,
-			height: 2.250d,
+			image: "kubejs:textures/gui/quests/create_first_divider.png",
+			x: 0.000d,
+			y: 24.000d,
+			width: 22.000d,
+			height: 1.100d,
 			rotation: 0.000d,
 			order: -200,
-			alpha: 105,
 			position_locked: 1b
 		}
 	],
@@ -69,8 +66,8 @@
 				count: 1,
 				id: "create:andesite_alloy"
 			},
-			x: 0.000d,
-			y: 10.500d,
+			x: -5.000d,
+			y: 0.000d,
 			tasks: [
 				{
 					id: "7300000C00000001",
@@ -81,21 +78,14 @@
 				{
 					id: "7400000C00000001",
 					type: "xp",
-					xp: 100
-				},
-				{
-					id: "7400000C00000200",
-					type: "item",
-					item: {
-						count: 1,
-						id: "minecraft:bread"
-					},
-					count: 3
+					xp: 107
 				}
 			],
 			dependencies: [
 				"7200000300000012"
-			]
+			],
+			shape: "hexagon",
+			size: 1.500d
 		},
 		{
 			id: "7200000C00000002",
@@ -103,8 +93,8 @@
 				count: 1,
 				id: "create:andesite_alloy"
 			},
-			x: 2.700d,
-			y: 3.750d,
+			x: 0.000d,
+			y: -7.000d,
 			tasks: [
 				{
 					id: "7300000C00000002",
@@ -119,12 +109,14 @@
 				{
 					id: "7400000C00000002",
 					type: "xp",
-					xp: 100
+					xp: 119
 				}
 			],
 			dependencies: [
 				"7200000C00000001"
-			]
+			],
+			shape: "gear",
+			size: 1.200d
 		},
 		{
 			id: "7200000C00000003",
@@ -132,8 +124,8 @@
 				count: 1,
 				id: "create:shaft"
 			},
-			x: 5.600d,
-			y: 3.750d,
+			x: 3.500d,
+			y: -7.000d,
 			tasks: [
 				{
 					id: "7300000C00000003",
@@ -148,12 +140,14 @@
 				{
 					id: "7400000C00000003",
 					type: "xp",
-					xp: 100
+					xp: 131
 				}
 			],
 			dependencies: [
 				"7200000C00000002"
-			]
+			],
+			shape: "gear",
+			size: 1.200d
 		},
 		{
 			id: "7200000C00000004",
@@ -161,8 +155,8 @@
 				count: 1,
 				id: "create:cogwheel"
 			},
-			x: 8.500d,
-			y: 3.750d,
+			x: 7.000d,
+			y: -7.000d,
 			tasks: [
 				{
 					id: "7300000C00000004",
@@ -177,12 +171,14 @@
 				{
 					id: "7400000C00000004",
 					type: "xp",
-					xp: 110
+					xp: 143
 				}
 			],
 			dependencies: [
 				"7200000C00000003"
-			]
+			],
+			shape: "gear",
+			size: 1.200d
 		},
 		{
 			id: "7200000C00000005",
@@ -190,8 +186,8 @@
 				count: 1,
 				id: "create:large_cogwheel"
 			},
-			x: 11.400d,
-			y: 3.750d,
+			x: 10.500d,
+			y: -7.000d,
 			tasks: [
 				{
 					id: "7300000C00000005",
@@ -206,12 +202,14 @@
 				{
 					id: "7400000C00000005",
 					type: "xp",
-					xp: 110
+					xp: 155
 				}
 			],
 			dependencies: [
 				"7200000C00000004"
-			]
+			],
+			shape: "gear",
+			size: 1.200d
 		},
 		{
 			id: "7200000C00000006",
@@ -219,8 +217,8 @@
 				count: 1,
 				id: "create:gearbox"
 			},
-			x: 14.300d,
-			y: 3.750d,
+			x: 14.000d,
+			y: -7.000d,
 			tasks: [
 				{
 					id: "7300000C00000006",
@@ -235,21 +233,14 @@
 				{
 					id: "7400000C00000006",
 					type: "xp",
-					xp: 110
-				},
-				{
-					id: "7400000C00000205",
-					type: "item",
-					item: {
-						count: 1,
-						id: "minecraft:torch"
-					},
-					count: 4
+					xp: 167
 				}
 			],
 			dependencies: [
 				"7200000C00000005"
-			]
+			],
+			shape: "gear",
+			size: 1.200d
 		},
 		{
 			id: "7200000C00000007",
@@ -257,8 +248,8 @@
 				count: 1,
 				id: "create:encased_chain_drive"
 			},
-			x: 2.700d,
-			y: 10.500d,
+			x: 17.500d,
+			y: -7.000d,
 			tasks: [
 				{
 					id: "7300000C00000007",
@@ -273,12 +264,14 @@
 				{
 					id: "7400000C00000007",
 					type: "xp",
-					xp: 120
+					xp: 179
 				}
 			],
 			dependencies: [
-				"7200000C00000001"
-			]
+				"7200000C00000006"
+			],
+			shape: "gear",
+			size: 1.200d
 		},
 		{
 			id: "7200000C00000008",
@@ -286,8 +279,8 @@
 				count: 1,
 				id: "create:water_wheel"
 			},
-			x: 5.600d,
-			y: 10.500d,
+			x: 17.500d,
+			y: -2.500d,
 			tasks: [
 				{
 					id: "7300000C00000008",
@@ -302,12 +295,23 @@
 				{
 					id: "7400000C00000008",
 					type: "xp",
-					xp: 120
+					xp: 107
+				},
+				{
+					id: "7400000C00000207",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:cooked_porkchop"
+					},
+					count: 6
 				}
 			],
 			dependencies: [
-				"7200000C00000007"
-			]
+				"7200000C00000001"
+			],
+			shape: "gear",
+			size: 1.200d
 		},
 		{
 			id: "7200000C00000009",
@@ -315,8 +319,8 @@
 				count: 1,
 				id: "create:mechanical_press"
 			},
-			x: 8.500d,
-			y: 10.500d,
+			x: 14.000d,
+			y: -2.500d,
 			tasks: [
 				{
 					id: "7300000C00000009",
@@ -331,12 +335,14 @@
 				{
 					id: "7400000C00000009",
 					type: "xp",
-					xp: 120
+					xp: 119
 				}
 			],
 			dependencies: [
 				"7200000C00000008"
-			]
+			],
+			shape: "gear",
+			size: 1.200d
 		},
 		{
 			id: "7200000C0000000A",
@@ -344,8 +350,8 @@
 				count: 1,
 				id: "create:depot"
 			},
-			x: 11.400d,
-			y: 10.500d,
+			x: 10.500d,
+			y: -2.500d,
 			tasks: [
 				{
 					id: "7300000C0000000A",
@@ -360,12 +366,19 @@
 				{
 					id: "7400000C0000000A",
 					type: "xp",
-					xp: 130
+					xp: 131
+				},
+				{
+					id: "7400000C00000289",
+					type: "xp_levels",
+					xp_levels: 2
 				}
 			],
 			dependencies: [
 				"7200000C00000009"
-			]
+			],
+			shape: "gear",
+			size: 1.200d
 		},
 		{
 			id: "7200000C0000000B",
@@ -373,8 +386,8 @@
 				count: 1,
 				id: "create:mechanical_mixer"
 			},
-			x: 14.300d,
-			y: 10.500d,
+			x: 7.000d,
+			y: -2.500d,
 			tasks: [
 				{
 					id: "7300000C0000000B",
@@ -389,21 +402,14 @@
 				{
 					id: "7400000C0000000B",
 					type: "xp",
-					xp: 130
-				},
-				{
-					id: "7400000C0000020A",
-					type: "item",
-					item: {
-						count: 1,
-						id: "minecraft:torch"
-					},
-					count: 4
+					xp: 143
 				}
 			],
 			dependencies: [
 				"7200000C0000000A"
-			]
+			],
+			shape: "gear",
+			size: 1.200d
 		},
 		{
 			id: "7200000C0000000C",
@@ -411,8 +417,8 @@
 				count: 1,
 				id: "create:basin"
 			},
-			x: 2.700d,
-			y: 17.250d,
+			x: 3.500d,
+			y: -2.500d,
 			tasks: [
 				{
 					id: "7300000C0000000C",
@@ -427,12 +433,14 @@
 				{
 					id: "7400000C0000000C",
 					type: "xp",
-					xp: 130
+					xp: 155
 				}
 			],
 			dependencies: [
-				"7200000C00000001"
-			]
+				"7200000C0000000B"
+			],
+			shape: "gear",
+			size: 1.200d
 		},
 		{
 			id: "7200000C0000000D",
@@ -440,8 +448,8 @@
 				count: 1,
 				id: "create:mechanical_saw"
 			},
-			x: 5.600d,
-			y: 17.250d,
+			x: 0.000d,
+			y: -2.500d,
 			tasks: [
 				{
 					id: "7300000C0000000D",
@@ -456,12 +464,14 @@
 				{
 					id: "7400000C0000000D",
 					type: "xp",
-					xp: 140
+					xp: 167
 				}
 			],
 			dependencies: [
 				"7200000C0000000C"
-			]
+			],
+			shape: "gear",
+			size: 1.200d
 		},
 		{
 			id: "7200000C0000000E",
@@ -469,8 +479,8 @@
 				count: 1,
 				id: "create:mechanical_drill"
 			},
-			x: 8.500d,
-			y: 17.250d,
+			x: 0.000d,
+			y: 2.000d,
 			tasks: [
 				{
 					id: "7300000C0000000E",
@@ -485,12 +495,14 @@
 				{
 					id: "7400000C0000000E",
 					type: "xp",
-					xp: 140
+					xp: 179
 				}
 			],
 			dependencies: [
-				"7200000C0000000D"
-			]
+				"7200000C00000001"
+			],
+			shape: "gear",
+			size: 1.200d
 		},
 		{
 			id: "7200000C0000000F",
@@ -498,8 +510,8 @@
 				count: 1,
 				id: "create:millstone"
 			},
-			x: 11.400d,
-			y: 17.250d,
+			x: 3.500d,
+			y: 2.000d,
 			tasks: [
 				{
 					id: "7300000C0000000F",
@@ -514,12 +526,23 @@
 				{
 					id: "7400000C0000000F",
 					type: "xp",
-					xp: 140
+					xp: 107
+				},
+				{
+					id: "7400000C0000020E",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:cooked_porkchop"
+					},
+					count: 6
 				}
 			],
 			dependencies: [
 				"7200000C0000000E"
-			]
+			],
+			shape: "gear",
+			size: 1.200d
 		},
 		{
 			id: "7200000C00000010",
@@ -527,8 +550,8 @@
 				count: 1,
 				id: "create:encased_fan"
 			},
-			x: 14.300d,
-			y: 17.250d,
+			x: 7.000d,
+			y: 2.000d,
 			tasks: [
 				{
 					id: "7300000C00000010",
@@ -543,21 +566,14 @@
 				{
 					id: "7400000C00000010",
 					type: "xp",
-					xp: 150
-				},
-				{
-					id: "7400000C0000020F",
-					type: "item",
-					item: {
-						count: 1,
-						id: "minecraft:torch"
-					},
-					count: 4
+					xp: 119
 				}
 			],
 			dependencies: [
 				"7200000C0000000F"
-			]
+			],
+			shape: "gear",
+			size: 1.200d
 		},
 		{
 			id: "7200000C00000011",
@@ -565,8 +581,8 @@
 				count: 1,
 				id: "create:belt_connector"
 			},
-			x: 17.200d,
-			y: 17.250d,
+			x: 10.500d,
+			y: 2.000d,
 			tasks: [
 				{
 					id: "7300000C00000011",
@@ -581,12 +597,267 @@
 				{
 					id: "7400000C00000011",
 					type: "xp",
-					xp: 150
+					xp: 131
 				}
 			],
 			dependencies: [
 				"7200000C00000010"
-			]
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200000C00000014",
+			icon: {
+				count: 1,
+				id: "create:hand_crank"
+			},
+			x: 14.000d,
+			y: 2.000d,
+			tasks: [
+				{
+					id: "7300000C00000014",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:hand_crank"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000C00000014",
+					type: "xp",
+					xp: 167
+				}
+			],
+			dependencies: [
+				"7200000C00000011"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200000C00000015",
+			icon: {
+				count: 1,
+				id: "create:large_water_wheel"
+			},
+			x: 17.500d,
+			y: 2.000d,
+			tasks: [
+				{
+					id: "7300000C00000015",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:large_water_wheel"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000C00000015",
+					type: "xp",
+					xp: 179
+				}
+			],
+			dependencies: [
+				"7200000C00000014"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200000C00000016",
+			icon: {
+				count: 1,
+				id: "create:chute"
+			},
+			x: 17.500d,
+			y: 6.500d,
+			tasks: [
+				{
+					id: "7300000C00000016",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:chute"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000C00000016",
+					type: "xp",
+					xp: 107
+				},
+				{
+					id: "7400000C00000215",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:cooked_porkchop"
+					},
+					count: 6
+				}
+			],
+			dependencies: [
+				"7200000C00000001"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200000C00000017",
+			icon: {
+				count: 1,
+				id: "create:andesite_funnel"
+			},
+			x: 14.000d,
+			y: 6.500d,
+			tasks: [
+				{
+					id: "7300000C00000017",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:andesite_funnel"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000C00000017",
+					type: "xp",
+					xp: 119
+				}
+			],
+			dependencies: [
+				"7200000C00000016"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200000C00000018",
+			icon: {
+				count: 1,
+				id: "create:andesite_tunnel"
+			},
+			x: 10.500d,
+			y: 6.500d,
+			tasks: [
+				{
+					id: "7300000C00000018",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:andesite_tunnel"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000C00000018",
+					type: "xp",
+					xp: 131
+				}
+			],
+			dependencies: [
+				"7200000C00000017"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200000C00000019",
+			icon: {
+				count: 1,
+				id: "create:mechanical_harvester"
+			},
+			x: 7.000d,
+			y: 6.500d,
+			tasks: [
+				{
+					id: "7300000C00000019",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:mechanical_harvester"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000C00000019",
+					type: "xp",
+					xp: 143
+				}
+			],
+			dependencies: [
+				"7200000C00000018"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200000C0000001A",
+			icon: {
+				count: 1,
+				id: "create:mechanical_plough"
+			},
+			x: 3.500d,
+			y: 6.500d,
+			tasks: [
+				{
+					id: "7300000C0000001A",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:mechanical_plough"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000C0000001A",
+					type: "xp",
+					xp: 155
+				}
+			],
+			dependencies: [
+				"7200000C00000019"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200000C0000001B",
+			icon: {
+				count: 1,
+				id: "create:andesite_alloy"
+			},
+			x: 0.000d,
+			y: 6.500d,
+			tasks: [
+				{
+					id: "7300000C0000001B",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "7400000C0000001B",
+					type: "xp",
+					xp: 167
+				}
+			],
+			dependencies: [
+				"7200000C0000001A"
+			],
+			shape: "diamond",
+			size: 1.200d
 		},
 		{
 			id: "7200000C00000012",
@@ -594,8 +865,8 @@
 				count: 1,
 				id: "create:andesite_alloy"
 			},
-			x: 21.000d,
-			y: 10.500d,
+			x: 25.000d,
+			y: 1.000d,
 			tasks: [
 				{
 					id: "7300000C00000012",
@@ -606,7 +877,7 @@
 				{
 					id: "7400000C00000012",
 					type: "xp",
-					xp: 150
+					xp: 143
 				},
 				{
 					id: "7400000C00000331",
@@ -614,8 +885,7 @@
 					item: {
 						count: 1,
 						id: "kubejs:chronicle_page"
-					},
-					count: 1
+					}
 				},
 				{
 					id: "7400000C00000395",
@@ -623,12 +893,13 @@
 				}
 			],
 			dependencies: [
-				"7200000C00000006",
-				"7200000C0000000B",
-				"7200000C00000011"
+				"7200000C00000007",
+				"7200000C0000000D",
+				"7200000C00000015",
+				"7200000C0000001B"
 			],
 			shape: "hexagon",
-			size: 1.600d
+			size: 1.500d
 		}
 	]
 }

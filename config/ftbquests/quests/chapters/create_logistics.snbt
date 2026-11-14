@@ -1,0 +1,897 @@
+{
+	filename: "create_logistics",
+	group: "",
+	icon: {
+		count: 1,
+		id: "create:brass_funnel"
+	},
+	id: "7100001400000000",
+	order_index: 19,
+	default_hide_dependency_lines: 0b,
+	default_quest_shape: "circle",
+	images: [
+		{
+			id: "7500001400000001",
+			image: "kubejs:textures/gui/quests/create_logistics_banner.png",
+			x: 0.000d,
+			y: -21.000d,
+			width: 22.000d,
+			height: 4.800d,
+			rotation: 0.000d,
+			order: -150,
+			position_locked: 1b,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			text_inset: 8
+		},
+		{
+			id: "7500001400000002",
+			image: "kubejs:textures/gui/quests/create_logistics_seal.png",
+			x: 35.800d,
+			y: -2.400d,
+			width: 2.600d,
+			height: 2.600d,
+			rotation: 0.000d,
+			order: -200,
+			position_locked: 1b
+		},
+		{
+			id: "7500001400000003",
+			image: "kubejs:textures/gui/quests/create_logistics_divider.png",
+			x: 0.000d,
+			y: -14.000d,
+			width: 22.000d,
+			height: 1.100d,
+			rotation: 0.000d,
+			order: -200,
+			position_locked: 1b
+		},
+		{
+			id: "7500001400000004",
+			image: "kubejs:textures/gui/quests/create_logistics_divider.png",
+			x: 0.000d,
+			y: 24.000d,
+			width: 22.000d,
+			height: 1.100d,
+			rotation: 0.000d,
+			order: -200,
+			position_locked: 1b
+		}
+	],
+	quest_links: [ ],
+	quests: [
+		{
+			id: "7200001400000001",
+			icon: {
+				count: 1,
+				id: "create:brass_funnel"
+			},
+			x: -5.000d,
+			y: 0.000d,
+			tasks: [
+				{
+					id: "7300001400000001",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "7400001400000001",
+					type: "xp",
+					xp: 163
+				}
+			],
+			dependencies: [
+				"7200000C00000012"
+			],
+			shape: "hexagon",
+			size: 1.500d
+		},
+		{
+			id: "7200001400000002",
+			icon: {
+				count: 1,
+				id: "create:andesite_funnel"
+			},
+			x: 0.000d,
+			y: -7.200d,
+			tasks: [
+				{
+					id: "7300001400000002",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:andesite_funnel"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001400000002",
+					type: "xp",
+					xp: 175
+				}
+			],
+			dependencies: [
+				"7200001400000001"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001400000003",
+			icon: {
+				count: 1,
+				id: "create:andesite_tunnel"
+			},
+			x: 3.150d,
+			y: -7.200d,
+			tasks: [
+				{
+					id: "7300001400000003",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:andesite_tunnel"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001400000003",
+					type: "xp",
+					xp: 187
+				}
+			],
+			dependencies: [
+				"7200001400000002"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001400000004",
+			icon: {
+				count: 1,
+				id: "create:brass_funnel"
+			},
+			x: 6.300d,
+			y: -7.200d,
+			tasks: [
+				{
+					id: "7300001400000004",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:brass_funnel"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001400000004",
+					type: "xp",
+					xp: 199
+				}
+			],
+			dependencies: [
+				"7200001400000003"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001400000005",
+			icon: {
+				count: 1,
+				id: "create:brass_tunnel"
+			},
+			x: 9.450d,
+			y: -7.200d,
+			tasks: [
+				{
+					id: "7300001400000005",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:brass_tunnel"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001400000005",
+					type: "xp",
+					xp: 211
+				}
+			],
+			dependencies: [
+				"7200001400000004"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001400000006",
+			icon: {
+				count: 1,
+				id: "create:chute"
+			},
+			x: 12.600d,
+			y: -7.200d,
+			tasks: [
+				{
+					id: "7300001400000006",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:chute"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001400000006",
+					type: "xp",
+					xp: 223
+				}
+			],
+			dependencies: [
+				"7200001400000005"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001400000007",
+			icon: {
+				count: 1,
+				id: "create:smart_chute"
+			},
+			x: 15.750d,
+			y: -7.200d,
+			tasks: [
+				{
+					id: "7300001400000007",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:smart_chute"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001400000007",
+					type: "xp",
+					xp: 235
+				}
+			],
+			dependencies: [
+				"7200001400000006"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001400000008",
+			icon: {
+				count: 1,
+				id: "create:depot"
+			},
+			x: 18.900d,
+			y: -7.200d,
+			tasks: [
+				{
+					id: "7300001400000008",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:depot"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001400000008",
+					type: "xp",
+					xp: 163
+				},
+				{
+					id: "7400001400000207",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:cooked_porkchop"
+					},
+					count: 6
+				}
+			],
+			dependencies: [
+				"7200001400000007"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001400000009",
+			icon: {
+				count: 1,
+				id: "create:weighted_ejector"
+			},
+			x: 22.050d,
+			y: -7.200d,
+			tasks: [
+				{
+					id: "7300001400000009",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:weighted_ejector"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001400000009",
+					type: "xp",
+					xp: 175
+				}
+			],
+			dependencies: [
+				"7200001400000008"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "720000140000000A",
+			icon: {
+				count: 1,
+				id: "create:mechanical_arm"
+			},
+			x: 0.000d,
+			y: 0.000d,
+			tasks: [
+				{
+					id: "730000140000000A",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:mechanical_arm"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000140000000A",
+					type: "xp",
+					xp: 187
+				},
+				{
+					id: "7400001400000289",
+					type: "xp_levels",
+					xp_levels: 3
+				}
+			],
+			dependencies: [
+				"7200001400000001"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "720000140000000B",
+			icon: {
+				count: 1,
+				id: "create:belt_connector"
+			},
+			x: 3.150d,
+			y: 0.000d,
+			tasks: [
+				{
+					id: "730000140000000B",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:belt_connector"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000140000000B",
+					type: "xp",
+					xp: 199
+				}
+			],
+			dependencies: [
+				"720000140000000A"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "720000140000000C",
+			icon: {
+				count: 1,
+				id: "create:stock_link"
+			},
+			x: 6.300d,
+			y: 0.000d,
+			tasks: [
+				{
+					id: "730000140000000C",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:stock_link"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000140000000C",
+					type: "xp",
+					xp: 211
+				}
+			],
+			dependencies: [
+				"720000140000000B"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "720000140000000D",
+			icon: {
+				count: 1,
+				id: "create:stock_ticker"
+			},
+			x: 9.450d,
+			y: 0.000d,
+			tasks: [
+				{
+					id: "730000140000000D",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:stock_ticker"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000140000000D",
+					type: "xp",
+					xp: 223
+				}
+			],
+			dependencies: [
+				"720000140000000C"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "720000140000000E",
+			icon: {
+				count: 1,
+				id: "create:packager"
+			},
+			x: 12.600d,
+			y: 0.000d,
+			tasks: [
+				{
+					id: "730000140000000E",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:packager"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000140000000E",
+					type: "xp",
+					xp: 235
+				}
+			],
+			dependencies: [
+				"720000140000000D"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "720000140000000F",
+			icon: {
+				count: 1,
+				id: "create:display_board"
+			},
+			x: 15.750d,
+			y: 0.000d,
+			tasks: [
+				{
+					id: "730000140000000F",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:display_board"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000140000000F",
+					type: "xp",
+					xp: 163
+				},
+				{
+					id: "740000140000020E",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:cooked_porkchop"
+					},
+					count: 6
+				}
+			],
+			dependencies: [
+				"720000140000000E"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001400000010",
+			icon: {
+				count: 1,
+				id: "create:display_link"
+			},
+			x: 18.900d,
+			y: 0.000d,
+			tasks: [
+				{
+					id: "7300001400000010",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:display_link"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001400000010",
+					type: "xp",
+					xp: 175
+				}
+			],
+			dependencies: [
+				"720000140000000F"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001400000011",
+			icon: {
+				count: 1,
+				id: "create:content_observer"
+			},
+			x: 22.050d,
+			y: 0.000d,
+			tasks: [
+				{
+					id: "7300001400000011",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:content_observer"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001400000011",
+					type: "xp",
+					xp: 187
+				}
+			],
+			dependencies: [
+				"7200001400000010"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001400000012",
+			icon: {
+				count: 1,
+				id: "create:portable_storage_interface"
+			},
+			x: 0.000d,
+			y: 7.200d,
+			tasks: [
+				{
+					id: "7300001400000012",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:portable_storage_interface"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001400000012",
+					type: "xp",
+					xp: 199
+				}
+			],
+			dependencies: [
+				"7200001400000001"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001400000013",
+			icon: {
+				count: 1,
+				id: "minecraft:chest"
+			},
+			x: 3.150d,
+			y: 7.200d,
+			tasks: [
+				{
+					id: "7300001400000013",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:chest"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001400000013",
+					type: "xp",
+					xp: 211
+				},
+				{
+					id: "7400001400000292",
+					type: "xp_levels",
+					xp_levels: 3
+				}
+			],
+			dependencies: [
+				"7200001400000012"
+			],
+			shape: "octagon"
+		},
+		{
+			id: "7200001400000014",
+			icon: {
+				count: 1,
+				id: "minecraft:barrel"
+			},
+			x: 6.300d,
+			y: 7.200d,
+			tasks: [
+				{
+					id: "7300001400000014",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:barrel"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001400000014",
+					type: "xp",
+					xp: 223
+				}
+			],
+			dependencies: [
+				"7200001400000013"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200001400000015",
+			icon: {
+				count: 1,
+				id: "minecraft:hopper"
+			},
+			x: 9.450d,
+			y: 7.200d,
+			tasks: [
+				{
+					id: "7300001400000015",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:hopper"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001400000015",
+					type: "xp",
+					xp: 235
+				}
+			],
+			dependencies: [
+				"7200001400000014"
+			],
+			shape: "square"
+		},
+		{
+			id: "7200001400000016",
+			icon: {
+				count: 1,
+				id: "minecraft:redstone"
+			},
+			x: 12.600d,
+			y: 7.200d,
+			tasks: [
+				{
+					id: "7300001400000016",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:redstone"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001400000016",
+					type: "xp",
+					xp: 163
+				},
+				{
+					id: "7400001400000215",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:cooked_porkchop"
+					},
+					count: 6
+				}
+			],
+			dependencies: [
+				"7200001400000015"
+			],
+			shape: "octagon"
+		},
+		{
+			id: "7200001400000017",
+			icon: {
+				count: 1,
+				id: "create:brass_funnel"
+			},
+			x: 15.750d,
+			y: 7.200d,
+			tasks: [
+				{
+					id: "7300001400000017",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "7400001400000017",
+					type: "xp",
+					xp: 175
+				}
+			],
+			dependencies: [
+				"7200001400000016"
+			],
+			shape: "diamond",
+			size: 1.200d
+		},
+		{
+			id: "7200001400000018",
+			icon: {
+				count: 1,
+				id: "create:brass_funnel"
+			},
+			x: 18.900d,
+			y: 7.200d,
+			tasks: [
+				{
+					id: "7300001400000018",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "7400001400000018",
+					type: "xp",
+					xp: 187
+				}
+			],
+			dependencies: [
+				"7200001400000017"
+			],
+			shape: "diamond",
+			size: 1.200d
+		},
+		{
+			id: "7200001400000019",
+			icon: {
+				count: 1,
+				id: "create:brass_funnel"
+			},
+			x: 22.050d,
+			y: 7.200d,
+			tasks: [
+				{
+					id: "7300001400000019",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "7400001400000019",
+					type: "xp",
+					xp: 199
+				}
+			],
+			dependencies: [
+				"7200001400000018"
+			],
+			shape: "diamond",
+			size: 1.200d
+		},
+		{
+			id: "720000140000001A",
+			icon: {
+				count: 1,
+				id: "create:brass_funnel"
+			},
+			x: 33.400d,
+			y: 0.000d,
+			tasks: [
+				{
+					id: "730000140000001A",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "740000140000001A",
+					type: "xp",
+					xp: 211
+				},
+				{
+					id: "7400001400000339",
+					type: "item",
+					item: {
+						count: 1,
+						id: "kubejs:chronicle_page"
+					}
+				},
+				{
+					id: "740000140000039D",
+					type: "custom"
+				}
+			],
+			dependencies: [
+				"7200001400000009",
+				"7200001400000011",
+				"7200001400000019"
+			],
+			shape: "hexagon",
+			size: 1.500d
+		}
+	]
+}

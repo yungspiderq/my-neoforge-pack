@@ -12,11 +12,11 @@
 	images: [
 		{
 			id: "7500000400000001",
-			image: "kubejs:textures/gui/quests/fields.png",
-			x: 10.000d,
-			y: -4.000d,
-			width: 21.000d,
-			height: 3.200d,
+			image: "kubejs:textures/gui/quests/fields_banner.png",
+			x: 0.000d,
+			y: -21.000d,
+			width: 22.000d,
+			height: 4.800d,
 			rotation: 0.000d,
 			order: -150,
 			position_locked: 1b,
@@ -26,38 +26,35 @@
 		},
 		{
 			id: "7500000400000002",
-			image: "kubejs:textures/gui/quests/fields_stripe.png",
-			x: 9.500d,
-			y: 3.750d,
-			width: 17.800d,
-			height: 2.250d,
+			image: "kubejs:textures/gui/quests/fields_seal.png",
+			x: 31.400d,
+			y: 4.600d,
+			width: 2.600d,
+			height: 2.600d,
 			rotation: 0.000d,
 			order: -200,
-			alpha: 105,
 			position_locked: 1b
 		},
 		{
 			id: "7500000400000003",
-			image: "kubejs:textures/gui/quests/fields_stripe.png",
-			x: 9.500d,
-			y: 10.500d,
-			width: 17.800d,
-			height: 2.250d,
+			image: "kubejs:textures/gui/quests/fields_divider.png",
+			x: 0.000d,
+			y: -14.000d,
+			width: 22.000d,
+			height: 1.100d,
 			rotation: 0.000d,
 			order: -200,
-			alpha: 105,
 			position_locked: 1b
 		},
 		{
 			id: "7500000400000004",
-			image: "kubejs:textures/gui/quests/fields_stripe.png",
-			x: 9.500d,
-			y: 17.250d,
-			width: 17.800d,
-			height: 2.250d,
+			image: "kubejs:textures/gui/quests/fields_divider.png",
+			x: 0.000d,
+			y: 24.000d,
+			width: 22.000d,
+			height: 1.100d,
 			rotation: 0.000d,
 			order: -200,
-			alpha: 105,
 			position_locked: 1b
 		}
 	],
@@ -69,8 +66,8 @@
 				count: 1,
 				id: "minecraft:wheat"
 			},
-			x: 0.000d,
-			y: 10.500d,
+			x: -5.000d,
+			y: 7.000d,
 			tasks: [
 				{
 					id: "7300000400000001",
@@ -81,21 +78,14 @@
 				{
 					id: "7400000400000001",
 					type: "xp",
-					xp: 60
-				},
-				{
-					id: "7400000400000200",
-					type: "item",
-					item: {
-						count: 1,
-						id: "minecraft:bread"
-					},
-					count: 3
+					xp: 51
 				}
 			],
 			dependencies: [
-				"7200000300000012"
-			]
+				"7200000200000012"
+			],
+			shape: "hexagon",
+			size: 1.500d
 		},
 		{
 			id: "7200000400000002",
@@ -103,8 +93,8 @@
 				count: 1,
 				id: "minecraft:wheat_seeds"
 			},
-			x: 2.700d,
-			y: 3.750d,
+			x: 0.000d,
+			y: 0.000d,
 			tasks: [
 				{
 					id: "7300000400000002",
@@ -119,12 +109,13 @@
 				{
 					id: "7400000400000002",
 					type: "xp",
-					xp: 60
+					xp: 63
 				}
 			],
 			dependencies: [
 				"7200000400000001"
-			]
+			],
+			shape: "circle"
 		},
 		{
 			id: "7200000400000003",
@@ -132,8 +123,8 @@
 				count: 1,
 				id: "minecraft:wheat"
 			},
-			x: 5.600d,
-			y: 3.750d,
+			x: 3.100d,
+			y: 0.000d,
 			tasks: [
 				{
 					id: "7300000400000003",
@@ -148,12 +139,13 @@
 				{
 					id: "7400000400000003",
 					type: "xp",
-					xp: 60
+					xp: 75
 				}
 			],
 			dependencies: [
 				"7200000400000002"
-			]
+			],
+			shape: "circle"
 		},
 		{
 			id: "7200000400000004",
@@ -161,8 +153,8 @@
 				count: 1,
 				id: "minecraft:bread"
 			},
-			x: 8.500d,
-			y: 3.750d,
+			x: 6.200d,
+			y: 0.000d,
 			tasks: [
 				{
 					id: "7300000400000004",
@@ -177,12 +169,13 @@
 				{
 					id: "7400000400000004",
 					type: "xp",
-					xp: 70
+					xp: 87
 				}
 			],
 			dependencies: [
 				"7200000400000003"
-			]
+			],
+			shape: "octagon"
 		},
 		{
 			id: "7200000400000005",
@@ -190,8 +183,8 @@
 				count: 1,
 				id: "minecraft:carrot"
 			},
-			x: 11.400d,
-			y: 3.750d,
+			x: 0.000d,
+			y: 3.400d,
 			tasks: [
 				{
 					id: "7300000400000005",
@@ -206,12 +199,13 @@
 				{
 					id: "7400000400000005",
 					type: "xp",
-					xp: 70
+					xp: 99
 				}
 			],
 			dependencies: [
 				"7200000400000004"
-			]
+			],
+			shape: "circle"
 		},
 		{
 			id: "7200000400000006",
@@ -219,8 +213,8 @@
 				count: 1,
 				id: "minecraft:potato"
 			},
-			x: 14.300d,
-			y: 3.750d,
+			x: 3.100d,
+			y: 3.400d,
 			tasks: [
 				{
 					id: "7300000400000006",
@@ -235,21 +229,13 @@
 				{
 					id: "7400000400000006",
 					type: "xp",
-					xp: 70
-				},
-				{
-					id: "7400000400000205",
-					type: "item",
-					item: {
-						count: 1,
-						id: "minecraft:torch"
-					},
-					count: 4
+					xp: 111
 				}
 			],
 			dependencies: [
 				"7200000400000005"
-			]
+			],
+			shape: "square"
 		},
 		{
 			id: "7200000400000007",
@@ -257,8 +243,8 @@
 				count: 1,
 				id: "minecraft:pumpkin"
 			},
-			x: 2.700d,
-			y: 10.500d,
+			x: 6.200d,
+			y: 3.400d,
 			tasks: [
 				{
 					id: "7300000400000007",
@@ -273,12 +259,13 @@
 				{
 					id: "7400000400000007",
 					type: "xp",
-					xp: 80
+					xp: 123
 				}
 			],
 			dependencies: [
-				"7200000400000001"
-			]
+				"7200000400000006"
+			],
+			shape: "octagon"
 		},
 		{
 			id: "7200000400000008",
@@ -286,8 +273,8 @@
 				count: 1,
 				id: "minecraft:melon_slice"
 			},
-			x: 5.600d,
-			y: 10.500d,
+			x: 19.000d,
+			y: 0.000d,
 			tasks: [
 				{
 					id: "7300000400000008",
@@ -302,12 +289,22 @@
 				{
 					id: "7400000400000008",
 					type: "xp",
-					xp: 80
+					xp: 51
+				},
+				{
+					id: "7400000400000207",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:cooked_porkchop"
+					},
+					count: 6
 				}
 			],
 			dependencies: [
-				"7200000400000007"
-			]
+				"7200000400000001"
+			],
+			shape: "circle"
 		},
 		{
 			id: "7200000400000009",
@@ -315,8 +312,8 @@
 				count: 1,
 				id: "minecraft:beetroot"
 			},
-			x: 8.500d,
-			y: 10.500d,
+			x: 22.100d,
+			y: 0.000d,
 			tasks: [
 				{
 					id: "7300000400000009",
@@ -331,12 +328,13 @@
 				{
 					id: "7400000400000009",
 					type: "xp",
-					xp: 80
+					xp: 63
 				}
 			],
 			dependencies: [
 				"7200000400000008"
-			]
+			],
+			shape: "circle"
 		},
 		{
 			id: "720000040000000A",
@@ -344,8 +342,8 @@
 				count: 1,
 				id: "minecraft:sugar_cane"
 			},
-			x: 11.400d,
-			y: 10.500d,
+			x: 25.200d,
+			y: 0.000d,
 			tasks: [
 				{
 					id: "730000040000000A",
@@ -360,12 +358,18 @@
 				{
 					id: "740000040000000A",
 					type: "xp",
-					xp: 90
+					xp: 75
+				},
+				{
+					id: "7400000400000289",
+					type: "xp_levels",
+					xp_levels: 1
 				}
 			],
 			dependencies: [
 				"7200000400000009"
-			]
+			],
+			shape: "octagon"
 		},
 		{
 			id: "720000040000000B",
@@ -373,8 +377,8 @@
 				count: 1,
 				id: "minecraft:paper"
 			},
-			x: 14.300d,
-			y: 10.500d,
+			x: 19.000d,
+			y: 3.400d,
 			tasks: [
 				{
 					id: "730000040000000B",
@@ -389,21 +393,13 @@
 				{
 					id: "740000040000000B",
 					type: "xp",
-					xp: 90
-				},
-				{
-					id: "740000040000020A",
-					type: "item",
-					item: {
-						count: 1,
-						id: "minecraft:torch"
-					},
-					count: 4
+					xp: 87
 				}
 			],
 			dependencies: [
 				"720000040000000A"
-			]
+			],
+			shape: "square"
 		},
 		{
 			id: "720000040000000C",
@@ -411,8 +407,8 @@
 				count: 1,
 				id: "minecraft:leather"
 			},
-			x: 2.700d,
-			y: 17.250d,
+			x: 22.100d,
+			y: 3.400d,
 			tasks: [
 				{
 					id: "730000040000000C",
@@ -427,12 +423,13 @@
 				{
 					id: "740000040000000C",
 					type: "xp",
-					xp: 90
+					xp: 99
 				}
 			],
 			dependencies: [
-				"7200000400000001"
-			]
+				"720000040000000B"
+			],
+			shape: "circle"
 		},
 		{
 			id: "720000040000000D",
@@ -440,8 +437,8 @@
 				count: 1,
 				id: "minecraft:book"
 			},
-			x: 5.600d,
-			y: 17.250d,
+			x: 25.200d,
+			y: 3.400d,
 			tasks: [
 				{
 					id: "730000040000000D",
@@ -456,12 +453,13 @@
 				{
 					id: "740000040000000D",
 					type: "xp",
-					xp: 100
+					xp: 111
 				}
 			],
 			dependencies: [
 				"720000040000000C"
-			]
+			],
+			shape: "octagon"
 		},
 		{
 			id: "720000040000000E",
@@ -469,8 +467,8 @@
 				count: 1,
 				id: "minecraft:hay_block"
 			},
-			x: 8.500d,
-			y: 17.250d,
+			x: 0.000d,
+			y: 14.000d,
 			tasks: [
 				{
 					id: "730000040000000E",
@@ -485,12 +483,13 @@
 				{
 					id: "740000040000000E",
 					type: "xp",
-					xp: 100
+					xp: 123
 				}
 			],
 			dependencies: [
-				"720000040000000D"
-			]
+				"7200000400000001"
+			],
+			shape: "circle"
 		},
 		{
 			id: "720000040000000F",
@@ -498,8 +497,8 @@
 				count: 1,
 				id: "minecraft:honey_bottle"
 			},
-			x: 11.400d,
-			y: 17.250d,
+			x: 3.100d,
+			y: 14.000d,
 			tasks: [
 				{
 					id: "730000040000000F",
@@ -514,12 +513,22 @@
 				{
 					id: "740000040000000F",
 					type: "xp",
-					xp: 100
+					xp: 51
+				},
+				{
+					id: "740000040000020E",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:cooked_porkchop"
+					},
+					count: 6
 				}
 			],
 			dependencies: [
 				"720000040000000E"
-			]
+			],
+			shape: "circle"
 		},
 		{
 			id: "7200000400000010",
@@ -527,8 +536,8 @@
 				count: 1,
 				id: "minecraft:cake"
 			},
-			x: 14.300d,
-			y: 17.250d,
+			x: 6.200d,
+			y: 14.000d,
 			tasks: [
 				{
 					id: "7300000400000010",
@@ -543,21 +552,13 @@
 				{
 					id: "7400000400000010",
 					type: "xp",
-					xp: 110
-				},
-				{
-					id: "740000040000020F",
-					type: "item",
-					item: {
-						count: 1,
-						id: "minecraft:torch"
-					},
-					count: 4
+					xp: 63
 				}
 			],
 			dependencies: [
 				"720000040000000F"
-			]
+			],
+			shape: "square"
 		},
 		{
 			id: "7200000400000011",
@@ -565,8 +566,8 @@
 				count: 1,
 				id: "minecraft:golden_carrot"
 			},
-			x: 17.200d,
-			y: 17.250d,
+			x: 0.000d,
+			y: 17.400d,
 			tasks: [
 				{
 					id: "7300000400000011",
@@ -581,12 +582,259 @@
 				{
 					id: "7400000400000011",
 					type: "xp",
-					xp: 110
+					xp: 75
 				}
 			],
 			dependencies: [
 				"7200000400000010"
-			]
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200000400000014",
+			icon: {
+				count: 1,
+				id: "minecraft:beetroot_soup"
+			},
+			x: 3.100d,
+			y: 17.400d,
+			tasks: [
+				{
+					id: "7300000400000014",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:beetroot_soup"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000400000014",
+					type: "xp",
+					xp: 111
+				}
+			],
+			dependencies: [
+				"7200000400000011"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200000400000015",
+			icon: {
+				count: 1,
+				id: "minecraft:rabbit_stew"
+			},
+			x: 6.200d,
+			y: 17.400d,
+			tasks: [
+				{
+					id: "7300000400000015",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:rabbit_stew"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000400000015",
+					type: "xp",
+					xp: 123
+				}
+			],
+			dependencies: [
+				"7200000400000014"
+			],
+			shape: "square"
+		},
+		{
+			id: "7200000400000016",
+			icon: {
+				count: 1,
+				id: "minecraft:mushroom_stew"
+			},
+			x: 19.000d,
+			y: 14.000d,
+			tasks: [
+				{
+					id: "7300000400000016",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:mushroom_stew"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000400000016",
+					type: "xp",
+					xp: 51
+				},
+				{
+					id: "7400000400000215",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:cooked_porkchop"
+					},
+					count: 6
+				}
+			],
+			dependencies: [
+				"7200000400000001"
+			],
+			shape: "octagon"
+		},
+		{
+			id: "7200000400000017",
+			icon: {
+				count: 1,
+				id: "minecraft:suspicious_stew"
+			},
+			x: 22.100d,
+			y: 14.000d,
+			tasks: [
+				{
+					id: "7300000400000017",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:suspicious_stew"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000400000017",
+					type: "xp",
+					xp: 63
+				}
+			],
+			dependencies: [
+				"7200000400000016"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200000400000018",
+			icon: {
+				count: 1,
+				id: "minecraft:baked_potato"
+			},
+			x: 25.200d,
+			y: 14.000d,
+			tasks: [
+				{
+					id: "7300000400000018",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:baked_potato"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000400000018",
+					type: "xp",
+					xp: 75
+				}
+			],
+			dependencies: [
+				"7200000400000017"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200000400000019",
+			icon: {
+				count: 1,
+				id: "minecraft:cookie"
+			},
+			x: 19.000d,
+			y: 17.400d,
+			tasks: [
+				{
+					id: "7300000400000019",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:cookie"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000400000019",
+					type: "xp",
+					xp: 87
+				}
+			],
+			dependencies: [
+				"7200000400000018"
+			],
+			shape: "octagon"
+		},
+		{
+			id: "720000040000001A",
+			icon: {
+				count: 1,
+				id: "minecraft:pumpkin_pie"
+			},
+			x: 22.100d,
+			y: 17.400d,
+			tasks: [
+				{
+					id: "730000040000001A",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:pumpkin_pie"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000040000001A",
+					type: "xp",
+					xp: 99
+				}
+			],
+			dependencies: [
+				"7200000400000019"
+			],
+			shape: "square"
+		},
+		{
+			id: "720000040000001B",
+			icon: {
+				count: 1,
+				id: "minecraft:wheat"
+			},
+			x: 25.200d,
+			y: 17.400d,
+			tasks: [
+				{
+					id: "730000040000001B",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "740000040000001B",
+					type: "xp",
+					xp: 111
+				}
+			],
+			dependencies: [
+				"720000040000001A"
+			],
+			shape: "diamond",
+			size: 1.200d
 		},
 		{
 			id: "7200000400000012",
@@ -594,8 +842,8 @@
 				count: 1,
 				id: "minecraft:wheat"
 			},
-			x: 21.000d,
-			y: 10.500d,
+			x: 29.000d,
+			y: 7.000d,
 			tasks: [
 				{
 					id: "7300000400000012",
@@ -606,7 +854,7 @@
 				{
 					id: "7400000400000012",
 					type: "xp",
-					xp: 110
+					xp: 87
 				},
 				{
 					id: "7400000400000331",
@@ -614,8 +862,7 @@
 					item: {
 						count: 1,
 						id: "kubejs:chronicle_page"
-					},
-					count: 1
+					}
 				},
 				{
 					id: "7400000400000395",
@@ -623,12 +870,13 @@
 				}
 			],
 			dependencies: [
-				"7200000400000006",
-				"720000040000000B",
-				"7200000400000011"
+				"7200000400000007",
+				"720000040000000D",
+				"7200000400000015",
+				"720000040000001B"
 			],
 			shape: "hexagon",
-			size: 1.600d
+			size: 1.500d
 		}
 	]
 }

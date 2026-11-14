@@ -12,11 +12,11 @@
 	images: [
 		{
 			id: "7500000700000001",
-			image: "kubejs:textures/gui/quests/redstone.png",
-			x: 10.000d,
-			y: -4.000d,
-			width: 21.000d,
-			height: 3.200d,
+			image: "kubejs:textures/gui/quests/redstone_banner.png",
+			x: 0.000d,
+			y: -21.000d,
+			width: 22.000d,
+			height: 4.800d,
 			rotation: 0.000d,
 			order: -150,
 			position_locked: 1b,
@@ -26,38 +26,35 @@
 		},
 		{
 			id: "7500000700000002",
-			image: "kubejs:textures/gui/quests/redstone_stripe.png",
-			x: 9.500d,
-			y: 3.750d,
-			width: 17.800d,
-			height: 2.250d,
+			image: "kubejs:textures/gui/quests/redstone_seal.png",
+			x: 35.800d,
+			y: -2.400d,
+			width: 2.600d,
+			height: 2.600d,
 			rotation: 0.000d,
 			order: -200,
-			alpha: 105,
 			position_locked: 1b
 		},
 		{
 			id: "7500000700000003",
-			image: "kubejs:textures/gui/quests/redstone_stripe.png",
-			x: 9.500d,
-			y: 10.500d,
-			width: 17.800d,
-			height: 2.250d,
+			image: "kubejs:textures/gui/quests/redstone_divider.png",
+			x: 0.000d,
+			y: -14.000d,
+			width: 22.000d,
+			height: 1.100d,
 			rotation: 0.000d,
 			order: -200,
-			alpha: 105,
 			position_locked: 1b
 		},
 		{
 			id: "7500000700000004",
-			image: "kubejs:textures/gui/quests/redstone_stripe.png",
-			x: 9.500d,
-			y: 17.250d,
-			width: 17.800d,
-			height: 2.250d,
+			image: "kubejs:textures/gui/quests/redstone_divider.png",
+			x: 0.000d,
+			y: 24.000d,
+			width: 22.000d,
+			height: 1.100d,
 			rotation: 0.000d,
 			order: -200,
-			alpha: 105,
 			position_locked: 1b
 		}
 	],
@@ -69,8 +66,8 @@
 				count: 1,
 				id: "minecraft:redstone"
 			},
-			x: 0.000d,
-			y: 10.500d,
+			x: -5.000d,
+			y: 0.000d,
 			tasks: [
 				{
 					id: "7300000700000001",
@@ -81,21 +78,14 @@
 				{
 					id: "7400000700000001",
 					type: "xp",
-					xp: 80
-				},
-				{
-					id: "7400000700000200",
-					type: "item",
-					item: {
-						count: 1,
-						id: "minecraft:bread"
-					},
-					count: 3
+					xp: 72
 				}
 			],
 			dependencies: [
-				"7200000600000012"
-			]
+				"7200000300000012"
+			],
+			shape: "hexagon",
+			size: 1.500d
 		},
 		{
 			id: "7200000700000002",
@@ -103,8 +93,8 @@
 				count: 1,
 				id: "minecraft:redstone"
 			},
-			x: 2.700d,
-			y: 3.750d,
+			x: 0.000d,
+			y: -7.200d,
 			tasks: [
 				{
 					id: "7300000700000002",
@@ -119,12 +109,13 @@
 				{
 					id: "7400000700000002",
 					type: "xp",
-					xp: 80
+					xp: 84
 				}
 			],
 			dependencies: [
 				"7200000700000001"
-			]
+			],
+			shape: "circle"
 		},
 		{
 			id: "7200000700000003",
@@ -132,8 +123,8 @@
 				count: 1,
 				id: "minecraft:lever"
 			},
-			x: 5.600d,
-			y: 3.750d,
+			x: 3.150d,
+			y: -7.200d,
 			tasks: [
 				{
 					id: "7300000700000003",
@@ -148,12 +139,13 @@
 				{
 					id: "7400000700000003",
 					type: "xp",
-					xp: 80
+					xp: 96
 				}
 			],
 			dependencies: [
 				"7200000700000002"
-			]
+			],
+			shape: "circle"
 		},
 		{
 			id: "7200000700000004",
@@ -161,8 +153,8 @@
 				count: 1,
 				id: "minecraft:stone_button"
 			},
-			x: 8.500d,
-			y: 3.750d,
+			x: 6.300d,
+			y: -7.200d,
 			tasks: [
 				{
 					id: "7300000700000004",
@@ -177,12 +169,13 @@
 				{
 					id: "7400000700000004",
 					type: "xp",
-					xp: 90
+					xp: 108
 				}
 			],
 			dependencies: [
 				"7200000700000003"
-			]
+			],
+			shape: "octagon"
 		},
 		{
 			id: "7200000700000005",
@@ -190,8 +183,8 @@
 				count: 1,
 				id: "minecraft:redstone_torch"
 			},
-			x: 11.400d,
-			y: 3.750d,
+			x: 9.450d,
+			y: -7.200d,
 			tasks: [
 				{
 					id: "7300000700000005",
@@ -206,12 +199,13 @@
 				{
 					id: "7400000700000005",
 					type: "xp",
-					xp: 90
+					xp: 120
 				}
 			],
 			dependencies: [
 				"7200000700000004"
-			]
+			],
+			shape: "circle"
 		},
 		{
 			id: "7200000700000006",
@@ -219,8 +213,8 @@
 				count: 1,
 				id: "minecraft:repeater"
 			},
-			x: 14.300d,
-			y: 3.750d,
+			x: 12.600d,
+			y: -7.200d,
 			tasks: [
 				{
 					id: "7300000700000006",
@@ -235,21 +229,13 @@
 				{
 					id: "7400000700000006",
 					type: "xp",
-					xp: 90
-				},
-				{
-					id: "7400000700000205",
-					type: "item",
-					item: {
-						count: 1,
-						id: "minecraft:torch"
-					},
-					count: 4
+					xp: 132
 				}
 			],
 			dependencies: [
 				"7200000700000005"
-			]
+			],
+			shape: "square"
 		},
 		{
 			id: "7200000700000007",
@@ -257,8 +243,8 @@
 				count: 1,
 				id: "minecraft:comparator"
 			},
-			x: 2.700d,
-			y: 10.500d,
+			x: 15.750d,
+			y: -7.200d,
 			tasks: [
 				{
 					id: "7300000700000007",
@@ -273,12 +259,13 @@
 				{
 					id: "7400000700000007",
 					type: "xp",
-					xp: 100
+					xp: 144
 				}
 			],
 			dependencies: [
-				"7200000700000001"
-			]
+				"7200000700000006"
+			],
+			shape: "octagon"
 		},
 		{
 			id: "7200000700000008",
@@ -286,8 +273,8 @@
 				count: 1,
 				id: "minecraft:piston"
 			},
-			x: 5.600d,
-			y: 10.500d,
+			x: 18.900d,
+			y: -7.200d,
 			tasks: [
 				{
 					id: "7300000700000008",
@@ -302,12 +289,22 @@
 				{
 					id: "7400000700000008",
 					type: "xp",
-					xp: 100
+					xp: 72
+				},
+				{
+					id: "7400000700000207",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:paper"
+					},
+					count: 5
 				}
 			],
 			dependencies: [
 				"7200000700000007"
-			]
+			],
+			shape: "circle"
 		},
 		{
 			id: "7200000700000009",
@@ -315,8 +312,8 @@
 				count: 1,
 				id: "minecraft:sticky_piston"
 			},
-			x: 8.500d,
-			y: 10.500d,
+			x: 22.050d,
+			y: -7.200d,
 			tasks: [
 				{
 					id: "7300000700000009",
@@ -331,12 +328,13 @@
 				{
 					id: "7400000700000009",
 					type: "xp",
-					xp: 100
+					xp: 84
 				}
 			],
 			dependencies: [
 				"7200000700000008"
-			]
+			],
+			shape: "circle"
 		},
 		{
 			id: "720000070000000A",
@@ -344,8 +342,8 @@
 				count: 1,
 				id: "minecraft:observer"
 			},
-			x: 11.400d,
-			y: 10.500d,
+			x: 0.000d,
+			y: 0.000d,
 			tasks: [
 				{
 					id: "730000070000000A",
@@ -360,12 +358,18 @@
 				{
 					id: "740000070000000A",
 					type: "xp",
-					xp: 110
+					xp: 96
+				},
+				{
+					id: "7400000700000289",
+					type: "xp_levels",
+					xp_levels: 1
 				}
 			],
 			dependencies: [
-				"7200000700000009"
-			]
+				"7200000700000001"
+			],
+			shape: "octagon"
 		},
 		{
 			id: "720000070000000B",
@@ -373,8 +377,8 @@
 				count: 1,
 				id: "minecraft:hopper"
 			},
-			x: 14.300d,
-			y: 10.500d,
+			x: 3.150d,
+			y: 0.000d,
 			tasks: [
 				{
 					id: "730000070000000B",
@@ -389,21 +393,13 @@
 				{
 					id: "740000070000000B",
 					type: "xp",
-					xp: 110
-				},
-				{
-					id: "740000070000020A",
-					type: "item",
-					item: {
-						count: 1,
-						id: "minecraft:torch"
-					},
-					count: 4
+					xp: 108
 				}
 			],
 			dependencies: [
 				"720000070000000A"
-			]
+			],
+			shape: "square"
 		},
 		{
 			id: "720000070000000C",
@@ -411,8 +407,8 @@
 				count: 1,
 				id: "minecraft:dropper"
 			},
-			x: 2.700d,
-			y: 17.250d,
+			x: 6.300d,
+			y: 0.000d,
 			tasks: [
 				{
 					id: "730000070000000C",
@@ -427,12 +423,13 @@
 				{
 					id: "740000070000000C",
 					type: "xp",
-					xp: 110
+					xp: 120
 				}
 			],
 			dependencies: [
-				"7200000700000001"
-			]
+				"720000070000000B"
+			],
+			shape: "circle"
 		},
 		{
 			id: "720000070000000D",
@@ -440,8 +437,8 @@
 				count: 1,
 				id: "minecraft:dispenser"
 			},
-			x: 5.600d,
-			y: 17.250d,
+			x: 9.450d,
+			y: 0.000d,
 			tasks: [
 				{
 					id: "730000070000000D",
@@ -456,12 +453,13 @@
 				{
 					id: "740000070000000D",
 					type: "xp",
-					xp: 120
+					xp: 132
 				}
 			],
 			dependencies: [
 				"720000070000000C"
-			]
+			],
+			shape: "octagon"
 		},
 		{
 			id: "720000070000000E",
@@ -469,8 +467,8 @@
 				count: 1,
 				id: "minecraft:daylight_detector"
 			},
-			x: 8.500d,
-			y: 17.250d,
+			x: 12.600d,
+			y: 0.000d,
 			tasks: [
 				{
 					id: "730000070000000E",
@@ -485,12 +483,13 @@
 				{
 					id: "740000070000000E",
 					type: "xp",
-					xp: 120
+					xp: 144
 				}
 			],
 			dependencies: [
 				"720000070000000D"
-			]
+			],
+			shape: "circle"
 		},
 		{
 			id: "720000070000000F",
@@ -498,8 +497,8 @@
 				count: 1,
 				id: "minecraft:target"
 			},
-			x: 11.400d,
-			y: 17.250d,
+			x: 15.750d,
+			y: 0.000d,
 			tasks: [
 				{
 					id: "730000070000000F",
@@ -514,12 +513,22 @@
 				{
 					id: "740000070000000F",
 					type: "xp",
-					xp: 120
+					xp: 72
+				},
+				{
+					id: "740000070000020E",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:paper"
+					},
+					count: 5
 				}
 			],
 			dependencies: [
 				"720000070000000E"
-			]
+			],
+			shape: "circle"
 		},
 		{
 			id: "7200000700000010",
@@ -527,8 +536,8 @@
 				count: 1,
 				id: "minecraft:note_block"
 			},
-			x: 14.300d,
-			y: 17.250d,
+			x: 18.900d,
+			y: 0.000d,
 			tasks: [
 				{
 					id: "7300000700000010",
@@ -543,21 +552,13 @@
 				{
 					id: "7400000700000010",
 					type: "xp",
-					xp: 130
-				},
-				{
-					id: "740000070000020F",
-					type: "item",
-					item: {
-						count: 1,
-						id: "minecraft:torch"
-					},
-					count: 4
+					xp: 84
 				}
 			],
 			dependencies: [
 				"720000070000000F"
-			]
+			],
+			shape: "square"
 		},
 		{
 			id: "7200000700000011",
@@ -565,8 +566,8 @@
 				count: 1,
 				id: "minecraft:redstone_lamp"
 			},
-			x: 17.200d,
-			y: 17.250d,
+			x: 22.050d,
+			y: 0.000d,
 			tasks: [
 				{
 					id: "7300000700000011",
@@ -581,12 +582,259 @@
 				{
 					id: "7400000700000011",
 					type: "xp",
-					xp: 130
+					xp: 96
 				}
 			],
 			dependencies: [
 				"7200000700000010"
-			]
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200000700000014",
+			icon: {
+				count: 1,
+				id: "minecraft:tripwire_hook"
+			},
+			x: 0.000d,
+			y: 7.200d,
+			tasks: [
+				{
+					id: "7300000700000014",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:tripwire_hook"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000700000014",
+					type: "xp",
+					xp: 132
+				}
+			],
+			dependencies: [
+				"7200000700000001"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200000700000015",
+			icon: {
+				count: 1,
+				id: "minecraft:trapped_chest"
+			},
+			x: 3.150d,
+			y: 7.200d,
+			tasks: [
+				{
+					id: "7300000700000015",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:trapped_chest"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000700000015",
+					type: "xp",
+					xp: 144
+				}
+			],
+			dependencies: [
+				"7200000700000014"
+			],
+			shape: "square"
+		},
+		{
+			id: "7200000700000016",
+			icon: {
+				count: 1,
+				id: "minecraft:lightning_rod"
+			},
+			x: 6.300d,
+			y: 7.200d,
+			tasks: [
+				{
+					id: "7300000700000016",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:lightning_rod"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000700000016",
+					type: "xp",
+					xp: 72
+				},
+				{
+					id: "7400000700000215",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:paper"
+					},
+					count: 5
+				}
+			],
+			dependencies: [
+				"7200000700000015"
+			],
+			shape: "octagon"
+		},
+		{
+			id: "7200000700000017",
+			icon: {
+				count: 1,
+				id: "minecraft:calibrated_sculk_sensor"
+			},
+			x: 9.450d,
+			y: 7.200d,
+			tasks: [
+				{
+					id: "7300000700000017",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:calibrated_sculk_sensor"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000700000017",
+					type: "xp",
+					xp: 84
+				}
+			],
+			dependencies: [
+				"7200000700000016"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200000700000018",
+			icon: {
+				count: 1,
+				id: "minecraft:sculk_sensor"
+			},
+			x: 12.600d,
+			y: 7.200d,
+			tasks: [
+				{
+					id: "7300000700000018",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:sculk_sensor"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000700000018",
+					type: "xp",
+					xp: 96
+				}
+			],
+			dependencies: [
+				"7200000700000017"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200000700000019",
+			icon: {
+				count: 1,
+				id: "minecraft:crafter"
+			},
+			x: 15.750d,
+			y: 7.200d,
+			tasks: [
+				{
+					id: "7300000700000019",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:crafter"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000700000019",
+					type: "xp",
+					xp: 108
+				}
+			],
+			dependencies: [
+				"7200000700000018"
+			],
+			shape: "octagon"
+		},
+		{
+			id: "720000070000001A",
+			icon: {
+				count: 1,
+				id: "minecraft:copper_bulb"
+			},
+			x: 18.900d,
+			y: 7.200d,
+			tasks: [
+				{
+					id: "730000070000001A",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:copper_bulb"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000070000001A",
+					type: "xp",
+					xp: 120
+				}
+			],
+			dependencies: [
+				"7200000700000019"
+			],
+			shape: "square"
+		},
+		{
+			id: "720000070000001B",
+			icon: {
+				count: 1,
+				id: "minecraft:redstone"
+			},
+			x: 22.050d,
+			y: 7.200d,
+			tasks: [
+				{
+					id: "730000070000001B",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "740000070000001B",
+					type: "xp",
+					xp: 132
+				}
+			],
+			dependencies: [
+				"720000070000001A"
+			],
+			shape: "diamond",
+			size: 1.200d
 		},
 		{
 			id: "7200000700000012",
@@ -594,8 +842,8 @@
 				count: 1,
 				id: "minecraft:redstone"
 			},
-			x: 21.000d,
-			y: 10.500d,
+			x: 33.400d,
+			y: 0.000d,
 			tasks: [
 				{
 					id: "7300000700000012",
@@ -606,7 +854,7 @@
 				{
 					id: "7400000700000012",
 					type: "xp",
-					xp: 130
+					xp: 108
 				},
 				{
 					id: "7400000700000331",
@@ -614,8 +862,7 @@
 					item: {
 						count: 1,
 						id: "kubejs:chronicle_page"
-					},
-					count: 1
+					}
 				},
 				{
 					id: "7400000700000395",
@@ -623,12 +870,12 @@
 				}
 			],
 			dependencies: [
-				"7200000700000006",
-				"720000070000000B",
-				"7200000700000011"
+				"7200000700000009",
+				"7200000700000011",
+				"720000070000001B"
 			],
 			shape: "hexagon",
-			size: 1.600d
+			size: 1.500d
 		}
 	]
 }

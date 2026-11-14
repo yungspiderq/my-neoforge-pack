@@ -1,0 +1,927 @@
+{
+	filename: "create_mastery",
+	group: "",
+	icon: {
+		count: 1,
+		id: "create:precision_mechanism"
+	},
+	id: "7100001800000000",
+	order_index: 23,
+	default_hide_dependency_lines: 0b,
+	default_quest_shape: "circle",
+	images: [
+		{
+			id: "7500001800000001",
+			image: "kubejs:textures/gui/quests/create_mastery_banner.png",
+			x: 0.000d,
+			y: -21.000d,
+			width: 22.000d,
+			height: 4.800d,
+			rotation: 0.000d,
+			order: -150,
+			position_locked: 1b,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			text_inset: 8
+		},
+		{
+			id: "7500001800000002",
+			image: "kubejs:textures/gui/quests/create_mastery_seal.png",
+			x: 28.200d,
+			y: -2.400d,
+			width: 2.600d,
+			height: 2.600d,
+			rotation: 0.000d,
+			order: -200,
+			position_locked: 1b
+		},
+		{
+			id: "7500001800000003",
+			image: "kubejs:textures/gui/quests/create_mastery_divider.png",
+			x: 0.000d,
+			y: -14.000d,
+			width: 22.000d,
+			height: 1.100d,
+			rotation: 0.000d,
+			order: -200,
+			position_locked: 1b
+		},
+		{
+			id: "7500001800000004",
+			image: "kubejs:textures/gui/quests/create_mastery_divider.png",
+			x: 0.000d,
+			y: 24.000d,
+			width: 22.000d,
+			height: 1.100d,
+			rotation: 0.000d,
+			order: -200,
+			position_locked: 1b
+		}
+	],
+	quest_links: [ ],
+	quests: [
+		{
+			id: "7200001800000001",
+			icon: {
+				count: 1,
+				id: "create:precision_mechanism"
+			},
+			x: -5.000d,
+			y: 0.000d,
+			tasks: [
+				{
+					id: "7300001800000001",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "7400001800000001",
+					type: "xp",
+					xp: 191
+				}
+			],
+			dependencies: [
+				"7200000E00000012"
+			],
+			shape: "hexagon",
+			size: 1.500d
+		},
+		{
+			id: "7200001800000002",
+			icon: {
+				count: 1,
+				id: "create:precision_mechanism"
+			},
+			x: 0.000d,
+			y: -7.050d,
+			tasks: [
+				{
+					id: "7300001800000002",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:precision_mechanism"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001800000002",
+					type: "xp",
+					xp: 203
+				}
+			],
+			dependencies: [
+				"7200001800000001"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001800000003",
+			icon: {
+				count: 1,
+				id: "create:mechanical_crafter"
+			},
+			x: 4.300d,
+			y: -7.050d,
+			tasks: [
+				{
+					id: "7300001800000003",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:mechanical_crafter"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001800000003",
+					type: "xp",
+					xp: 215
+				}
+			],
+			dependencies: [
+				"7200001800000002"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001800000004",
+			icon: {
+				count: 1,
+				id: "create:crushing_wheel"
+			},
+			x: 7.400d,
+			y: -7.050d,
+			tasks: [
+				{
+					id: "7300001800000004",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:crushing_wheel"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001800000004",
+					type: "xp",
+					xp: 227
+				}
+			],
+			dependencies: [
+				"7200001800000003"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001800000005",
+			icon: {
+				count: 1,
+				id: "create:mechanical_press"
+			},
+			x: 11.700d,
+			y: -7.050d,
+			tasks: [
+				{
+					id: "7300001800000005",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:mechanical_press"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001800000005",
+					type: "xp",
+					xp: 239
+				}
+			],
+			dependencies: [
+				"7200001800000004"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001800000006",
+			icon: {
+				count: 1,
+				id: "create:mechanical_mixer"
+			},
+			x: 14.800d,
+			y: -7.050d,
+			tasks: [
+				{
+					id: "7300001800000006",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:mechanical_mixer"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001800000006",
+					type: "xp",
+					xp: 251
+				}
+			],
+			dependencies: [
+				"7200001800000005"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001800000007",
+			icon: {
+				count: 1,
+				id: "create:millstone"
+			},
+			x: 19.100d,
+			y: -7.050d,
+			tasks: [
+				{
+					id: "7300001800000007",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:millstone"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001800000007",
+					type: "xp",
+					xp: 263
+				}
+			],
+			dependencies: [
+				"7200001800000006"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001800000008",
+			icon: {
+				count: 1,
+				id: "create:encased_fan"
+			},
+			x: 0.000d,
+			y: -2.350d,
+			tasks: [
+				{
+					id: "7300001800000008",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:encased_fan"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001800000008",
+					type: "xp",
+					xp: 191
+				},
+				{
+					id: "7400001800000207",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:cooked_porkchop"
+					},
+					count: 6
+				}
+			],
+			dependencies: [
+				"7200001800000001"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001800000009",
+			icon: {
+				count: 1,
+				id: "create:steam_engine"
+			},
+			x: 4.300d,
+			y: -2.350d,
+			tasks: [
+				{
+					id: "7300001800000009",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:steam_engine"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001800000009",
+					type: "xp",
+					xp: 203
+				}
+			],
+			dependencies: [
+				"7200001800000008"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "720000180000000A",
+			icon: {
+				count: 1,
+				id: "create:fluid_tank"
+			},
+			x: 7.400d,
+			y: -2.350d,
+			tasks: [
+				{
+					id: "730000180000000A",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:fluid_tank"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000180000000A",
+					type: "xp",
+					xp: 215
+				},
+				{
+					id: "7400001800000289",
+					type: "xp_levels",
+					xp_levels: 3
+				}
+			],
+			dependencies: [
+				"7200001800000009"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "720000180000000B",
+			icon: {
+				count: 1,
+				id: "create:mechanical_pump"
+			},
+			x: 11.700d,
+			y: -2.350d,
+			tasks: [
+				{
+					id: "730000180000000B",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:mechanical_pump"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000180000000B",
+					type: "xp",
+					xp: 227
+				}
+			],
+			dependencies: [
+				"720000180000000A"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "720000180000000C",
+			icon: {
+				count: 1,
+				id: "create:spout"
+			},
+			x: 14.800d,
+			y: -2.350d,
+			tasks: [
+				{
+					id: "730000180000000C",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:spout"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000180000000C",
+					type: "xp",
+					xp: 239
+				}
+			],
+			dependencies: [
+				"720000180000000B"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "720000180000000D",
+			icon: {
+				count: 1,
+				id: "create:brass_funnel"
+			},
+			x: 19.100d,
+			y: -2.350d,
+			tasks: [
+				{
+					id: "730000180000000D",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:brass_funnel"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000180000000D",
+					type: "xp",
+					xp: 251
+				}
+			],
+			dependencies: [
+				"720000180000000C",
+				"7200001800000006"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "720000180000000E",
+			icon: {
+				count: 1,
+				id: "create:smart_chute"
+			},
+			x: 0.000d,
+			y: 2.350d,
+			tasks: [
+				{
+					id: "730000180000000E",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:smart_chute"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000180000000E",
+					type: "xp",
+					xp: 263
+				}
+			],
+			dependencies: [
+				"7200001800000001"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "720000180000000F",
+			icon: {
+				count: 1,
+				id: "create:stock_link"
+			},
+			x: 4.300d,
+			y: 2.350d,
+			tasks: [
+				{
+					id: "730000180000000F",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:stock_link"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000180000000F",
+					type: "xp",
+					xp: 191
+				},
+				{
+					id: "740000180000020E",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:cooked_porkchop"
+					},
+					count: 6
+				}
+			],
+			dependencies: [
+				"720000180000000E"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001800000010",
+			icon: {
+				count: 1,
+				id: "create:packager"
+			},
+			x: 7.400d,
+			y: 2.350d,
+			tasks: [
+				{
+					id: "7300001800000010",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:packager"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001800000010",
+					type: "xp",
+					xp: 203
+				}
+			],
+			dependencies: [
+				"720000180000000F"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001800000011",
+			icon: {
+				count: 1,
+				id: "create:track_station"
+			},
+			x: 11.700d,
+			y: 2.350d,
+			tasks: [
+				{
+					id: "7300001800000011",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:track_station"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001800000011",
+					type: "xp",
+					xp: 215
+				}
+			],
+			dependencies: [
+				"7200001800000010"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001800000012",
+			icon: {
+				count: 1,
+				id: "create:track_signal"
+			},
+			x: 14.800d,
+			y: 2.350d,
+			tasks: [
+				{
+					id: "7300001800000012",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:track_signal"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001800000012",
+					type: "xp",
+					xp: 227
+				}
+			],
+			dependencies: [
+				"7200001800000011"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001800000013",
+			icon: {
+				count: 1,
+				id: "create:display_board"
+			},
+			x: 19.100d,
+			y: 2.350d,
+			tasks: [
+				{
+					id: "7300001800000013",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:display_board"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001800000013",
+					type: "xp",
+					xp: 239
+				},
+				{
+					id: "7400001800000292",
+					type: "xp_levels",
+					xp_levels: 3
+				}
+			],
+			dependencies: [
+				"7200001800000012",
+				"720000180000000C"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001800000014",
+			icon: {
+				count: 1,
+				id: "create:redstone_link"
+			},
+			x: 0.000d,
+			y: 7.050d,
+			tasks: [
+				{
+					id: "7300001800000014",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:redstone_link"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001800000014",
+					type: "xp",
+					xp: 251
+				}
+			],
+			dependencies: [
+				"7200001800000001"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001800000015",
+			icon: {
+				count: 1,
+				id: "create:schematicannon"
+			},
+			x: 4.300d,
+			y: 7.050d,
+			tasks: [
+				{
+					id: "7300001800000015",
+					type: "item",
+					item: {
+						count: 1,
+						id: "create:schematicannon"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001800000015",
+					type: "xp",
+					xp: 263
+				}
+			],
+			dependencies: [
+				"7200001800000014"
+			],
+			shape: "gear",
+			size: 1.200d
+		},
+		{
+			id: "7200001800000016",
+			icon: {
+				count: 1,
+				id: "create:precision_mechanism"
+			},
+			x: 7.400d,
+			y: 7.050d,
+			tasks: [
+				{
+					id: "7300001800000016",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "7400001800000016",
+					type: "xp",
+					xp: 191
+				},
+				{
+					id: "7400001800000215",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:cooked_porkchop"
+					},
+					count: 6
+				}
+			],
+			dependencies: [
+				"7200001800000015"
+			],
+			shape: "diamond",
+			size: 1.200d
+		},
+		{
+			id: "7200001800000017",
+			icon: {
+				count: 1,
+				id: "create:precision_mechanism"
+			},
+			x: 11.700d,
+			y: 7.050d,
+			tasks: [
+				{
+					id: "7300001800000017",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "7400001800000017",
+					type: "xp",
+					xp: 203
+				}
+			],
+			dependencies: [
+				"7200001800000016"
+			],
+			shape: "diamond",
+			size: 1.200d
+		},
+		{
+			id: "7200001800000018",
+			icon: {
+				count: 1,
+				id: "create:precision_mechanism"
+			},
+			x: 14.800d,
+			y: 7.050d,
+			tasks: [
+				{
+					id: "7300001800000018",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "7400001800000018",
+					type: "xp",
+					xp: 215
+				}
+			],
+			dependencies: [
+				"7200001800000017"
+			],
+			shape: "diamond",
+			size: 1.200d
+		},
+		{
+			id: "7200001800000019",
+			icon: {
+				count: 1,
+				id: "create:precision_mechanism"
+			},
+			x: 19.100d,
+			y: 7.050d,
+			tasks: [
+				{
+					id: "7300001800000019",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "7400001800000019",
+					type: "xp",
+					xp: 227
+				}
+			],
+			dependencies: [
+				"7200001800000018",
+				"7200001800000012"
+			],
+			shape: "diamond",
+			size: 1.200d
+		},
+		{
+			id: "720000180000001A",
+			icon: {
+				count: 1,
+				id: "create:precision_mechanism"
+			},
+			x: 25.800d,
+			y: 0.000d,
+			tasks: [
+				{
+					id: "730000180000001A",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "740000180000001A",
+					type: "xp",
+					xp: 239
+				},
+				{
+					id: "7400001800000339",
+					type: "item",
+					item: {
+						count: 1,
+						id: "kubejs:chronicle_page"
+					}
+				},
+				{
+					id: "740000180000039D",
+					type: "custom"
+				}
+			],
+			dependencies: [
+				"7200001800000007",
+				"720000180000000D",
+				"7200001800000013",
+				"7200001800000019"
+			],
+			shape: "hexagon",
+			size: 1.500d
+		},
+		{
+			id: "720000180000001B",
+			icon: {
+				count: 1,
+				id: "custom:archive"
+			},
+			x: -5.000d,
+			y: 4.800d,
+			tasks: [
+				{
+					id: "730000180000001B",
+					type: "custom"
+				}
+			],
+			rewards: [
+				{
+					id: "740000180000001B",
+					type: "xp",
+					xp: 251
+				}
+			],
+			dependencies: [
+				"7200001800000001"
+			],
+			shape: "circle"
+		}
+	]
+}

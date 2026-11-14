@@ -12,11 +12,11 @@
 	images: [
 		{
 			id: "7500000900000001",
-			image: "kubejs:textures/gui/quests/alchemy.png",
-			x: 10.000d,
-			y: -4.000d,
-			width: 21.000d,
-			height: 3.200d,
+			image: "kubejs:textures/gui/quests/alchemy_banner.png",
+			x: 0.000d,
+			y: -21.000d,
+			width: 22.000d,
+			height: 4.800d,
 			rotation: 0.000d,
 			order: -150,
 			position_locked: 1b,
@@ -26,38 +26,35 @@
 		},
 		{
 			id: "7500000900000002",
-			image: "kubejs:textures/gui/quests/alchemy_stripe.png",
-			x: 9.500d,
-			y: 3.750d,
-			width: 17.800d,
-			height: 2.250d,
+			image: "kubejs:textures/gui/quests/alchemy_seal.png",
+			x: 2.400d,
+			y: 16.100d,
+			width: 2.600d,
+			height: 2.600d,
 			rotation: 0.000d,
 			order: -200,
-			alpha: 105,
 			position_locked: 1b
 		},
 		{
 			id: "7500000900000003",
-			image: "kubejs:textures/gui/quests/alchemy_stripe.png",
-			x: 9.500d,
-			y: 10.500d,
-			width: 17.800d,
-			height: 2.250d,
+			image: "kubejs:textures/gui/quests/alchemy_divider.png",
+			x: 0.000d,
+			y: -14.000d,
+			width: 22.000d,
+			height: 1.100d,
 			rotation: 0.000d,
 			order: -200,
-			alpha: 105,
 			position_locked: 1b
 		},
 		{
 			id: "7500000900000004",
-			image: "kubejs:textures/gui/quests/alchemy_stripe.png",
-			x: 9.500d,
-			y: 17.250d,
-			width: 17.800d,
-			height: 2.250d,
+			image: "kubejs:textures/gui/quests/alchemy_divider.png",
+			x: 0.000d,
+			y: 24.000d,
+			width: 22.000d,
+			height: 1.100d,
 			rotation: 0.000d,
 			order: -200,
-			alpha: 105,
 			position_locked: 1b
 		}
 	],
@@ -69,8 +66,8 @@
 				count: 1,
 				id: "minecraft:brewing_stand"
 			},
-			x: 0.000d,
-			y: 10.500d,
+			x: -19.500d,
+			y: 0.000d,
 			tasks: [
 				{
 					id: "7300000900000001",
@@ -81,21 +78,14 @@
 				{
 					id: "7400000900000001",
 					type: "xp",
-					xp: 80
-				},
-				{
-					id: "7400000900000200",
-					type: "item",
-					item: {
-						count: 1,
-						id: "minecraft:bread"
-					},
-					count: 3
+					xp: 86
 				}
 			],
 			dependencies: [
-				"7200000800000012"
-			]
+				"7200000A00000012"
+			],
+			shape: "hexagon",
+			size: 1.500d
 		},
 		{
 			id: "7200000900000002",
@@ -103,8 +93,8 @@
 				count: 1,
 				id: "minecraft:brewing_stand"
 			},
-			x: 2.700d,
-			y: 3.750d,
+			x: 4.200d,
+			y: 0.000d,
 			tasks: [
 				{
 					id: "7300000900000002",
@@ -119,12 +109,13 @@
 				{
 					id: "7400000900000002",
 					type: "xp",
-					xp: 80
+					xp: 98
 				}
 			],
 			dependencies: [
 				"7200000900000001"
-			]
+			],
+			shape: "circle"
 		},
 		{
 			id: "7200000900000003",
@@ -132,8 +123,8 @@
 				count: 1,
 				id: "minecraft:glass_bottle"
 			},
-			x: 5.600d,
-			y: 3.750d,
+			x: 2.100d,
+			y: 3.637d,
 			tasks: [
 				{
 					id: "7300000900000003",
@@ -148,12 +139,13 @@
 				{
 					id: "7400000900000003",
 					type: "xp",
-					xp: 80
+					xp: 110
 				}
 			],
 			dependencies: [
 				"7200000900000002"
-			]
+			],
+			shape: "circle"
 		},
 		{
 			id: "7200000900000004",
@@ -161,8 +153,8 @@
 				count: 1,
 				id: "minecraft:blaze_powder"
 			},
-			x: 8.500d,
-			y: 3.750d,
+			x: -2.100d,
+			y: 3.637d,
 			tasks: [
 				{
 					id: "7300000900000004",
@@ -177,12 +169,13 @@
 				{
 					id: "7400000900000004",
 					type: "xp",
-					xp: 90
+					xp: 122
 				}
 			],
 			dependencies: [
 				"7200000900000003"
-			]
+			],
+			shape: "octagon"
 		},
 		{
 			id: "7200000900000005",
@@ -190,8 +183,8 @@
 				count: 1,
 				id: "minecraft:nether_wart"
 			},
-			x: 11.400d,
-			y: 3.750d,
+			x: -4.200d,
+			y: 0.000d,
 			tasks: [
 				{
 					id: "7300000900000005",
@@ -206,12 +199,13 @@
 				{
 					id: "7400000900000005",
 					type: "xp",
-					xp: 90
+					xp: 134
 				}
 			],
 			dependencies: [
 				"7200000900000004"
-			]
+			],
+			shape: "circle"
 		},
 		{
 			id: "7200000900000006",
@@ -219,8 +213,8 @@
 				count: 1,
 				id: "minecraft:ghast_tear"
 			},
-			x: 14.300d,
-			y: 3.750d,
+			x: -2.100d,
+			y: -3.637d,
 			tasks: [
 				{
 					id: "7300000900000006",
@@ -235,21 +229,13 @@
 				{
 					id: "7400000900000006",
 					type: "xp",
-					xp: 90
-				},
-				{
-					id: "7400000900000205",
-					type: "item",
-					item: {
-						count: 1,
-						id: "minecraft:torch"
-					},
-					count: 4
+					xp: 146
 				}
 			],
 			dependencies: [
 				"7200000900000005"
-			]
+			],
+			shape: "square"
 		},
 		{
 			id: "7200000900000007",
@@ -257,8 +243,8 @@
 				count: 1,
 				id: "minecraft:magma_cream"
 			},
-			x: 2.700d,
-			y: 10.500d,
+			x: 2.100d,
+			y: -3.637d,
 			tasks: [
 				{
 					id: "7300000900000007",
@@ -273,12 +259,13 @@
 				{
 					id: "7400000900000007",
 					type: "xp",
-					xp: 100
+					xp: 158
 				}
 			],
 			dependencies: [
-				"7200000900000001"
-			]
+				"7200000900000006"
+			],
+			shape: "octagon"
 		},
 		{
 			id: "7200000900000008",
@@ -286,8 +273,8 @@
 				count: 1,
 				id: "minecraft:glistering_melon_slice"
 			},
-			x: 5.600d,
-			y: 10.500d,
+			x: 7.503d,
+			y: 1.211d,
 			tasks: [
 				{
 					id: "7300000900000008",
@@ -302,12 +289,22 @@
 				{
 					id: "7400000900000008",
 					type: "xp",
-					xp: 100
+					xp: 86
+				},
+				{
+					id: "7400000900000207",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:bread"
+					},
+					count: 3
 				}
 			],
 			dependencies: [
-				"7200000900000007"
-			]
+				"7200000900000001"
+			],
+			shape: "circle"
 		},
 		{
 			id: "7200000900000009",
@@ -315,8 +312,8 @@
 				count: 1,
 				id: "minecraft:fermented_spider_eye"
 			},
-			x: 8.500d,
-			y: 10.500d,
+			x: 2.703d,
+			y: 7.103d,
 			tasks: [
 				{
 					id: "7300000900000009",
@@ -331,12 +328,13 @@
 				{
 					id: "7400000900000009",
 					type: "xp",
-					xp: 100
+					xp: 98
 				}
 			],
 			dependencies: [
 				"7200000900000008"
-			]
+			],
+			shape: "circle"
 		},
 		{
 			id: "720000090000000A",
@@ -344,8 +342,8 @@
 				count: 1,
 				id: "minecraft:gunpowder"
 			},
-			x: 11.400d,
-			y: 10.500d,
+			x: -4.800d,
+			y: 5.892d,
 			tasks: [
 				{
 					id: "730000090000000A",
@@ -361,11 +359,17 @@
 					id: "740000090000000A",
 					type: "xp",
 					xp: 110
+				},
+				{
+					id: "7400000900000289",
+					type: "xp_levels",
+					xp_levels: 2
 				}
 			],
 			dependencies: [
 				"7200000900000009"
-			]
+			],
+			shape: "octagon"
 		},
 		{
 			id: "720000090000000B",
@@ -373,8 +377,8 @@
 				count: 1,
 				id: "minecraft:redstone"
 			},
-			x: 14.300d,
-			y: 10.500d,
+			x: -7.503d,
+			y: -1.211d,
 			tasks: [
 				{
 					id: "730000090000000B",
@@ -389,21 +393,13 @@
 				{
 					id: "740000090000000B",
 					type: "xp",
-					xp: 110
-				},
-				{
-					id: "740000090000020A",
-					type: "item",
-					item: {
-						count: 1,
-						id: "minecraft:torch"
-					},
-					count: 4
+					xp: 122
 				}
 			],
 			dependencies: [
 				"720000090000000A"
-			]
+			],
+			shape: "square"
 		},
 		{
 			id: "720000090000000C",
@@ -411,8 +407,8 @@
 				count: 1,
 				id: "minecraft:glowstone_dust"
 			},
-			x: 2.700d,
-			y: 17.250d,
+			x: -2.703d,
+			y: -7.103d,
 			tasks: [
 				{
 					id: "730000090000000C",
@@ -427,12 +423,13 @@
 				{
 					id: "740000090000000C",
 					type: "xp",
-					xp: 110
+					xp: 134
 				}
 			],
 			dependencies: [
-				"7200000900000001"
-			]
+				"720000090000000B"
+			],
+			shape: "circle"
 		},
 		{
 			id: "720000090000000D",
@@ -440,8 +437,8 @@
 				count: 1,
 				id: "minecraft:golden_carrot"
 			},
-			x: 5.600d,
-			y: 17.250d,
+			x: 4.800d,
+			y: -5.892d,
 			tasks: [
 				{
 					id: "730000090000000D",
@@ -456,12 +453,13 @@
 				{
 					id: "740000090000000D",
 					type: "xp",
-					xp: 120
+					xp: 146
 				}
 			],
 			dependencies: [
 				"720000090000000C"
-			]
+			],
+			shape: "octagon"
 		},
 		{
 			id: "720000090000000E",
@@ -469,8 +467,8 @@
 				count: 1,
 				id: "minecraft:cauldron"
 			},
-			x: 8.500d,
-			y: 17.250d,
+			x: 10.442d,
+			y: 3.460d,
 			tasks: [
 				{
 					id: "730000090000000E",
@@ -485,12 +483,13 @@
 				{
 					id: "740000090000000E",
 					type: "xp",
-					xp: 120
+					xp: 158
 				}
 			],
 			dependencies: [
-				"720000090000000D"
-			]
+				"7200000900000001"
+			],
+			shape: "circle"
 		},
 		{
 			id: "720000090000000F",
@@ -498,8 +497,8 @@
 				count: 1,
 				id: "minecraft:enchanting_table"
 			},
-			x: 11.400d,
-			y: 17.250d,
+			x: 2.224d,
+			y: 10.773d,
 			tasks: [
 				{
 					id: "730000090000000F",
@@ -514,12 +513,22 @@
 				{
 					id: "740000090000000F",
 					type: "xp",
-					xp: 120
+					xp: 86
+				},
+				{
+					id: "740000090000020E",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:bread"
+					},
+					count: 3
 				}
 			],
 			dependencies: [
 				"720000090000000E"
-			]
+			],
+			shape: "circle"
 		},
 		{
 			id: "7200000900000010",
@@ -527,8 +536,8 @@
 				count: 1,
 				id: "minecraft:lapis_lazuli"
 			},
-			x: 14.300d,
-			y: 17.250d,
+			x: -8.217d,
+			y: 7.313d,
 			tasks: [
 				{
 					id: "7300000900000010",
@@ -543,21 +552,13 @@
 				{
 					id: "7400000900000010",
 					type: "xp",
-					xp: 130
-				},
-				{
-					id: "740000090000020F",
-					type: "item",
-					item: {
-						count: 1,
-						id: "minecraft:torch"
-					},
-					count: 4
+					xp: 98
 				}
 			],
 			dependencies: [
 				"720000090000000F"
-			]
+			],
+			shape: "square"
 		},
 		{
 			id: "7200000900000011",
@@ -565,8 +566,8 @@
 				count: 1,
 				id: "minecraft:ender_pearl"
 			},
-			x: 17.200d,
-			y: 17.250d,
+			x: -10.442d,
+			y: -3.460d,
 			tasks: [
 				{
 					id: "7300000900000011",
@@ -581,12 +582,262 @@
 				{
 					id: "7400000900000011",
 					type: "xp",
-					xp: 130
+					xp: 110
 				}
 			],
 			dependencies: [
 				"7200000900000010"
-			]
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200000900000014",
+			icon: {
+				count: 1,
+				id: "minecraft:experience_bottle"
+			},
+			x: -2.224d,
+			y: -10.773d,
+			tasks: [
+				{
+					id: "7300000900000014",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:experience_bottle"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000900000014",
+					type: "xp",
+					xp: 146
+				}
+			],
+			dependencies: [
+				"7200000900000011"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200000900000015",
+			icon: {
+				count: 1,
+				id: "minecraft:glow_ink_sac"
+			},
+			x: 8.217d,
+			y: -7.313d,
+			tasks: [
+				{
+					id: "7300000900000015",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:glow_ink_sac"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000900000015",
+					type: "xp",
+					xp: 158
+				}
+			],
+			dependencies: [
+				"7200000900000014"
+			],
+			shape: "square"
+		},
+		{
+			id: "7200000900000016",
+			icon: {
+				count: 1,
+				id: "minecraft:enchanted_book"
+			},
+			x: 12.773d,
+			y: 6.650d,
+			tasks: [
+				{
+					id: "7300000900000016",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:enchanted_book"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000900000016",
+					type: "xp",
+					xp: 86
+				},
+				{
+					id: "7400000900000215",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:bread"
+					},
+					count: 3
+				}
+			],
+			dependencies: [
+				"7200000900000001"
+			],
+			shape: "octagon"
+		},
+		{
+			id: "7200000900000017",
+			icon: {
+				count: 1,
+				id: "minecraft:netherite_ingot"
+			},
+			x: 0.628d,
+			y: 14.386d,
+			tasks: [
+				{
+					id: "7300000900000017",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:netherite_ingot"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000900000017",
+					type: "xp",
+					xp: 98
+				}
+			],
+			dependencies: [
+				"7200000900000016"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200000900000018",
+			icon: {
+				count: 1,
+				id: "minecraft:golden_apple"
+			},
+			x: -12.145d,
+			y: 7.737d,
+			tasks: [
+				{
+					id: "7300000900000018",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:golden_apple"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000900000018",
+					type: "xp",
+					xp: 110
+				}
+			],
+			dependencies: [
+				"7200000900000017"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200000900000019",
+			icon: {
+				count: 1,
+				id: "minecraft:enchanted_golden_apple"
+			},
+			x: -12.773d,
+			y: -6.650d,
+			tasks: [
+				{
+					id: "7300000900000019",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:enchanted_golden_apple"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400000900000019",
+					type: "xp",
+					xp: 122
+				}
+			],
+			dependencies: [
+				"7200000900000018"
+			],
+			shape: "octagon"
+		},
+		{
+			id: "720000090000001A",
+			icon: {
+				count: 1,
+				id: "minecraft:lingering_potion"
+			},
+			x: -0.628d,
+			y: -14.386d,
+			tasks: [
+				{
+					id: "730000090000001A",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:lingering_potion"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000090000001A",
+					type: "xp",
+					xp: 134
+				}
+			],
+			dependencies: [
+				"7200000900000019"
+			],
+			shape: "square"
+		},
+		{
+			id: "720000090000001B",
+			icon: {
+				count: 1,
+				id: "minecraft:recovery_compass"
+			},
+			x: 12.145d,
+			y: -7.737d,
+			tasks: [
+				{
+					id: "730000090000001B",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:recovery_compass"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000090000001B",
+					type: "xp",
+					xp: 146
+				}
+			],
+			dependencies: [
+				"720000090000001A"
+			],
+			shape: "circle"
 		},
 		{
 			id: "7200000900000012",
@@ -594,8 +845,8 @@
 				count: 1,
 				id: "minecraft:brewing_stand"
 			},
-			x: 21.000d,
-			y: 10.500d,
+			x: 0.000d,
+			y: 18.500d,
 			tasks: [
 				{
 					id: "7300000900000012",
@@ -606,7 +857,7 @@
 				{
 					id: "7400000900000012",
 					type: "xp",
-					xp: 130
+					xp: 122
 				},
 				{
 					id: "7400000900000331",
@@ -614,8 +865,7 @@
 					item: {
 						count: 1,
 						id: "kubejs:chronicle_page"
-					},
-					count: 1
+					}
 				},
 				{
 					id: "7400000900000395",
@@ -623,12 +873,13 @@
 				}
 			],
 			dependencies: [
-				"7200000900000006",
-				"720000090000000B",
-				"7200000900000011"
+				"7200000900000007",
+				"720000090000000D",
+				"7200000900000015",
+				"720000090000001B"
 			],
 			shape: "hexagon",
-			size: 1.600d
+			size: 1.500d
 		}
 	]
 }

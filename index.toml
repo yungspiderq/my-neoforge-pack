@@ -1,32 +1,24 @@
 hash-format = "sha256"
 
 [[files]]
-file = "config/fancymenu/assets/folder_color.png"
-hash = "acdbb9788d81a3b2db336acf5f6b75043bfc9b3f97f0154b11e525e96668cc3f"
+file = "config/fancymenu/assets/chronicles_background.png"
+hash = "7881cd00fe107a8ae363e173d98d5b16be98506a41089609f47595c4b7011170"
 
 [[files]]
-file = "config/fancymenu/assets/folder_gray.png"
-hash = "d28a1d4844aec3847b8f8112b6bebe52b9fcffb8325311ed8c78d1ee444e859a"
+file = "config/fancymenu/assets/chronicles_button.png"
+hash = "f7d94ecd48b274a008c615a8bd77f04d1fd1b97a4134263d91de0ca1f7dad724"
 
 [[files]]
-file = "config/fancymenu/assets/star_color.png"
-hash = "ddc1d51d202c699061ba8d77a1731199c0ea52f4365c10b4e9e8b3c401afbc8c"
-
-[[files]]
-file = "config/fancymenu/assets/star_gray.png"
-hash = "f87d0b5a2980056a402b4fa100066842cbf77110dcfbcd65a00e1c5dc48a5190"
-
-[[files]]
-file = "config/fancymenu/assets/starlight_menu_bg.png"
-hash = "afb17559cd7aa2b399c7c3cd8a09821c97d1a5c71da7b7e06fd42126d8673111"
+file = "config/fancymenu/assets/chronicles_button_hover.png"
+hash = "9f037b2592e596bb8e476ddd01220952449c55072b7ae4979058c5df19dba822"
 
 [[files]]
 file = "config/fancymenu/customizablemenus.txt"
 hash = "4c68ab99c906dd487952f61bf33c0635039a8bbff3f02099e3cd8272fe51b4aa"
 
 [[files]]
-file = "config/fancymenu/customization/neoforge_title_layout.txt"
-hash = "02baefb4942cc71207fffdb29f23ff385f70376fb7df7df28f3e2f0239c7ff8e"
+file = "config/fancymenu/customization/chronicles_title_layout.txt"
+hash = "efbffd6508be30439587fc4842806b07e18a2b0d9970a2b71f986a92a29aa472"
 
 [[files]]
 file = "config/fancymenu/options.txt"
@@ -38,59 +30,99 @@ hash = "e57d8311aec9f524911ed1313cabf138bb7fa5a2d3ba985a00a2a267ff35ef78"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/alchemy.snbt"
-hash = "ee2a9119fbfe42bee17f3c4b6520b1e86063d8d06bb2f1414c48b24c0f24d1fc"
+hash = "dc8763de4c2c0d0436e7ed4ba612820155b4b9552b6c60ae9f41a042834db8b9"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/archaeology.snbt"
+hash = "912a48e7e7fb783f6efc66f12a8dfca23bd94c7604ab5b6d5c487423a164e8cb"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/awakening.snbt"
-hash = "b283ed834f182d9ae215031c2b5b1f17f72a4f792737dfac11c3da770541a20f"
+hash = "f6cf0458435860a4e8efbbfa0526d49e08baf52bab3da98d85cdc980002748f8"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/builder.snbt"
-hash = "872d342ee72e1ad78e4c550c681809f5f99155729a01bfa2b7cb0162f75c4f9f"
+hash = "1475b0ad20ccfde4127065f1efdd40ada85fdd12c598da776cb78bc38b14e1f0"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/create_contraptions.snbt"
+hash = "981a088f9bd3c990f5ab4377934ad1fa6cbe7055b3a136a2ceba592a1b0249f1"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/create_factory.snbt"
-hash = "25ab5b66d06491e92d463be8f4ace2cf8b88ce0f9b765e46428255dc5ccf2795"
+hash = "3960038c8c723c803a45248f527a7ac3bb39764876d22c6176bbbfc398409dc7"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/create_first.snbt"
-hash = "2c74f1cfe9eab7e2a9b4959dbeb0f4aeac59fef257d7e10156f81e910625b4ac"
+hash = "d3cf952dadb7e22e1c2e317b18751000fecfd5c29a9d5c7b9374e0a406358083"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/create_logistics.snbt"
+hash = "aff42b8fbd8d68c80a3bd4564007bb5da966f6307e321d57c865d06a3e5d6ee6"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/create_mastery.snbt"
+hash = "58ec3044532ae9b0b6bc4613ff97e2a5849109b40b7c35e3d65a53945dbb9f6d"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/create_motion.snbt"
-hash = "5e960b22a48a30f429315dec89b238e2fc30532c86dd5ec0cf65e3da60c577d5"
+hash = "a08e3ab7792f9c59c3750cc7bb6c2016a73ae9c155e8e35ff705cfa9a62ac698"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/create_steam.snbt"
+hash = "96e6bc87c35cb23be2cc41a61959a01532debc9c0b3b7885977f803716847349"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/create_trains.snbt"
+hash = "fd62ebc1b970c9378ed1c8cdf8c347c91b0c204d0e610b85121d79976c1c5e86"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/deep_dark.snbt"
+hash = "6a7747c4bf2030ad75b93c353b0064745bb40d44b2343c381a2c306d0dd378a8"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/end.snbt"
-hash = "befc93bc52735f4976b4740b5f8b0579d26f595494b9e87f24a0a73e6f8bf71d"
+hash = "6a8923b4fd6aa7086ca644cef7374a8d3c67623f093cf74075a908548f790479"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/explorers.snbt"
+hash = "6c741c6fc108dbba166de577b95495cf816cffcd9419213385adccf8e717bdd5"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/fields.snbt"
-hash = "2326ebf264f5e52995aa9f9f4b68adbc2d10ff9eb54caa654e5628932a74abb8"
+hash = "f7009a1f5721d8f81a05e8812c7fb794232b1b3f75d524e3fd8468b1baf22b46"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/homestead.snbt"
-hash = "1d0c8e53ab5bc6a263e77d254774a22a087a27758789ef33cc182aa9495ab432"
+hash = "22f602a16627a1c973f74569ba4e69820711ab0cee16a9f568447428ee751dd7"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/mines.snbt"
-hash = "3e9cd1512d3b3ba2f8af16736d59bd69053875d5b0b72db4db9bd1c23cbf910d"
+hash = "a9d134fc61a3760ba4cb29a8883536c72896a248b4b500096fea50bf0f247fd0"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/nether.snbt"
-hash = "4bb8e908255f3756bb36bfc80af5ebd6c6ca01fb5a5cc8f352c93a56453edfc8"
+hash = "ab06c6b61984ae5abba51e9f3922f36dc7c9b5a2141f9a873ca133c1834fea4e"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/ocean.snbt"
-hash = "3c807540357dc7530b50d797ea76e77bf77b708fcc8318bcfbb3310d95832765"
+hash = "e3b14155eb4ec8fb0df0decfd2c90f065720106300fc2f9088f627796ece654b"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/redstone.snbt"
-hash = "0cb39e3efa2be01a5cfd3c5152df218efd2fcd7ef180d4394130f515d12cf2fd"
+hash = "d2f2094a673a59d78b7d93a7945700701faba083387d51de7f6ed49a700e3f67"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/skyward.snbt"
+hash = "b63b3fc428714887f623134457f853058206ba8f8c0121cd26952148f6a649fd"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/villages.snbt"
+hash = "25cd69d185a8651ce6a5b85e96a3b3b3fd8aea1db4a8b96d33148318ea73ed74"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/wilderness.snbt"
-hash = "c382704eb133f41a68a0b9213801902ed7ca326d9da80900cae0689d40678354"
+hash = "352094dcdcb2017d6aeae8420db0c8f5ccd512f28f9cafc6f0d6ff137e414ab9"
 
 [[files]]
 file = "config/ftbquests/quests/data.snbt"
@@ -98,143 +130,319 @@ hash = "3247158905a839ee22728f98c8c57def95653b8ee1fc14cf554d1c7ed1641b43"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us.snbt"
-hash = "afb40d23e738dede026fdf3974c9adb2a39e10eee92191503442f9528ec76c41"
+hash = "10986b94cc31c0eed6ef93b414cacf73d53059297b1b48a1cb0582159754480f"
 
 [[files]]
 file = "config/ftbquests/quests/lang/ru_ru.snbt"
-hash = "194dd2e379bfea40be7cc597e10c3360a3d3eb5fc07238ac42812d09517cf5de"
+hash = "5ceab61a3e89f32649b61840af4efe34d411d1d2af59109cb1ab678563362fc0"
 
 [[files]]
 file = "config/pack-info.txt"
-hash = "e505203606bd7c85925cb65752189b17104dfb7c5a82c9ec0c1503fcdfc45d1b"
+hash = "6634effbf4906d118122be0d691d10419f61e167b6e85f034afef16ed41903da"
 
 [[files]]
 file = "kubejs/assets/ftbquests/ftb_quests_theme.txt"
 hash = "c7bf8d9f1e780949c7b88ad3f9619738eea1fc4175b4725c2839434093666d43"
 
 [[files]]
-file = "kubejs/assets/kubejs/textures/gui/quests/alchemy.png"
-hash = "47ccd5e849828e9d7a688e268c9c0d32dfaeffb486a2d15b10d65b426f3a273e"
+file = "kubejs/assets/kubejs/textures/gui/quests/alchemy_banner.png"
+hash = "073534738ff97a43ff53503c192ee4823e138323a364c3450ba1c18866c7ef08"
 
 [[files]]
-file = "kubejs/assets/kubejs/textures/gui/quests/alchemy_stripe.png"
-hash = "448083d8cfb5b8a758e24e4c08114c8ab2ba1dfb1ed968feef314d80cd40eeed"
+file = "kubejs/assets/kubejs/textures/gui/quests/alchemy_divider.png"
+hash = "41d7621b161249324c67f6f3eab0c57ac8f0131a8d0113e2ca5597ba4b0a4b0d"
 
 [[files]]
-file = "kubejs/assets/kubejs/textures/gui/quests/awakening.png"
-hash = "1d773644e67bce4a0777849e003f7aecbbf6355c339f986f8bf3d92654ff5145"
+file = "kubejs/assets/kubejs/textures/gui/quests/alchemy_seal.png"
+hash = "1ee6d4df8484b7b058fb2d582bb563649598b2cc03b7c8d4bb083fb54ba2760f"
 
 [[files]]
-file = "kubejs/assets/kubejs/textures/gui/quests/awakening_stripe.png"
-hash = "60c58e2ca4318e742cc66c38f51988b579b97b1a21129f01059f355c944cb599"
+file = "kubejs/assets/kubejs/textures/gui/quests/archaeology_banner.png"
+hash = "3187a98dd645cd915cce41d84e36728c431167ea6cd64aebdceed3e20fc2a018"
 
 [[files]]
-file = "kubejs/assets/kubejs/textures/gui/quests/builder.png"
-hash = "3466e1120fff8813cdfcd61b238764c8f32df1e59f2988e9048461146fea72ca"
+file = "kubejs/assets/kubejs/textures/gui/quests/archaeology_divider.png"
+hash = "6b7331135bf6016febb31c65c3b90eaf36af7020f46af2b52cc2bfce9e865b68"
 
 [[files]]
-file = "kubejs/assets/kubejs/textures/gui/quests/builder_stripe.png"
-hash = "ef1123fe11bde350b6d32881a3c057cf01a11d1bbc3ad8251860ab1d90757eb1"
+file = "kubejs/assets/kubejs/textures/gui/quests/archaeology_seal.png"
+hash = "3782e3ecd7df8272ef8292a89d1e54eb05d2cab79bce88a46274683f91c59a34"
 
 [[files]]
-file = "kubejs/assets/kubejs/textures/gui/quests/create_factory.png"
-hash = "acf1e95c81d2bc32ff956a091672eee43ab54942f21099cf18fab6d397dbd0ff"
+file = "kubejs/assets/kubejs/textures/gui/quests/awakening_banner.png"
+hash = "368d9674b84fb4d077a46b0ec3b7de23c73b01d9b6dc753d5abc240ad172f9b3"
 
 [[files]]
-file = "kubejs/assets/kubejs/textures/gui/quests/create_factory_stripe.png"
-hash = "cc4e1fe7393fc243bf2ae52daa99df6669cfca706b0641f6f3abdd6516bb5437"
+file = "kubejs/assets/kubejs/textures/gui/quests/awakening_divider.png"
+hash = "b6aea083582211d8848a75f6b0eb6b900a559b5dbb4db8af77cf63fdcf627b7e"
 
 [[files]]
-file = "kubejs/assets/kubejs/textures/gui/quests/create_first.png"
-hash = "83ff164aa4a5c4f36c75656cd6d157a9ac9ba402f020ad39710ca697dc52eeea"
+file = "kubejs/assets/kubejs/textures/gui/quests/awakening_seal.png"
+hash = "3cd401036039a26e45c648be372c4dac01dc9036a7a738eeb0f1b289008df432"
 
 [[files]]
-file = "kubejs/assets/kubejs/textures/gui/quests/create_first_stripe.png"
-hash = "4de4d8a75c5c41d5319f0c363dd4d8e7263911147245afddcb63ed6800fd153e"
+file = "kubejs/assets/kubejs/textures/gui/quests/builder_banner.png"
+hash = "4bc383d9e696d8261b36840815e640c17e5c17f93256695fd1094a68fdb63b08"
 
 [[files]]
-file = "kubejs/assets/kubejs/textures/gui/quests/create_motion.png"
-hash = "848ddcdcd2679d9dfb1b63a39fbee8b53332acf2a23a4adc919879af9b869d37"
+file = "kubejs/assets/kubejs/textures/gui/quests/builder_divider.png"
+hash = "ef3de49c4860a857992a09182f8f3a1d05ee83c8645a148269fad27ef7fc0474"
 
 [[files]]
-file = "kubejs/assets/kubejs/textures/gui/quests/create_motion_stripe.png"
-hash = "98269627a1a66e4de4fdad5cd32a560e742c6aff4cc801ea3eda6434d9862d01"
+file = "kubejs/assets/kubejs/textures/gui/quests/builder_seal.png"
+hash = "f1eab3cb9ccaee1082363eb1a01f3e33c343fae43f4691856e8441703164a0a4"
 
 [[files]]
-file = "kubejs/assets/kubejs/textures/gui/quests/end.png"
-hash = "952ef37280681b24038cabf529650d9d3b9a0a902b67431f1ddd6a32287b7324"
+file = "kubejs/assets/kubejs/textures/gui/quests/create_contraptions_banner.png"
+hash = "0bb0026b38913c9aadee24629dbcd242d14eb7f565a38664b6589560130b7cd4"
 
 [[files]]
-file = "kubejs/assets/kubejs/textures/gui/quests/end_stripe.png"
-hash = "d2976d958056725abd511c7d2b66ad70bbca31d8c7908247837e1f8ad9f7db8d"
+file = "kubejs/assets/kubejs/textures/gui/quests/create_contraptions_divider.png"
+hash = "ddc2e7eadcce2f95793acc2f69695331c10dc84402132f9db5275a5f63ffc873"
 
 [[files]]
-file = "kubejs/assets/kubejs/textures/gui/quests/fields.png"
-hash = "c30d81cd86d7ff65a068f25d953c5f2fc0388c07fa33f77547e25592726f9d5e"
+file = "kubejs/assets/kubejs/textures/gui/quests/create_contraptions_seal.png"
+hash = "0f220809507e560219aef53a35dd4669062c96de09ba4cd53b431256cdef9070"
 
 [[files]]
-file = "kubejs/assets/kubejs/textures/gui/quests/fields_stripe.png"
-hash = "e2d65afc66d1851241f0a502c2d52db60dd1ee0f06def34c383009d25b4e740d"
+file = "kubejs/assets/kubejs/textures/gui/quests/create_factory_banner.png"
+hash = "6354f302716abb2a347f01f55bb671840e6c7487cedc7b8133833bbe34c91c1e"
 
 [[files]]
-file = "kubejs/assets/kubejs/textures/gui/quests/homestead.png"
-hash = "ba6cb4859ba4b708887af00190039836ed4cf41974daf1504219824468f37873"
+file = "kubejs/assets/kubejs/textures/gui/quests/create_factory_divider.png"
+hash = "904aa22e18e57ce5236ade29a755b30f21fd31e4418d8c76a15a2882822718fd"
 
 [[files]]
-file = "kubejs/assets/kubejs/textures/gui/quests/homestead_stripe.png"
-hash = "d71d7e1f0ca89291c1c7a254748c33d00bb20a40098513c6bcd82f5244f94c46"
+file = "kubejs/assets/kubejs/textures/gui/quests/create_factory_seal.png"
+hash = "261725edb00cf9441f9d10e727210068c8574eb645c2e65f08b21d44186243b1"
 
 [[files]]
-file = "kubejs/assets/kubejs/textures/gui/quests/mines.png"
-hash = "a2cff6c65db4fcaace91b822d056389a2c15322b2bdccb6b0a07c006b16896a6"
+file = "kubejs/assets/kubejs/textures/gui/quests/create_first_banner.png"
+hash = "e82087b51bb2311fb8821c0bea9b46ae3100679dbfd02e3dda837c3c2823cf2d"
 
 [[files]]
-file = "kubejs/assets/kubejs/textures/gui/quests/mines_stripe.png"
-hash = "c67f3430d0ed256e04389558f852be847729873e99b0cf7b20118eb74cbeff01"
+file = "kubejs/assets/kubejs/textures/gui/quests/create_first_divider.png"
+hash = "9fc622949ee69cc14aa2840109d9ee4165745db801b6b5896a7b0f2ba3223a7d"
 
 [[files]]
-file = "kubejs/assets/kubejs/textures/gui/quests/nether.png"
-hash = "023bf2d490ef5eeea1fe821fe10a997d8d4542c3d97e95f3fc0acbb1612eeaaa"
+file = "kubejs/assets/kubejs/textures/gui/quests/create_first_seal.png"
+hash = "cd3cd50e7b7fb959e0e3a81716389dc9bd7527e273aa76613430f2b084056f62"
 
 [[files]]
-file = "kubejs/assets/kubejs/textures/gui/quests/nether_stripe.png"
-hash = "40140cd0ed05207c93b0589291c15b245ef78e270b5673eb4d590b8439a1e54a"
+file = "kubejs/assets/kubejs/textures/gui/quests/create_logistics_banner.png"
+hash = "56d95119f4d9f8e3a394b0072199828b2a8ea29c50053d813e9b671fdc9dedd1"
 
 [[files]]
-file = "kubejs/assets/kubejs/textures/gui/quests/ocean.png"
-hash = "10026cd80267b488520076561e74415f0f08b6e2f76347eea91464174cc4c04e"
+file = "kubejs/assets/kubejs/textures/gui/quests/create_logistics_divider.png"
+hash = "bf72c94e11893a26d08cdfcba5ab6c3f7253b6906a34b126bf6e957ea399b3fa"
 
 [[files]]
-file = "kubejs/assets/kubejs/textures/gui/quests/ocean_stripe.png"
-hash = "44376d7028c7a69be91caf58f65e5369a5939f856b5002bcfe28f8ce3f88e8e1"
+file = "kubejs/assets/kubejs/textures/gui/quests/create_logistics_seal.png"
+hash = "7d3d3544ea9d851c97434329f5630fe81daa57e0825f6bc2cebea3e174d51736"
 
 [[files]]
-file = "kubejs/assets/kubejs/textures/gui/quests/redstone.png"
-hash = "0c945a29bf3e41162245c072e2bf42165b5d09dbc2c6a3dc259ce4f6b36788af"
+file = "kubejs/assets/kubejs/textures/gui/quests/create_mastery_banner.png"
+hash = "9a75e0dc7e661d51919cc892a6235add5520ce156341898e106c0f17255f99d3"
 
 [[files]]
-file = "kubejs/assets/kubejs/textures/gui/quests/redstone_stripe.png"
-hash = "26bb6c69842fe52eade9916a9a376e5e8a0b65f711129552576703013da3d727"
+file = "kubejs/assets/kubejs/textures/gui/quests/create_mastery_divider.png"
+hash = "1b958bd2fae702316f3dd3cd9b128ad90ada0321fb5eec8a0a9d1cf4d090f20a"
 
 [[files]]
-file = "kubejs/assets/kubejs/textures/gui/quests/wilderness.png"
-hash = "f1688a3f60ee02738e262f604b15597bab8917ae942fc2a94fa668326a136b08"
+file = "kubejs/assets/kubejs/textures/gui/quests/create_mastery_seal.png"
+hash = "533fa31c0a6bd28bdfea366a5171dd278b393bef4740cb0e18eb6814ecfd8eff"
 
 [[files]]
-file = "kubejs/assets/kubejs/textures/gui/quests/wilderness_stripe.png"
-hash = "21bed20846b758eb52ed2b1bf32fb7439c2b5bd6af1822938c04383d544747a9"
+file = "kubejs/assets/kubejs/textures/gui/quests/create_motion_banner.png"
+hash = "b22b4d20fc7149780a6bc5c8eb3911b0633a396f025fa5821da4b6f173597763"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/create_motion_divider.png"
+hash = "b01eb35f63e47eebb3826a9412a319b1d8047dae9801ef12e61a839e6962beef"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/create_motion_seal.png"
+hash = "e50575c7cbc590341827ee3a3931e5d76289e0e95734e419ca800083ed9328a2"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/create_steam_banner.png"
+hash = "2ae32b8215c83d436041f4b10c1c33d2f44e1f88ca5446c6d7d546eab0e0c7cf"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/create_steam_divider.png"
+hash = "d5f17aac3cf27aa73e4c369cd3c4570ff2d36ce7fc39afa198419870d59bcefc"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/create_steam_seal.png"
+hash = "7599a94f1a9bb46b1eb339a1f02dede7133d27f686d22fa66839290dc1f5edc5"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/create_trains_banner.png"
+hash = "89cd26649de1e37e36c1fae2eb20557b4558a37e867469e153fa60e8f87b8d9f"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/create_trains_divider.png"
+hash = "94b6e8b098c3e658baa8d460e3ecaf3ca161432fedec22de956c6fa4c8591955"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/create_trains_seal.png"
+hash = "3bedc96c498b42355503e94799c84787f15a4195ce7e88749945a230604d60dd"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/deep_dark_banner.png"
+hash = "401997c306c49b0ce7af8be97501053c52ba50172c382f17f1225d3ec3810c2c"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/deep_dark_divider.png"
+hash = "4e69483a47fac3fdc97d10a1f40c15f40d19403007b2a5c65d4dc49e8e7906db"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/deep_dark_seal.png"
+hash = "9cfd14d052db320c60a380b2ce9724166c5dcb2b0a5adb78c428603f3e62c1fd"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/end_banner.png"
+hash = "9e3b0a4cb3df31196afb97596479d57f93a7583dae63b9cf52161e93c547184c"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/end_divider.png"
+hash = "4fef99b4b843751295c231f6212709f5354f59c9e924594941a0d89d8a8e92a9"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/end_seal.png"
+hash = "9287fd64602f1775c28daef9e8c392c4d83d76b280c9809d85f86e704e97d5f6"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/explorers_banner.png"
+hash = "9875e4000d06e9164fadfafa959b7c373dcf53030df521cb0cd98524a5877696"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/explorers_divider.png"
+hash = "ac0e5bdb22e7855776333ffb1a8c1242ec3d98a9584b705c16b83ff3d29a3216"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/explorers_seal.png"
+hash = "6cb3cece73fb84f857364b8bde3924c1970f33d88e4648c7aec7f49677291c86"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/fields_banner.png"
+hash = "883c4f6d576672f967a9cc9982dc7d7ff8d97995ba5180c54377f3f0f75e6fe5"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/fields_divider.png"
+hash = "01008fe60991789fa93a759483e72c4ababf1ff66214ebc6b70fada7cc68a4cc"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/fields_seal.png"
+hash = "daa8cc9830eb48e5a6358fa2c2a59f300582dc33481876055a7303671a579bbc"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/homestead_banner.png"
+hash = "56d6c8ea15f85db53c7b8a4abe60d6e50f64c0e96798ae5598ea5a8f471b3e0a"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/homestead_divider.png"
+hash = "49d37e11b1d87a169f0130607a6b94693e69c175c4a58d96f09aec2c4cd5813a"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/homestead_seal.png"
+hash = "ab30da9e75cfdc05fe13adf7a1e89ac8835927fb1008b6c563b73a77255b92db"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/mines_banner.png"
+hash = "1cd8d9b7f3971b1a47a251ed266031a40d42033e72dbaf5c772b9c5fb679d1a8"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/mines_divider.png"
+hash = "648ecd524b92d8942f87246330c28d012b838387d9c3f39b2289bf4f6dd59ac7"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/mines_seal.png"
+hash = "135a896cdf5379d5171782b1a641eb522500344fc786abeb33037dbbabe59076"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/nether_banner.png"
+hash = "5a799647fa057dcb062c794b9c653b96bb97de10183ab9a85c8074405ebc0ef2"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/nether_divider.png"
+hash = "54b7b011360dfa1c05e3777ac1e089d184a9f9454e804e82d36a4a888bc99894"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/nether_seal.png"
+hash = "384d145c728098e7f502185736d595e01b34e6fb2bc7b08324b6485596bb43bb"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/ocean_banner.png"
+hash = "f4a36ed8c02cacf3a2170c67724babbf9715630677609331d076d95a2de1ae31"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/ocean_divider.png"
+hash = "83415b88f6cb56ab8192f03a9eb4613bd66c05d6211bcc986e8f965ffaffd9e5"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/ocean_seal.png"
+hash = "d182352a8c9d8afaa9e6cde9a7493992b484a2034dca652e980da7e777360ac9"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/redstone_banner.png"
+hash = "2a8a7bb6cfacf0c815ee846813456b46d98e03637c7ad8ab1ff5c211caa1588e"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/redstone_divider.png"
+hash = "1faedb437797265af43b2e745619502d8c1b3dd3a6655e79cae1fe9f649b63c2"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/redstone_seal.png"
+hash = "5cc457066e46fee5ca1be53b96608b3b73f10cb886a88c3f05e0604acd711906"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/skyward_banner.png"
+hash = "33ff47b359b51f8e9b96de98a06ca7757165d3fdd8c3cf878073a4fc3584e50f"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/skyward_divider.png"
+hash = "2e01ef17ceec72c944187180ac47346cd34b9d0757c7943a34619295e672343e"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/skyward_seal.png"
+hash = "02855b1baac032ff16da41dae6be9184ac71f125b8dab05c8efde29c9af09df5"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/villages_banner.png"
+hash = "138bcd7eb0aed49a2bbcdb5e43dc624d15f8e6ceb02ba7dd0aff7d8dee2ccf3f"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/villages_divider.png"
+hash = "87d10d7c536873fe5e65533bf3c6b116150f838e533e76ad150d8f93309e05a5"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/villages_seal.png"
+hash = "10db3f78e8cf488ec377a739fa8deab640bd4d0f6673a4268602c84b41825dd9"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/wilderness_banner.png"
+hash = "acefe6f7d5f53d1828fac1b3b084f4605de9112456aa6f3fe1dbed1f11a7d4cf"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/wilderness_divider.png"
+hash = "1f875d7bf6e0e04e73d5a6ae077b8850374fe3fb2e2ccd54bfc94b05ca503744"
+
+[[files]]
+file = "kubejs/assets/kubejs/textures/gui/quests/wilderness_seal.png"
+hash = "6aca1145f566d5f2f0e17ece0ffad97e1a0ca4b83ac4b26b4dbe89732b307971"
 
 [[files]]
 file = "kubejs/assets/kubejs/textures/item/chronicle_page.png"
-hash = "4e841de28c48554a73de26ca15a2871d310832ad1fe910b089a0361766131b9d"
+hash = "f24032d17a9019778a8b8bdb66a62ff58325b386103cff015801087d1909aa96"
 
 [[files]]
 file = "kubejs/server_scripts/chronicles.js"
-hash = "5d77857195868788a21409d148008bab8ffe22d97060e4aaee98f84493a58581"
+hash = "89f6b69c6851a9ddc4687eef8b623838db790c9bb0a6370002a0451bf08215e2"
 
 [[files]]
 file = "kubejs/server_scripts/player_welcome.js"
-hash = "bf1400adc9ab0193f44c351b0feddced36a5d7ba7b918b177cc896cc08175671"
+hash = "dd8e8972e3edaca19a3181100ad28cd9f8667260f936fe23e729b3afe71913b7"
 
 [[files]]
 file = "kubejs/startup_scripts/chronicle_items.js"

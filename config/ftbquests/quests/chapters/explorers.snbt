@@ -1,0 +1,872 @@
+{
+	filename: "explorers",
+	group: "",
+	icon: {
+		count: 1,
+		id: "minecraft:filled_map"
+	},
+	id: "7100001200000000",
+	order_index: 17,
+	default_hide_dependency_lines: 0b,
+	default_quest_shape: "circle",
+	images: [
+		{
+			id: "7500001200000001",
+			image: "kubejs:textures/gui/quests/explorers_banner.png",
+			x: 0.000d,
+			y: -21.000d,
+			width: 22.000d,
+			height: 4.800d,
+			rotation: 0.000d,
+			order: -150,
+			position_locked: 1b,
+			text_on_image: 1b,
+			text_shadow: 1b,
+			text_inset: 8
+		},
+		{
+			id: "7500001200000002",
+			image: "kubejs:textures/gui/quests/explorers_seal.png",
+			x: 2.400d,
+			y: 16.100d,
+			width: 2.600d,
+			height: 2.600d,
+			rotation: 0.000d,
+			order: -200,
+			position_locked: 1b
+		},
+		{
+			id: "7500001200000003",
+			image: "kubejs:textures/gui/quests/explorers_divider.png",
+			x: 0.000d,
+			y: -14.000d,
+			width: 22.000d,
+			height: 1.100d,
+			rotation: 0.000d,
+			order: -200,
+			position_locked: 1b
+		},
+		{
+			id: "7500001200000004",
+			image: "kubejs:textures/gui/quests/explorers_divider.png",
+			x: 0.000d,
+			y: 24.000d,
+			width: 22.000d,
+			height: 1.100d,
+			rotation: 0.000d,
+			order: -200,
+			position_locked: 1b
+		}
+	],
+	quest_links: [ ],
+	quests: [
+		{
+			id: "7200001200000001",
+			icon: {
+				count: 1,
+				id: "minecraft:filled_map"
+			},
+			x: -19.500d,
+			y: 0.000d,
+			tasks: [
+				{
+					id: "7300001200000001",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "7400001200000001",
+					type: "xp",
+					xp: 149
+				}
+			],
+			dependencies: [
+				"7200000600000012"
+			],
+			shape: "hexagon",
+			size: 1.500d
+		},
+		{
+			id: "7200001200000002",
+			icon: {
+				count: 1,
+				id: "minecraft:map"
+			},
+			x: 4.312d,
+			y: -0.874d,
+			tasks: [
+				{
+					id: "7300001200000002",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:map"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001200000002",
+					type: "xp",
+					xp: 161
+				}
+			],
+			dependencies: [
+				"7200001200000001"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200001200000003",
+			icon: {
+				count: 1,
+				id: "minecraft:compass"
+			},
+			x: 7.743d,
+			y: -1.569d,
+			tasks: [
+				{
+					id: "7300001200000003",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:compass"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001200000003",
+					type: "xp",
+					xp: 173
+				}
+			],
+			dependencies: [
+				"7200001200000002"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200001200000004",
+			icon: {
+				count: 1,
+				id: "minecraft:spyglass"
+			},
+			x: 11.173d,
+			y: -2.265d,
+			tasks: [
+				{
+					id: "7300001200000004",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:spyglass"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001200000004",
+					type: "xp",
+					xp: 185
+				}
+			],
+			dependencies: [
+				"7200001200000003"
+			],
+			shape: "octagon"
+		},
+		{
+			id: "7200001200000005",
+			icon: {
+				count: 1,
+				id: "minecraft:filled_map"
+			},
+			x: 14.603d,
+			y: -2.960d,
+			tasks: [
+				{
+					id: "7300001200000005",
+					type: "biome",
+					biome: "minecraft:savanna"
+				}
+			],
+			rewards: [
+				{
+					id: "7400001200000005",
+					type: "xp",
+					xp: 197
+				}
+			],
+			dependencies: [
+				"7200001200000004"
+			],
+			shape: "pentagon",
+			size: 1.250d
+		},
+		{
+			id: "7200001200000006",
+			icon: {
+				count: 1,
+				id: "minecraft:filled_map"
+			},
+			x: 2.913d,
+			y: 3.297d,
+			tasks: [
+				{
+					id: "7300001200000006",
+					type: "biome",
+					biome: "minecraft:desert"
+				}
+			],
+			rewards: [
+				{
+					id: "7400001200000006",
+					type: "xp",
+					xp: 209
+				}
+			],
+			dependencies: [
+				"7200001200000001"
+			],
+			shape: "pentagon",
+			size: 1.250d
+		},
+		{
+			id: "7200001200000007",
+			icon: {
+				count: 1,
+				id: "minecraft:filled_map"
+			},
+			x: 5.230d,
+			y: 5.920d,
+			tasks: [
+				{
+					id: "7300001200000007",
+					type: "biome",
+					biome: "minecraft:jungle"
+				}
+			],
+			rewards: [
+				{
+					id: "7400001200000007",
+					type: "xp",
+					xp: 221
+				}
+			],
+			dependencies: [
+				"7200001200000006"
+			],
+			shape: "pentagon",
+			size: 1.250d
+		},
+		{
+			id: "7200001200000008",
+			icon: {
+				count: 1,
+				id: "minecraft:filled_map"
+			},
+			x: 7.548d,
+			y: 8.543d,
+			tasks: [
+				{
+					id: "7300001200000008",
+					type: "biome",
+					biome: "minecraft:snowy_plains"
+				}
+			],
+			rewards: [
+				{
+					id: "7400001200000008",
+					type: "xp",
+					xp: 149
+				},
+				{
+					id: "7400001200000207",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:torch"
+					},
+					count: 4
+				}
+			],
+			dependencies: [
+				"7200001200000007"
+			],
+			shape: "pentagon",
+			size: 1.250d
+		},
+		{
+			id: "7200001200000009",
+			icon: {
+				count: 1,
+				id: "minecraft:filled_map"
+			},
+			x: 9.865d,
+			y: 11.166d,
+			tasks: [
+				{
+					id: "7300001200000009",
+					type: "biome",
+					biome: "minecraft:swamp"
+				}
+			],
+			rewards: [
+				{
+					id: "7400001200000009",
+					type: "xp",
+					xp: 161
+				}
+			],
+			dependencies: [
+				"7200001200000008"
+			],
+			shape: "pentagon",
+			size: 1.250d
+		},
+		{
+			id: "720000120000000A",
+			icon: {
+				count: 1,
+				id: "minecraft:filled_map"
+			},
+			x: -1.399d,
+			y: 4.172d,
+			tasks: [
+				{
+					id: "730000120000000A",
+					type: "biome",
+					biome: "minecraft:cherry_grove"
+				}
+			],
+			rewards: [
+				{
+					id: "740000120000000A",
+					type: "xp",
+					xp: 173
+				},
+				{
+					id: "7400001200000289",
+					type: "xp_levels",
+					xp_levels: 3
+				}
+			],
+			dependencies: [
+				"7200001200000001"
+			],
+			shape: "pentagon",
+			size: 1.250d
+		},
+		{
+			id: "720000120000000B",
+			icon: {
+				count: 1,
+				id: "minecraft:filled_map"
+			},
+			x: -2.512d,
+			y: 7.490d,
+			tasks: [
+				{
+					id: "730000120000000B",
+					type: "biome",
+					biome: "minecraft:badlands"
+				}
+			],
+			rewards: [
+				{
+					id: "740000120000000B",
+					type: "xp",
+					xp: 185
+				}
+			],
+			dependencies: [
+				"720000120000000A"
+			],
+			shape: "pentagon",
+			size: 1.250d
+		},
+		{
+			id: "720000120000000C",
+			icon: {
+				count: 1,
+				id: "minecraft:oak_boat"
+			},
+			x: -3.625d,
+			y: 10.808d,
+			tasks: [
+				{
+					id: "730000120000000C",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:oak_boat"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000120000000C",
+					type: "xp",
+					xp: 197
+				}
+			],
+			dependencies: [
+				"720000120000000B"
+			],
+			shape: "circle"
+		},
+		{
+			id: "720000120000000D",
+			icon: {
+				count: 1,
+				id: "minecraft:minecart"
+			},
+			x: -4.738d,
+			y: 14.127d,
+			tasks: [
+				{
+					id: "730000120000000D",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:minecart"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000120000000D",
+					type: "xp",
+					xp: 209
+				}
+			],
+			dependencies: [
+				"720000120000000C"
+			],
+			shape: "octagon"
+		},
+		{
+			id: "720000120000000E",
+			icon: {
+				count: 1,
+				id: "minecraft:saddle"
+			},
+			x: -4.312d,
+			y: 0.874d,
+			tasks: [
+				{
+					id: "730000120000000E",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:saddle"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000120000000E",
+					type: "xp",
+					xp: 221
+				}
+			],
+			dependencies: [
+				"7200001200000001"
+			],
+			shape: "circle"
+		},
+		{
+			id: "720000120000000F",
+			icon: {
+				count: 1,
+				id: "minecraft:leather_boots"
+			},
+			x: -7.743d,
+			y: 1.569d,
+			tasks: [
+				{
+					id: "730000120000000F",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:leather_boots"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "740000120000000F",
+					type: "xp",
+					xp: 149
+				},
+				{
+					id: "740000120000020E",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:torch"
+					},
+					count: 4
+				}
+			],
+			dependencies: [
+				"720000120000000E"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200001200000010",
+			icon: {
+				count: 1,
+				id: "minecraft:clock"
+			},
+			x: -11.173d,
+			y: 2.265d,
+			tasks: [
+				{
+					id: "7300001200000010",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:clock"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001200000010",
+					type: "xp",
+					xp: 161
+				}
+			],
+			dependencies: [
+				"720000120000000F"
+			],
+			shape: "square"
+		},
+		{
+			id: "7200001200000011",
+			icon: {
+				count: 1,
+				id: "minecraft:lantern"
+			},
+			x: -14.603d,
+			y: 2.960d,
+			tasks: [
+				{
+					id: "7300001200000011",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:lantern"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001200000011",
+					type: "xp",
+					xp: 173
+				}
+			],
+			dependencies: [
+				"7200001200000010"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200001200000012",
+			icon: {
+				count: 1,
+				id: "minecraft:bread"
+			},
+			x: -2.913d,
+			y: -3.297d,
+			tasks: [
+				{
+					id: "7300001200000012",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:bread"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001200000012",
+					type: "xp",
+					xp: 185
+				}
+			],
+			dependencies: [
+				"7200001200000001"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200001200000013",
+			icon: {
+				count: 1,
+				id: "minecraft:campfire"
+			},
+			x: -5.230d,
+			y: -5.920d,
+			tasks: [
+				{
+					id: "7300001200000013",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:campfire"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001200000013",
+					type: "xp",
+					xp: 197
+				},
+				{
+					id: "7400001200000292",
+					type: "xp_levels",
+					xp_levels: 3
+				}
+			],
+			dependencies: [
+				"7200001200000012"
+			],
+			shape: "octagon"
+		},
+		{
+			id: "7200001200000014",
+			icon: {
+				count: 1,
+				id: "minecraft:bundle"
+			},
+			x: -7.548d,
+			y: -8.543d,
+			tasks: [
+				{
+					id: "7300001200000014",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:bundle"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001200000014",
+					type: "xp",
+					xp: 209
+				}
+			],
+			dependencies: [
+				"7200001200000013"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200001200000015",
+			icon: {
+				count: 1,
+				id: "minecraft:book"
+			},
+			x: -9.865d,
+			y: -11.166d,
+			tasks: [
+				{
+					id: "7300001200000015",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:book"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001200000015",
+					type: "xp",
+					xp: 221
+				}
+			],
+			dependencies: [
+				"7200001200000014"
+			],
+			shape: "square"
+		},
+		{
+			id: "7200001200000016",
+			icon: {
+				count: 1,
+				id: "minecraft:paper"
+			},
+			x: 1.399d,
+			y: -4.172d,
+			tasks: [
+				{
+					id: "7300001200000016",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:paper"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001200000016",
+					type: "xp",
+					xp: 149
+				},
+				{
+					id: "7400001200000215",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:torch"
+					},
+					count: 4
+				}
+			],
+			dependencies: [
+				"7200001200000001"
+			],
+			shape: "octagon"
+		},
+		{
+			id: "7200001200000017",
+			icon: {
+				count: 1,
+				id: "minecraft:item_frame"
+			},
+			x: 2.512d,
+			y: -7.490d,
+			tasks: [
+				{
+					id: "7300001200000017",
+					type: "item",
+					item: {
+						count: 1,
+						id: "minecraft:item_frame"
+					}
+				}
+			],
+			rewards: [
+				{
+					id: "7400001200000017",
+					type: "xp",
+					xp: 161
+				}
+			],
+			dependencies: [
+				"7200001200000016"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200001200000018",
+			icon: {
+				count: 1,
+				id: "xp:20"
+			},
+			x: 3.625d,
+			y: -10.808d,
+			tasks: [
+				{
+					id: "7300001200000018",
+					type: "xp",
+					value: 20L
+				}
+			],
+			rewards: [
+				{
+					id: "7400001200000018",
+					type: "xp",
+					xp: 173
+				}
+			],
+			dependencies: [
+				"7200001200000017"
+			],
+			shape: "circle"
+		},
+		{
+			id: "7200001200000019",
+			icon: {
+				count: 1,
+				id: "minecraft:filled_map"
+			},
+			x: 4.738d,
+			y: -14.127d,
+			tasks: [
+				{
+					id: "7300001200000019",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "7400001200000019",
+					type: "xp",
+					xp: 185
+				}
+			],
+			dependencies: [
+				"7200001200000018"
+			],
+			shape: "diamond",
+			size: 1.200d
+		},
+		{
+			id: "720000120000001A",
+			icon: {
+				count: 1,
+				id: "minecraft:filled_map"
+			},
+			x: 0.000d,
+			y: 18.500d,
+			tasks: [
+				{
+					id: "730000120000001A",
+					type: "checkmark"
+				}
+			],
+			rewards: [
+				{
+					id: "740000120000001A",
+					type: "xp",
+					xp: 197
+				},
+				{
+					id: "7400001200000339",
+					type: "item",
+					item: {
+						count: 1,
+						id: "kubejs:chronicle_page"
+					}
+				},
+				{
+					id: "740000120000039D",
+					type: "custom"
+				}
+			],
+			dependencies: [
+				"7200001200000005",
+				"7200001200000009",
+				"720000120000000D",
+				"7200001200000011",
+				"7200001200000015",
+				"7200001200000019"
+			],
+			shape: "hexagon",
+			size: 1.500d
+		}
+	]
+}
