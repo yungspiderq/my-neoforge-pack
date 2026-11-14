@@ -91,6 +91,16 @@ def validate():
     for filename in SYNC_FILES:
         if not (ROOT / "packsync" / filename).is_file():
             raise ValueError("Missing updater: " + filename)
+
+    # FTB integrations require both an Architectury version and XMod compat.
+    if (ROOT / "mods/ftb-quests.pw.toml").exists():
+        if not (ROOT / "mods/architectury-api.pw.toml").exists():
+            raise ValueError("FTB Quests requires Architectury API")
+        if not (ROOT / "mods/ftb-xmod-compat.pw.toml").exists():
+            raise ValueError("KubeJS custom FTB tasks/rewards require FTB XMod Compat")
+        architectury = toml("mods/architectury-api.pw.toml").get("filename", "")
+        if not re.search(r"architectury-13\.(0\.(?:[8-9]|1[0-9])|[1-9][0-9]*\.[0-9]+)", architectury):
+            raise ValueError("Architectury >=13.0.8 required; found " + architectury)
     print("Validated", len(entries), "pack files")
     return pack, entries
 

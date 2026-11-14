@@ -149,7 +149,7 @@ def run():
             continue
         for file in path.glob("*.pw.toml"):
             # Keep manually pinned FTB modules (Maven) and discard dropped Modrinth selections.
-            if kind == "mod" and file.stem in ("ftb-quests.pw", "ftb-library.pw", "ftb-teams.pw", "ftb-filter-system.pw"):
+            if kind == "mod" and file.stem in ("ftb-quests.pw", "ftb-library.pw", "ftb-teams.pw", "ftb-filter-system.pw", "ftb-xmod-compat.pw"):
                 continue
             if file.name[:-len(".pw.toml")] not in wanted[kind]:
                 print("Removing no longer selected:", file)

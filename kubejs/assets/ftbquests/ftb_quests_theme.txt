@@ -1,0 +1,16 @@
+[*]
+text_color: #E7E4D5
+hover_text_color: #FFD68B
+disabled_text_color: #8A919B
+widget_border: #263642
+widget_background: #D9232E39
+selected_chapter_highlight_1: #607B94A5
+selected_chapter_highlight_2: #3082AAAF
+quest_completed_color: #C860D4A3
+quest_started_color: #C8F2C36A
+quest_not_started_color: #C8E8E5D9
+quest_locked_color: #C86E7381
+dependency_line_completed_color: #75A8C9A3
+dependency_line_uncompleted_color: #B4D8BB91
+dependency_line_thickness: 0.19
+quest_spacing: 1.15

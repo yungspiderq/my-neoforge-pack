@@ -31,3 +31,8 @@ To build locally run:
 **Do not put JAR/ZIP archives in Git.** Only references are committed. Resource/shader packs are not forced on players; enable them in the Minecraft graphics/resource-pack menus.
 
 Prior pack backup: backup/pre-rebuild-2026-11-14. Back up worlds; this rebuild is not compatible with old saves by default.
+
+## Questbook
+
+14 illustrated chapters and 253 quests in Russian and English, including Create progression, 3 interconnected quest lanes per chapter, KubeJS custom rewards and an optional stormwatch custom task. See [QUESTS.md](docs/QUESTS.md). KubeJS content is included in this same pack; no separate content mod is added.
+

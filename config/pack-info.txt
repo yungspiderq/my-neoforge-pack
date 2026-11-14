@@ -1,1 +1,1 @@
-My NeoForge Pack v0.2.0 | Create + FTB Quests + FancyMenu + shaders
+My NeoForge Pack 0.3.0 | Create + 14 chapter quest book (253 quests) + custom KubeJS + shaders
