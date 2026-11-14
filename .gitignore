@@ -1,35 +1,9 @@
-# --- Артефакты сборки -------------------------------------------------------
-dist/
-site/
-.cache/
-*.mrpack
-/*.zip
-
-# --- Локальные копии и мусор ------------------------------------------------
-packwiz
-packwiz.exe
+/.idea/
+/.vscode/
+/dist/
+/site/
 *.log
-*.tmp
-.DS_Store
-Thumbs.db
-desktop.ini
-
-# --- Состояние packwiz-installer (появляется только в папке игры) -----------
-packwiz.json
-
-# --- Python / PyInstaller ----------------------------------------------------
+*.mrpack
+*.zip
 __pycache__/
-*.py[cod]
-build/
-*.spec
-dist/*.exe
-
-# --- Редакторы --------------------------------------------------------------
-.idea/
-.vscode/
-*.swp
-
-# --- Git LFS: раскомментируйте, если раздаёте тяжёлые архивы через LFS -------
-# resourcepacks/*.zip
-# shaderpacks/*.zip
-# mods/*.jar
+*.pyc

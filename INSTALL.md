@@ -1,282 +1,33 @@
-# Установка модпака — инструкция для игроков
+# Install clean NeoForge pack
 
-Установка делается **один раз**. Дальше моды обновляются сами: при каждом
-запуске игры лаунчер сверяется с сервером и докачивает только то, что изменилось.
-Никаких «переустанови пак» и архивов в дискорде.
+Minecraft 1.21.1 / NeoForge 21.1.252; use Java 21.
 
-**Адрес пака:** `https://yungspiderq.github.io/my-neoforge-pack/`
+## Windows - Prism Launcher / Freesm
 
----
+Download https://yungspiderq.github.io/my-neoforge-pack/latest/instance.zip
+Import the ZIP as a new instance in Prism/Freesm and launch Minecraft.
+The included pre-launch command runs packsync/sync.cmd before Minecraft.
+The pack installer fetches changed files by their checksums from Pages.
+If Java is not found or the network fails, the game may still launch
+without the update. Inspect the game-folder packsync/sync.log.
 
-## 🚀 Самый простой способ — одна команда
+## Modrinth App / AstralRinth
 
-### Windows
+Import https://yungspiderq.github.io/my-neoforge-pack/latest/pack.mrpack
+Configure the instance pre-launch hook manually:
+Windows: cmd /c packsync\sync.cmd
+Linux/macOS: sh packsync/sync.sh
 
-Откройте **PowerShell** (Win+X → «Windows PowerShell» или «Терминал») и вставьте:
+Without this hook, a downloaded MRPACK is only a snapshot and does NOT auto-update.
 
-```powershell
-irm https://yungspiderq.github.io/my-neoforge-pack/install.ps1 | iex
-```
+## Linux/macOS Prism
 
-Всё. Скрипт сам:
+Set a platform-specific pre-launch command invoking sh on
+the game-folder packsync/sync.sh (the bundled command targets Windows).
 
-1. найдёт установленный лаунчер (Freesm, Prism, MultiMC, AstralRinth, Modrinth App);
-2. передаст ему инстанс — лаунчер скачает Minecraft, NeoForge, Java и моды;
-3. пропишет автосинхронизацию.
+## Caution
 
-Если PowerShell ругается на политику выполнения:
-
-```powershell
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-irm https://yungspiderq.github.io/my-neoforge-pack/install.ps1 | iex
-```
-
-**Нет лаунчера вообще?** Добавьте флаг — скрипт сам скачает и поставит Freesm Launcher:
-
-```powershell
-iex "& {$(irm https://yungspiderq.github.io/my-neoforge-pack/install.ps1)} -WithLauncher"
-```
-
-> ⚠️ Флаг **нельзя** ставить между `irm` и `| iex` (т.е. `irm <адрес> -WithLauncher | iex` —
-> ошибка). Всё, что стоит до трубы `|`, PowerShell отдаёт командлету `Invoke-RestMethod`,
-> а у него нет параметра `WithLauncher` — строка падает с `ParameterBindingException`
-> ещё до скачивания. Поэтому скачанный текст оборачивают в script block и вызывают через `&` —
-> тогда флаг доходит до самого установщика.
-
-Если однострочник кажется страшным — ровно то же самое в две строки:
-
-```powershell
-irm https://yungspiderq.github.io/my-neoforge-pack/install.ps1 -OutFile "$env:TEMP\mp-install.ps1"
-powershell -NoProfile -ExecutionPolicy Bypass -File "$env:TEMP\mp-install.ps1" -WithLauncher
-```
-
-Вторая строка сознательно запускает отдельный процесс с `-ExecutionPolicy Bypass`:
-политика Windows по умолчанию — `Restricted`, она запрещает запуск любых `.ps1`-файлов,
-поэтому наивное `& "$env:TEMP\mp-install.ps1"` умирает с `PSSecurityException`
-(`UnauthorizedAccess`), не дойдя до первой строки скрипта. `Bypass` здесь действует
-только на этот один процесс и ничего не меняет в настройках системы.
-
-### Если PowerShell пишет «выполнение сценариев отключено в этой системе»
-
-Ошибка вида «Невозможно загрузить файл …, так как выполнение сценариев отключено
-в этой системе» (`CategoryInfo : Ошибка безопасности`, `PSSecurityException`,
-`FullyQualifiedErrorId : UnauthorizedAccess`) означает политику `Restricted`.
-Она блокирует только запуск `.ps1`-**файлов**; скачивание и выполнение строк она
-не блокирует. Поэтому работают любые три варианта:
-
-```powershell
-# 1) запустить уже скачанный файл в процессе с Bypass (настройки системы не трогает)
-powershell -NoProfile -ExecutionPolicy Bypass -File "$env:TEMP\mp-install.ps1" -WithLauncher
-
-# 2) однострочник: iex выполняет скачанный текст в памяти, политика к нему не применяется
-iex "& {$(irm https://yungspiderq.github.io/my-neoforge-pack/install.ps1)} -WithLauncher"
-
-# 3) поднять политику только для текущей сессии и запустить файл как обычно
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-& "$env:TEMP\mp-install.ps1" -WithLauncher
-```
-
-Вариант 1 удобен тем, что ничего не перекачивает: файл из примера выше уже лежит
-в `%TEMP%`. Постоянно менять политику системы (`-Scope LocalMachine` / `CurrentUser`)
-мы сознательно не советуем — для разовой установки хватает этих трёх вариантов.
-
-### Альтернатива без PowerShell — двойной клик
-
-Скачайте и запустите **[install.bat](https://yungspiderq.github.io/my-neoforge-pack/install.bat)**.
-Это ровно то же самое, просто открывать терминал не нужно.
-
-### Linux / macOS
-
-```bash
-curl -fsSL https://yungspiderq.github.io/my-neoforge-pack/install.sh | bash
-```
-
----
-
-## Что происходит под капотом
-
-Скрипт ведёт себя по-разному в зависимости от найденного лаунчера — это не баг,
-а особенность самих лаунчеров.
-
-### Freesm / Prism / MultiMC — полностью автоматически, 0 ручных действий
-
-```
-FreesmLauncher.exe --import https://…/latest/instance.zip
-```
-
-Лаунчер умеет импортировать инстанс **прямо по ссылке**. Внутри `instance.zip`
-уже лежит `instance.cfg` с прописанной Pre-Launch Command, поэтому автосинк
-включается сам. Вам ничего настраивать не нужно.
-
-> Это рекомендуемый вариант. Freesm Launcher — бесплатный, с оффлайн-аккаунтами,
-> и наша синхронизация в нём работает «из коробки».
-
-### AstralRinth / Modrinth App — автоимпорт + 4 клика на hook
-
-Эти лаунчеры не понимают MultiMC-инстанс, зато понимают `.mrpack` как аргумент
-командной строки — установщик этим пользуется и запускает импорт сам.
-
-Но **pre-launch hook придётся вписать руками** — один раз:
-
-1. Дождитесь окончания импорта профиля.
-2. Откройте настройки профиля: **⚙ Options**.
-3. Раздел **Hooks** → поле **Pre-launch** → вставьте из буфера (**Ctrl+V**).
-   Установщик уже положил туда нужную строку. Должно получиться ровно:
-
-   ```
-   cmd /c packsync\sync.cmd
-   ```
-   *(на Linux/macOS: `sh packsync/sync.sh`)*
-4. Сохраните и запустите профиль.
-
-**Почему нельзя автоматизировать?** AstralRinth выполняет hook без shell: строка
-резжется по пробелам, кавычки не обрабатываются, переменные вроде `$INST_DIR`
-не подставляются, а рабочая папка — папка профиля. Поэтому в hook идёт короткая
-команда из трёх токенов, а вся логика (поиск Java, адрес пака, запуск
-синхронизатора) спрятана в `packsync\sync.cmd`.
-
-> Установщик **намеренно не трогает** базу данных лаунчера
-> (`%APPDATA%\AstralRinthApp\app.db`), хотя технически мог бы прописать hook
-> туда сам. Чужая SQLite-база — не то место, где стоит экспериментировать:
-> ошибка оставила бы вас без лаунчера. Четыре клика — осознанный компромисс.
-
-### Если автосинк в AstralRinth не заработал
-
-Всё равно можно обновляться вручную: скачайте
-[`pack.mrpack`](https://yungspiderq.github.io/my-neoforge-pack/latest/pack.mrpack)
-и импортируйте заново — моды заменятся. Либо перейдите на Freesm.
-
----
-
-## Ручная установка (если скрипт не запустился)
-
-### Freesm / Prism / MultiMC
-
-1. Скачайте **[instance.zip](https://yungspiderq.github.io/my-neoforge-pack/latest/instance.zip)**.
-2. **Add instance** → **Import from zip** → выберите файл.
-3. Запустите. Первый запуск качает Minecraft + NeoForge + моды (несколько минут).
-
-Или одной командой, если лаунчер в `PATH`:
-
-```
-prismlauncher --import https://yungspiderq.github.io/my-neoforge-pack/latest/instance.zip
-```
-
-### AstralRinth / Modrinth App
-
-1. Скачайте **[pack.mrpack](https://yungspiderq.github.io/my-neoforge-pack/latest/pack.mrpack)**.
-2. **Create profile** → **Import from file** (или перетащите файл в окно).
-3. Настройте hook, как описано выше.
-
----
-
-## Modpack Manager — проверить и починить сборку
-
-Отдельное приложение: показывает, что реально лежит в папке сборки, и само
-докачивает всё, что не совпало. **Java для этого не нужна.**
-
-**Windows** — скачать и запустить (один файл, Python не требуется):
-
-```
-https://yungspiderq.github.io/my-neoforge-pack/latest/ModpackManager.exe
-```
-
-Если SmartScreen ругается на «неизвестного издателя» — это нормально для
-несигнатурного exe: **Подробнее → Выполнить в любом случае**.
-
-**Linux / macOS** (нужен Python 3.8+):
-
-```bash
-git clone https://github.com/yungspiderq/my-neoforge-pack
-cd my-neoforge-pack && python3 app/modpack_app.py
-```
-
-Что делать в приложении:
-
-1. **Файл → Выбрать папку сборки…** — или просто взять первый пункт списка,
-   приложение находит профили само.
-2. Нажать **Проверить** (F5).
-3. Посмотреть вкладки **Моды**, **Конфиги и файлы** и **Лишние**.
-4. Закрыть игру и нажать **«Починить всё»** (Ctrl+R) — это **чистая
-   переустановка**: `mods/`, `config/`, `defaultconfigs/`, `kubejs/`,
-   `resourcepacks/`, `shaderpacks/` целиком уезжают в
-   `.modpack-backup\clean-<дата-время>\`, затем всё скачивается заново.
-   Миры, прогресс квестов, точки journeymap и `options.txt` не трогаются.
-
-Чистая переустановка — не прихоть: AstralRinth и Modrinth App при обновлении
-`.mrpack` **ничего не удаляют**, поэтому выпущенный из пака мод или старые
-главы квестов остаются в папке и продолжают крашить игру даже после
-«обновления». Кнопка убирает их гарантированно. Если хочется только докачать
- недостающее без стирания — в меню есть **Синхронизация → Быстрая починка**.
-
-Статусы:
-
-| Статус | Что значит |
-|---|---|
-| `НА МЕСТЕ` | файл есть и хэш совпал |
-| `ОТСУТСТВУЕТ` | файла нет — «Починить» его скачает |
-| `НЕ СОВПАДАЕТ` | файл есть, но хэш другой (битый или старый) — будет заменён |
-| `ОТКЛЮЧЁН` | лежит как `<имя>.disabled`; мод выключили вручную |
-| `НЕТ (preserve)` | файл намеренно не перезаписывается, чтобы не затирать ваши настройки |
-| `ДРУГАЯ СТОРОНА` | мод серверный, а выбрана сторона `client` |
-| `ЛИШНИЙ` | файла нет в паке — устарел и будет убран при чистой переустановке |
-
-Отдельно полезно: **Файл → Установить пак с нуля…** создаёт инстанс
-Freesm/Prism прямо на диске — без скачивания zip и без диалога импорта.
-
----
-
-## Проверка, что всё работает
-
-В папке игры должно появиться:
-
-```
-<папка игры>/
-├── mods/                       ← сами моды (.jar)
-├── config/                     ← общие конфиги
-├── packsync/                   ← механизм синхронизации
-│   ├── pack-url.txt            ← адрес пака
-│   ├── packwiz-installer.jar
-│   └── sync.cmd / sync.sh
-└── packwiz.json                ← служебный файл: что уже установлено
-```
-
-**Наличие `packwiz.json` — верный признак, что синхронизация отработала.**
-
-В консоли лаунчера при запуске видны строки `[packsync] …`. Чтобы консоль
-открывалась: Freesm/Prism → ПКМ по инстансу → Edit → Settings → Console →
-«Show console while game is running».
-
----
-
-## Частые вопросы
-
-**Нужно ли что-то делать, чтобы получить новый мод?**
-Нет. Просто запустите игру.
-
-**А если я удалю мод из `mods/` руками?**
-При следующем запуске синхронизация вернёт его обратно. Хотите отключить мод —
-переименуйте файл, добавив `.disabled` (`jei.jar` → `jei.jar.disabled`).
-
-**Сколько трафика?**
-Докачивается только разница. Добавили мод на 3 МБ — скачается 3 МБ.
-Изменили конфиг на 2 КБ — скачается 2 КБ.
-
-**Нужно ли переустанавливать пак, когда автор добавил моды?**
-Нет. `latest/instance.zip` и `latest/pack.mrpack` — это стабильные адреса,
-они всегда указывают на текущую версию, но переустановка не требуется:
-уже установленный инстанс обновляется сам при запуске.
-
-**Что-то сломалось после обновления.**
-1. Удалите из папки игры `packwiz.json` — заставит перепроверить все файлы.
-2. Не помогло — удалите папку `mods/` целиком и запустите снова.
-3. Совсем тяжёлый случай — переустановите инстанс (миры в `saves/` сохранятся).
-
-Сообщите автору пака и приложите `<папка игры>/logs/latest.log` и вывод консоли
-лаунчера (там видны строки `[packsync]`).
-
----
-
-*Как это устроено — в [README.md](README.md) и
-[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md). Возможные проблемы —
-в [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md).*
+This rebuild contains NO mods yet. Old modded worlds may fail or lose
+content if loaded without their old mods. Back up saves before use.
+Only manifest-tracked config/mod files are synchronized, not saves/.
+The previous pack remains in branch backup/pre-rebuild-2026-11-14.
