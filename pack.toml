@@ -1,7 +1,7 @@
 name = "My NeoForge Pack"
 author = "yungspiderq"
-version = "0.1.0"
-description = "Clean Minecraft 1.21.1 NeoForge starter with launch-time sync"
+version = "0.2.0"
+description = "Create-centered NeoForge 1.21.1 modpack with FTB Quests, FancyMenu, shaders and auto-update"
 pack-format = "packwiz:1.1.0"
 
 [index]

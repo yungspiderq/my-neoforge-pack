@@ -12,3 +12,6 @@
 /kubejs/README.md
 /defaultconfigs/README.md
 *.log
+/pack-selection.json
+/resourcepacks/README.md
+/shaderpacks/README.md

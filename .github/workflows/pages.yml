@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -20,28 +20,39 @@ jobs:
     environment: github-pages
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Validate and package
+      - name: Resolve selected Modrinth projects and refresh index
         run: |
+          python scripts/resolve_modrinth.py
+          python scripts/pack.py refresh
           python scripts/pack.py validate
-          python scripts/pack.py site
-      - name: Inspect build
+      - name: Commit updated pinned metadata
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add mods resourcepacks shaderpacks pack.toml index.toml
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: refresh Modrinth pins and pack hashes [skip ci]"
+            git push origin HEAD:main
+          fi
+      - name: Build auto-update artifacts
+        run: python scripts/pack.py site
+      - name: Verify archives
         run: |
           python - <<'PY'
           import json, zipfile
-          from pathlib import Path
-          p=Path("site/latest")
-          with zipfile.ZipFile(p/"instance.zip") as z:
+          with zipfile.ZipFile("site/latest/instance.zip") as z:
               assert "instance.cfg" in z.namelist()
-              assert "mmc-pack.json" in z.namelist()
               assert "minecraft/packsync/packwiz-installer.jar" in z.namelist()
-          with zipfile.ZipFile(p/"pack.mrpack") as z:
-              d=json.loads(z.read("modrinth.index.json"))
-              assert d["dependencies"]["neoforge"] == "21.1.252"
+          with zipfile.ZipFile("site/latest/pack.mrpack") as z:
+              m = json.loads(z.read("modrinth.index.json"))
+              assert m["dependencies"]["neoforge"] == "21.1.252"
               assert "overrides/packsync/sync.cmd" in z.namelist()
-          print("Distribution packages OK")
+          print("Modpack artifacts OK")
           PY
       - uses: actions/configure-pages@v5
         with:

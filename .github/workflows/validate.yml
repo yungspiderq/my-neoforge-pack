@@ -17,6 +17,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python scripts/pack.py validate
-      - run: python -m py_compile scripts/pack.py
-      - run: python scripts/pack.py site
+      - name: Resolve and validate Modrinth selections
+        run: |
+          python scripts/resolve_modrinth.py
+          python scripts/pack.py refresh
+          python scripts/pack.py validate
+      - name: Python syntax
+        run: python -m py_compile scripts/*.py
+      - name: Validate package creation
+        run: python scripts/pack.py site

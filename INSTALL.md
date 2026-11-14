@@ -1,33 +1,13 @@
-# Install clean NeoForge pack
+# Installing My NeoForge Pack
 
-Minecraft 1.21.1 / NeoForge 21.1.252; use Java 21.
+Minecraft 1.21.1; NeoForge 21.1.252; Java 21.
 
-## Windows - Prism Launcher / Freesm
+**Prism / Freesm (Windows):** import https://yungspiderq.github.io/my-neoforge-pack/latest/instance.zip as a new instance. The pre-launch hook runs packwiz-installer from sync.cmd and downloads the selected pack on each launch.
 
-Download https://yungspiderq.github.io/my-neoforge-pack/latest/instance.zip
-Import the ZIP as a new instance in Prism/Freesm and launch Minecraft.
-The included pre-launch command runs packsync/sync.cmd before Minecraft.
-The pack installer fetches changed files by their checksums from Pages.
-If Java is not found or the network fails, the game may still launch
-without the update. Inspect the game-folder packsync/sync.log.
+**Modrinth App / AstralRinth:** import https://yungspiderq.github.io/my-neoforge-pack/latest/pack.mrpack and manually add Windows pre-launch hook: cmd /c packsync\\sync.cmd. Without the hook, you only install a snapshot.
 
-## Modrinth App / AstralRinth
+**Linux/macOS:** set the launch hook to invoke sh packsync/sync.sh in the instance's game directory.
 
-Import https://yungspiderq.github.io/my-neoforge-pack/latest/pack.mrpack
-Configure the instance pre-launch hook manually:
-Windows: cmd /c packsync\sync.cmd
-Linux/macOS: sh packsync/sync.sh
+Use the in-game **Resource Packs** menu to enable Bare Bones and shader selection in Iris video settings. Both are optional and are not forced on by the installer.
 
-Without this hook, a downloaded MRPACK is only a snapshot and does NOT auto-update.
-
-## Linux/macOS Prism
-
-Set a platform-specific pre-launch command invoking sh on
-the game-folder packsync/sync.sh (the bundled command targets Windows).
-
-## Caution
-
-This rebuild contains NO mods yet. Old modded worlds may fail or lose
-content if loaded without their old mods. Back up saves before use.
-Only manifest-tracked config/mod files are synchronized, not saves/.
-The previous pack remains in branch backup/pre-rebuild-2026-11-14.
+Do not reuse an old modded world without a full backup. Check packsync/sync.log if updating fails; the pre-launch helper may allow the game to start after a sync error.

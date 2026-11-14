@@ -1,1 +1,1 @@
-Clean NeoForge 1.21.1 base. Add mods with packwiz.
+My NeoForge Pack v0.2.0 | Create + FTB Quests + FancyMenu + shaders

@@ -1,0 +1,107 @@
+[
+  {
+    "slug": "create",
+    "type": "mod"
+  },
+  {
+    "slug": "fancymenu",
+    "type": "mod"
+  },
+  {
+    "slug": "konkrete",
+    "type": "mod"
+  },
+  {
+    "slug": "melody",
+    "type": "mod"
+  },
+  {
+    "slug": "kubejs",
+    "type": "mod"
+  },
+  {
+    "slug": "rhino",
+    "type": "mod"
+  },
+  {
+    "slug": "iris",
+    "type": "mod"
+  },
+  {
+    "slug": "sodium",
+    "type": "mod"
+  },
+  {
+    "slug": "jei",
+    "type": "mod"
+  },
+  {
+    "slug": "cubes-without-borders",
+    "type": "mod"
+  },
+  {
+    "slug": "jade",
+    "type": "mod",
+    "optional": true
+  },
+  {
+    "slug": "appleskin",
+    "type": "mod",
+    "optional": true
+  },
+  {
+    "slug": "mouse-tweaks",
+    "type": "mod",
+    "optional": true
+  },
+  {
+    "slug": "ferrite-core",
+    "type": "mod",
+    "optional": true
+  },
+  {
+    "slug": "modernfix",
+    "type": "mod",
+    "optional": true
+  },
+  {
+    "slug": "immediatelyfast",
+    "type": "mod",
+    "optional": true
+  },
+  {
+    "slug": "entityculling",
+    "type": "mod",
+    "optional": true
+  },
+  {
+    "slug": "lithium",
+    "type": "mod",
+    "optional": true
+  },
+  {
+    "slug": "sodium-extra",
+    "type": "mod",
+    "optional": true
+  },
+  {
+    "slug": "reeses-sodium-options",
+    "type": "mod",
+    "optional": true
+  },
+  {
+    "slug": "bare-bones",
+    "type": "resourcepack",
+    "optional": true
+  },
+  {
+    "slug": "complementary-reimagined",
+    "type": "shader",
+    "optional": true
+  },
+  {
+    "slug": "bsl-shaders",
+    "type": "shader",
+    "optional": true
+  }
+]

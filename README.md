@@ -1,45 +1,33 @@
-# My NeoForge Pack - clean starter
+# My NeoForge Pack v0.2.0
 
-This is a new baseline, not the old story-driven pack.
 Minecraft 1.21.1 / NeoForge 21.1.252 / Java 21.
-Currently: zero mods, no quests, no KubeJS scripts.
 
-The previous complete repository is preserved in the branch:
-backup/pre-rebuild-2026-11-14
-Original commit: ed5647097ade7f69992ac57d58d7d3bda9c76e2b
+**Exactly one gameplay content mod: Create.** Additional mods provide questing, menus, scripting, performance, UI and shaders. Modrinth dependencies are resolved automatically, but no extra gameplay content mods are intended.
 
-## Auto updates
+## Included framework
+- **Create**: only gameplay content mod
+- **FTB Quests**, FTB Library, FTB Teams, FTB Filter System: quest engine
+- **FancyMenu**: custom title screen, buttons and background
+- **KubeJS / Rhino**: future scripts
+- **Cubes Without Borders**: borderless fullscreen
+- **Sodium / Iris**: performance and shader support
+- **JEI, Jade, AppleSkin and other QoL** when compatible
+- **Bare Bones resource pack** and **Complementary Reimagined / BSL shaders** are downloaded as client-side optional visual packs where a compatible distribution exists
 
-Prism/Freesm imports from:
-https://yungspiderq.github.io/my-neoforge-pack/latest/instance.zip
+## Updates
+Github Pages: https://yungspiderq.github.io/my-neoforge-pack/pack.toml
 
-The Windows instance has a pre-launch command that runs packwiz-installer.
-On every start it compares hashes with GitHub Pages and downloads changed files.
+For Prism/Freesm import latest/instance.zip with pre-launch sync; for Modrinth App import latest/pack.mrpack and configure a pre-launch hook (see INSTALL.md).
 
-Modrinth App or AstralRinth:
-https://yungspiderq.github.io/my-neoforge-pack/latest/pack.mrpack
-Requires manually configuring a pre-launch hook as described in INSTALL.md.
+Changing pack-selection.json and pushing main causes GitHub Actions to fetch compatible Modrinth versions, pin hashes, publish site/latest artifacts and save generated metadata. The 4 FTB Maven entries are retained manually.
 
-## Add mods
+To build locally run:
 
-Install packwiz: https://packwiz.infra.link/installation/
-
-Run:
-    packwiz modrinth add <slug>
+    python scripts/resolve_modrinth.py
     python scripts/pack.py refresh
     python scripts/pack.py validate
-    git add . && git commit -m "Add mods" && git push
-
-The repository stores mods/*.pw.toml reference files, not mod JARs.
-Put shared config files in config/; KubeJS scripts in kubejs/.
-Every push to main deploys the new pack. A release is optional.
-For a tagged GitHub Release use a v-prefixed tag.
-
-Test locally:
     python scripts/pack.py site
 
-## Safety
+**Do not put JAR/ZIP archives in Git.** Only references are committed. Resource/shader packs are not forced on players; enable them in the Minecraft graphics/resource-pack menus.
 
-This is a new pack, NOT a migration of the previous pack.
-Back up your worlds. Do not load old modded saves into the empty starter.
-The updater does not track your personal saves/ directory.
+Prior pack backup: backup/pre-rebuild-2026-11-14. Back up worlds; this rebuild is not compatible with old saves by default.

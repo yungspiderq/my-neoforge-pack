@@ -74,7 +74,7 @@ def validate():
         name = x["file"]
         if digest((ROOT / name).read_bytes()) != x["hash"]:
             raise ValueError("Hash mismatch in " + name)
-        is_mod = name.startswith("mods/") and name.endswith(".pw.toml")
+        is_mod = name.endswith(".pw.toml")
         if bool(x.get("metafile", False)) != is_mod:
             raise ValueError("Incorrect metafile flag: " + name)
         if is_mod:
@@ -82,7 +82,7 @@ def validate():
             dl = mod.get("download", {})
             fmt = dl.get("hash-format", "")
             fn = mod.get("filename", "")
-            if not mod.get("name") or not fn.endswith(".jar") or Path(fn).name != fn:
+            if not mod.get("name") or not fn.endswith((".jar", ".zip")) or Path(fn).name != fn:
                 raise ValueError("Invalid mod metadata: " + name)
             if not dl.get("url", "").startswith("https://") or fmt not in ("sha1", "sha512"):
                 raise ValueError("Invalid download URL or hash format: " + name)
@@ -134,7 +134,7 @@ def mrpack(out, pack, index):
         side = mod.get("side", "both")
         if side not in ("both", "client", "server"):
             raise ValueError("Invalid side: " + path)
-        entries.append({"path": "mods/" + mod["filename"],
+        entries.append({"path": path.rsplit("/", 1)[0] + "/" + mod["filename"],
                         "hashes": {dl["hash-format"]: dl["hash"]},
                         "downloads": [dl["url"]],
                         "env": {"client": "unsupported" if side == "server" else "required",
