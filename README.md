@@ -1,42 +1,67 @@
-# My NeoForge Pack v0.2.0
+# My NeoForge Pack — CHRONICLES 0.4
 
-Minecraft 1.21.1 / NeoForge 21.1.252 / Java 21.
+**Minecraft 1.21.1 • NeoForge 21.1.252 • Java 21**
 
-**Exactly one gameplay content mod: Create.** Additional mods provide questing, menus, scripting, performance, UI and shaders. Modrinth dependencies are resolved automatically, but no extra gameplay content mods are intended.
+A Create-centered Minecraft pack with one gameplay content mod (**Create**).
+Other mods support questing, scripts, a custom menu, borderless play, optimization,
+resource packs and shaders.
 
-## Included framework
-- **Create**: only gameplay content mod
-- **FTB Quests**, FTB Library, FTB Teams, FTB Filter System: quest engine
-- **FancyMenu**: custom title screen, buttons and background
-- **KubeJS / Rhino**: future scripts
-- **Cubes Without Borders**: borderless fullscreen
-- **Sodium / Iris**: performance and shader support
-- **JEI, Jade, AppleSkin and other QoL** when compatible
-- **Bare Bones resource pack** and **Complementary Reimagined / BSL shaders** are downloaded as client-side optional visual packs where a compatible distribution exists
+## What changed in 0.4
 
-## Updates
-Github Pages: https://yungspiderq.github.io/my-neoforge-pack/pack.toml
+- **626 quests across 24 chapters:** 16 vanilla and 8 Create chapters.
+- **12 distinctive quest map layouts**, not identical three-lane trees.
+- **72 original quest illustrations** and RU/EN quest localization.
+- 24 custom KubeJS completion rewards and two optional custom quests.
+- New **FancyMenu Clockwork Atlas** background and styled custom buttons with
+  hover states, including vanilla button actions for navigation.
+- Quest IDs for the original 14 chapters stay stable for existing progress.
+- Kept automatic pack updates, shaders and **Cubes Without Borders**.
 
-For Prism/Freesm import latest/instance.zip with pre-launch sync; for Modrinth App import latest/pack.mrpack and configure a pre-launch hook (see INSTALL.md).
+## Install (new instance recommended)
 
-Changing pack-selection.json and pushing main causes GitHub Actions to fetch compatible Modrinth versions, pin hashes, publish site/latest artifacts and save generated metadata. The 4 FTB Maven entries are retained manually.
+**Windows, Prism / Freesm:** import
+https://yungspiderq.github.io/my-neoforge-pack/latest/instance.zip
 
-To build locally run:
+**Modrinth App / AstralRinth:** import
+https://yungspiderq.github.io/my-neoforge-pack/latest/pack.mrpack
 
+To enable automatic updates in Modrinth App or AstralRinth, configure the
+pre-launch hook in the instance as documented in [INSTALL.md](INSTALL.md).
+The Prism/Freesm Windows instance ZIP already contains a pre-launch sync
+command. Updates download only manifest-changed content.
+
+**Worlds:** back up saves separately. The pack does not distribute saves and
+major modpack changes should be tested in a fresh world first.
+
+## Edit the modpack
+
+Add gameplay mods through packwiz or adjust the managed Modrinth selection
+in [pack-selection.json](pack-selection.json). Add dependencies with compatible
+NeoForge 1.21.1 versions. Current supporting mods include FTB Quests,
+FTB Library, FTB Teams, FTB XMod Compat, Architectury, KubeJS, FancyMenu,
+Iris, Sodium and other performance/UI libraries.
+
+Quest sources:
+- [Questbook and source data](docs/QUESTS.md)
+- [Generated quest route map](docs/QUEST_MAP.md)
+- [New FancyMenu design](docs/MENU.md)
+
+Build and validate locally:
+
+    python -m pip install "pillow>=11,<13" "nbtlib>=2,<3"
     python scripts/resolve_modrinth.py
+    python scripts/pin_ftb_xmod.py
+    python scripts/gen_quests.py
+    python scripts/gen_menu.py
+    python scripts/check_questbook.py
     python scripts/pack.py refresh
     python scripts/pack.py validate
     python scripts/pack.py site
 
-**Do not put JAR/ZIP archives in Git.** Only references are committed. Resource/shader packs are not forced on players; enable them in the Minecraft graphics/resource-pack menus.
+GitHub Actions repeats these checks on branches and publishes
+the updated pack to GitHub Pages after pushes to main.
 
-Prior pack backup: backup/pre-rebuild-2026-11-14. Back up worlds; this rebuild is not compatible with old saves by default.
+## Backup
 
-## Questbook
-
-14 illustrated chapters and 253 quests in Russian and English, including Create progression, 3 interconnected quest lanes per chapter, KubeJS custom rewards and an optional stormwatch custom task. See [QUESTS.md](docs/QUESTS.md). KubeJS content is included in this same pack; no separate content mod is added.
-
-
-## Chronicles 0.4 redesign
-
-The questbook has been rebuilt to **24 chapters / 626 quests** (16 vanilla, 8 Create) with 12 distinctive visual layouts, individual chapter art and expanded objectives, including custom KubeJS challenges and rewards. The old title screen was replaced with a clockwork-atlas FancyMenu with styled action buttons. See [Quest Atlas](docs/QUESTS.md) and [FancyMenu](docs/MENU.md).
+The pre-rebuild modpack remains in
+[backup/pre-rebuild-2026-11-14](../../tree/backup/pre-rebuild-2026-11-14).
