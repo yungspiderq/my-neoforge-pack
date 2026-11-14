@@ -42,6 +42,11 @@ hash = "43e2d4365fb5e804dbed3488005273e814a32e990f04d31d871d3d2ddf6d9d8d"
 metafile = true
 
 [[files]]
+file = "mods/architectury-api.pw.toml"
+hash = "c92e267b20cfa100ee167fb9ba77089ae254c997c036e4ced561a90239400eb9"
+metafile = true
+
+[[files]]
 file = "mods/better-advanced-tooltips.pw.toml"
 hash = "4c1a0e9cc671e3f4e5c29922ced59f8f791e52e927eaa2526a01ba6e1cba303b"
 metafile = true
