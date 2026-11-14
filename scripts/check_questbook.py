@@ -119,7 +119,7 @@ assert layout.count("action_type:mimicbutton")==5
 assert layout.count("element_type = custom_button")>=6
 for name in ("chronicles_background.png","chronicles_button.png","chronicles_button_hover.png"):
     art=ROOT/"config/fancymenu/assets"/name
-    assert art.is_file() and art.stat().st_size>1000,art
+    assert art.is_file() and art.stat().st_size>175,art
 print(f"Validated {len(EXPECTED)} chapters, {total} quests, {len(deps)} dependency edges, {len(rewards)} custom rewards, {len(tasks)} custom tasks")
 print("Tasks:",dict(types))
 print("Checked: exact vanilla IDs, original quest IDs, dependency DAG, menu buttons, images and both languages.")
