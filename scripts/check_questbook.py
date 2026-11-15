@@ -112,11 +112,38 @@ for ci in range(14):
     prefix=f"{(0x72<<56)|((ci+1)<<32):016X}"
     assert f"{((0x72<<56)|((ci+1)<<32)|1):016X}" in ids
     assert f"{((0x72<<56)|((ci+1)<<32)|18):016X}" in ids
-# New main menu has custom action-bound controls, not default vanilla buttons.
+# Fix 0.4.1: style the actual vanilla widgets, not overlay duplicates.
+# The layout must explicitly declare element_type in vanilla_button blocks;
+# without it FancyMenu ignores is_hidden and draws the default UI underneath.
 layout=(ROOT/"config/fancymenu/customization/chronicles_title_layout.txt").read_text(encoding="utf-8")
 assert "chronicles_background.png" in layout
-assert layout.count("action_type:mimicbutton")==5
-assert layout.count("element_type = custom_button")>=6
+assert layout.count("element_type = vanilla_button")==12
+assert layout.count("is_hidden = true")==5
+assert layout.count("element_type = custom_button")==1
+assert layout.count("action_type:mimicbutton")==0
+assert layout.count("backgroundhovered = ")==6
+assert "chronicles-build-label" not in layout
+for widget in ("minecraft_logo_widget", "minecraft_splash_widget",
+               "minecraft_branding_widget", "minecraft_realms_notification_icons_widget",
+               "mc_titlescreen_realms_button"):
+    assert (f"instance_identifier = {widget}\n  is_hidden = true") in layout or (
+        f"instance_identifier = {widget}\n  is_hidden = true\n") in layout
+for widget in ("mc_titlescreen_singleplayer_button","mc_titlescreen_multiplayer_button",
+               "mc_titlescreen_options_button","forge_titlescreen_mods_button",
+               "mc_titlescreen_quit_button"):
+    assert f"instance_identifier = {widget}\n  is_hidden = false" in layout
+# Check approximate viewport geometry for the submitted 1664x916 screenshot
+# at 3x GUI scale; the menu must remain inside the left design panel.
+x=48*2.67
+width=154*2.67
+ys=[-26,5,36,67,98]
+rects=[(x,916/2+y*2.67,width,24*2.67) for y in ys]
+assert all(80 <= a and a+w <= 610 for a,b,w,h in rects)
+assert all(340 <= b and b+h <= 820 for a,b,w,h in rects)
+assert all(rects[i][1]+rects[i][3] < rects[i+1][1] for i in range(4))
+options=(ROOT/"config/fancymenu/options.txt").read_text(encoding="utf-8")
+assert "B:modpack_mode=true;" in options
+assert "B:show_customization_overlay=false;" in options
 for name in ("chronicles_background.png","chronicles_button.png","chronicles_button_hover.png"):
     art=ROOT/"config/fancymenu/assets"/name
     assert art.is_file() and art.stat().st_size>175,art

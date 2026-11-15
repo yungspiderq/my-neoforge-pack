@@ -1,7 +1,7 @@
 name = "My NeoForge Pack"
 author = "yungspiderq"
-version = "0.4.0"
-description = "Chronicles v0.4: 24 illustrated quest chapters, unique routes, custom FancyMenu and Create"
+version = "0.4.1"
+description = "Chronicles v0.4.1: 626 quests, FancyMenu UI collision hotfix, Create"
 pack-format = "packwiz:1.1.0"
 
 [index]

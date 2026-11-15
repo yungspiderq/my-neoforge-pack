@@ -109,8 +109,13 @@ def background():
         btn.save(ASSETS/("chronicles_button_hover.png" if hover else "chronicles_button.png"),optimize=True)
 
 def create_layout():
-    L=[]
-    L.extend([
+    """Styling existing vanilla widgets avoids duplicate hitboxes and broken mimic actions.
+
+    FancyMenu 3.x requires *element_type = vanilla_button* inside every
+    vanilla_button block; otherwise is_hidden is silently ignored.
+    Every built-in game action remains the original game action.
+    """
+    L=[
         "type = fancymenu_layout",
         "",
         "layout-meta {",
@@ -121,7 +126,7 @@ def create_layout():
         "  randomonlyfirsttime = false",
         "  layout_index = 0",
         "  render_custom_elements_behind_vanilla = false",
-        "  last_edited_time = 1794590000000",
+        "  last_edited_time = 1794740000000",
         "}",
         "",
         "menu_background {",
@@ -131,73 +136,92 @@ def create_layout():
         "  repeat_texture = false",
         "  parallax = false",
         "  keepaspectratio = true",
-        "  instance_identifier = chronicles-background-v4",
+        "  instance_identifier = chronicles-background-v41",
         "}",
         "",
         "customization {",
         "  action = backgroundoptions",
         "  keepaspectratio = true",
         "}",
-    ])
-    # Hide the default GUI buttons; the replacement buttons use mimicbutton actions.
-    buttons=[
-        ("singleplayer","ОДИНОЧНАЯ ИГРА","mc_titlescreen_singleplayer_button",-60),
-        ("multiplayer","СЕТЕВАЯ ИГРА","mc_titlescreen_multiplayer_button",-11),
-        ("options","НАСТРОЙКИ","mc_titlescreen_options_button",38),
-        ("mods","МОДЫ","forge_titlescreen_mods_button",87),
-        ("quit","ВЫХОД","mc_titlescreen_quit_button",136),
     ]
-    for kind,label,target,y in buttons:
+    # This is the actual FancyMenu 3.x widget configuration structure.
+    # Hide noninteractive title elements and unwanted Realms overlays.
+    hidden=[
+        "minecraft_logo_widget",
+        "minecraft_splash_widget",
+        "minecraft_branding_widget",
+        "minecraft_realms_notification_icons_widget",
+        "mc_titlescreen_realms_button",
+    ]
+    for identifier in hidden:
+        L.extend([
+            "", "vanilla_button {",
+            "  element_type = vanilla_button",
+            "  instance_identifier = "+identifier,
+            "  is_hidden = true",
+            "  automated_button_clicks = 0",
+            "}",
+        ])
+    # Physical 1664x916 screenshot at GUI scale ~2.67:
+    # x=48 -> ~128 px, width=154 -> ~411 px, so all buttons sit
+    # within the artwork's left-hand panel (x~70..610).
+    # y=-26..98 -> ~388..719 px, each height 24 -> ~64 px.
+    buttons=[
+        ("mc_titlescreen_singleplayer_button","ОДИНОЧНАЯ ИГРА",-26),
+        ("mc_titlescreen_multiplayer_button","СЕТЕВАЯ ИГРА",5),
+        ("mc_titlescreen_options_button","НАСТРОЙКИ",36),
+        ("forge_titlescreen_mods_button","МОДЫ",67),
+        ("mc_titlescreen_quit_button","ВЫХОД",98),
+    ]
+    for identifier,label,y in buttons:
         L.extend([
             "",
             "vanilla_button {",
-            "  instance_identifier = "+target,
-            "  is_hidden = true",
-            "}",
-        ])
-    for kind,label,target,y in buttons:
-        act="chronicles-action-"+kind
-        blk="chronicles-exec-"+kind
-        L.extend([
-            "",
-            "element {",
-            "  button_element_executable_block_identifier = "+blk,
-            "  [executable_action_instance:"+act+"][action_type:mimicbutton] = title_screen:"+target,
-            "  [executable_block:"+blk+"][type:generic] = [executables:"+act+";]",
-            "  actionid = "+blk,
+            "  element_type = vanilla_button",
+            "  instance_identifier = "+identifier,
+            "  is_hidden = false",
+            "  automated_button_clicks = 0",
             "  backgroundnormal = [source:local]/config/fancymenu/assets/chronicles_button.png",
             "  backgroundhovered = [source:local]/config/fancymenu/assets/chronicles_button_hover.png",
             "  restartbackgroundanimations = false",
             "  nine_slice_custom_background = false",
-            "  label = "+label,
-            "  description = "+label,
             "  navigatable = true",
-            "  element_type = custom_button",
-            "  instance_identifier = chronicles-btn-"+kind,
-            "  anchor_point = mid-centered",
-            "  x = -205",
+            "  label = "+label,
+            "  base_opacity = 1.0",
+            "  auto_sizing = false",
+            "  sticky_anchor = false",
+            "  anchor_point = mid-left",
+            "  x = 48",
             "  y = "+str(y),
-            "  width = 248",
-            "  height = 39",
+            "  width = 154",
+            "  height = 24",
+            "  stay_on_screen = true",
             "}",
         ])
+    # Keep accessibility and language functions available in the lower-right.
+    utility_buttons=[
+        ("mc_titlescreen_language_button",-71),
+        ("mc_titlescreen_accessibility_button",-43),
+    ]
+    for identifier,x in utility_buttons:
+        L.extend([
+            "",
+            "vanilla_button {",
+            "  element_type = vanilla_button",
+            "  instance_identifier = "+identifier,
+            "  is_hidden = false",
+            "  anchor_point = bottom-right",
+            "  auto_sizing = false",
+            "  x = "+str(x),
+            "  y = -41",
+            "  width = 20",
+            "  height = 20",
+            "  stay_on_screen = true",
+            "}",
+        ])
+    # Leave copyright in its standard bottom-right location: Minecraft
+    # prevents removing it, and there is intentionally no custom footer.
     L.extend([
-        "",
-        "element {",
-        "  element_type = text_v2",
-        "  source = NEOFORGE 1.21.1  /  CREATE  /  CHRONICLES 0.4",
-        "  source_mode = direct",
-        "  scale = 0.9",
-        "  shadow = true",
-        "  case_mode = normal",
-        "  line_spacing = 1",
-        "  anchor_point = bottom-centered",
-        "  x = 0",
-        "  y = -23",
-        "  width = 510",
-        "  height = 18",
-        "  instance_identifier = chronicles-build-label",
-        "}",
         "",
         "element {",
         "  button_element_executable_block_identifier = chronicles-exec-repo",
@@ -212,10 +236,11 @@ def create_layout():
         "  instance_identifier = chronicles-btn-repo",
         "  navigatable = true",
         "  anchor_point = bottom-right",
-        "  x = -164",
-        "  y = -54",
-        "  width = 140",
-        "  height = 32",
+        "  x = -193",
+        "  y = -43",
+        "  width = 110",
+        "  height = 24",
+        "  stay_on_screen = true",
         "}",
     ])
     LAYOUT.parent.mkdir(parents=True,exist_ok=True)
@@ -227,10 +252,14 @@ def main():
     ASSETS.mkdir(parents=True,exist_ok=True)
     background()
     create_layout()
-    assert LAYOUT.read_text(encoding="utf-8").count("action_type:mimicbutton")==5
+    layout = LAYOUT.read_text(encoding="utf-8")
+    assert layout.count("element_type = vanilla_button")==12
+    assert layout.count("is_hidden = true")==5
+    assert layout.count("backgroundhovered = ")==6
+    assert layout.count("element_type = custom_button")==1
     assert all((ASSETS/f).is_file() for f in (
         "chronicles_background.png","chronicles_button.png","chronicles_button_hover.png"))
-    print("Rendered redesigned FancyMenu: custom title background, hover sprites and 6 buttons")
+    print("Rendered FancyMenu v0.4.1: five native-action custom-styled buttons, one repo button, and hidden title overlays")
 
 if __name__=="__main__":
     main()

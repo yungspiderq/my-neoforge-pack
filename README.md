@@ -1,10 +1,16 @@
-# My NeoForge Pack — CHRONICLES 0.4
+# My NeoForge Pack — CHRONICLES 0.4.1
 
 **Minecraft 1.21.1 • NeoForge 21.1.252 • Java 21**
 
 A Create-centered Minecraft pack with one gameplay content mod (**Create**).
 Other mods support questing, scripts, a custom menu, borderless play, optimization,
 resource packs and shaders.
+
+## What changed in 0.4.1
+
+- Fixed Minecraft logo, Realms, branding, and default buttons rendering behind FancyMenu.
+- Replaced duplicate overlay buttons with restyled native buttons and fixed sizing on 1664×916.
+- Moved accessibility/language controls, removed overlapping footer, and hid the editor bar by default.
 
 ## What changed in 0.4
 
