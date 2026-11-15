@@ -18,11 +18,11 @@ hash = "4c68ab99c906dd487952f61bf33c0635039a8bbff3f02099e3cd8272fe51b4aa"
 
 [[files]]
 file = "config/fancymenu/customization/chronicles_title_layout.txt"
-hash = "efbffd6508be30439587fc4842806b07e18a2b0d9970a2b71f986a92a29aa472"
+hash = "b33ccf46c4e84a822f4b53ae947495893087967a3915a95fdedabd46c1c7034e"
 
 [[files]]
 file = "config/fancymenu/options.txt"
-hash = "293d7ee8d148af2bfd2dec9af88e36c0507ac6e36e6d0894bb89d9328e73c976"
+hash = "fb64d067061b9e756f4548bbf76ba59012eacbe014a0e3f14e9697aa992e6a4b"
 
 [[files]]
 file = "config/ftbquests/quests/chapter_groups.snbt"
@@ -138,7 +138,7 @@ hash = "5ceab61a3e89f32649b61840af4efe34d411d1d2af59109cb1ab678563362fc0"
 
 [[files]]
 file = "config/pack-info.txt"
-hash = "6634effbf4906d118122be0d691d10419f61e167b6e85f034afef16ed41903da"
+hash = "a07d302926eea2fd8890c77459a359a11be910fe04365c14588ce46705bc3dea"
 
 [[files]]
 file = "kubejs/assets/ftbquests/ftb_quests_theme.txt"

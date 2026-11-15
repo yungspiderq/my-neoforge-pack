@@ -8,7 +8,7 @@ layout-meta {
   randomonlyfirsttime = false
   layout_index = 0
   render_custom_elements_behind_vanilla = false
-  last_edited_time = 1794590000000
+  last_edited_time = 1794740000000
 }
 
 menu_background {
@@ -18,7 +18,7 @@ menu_background {
   repeat_texture = false
   parallax = false
   keepaspectratio = true
-  instance_identifier = chronicles-background-v4
+  instance_identifier = chronicles-background-v41
 }
 
 customization {
@@ -27,149 +27,174 @@ customization {
 }
 
 vanilla_button {
+  element_type = vanilla_button
+  instance_identifier = minecraft_logo_widget
+  is_hidden = true
+  automated_button_clicks = 0
+}
+
+vanilla_button {
+  element_type = vanilla_button
+  instance_identifier = minecraft_splash_widget
+  is_hidden = true
+  automated_button_clicks = 0
+}
+
+vanilla_button {
+  element_type = vanilla_button
+  instance_identifier = minecraft_branding_widget
+  is_hidden = true
+  automated_button_clicks = 0
+}
+
+vanilla_button {
+  element_type = vanilla_button
+  instance_identifier = minecraft_realms_notification_icons_widget
+  is_hidden = true
+  automated_button_clicks = 0
+}
+
+vanilla_button {
+  element_type = vanilla_button
+  instance_identifier = mc_titlescreen_realms_button
+  is_hidden = true
+  automated_button_clicks = 0
+}
+
+vanilla_button {
+  element_type = vanilla_button
   instance_identifier = mc_titlescreen_singleplayer_button
-  is_hidden = true
-}
-
-vanilla_button {
-  instance_identifier = mc_titlescreen_multiplayer_button
-  is_hidden = true
-}
-
-vanilla_button {
-  instance_identifier = mc_titlescreen_options_button
-  is_hidden = true
-}
-
-vanilla_button {
-  instance_identifier = forge_titlescreen_mods_button
-  is_hidden = true
-}
-
-vanilla_button {
-  instance_identifier = mc_titlescreen_quit_button
-  is_hidden = true
-}
-
-element {
-  button_element_executable_block_identifier = chronicles-exec-singleplayer
-  [executable_action_instance:chronicles-action-singleplayer][action_type:mimicbutton] = title_screen:mc_titlescreen_singleplayer_button
-  [executable_block:chronicles-exec-singleplayer][type:generic] = [executables:chronicles-action-singleplayer;]
-  actionid = chronicles-exec-singleplayer
+  is_hidden = false
+  automated_button_clicks = 0
   backgroundnormal = [source:local]/config/fancymenu/assets/chronicles_button.png
   backgroundhovered = [source:local]/config/fancymenu/assets/chronicles_button_hover.png
   restartbackgroundanimations = false
   nine_slice_custom_background = false
+  navigatable = true
   label = ОДИНОЧНАЯ ИГРА
-  description = ОДИНОЧНАЯ ИГРА
-  navigatable = true
-  element_type = custom_button
-  instance_identifier = chronicles-btn-singleplayer
-  anchor_point = mid-centered
-  x = -205
-  y = -60
-  width = 248
-  height = 39
+  base_opacity = 1.0
+  auto_sizing = false
+  sticky_anchor = false
+  anchor_point = mid-left
+  x = 48
+  y = -26
+  width = 154
+  height = 24
+  stay_on_screen = true
 }
 
-element {
-  button_element_executable_block_identifier = chronicles-exec-multiplayer
-  [executable_action_instance:chronicles-action-multiplayer][action_type:mimicbutton] = title_screen:mc_titlescreen_multiplayer_button
-  [executable_block:chronicles-exec-multiplayer][type:generic] = [executables:chronicles-action-multiplayer;]
-  actionid = chronicles-exec-multiplayer
+vanilla_button {
+  element_type = vanilla_button
+  instance_identifier = mc_titlescreen_multiplayer_button
+  is_hidden = false
+  automated_button_clicks = 0
   backgroundnormal = [source:local]/config/fancymenu/assets/chronicles_button.png
   backgroundhovered = [source:local]/config/fancymenu/assets/chronicles_button_hover.png
   restartbackgroundanimations = false
   nine_slice_custom_background = false
+  navigatable = true
   label = СЕТЕВАЯ ИГРА
-  description = СЕТЕВАЯ ИГРА
-  navigatable = true
-  element_type = custom_button
-  instance_identifier = chronicles-btn-multiplayer
-  anchor_point = mid-centered
-  x = -205
-  y = -11
-  width = 248
-  height = 39
+  base_opacity = 1.0
+  auto_sizing = false
+  sticky_anchor = false
+  anchor_point = mid-left
+  x = 48
+  y = 5
+  width = 154
+  height = 24
+  stay_on_screen = true
 }
 
-element {
-  button_element_executable_block_identifier = chronicles-exec-options
-  [executable_action_instance:chronicles-action-options][action_type:mimicbutton] = title_screen:mc_titlescreen_options_button
-  [executable_block:chronicles-exec-options][type:generic] = [executables:chronicles-action-options;]
-  actionid = chronicles-exec-options
+vanilla_button {
+  element_type = vanilla_button
+  instance_identifier = mc_titlescreen_options_button
+  is_hidden = false
+  automated_button_clicks = 0
   backgroundnormal = [source:local]/config/fancymenu/assets/chronicles_button.png
   backgroundhovered = [source:local]/config/fancymenu/assets/chronicles_button_hover.png
   restartbackgroundanimations = false
   nine_slice_custom_background = false
+  navigatable = true
   label = НАСТРОЙКИ
-  description = НАСТРОЙКИ
-  navigatable = true
-  element_type = custom_button
-  instance_identifier = chronicles-btn-options
-  anchor_point = mid-centered
-  x = -205
-  y = 38
-  width = 248
-  height = 39
+  base_opacity = 1.0
+  auto_sizing = false
+  sticky_anchor = false
+  anchor_point = mid-left
+  x = 48
+  y = 36
+  width = 154
+  height = 24
+  stay_on_screen = true
 }
 
-element {
-  button_element_executable_block_identifier = chronicles-exec-mods
-  [executable_action_instance:chronicles-action-mods][action_type:mimicbutton] = title_screen:forge_titlescreen_mods_button
-  [executable_block:chronicles-exec-mods][type:generic] = [executables:chronicles-action-mods;]
-  actionid = chronicles-exec-mods
+vanilla_button {
+  element_type = vanilla_button
+  instance_identifier = forge_titlescreen_mods_button
+  is_hidden = false
+  automated_button_clicks = 0
   backgroundnormal = [source:local]/config/fancymenu/assets/chronicles_button.png
   backgroundhovered = [source:local]/config/fancymenu/assets/chronicles_button_hover.png
   restartbackgroundanimations = false
   nine_slice_custom_background = false
+  navigatable = true
   label = МОДЫ
-  description = МОДЫ
-  navigatable = true
-  element_type = custom_button
-  instance_identifier = chronicles-btn-mods
-  anchor_point = mid-centered
-  x = -205
-  y = 87
-  width = 248
-  height = 39
+  base_opacity = 1.0
+  auto_sizing = false
+  sticky_anchor = false
+  anchor_point = mid-left
+  x = 48
+  y = 67
+  width = 154
+  height = 24
+  stay_on_screen = true
 }
 
-element {
-  button_element_executable_block_identifier = chronicles-exec-quit
-  [executable_action_instance:chronicles-action-quit][action_type:mimicbutton] = title_screen:mc_titlescreen_quit_button
-  [executable_block:chronicles-exec-quit][type:generic] = [executables:chronicles-action-quit;]
-  actionid = chronicles-exec-quit
+vanilla_button {
+  element_type = vanilla_button
+  instance_identifier = mc_titlescreen_quit_button
+  is_hidden = false
+  automated_button_clicks = 0
   backgroundnormal = [source:local]/config/fancymenu/assets/chronicles_button.png
   backgroundhovered = [source:local]/config/fancymenu/assets/chronicles_button_hover.png
   restartbackgroundanimations = false
   nine_slice_custom_background = false
-  label = ВЫХОД
-  description = ВЫХОД
   navigatable = true
-  element_type = custom_button
-  instance_identifier = chronicles-btn-quit
-  anchor_point = mid-centered
-  x = -205
-  y = 136
-  width = 248
-  height = 39
+  label = ВЫХОД
+  base_opacity = 1.0
+  auto_sizing = false
+  sticky_anchor = false
+  anchor_point = mid-left
+  x = 48
+  y = 98
+  width = 154
+  height = 24
+  stay_on_screen = true
 }
 
-element {
-  element_type = text_v2
-  source = NEOFORGE 1.21.1  /  CREATE  /  CHRONICLES 0.4
-  source_mode = direct
-  scale = 0.9
-  shadow = true
-  case_mode = normal
-  line_spacing = 1
-  anchor_point = bottom-centered
-  x = 0
-  y = -23
-  width = 510
-  height = 18
-  instance_identifier = chronicles-build-label
+vanilla_button {
+  element_type = vanilla_button
+  instance_identifier = mc_titlescreen_language_button
+  is_hidden = false
+  anchor_point = bottom-right
+  auto_sizing = false
+  x = -71
+  y = -41
+  width = 20
+  height = 20
+  stay_on_screen = true
+}
+
+vanilla_button {
+  element_type = vanilla_button
+  instance_identifier = mc_titlescreen_accessibility_button
+  is_hidden = false
+  anchor_point = bottom-right
+  auto_sizing = false
+  x = -43
+  y = -41
+  width = 20
+  height = 20
+  stay_on_screen = true
 }
 
 element {
@@ -185,8 +210,9 @@ element {
   instance_identifier = chronicles-btn-repo
   navigatable = true
   anchor_point = bottom-right
-  x = -164
-  y = -54
-  width = 140
-  height = 32
+  x = -193
+  y = -43
+  width = 110
+  height = 24
+  stay_on_screen = true
 }
